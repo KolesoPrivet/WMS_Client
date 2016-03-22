@@ -24,3 +24,17 @@ C:\Users\Александр\Desktop\Учеба\Бакалавриат\Дипло
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\WMS.csproj.ResolveComReference.cache
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\WMS.exe
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\WMS.pdb
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\bin\Release\WMS.exe
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\bin\Release\WMS.pdb
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\bin\Release\GMap.NET.Core.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\bin\Release\GMap.NET.WindowsForms.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\bin\Release\GMap.NET.Core.xml
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\bin\Release\GMap.NET.WindowsForms.xml
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\WMS.csprojResolveAssemblyReference.cache
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\WMS.AboutForm.resources
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\WMS.ASForm.resources
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\WMS.AuthorForm.resources
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\WMS.MainForm.resources
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\WMS.Properties.Resources.resources
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\WMS.UI.Test.resources
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\WMS.csproj.GenerateResource.Cache

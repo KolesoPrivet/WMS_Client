@@ -31,9 +31,9 @@ namespace WMS
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.generalDBDataSet = new WMS.DAL.GeneralDBDataSet();
             this.SValuesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.SValuesTableAdapter = new WMS.DAL.GeneralDBDataSetTableAdapters.SValuesTableAdapter();
@@ -79,6 +79,7 @@ namespace WMS
             this.txtbxTimeFrom = new System.Windows.Forms.TextBox();
             this.txtbxTimeTo = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnStartMonitoring = new System.Windows.Forms.Button();
             this.dgvSens = new System.Windows.Forms.DataGridView();
             this.btnRefreshDB = new System.Windows.Forms.Button();
             this.rtbAmountSensors = new System.Windows.Forms.RichTextBox();
@@ -97,7 +98,6 @@ namespace WMS
             this.HelpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutProgramMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.btnStartMonitoring = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.generalDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SValuesBindingSource)).BeginInit();
             this.tabPage1.SuspendLayout();
@@ -471,20 +471,20 @@ namespace WMS
             // 
             // unionChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.unionChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.unionChart.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.unionChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.unionChart.Legends.Add(legend3);
             this.unionChart.Location = new System.Drawing.Point(6, 19);
             this.unionChart.Name = "unionChart";
-            series1.BorderWidth = 3;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Color = System.Drawing.Color.Blue;
-            series1.Legend = "Legend1";
-            series1.Name = "Датчик";
-            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
-            this.unionChart.Series.Add(series1);
+            series3.BorderWidth = 3;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Color = System.Drawing.Color.Blue;
+            series3.Legend = "Legend1";
+            series3.Name = "Датчик";
+            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
+            this.unionChart.Series.Add(series3);
             this.unionChart.Size = new System.Drawing.Size(1060, 247);
             this.unionChart.TabIndex = 6;
             this.unionChart.Text = "chart1";
@@ -639,6 +639,17 @@ namespace WMS
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Идентификация датчиков";
             // 
+            // btnStartMonitoring
+            // 
+            this.btnStartMonitoring.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStartMonitoring.Location = new System.Drawing.Point(392, 16);
+            this.btnStartMonitoring.Name = "btnStartMonitoring";
+            this.btnStartMonitoring.Size = new System.Drawing.Size(127, 75);
+            this.btnStartMonitoring.TabIndex = 17;
+            this.btnStartMonitoring.Text = "Начать мониторинг";
+            this.btnStartMonitoring.UseVisualStyleBackColor = true;
+            this.btnStartMonitoring.Click += new System.EventHandler(this.btnStartMonitoring_Click);
+            // 
             // dgvSens
             // 
             this.dgvSens.AllowUserToAddRows = false;
@@ -748,14 +759,14 @@ namespace WMS
             // RestartMenu
             // 
             this.RestartMenu.Name = "RestartMenu";
-            this.RestartMenu.Size = new System.Drawing.Size(152, 22);
+            this.RestartMenu.Size = new System.Drawing.Size(148, 22);
             this.RestartMenu.Text = "Перезагрузка";
             this.RestartMenu.Click += new System.EventHandler(this.RestartMenu_Click);
             // 
             // ExitMenu
             // 
             this.ExitMenu.Name = "ExitMenu";
-            this.ExitMenu.Size = new System.Drawing.Size(152, 22);
+            this.ExitMenu.Size = new System.Drawing.Size(148, 22);
             this.ExitMenu.Text = "Выход";
             this.ExitMenu.Click += new System.EventHandler(this.ExitMenu_Click);
             // 
@@ -808,17 +819,6 @@ namespace WMS
             this.menuStrip1.Size = new System.Drawing.Size(1116, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // btnStartMonitoring
-            // 
-            this.btnStartMonitoring.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStartMonitoring.Location = new System.Drawing.Point(392, 16);
-            this.btnStartMonitoring.Name = "btnStartMonitoring";
-            this.btnStartMonitoring.Size = new System.Drawing.Size(127, 75);
-            this.btnStartMonitoring.TabIndex = 17;
-            this.btnStartMonitoring.Text = "Получить данные";
-            this.btnStartMonitoring.UseVisualStyleBackColor = true;
-            this.btnStartMonitoring.Click += new System.EventHandler(this.btnStartMonitoring_Click);
             // 
             // MainForm
             // 

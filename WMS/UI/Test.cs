@@ -14,7 +14,8 @@ namespace WMS.UI
         public Test()
         {
             InitializeComponent();
-            textBox1.Text = "Датчик температуры";
+            textBox1.Text = "Arduino";
+            textBox3.Text = "Датчик температуры";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -70,8 +71,11 @@ namespace WMS.UI
 
         private void Test_FormClosing(object sender, FormClosingEventArgs e)
         {
-            cts.Cancel();
-            sp.Close();
+            if ( sp.IsOpen )
+            {
+                cts.Cancel();
+                sp.Close();
+            }
         }
     }
 }
