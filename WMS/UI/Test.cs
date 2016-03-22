@@ -14,6 +14,7 @@ namespace WMS.UI
         public Test()
         {
             InitializeComponent();
+            button2.Enabled = false;
             textBox1.Text = "Arduino";
             textBox3.Text = "Датчик температуры";
         }
