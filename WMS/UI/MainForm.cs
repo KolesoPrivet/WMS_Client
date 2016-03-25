@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
-using System.IO.Ports;
 using System.Windows.Forms;
 using System.Net.NetworkInformation;
 using WMS.UI;
@@ -41,6 +40,12 @@ namespace WMS
 
                 dgvSens.DataSource = SensorDV;
                 dgvData.DataSource = ValuesDV;
+        }
+
+        //TODO: Допили клик по маркеру
+        private void TestMethod(object sender, EventArgs e)
+        {
+            MessageBox.Show("Событие");
         }
 
         private void DelColnRowForSens()
@@ -282,6 +287,7 @@ namespace WMS
                  txtbxMapLastValue.Text = Convert.ToString(dgvData.Rows[Convert.ToInt16(value) - 1].Cells[5].Value);
 
             MainMap.Position = new PointLatLng(lat, lng);
+            //MainMap.OnMarkerClick;
 
             //в конце чистим фильтр
             SensorDV.RowFilter = null;
@@ -341,7 +347,7 @@ namespace WMS
  
             //CanDragMap - Если параметр установлен в True,
             //пользователь может перетаскивать карту
-            ///с помощью правой кнопки мыши.
+            //с помощью правой кнопки мыши.
             MainMap.CanDragMap = true;
  
             //Указываем, что перетаскивание карты осуществляется
@@ -391,6 +397,9 @@ namespace WMS
                 GMap.NET.AccessMode.ServerOnly;  
             
             MainMap.Position = new PointLatLng(55.75393, 37.620795);
+
+            //Вешаем обработчик клика по маркеру
+            MainMap.OnMarkerClick += new MarkerClick(TestMethod);
         }
 
         private void btnStartMonitoring_Click(object sender, EventArgs e)
