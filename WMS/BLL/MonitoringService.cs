@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WMS.BLL
 {
+    //TODO: вот сюда всю логику из формы надо перенести
     class MonitoringService
     {
     }

@@ -148,12 +148,13 @@ namespace WMS
                 markersOverlay.Markers.Clear();
                 double lat, lng;
                 int count = 0;
-                string _sensorName = "";
+                string sensorName;
                 //пробежимся по Сенсоровской гридвьюшке и из нее выцепим названия сенсоров и их координаты
                 foreach (var row in SensorDV)
                 {
-                    _sensorName = dgvSens.Rows[count].Cells[2].Value.ToString();
-                    comboBoxSNMap.Items.Add(_sensorName);
+                    sensorName = dgvSens.Rows[count].Cells[2].Value.ToString();
+                    sensorName += "\n" + dgvSens.Rows[count].Cells[3].Value.ToString();
+                    comboBoxSNMap.Items.Add(sensorName);
 
                     lat = Convert.ToDouble(dgvSens.Rows[count].Cells[4].Value);
                     lng = Convert.ToDouble(dgvSens.Rows[count].Cells[5].Value);
@@ -166,7 +167,7 @@ namespace WMS
                 markersOverlay.Markers.Add(marker);
 
                 //текст над маркером
-                marker.ToolTipText = _sensorName; 
+                marker.ToolTipText = sensorName; 
 
                     count++;
                 } 

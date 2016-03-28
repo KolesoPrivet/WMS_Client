@@ -31,9 +31,9 @@ namespace WMS
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.generalDBDataSet = new WMS.DAL.GeneralDBDataSet();
             this.SValuesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.SValuesTableAdapter = new WMS.DAL.GeneralDBDataSetTableAdapters.SValuesTableAdapter();
@@ -471,20 +471,20 @@ namespace WMS
             // 
             // unionChart
             // 
-            chartArea3.Name = "ChartArea1";
-            this.unionChart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.unionChart.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.unionChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.unionChart.Legends.Add(legend1);
             this.unionChart.Location = new System.Drawing.Point(6, 19);
             this.unionChart.Name = "unionChart";
-            series3.BorderWidth = 3;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Color = System.Drawing.Color.Blue;
-            series3.Legend = "Legend1";
-            series3.Name = "Датчик";
-            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
-            this.unionChart.Series.Add(series3);
+            series1.BorderWidth = 3;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Color = System.Drawing.Color.Blue;
+            series1.Legend = "Legend1";
+            series1.Name = "Датчик";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
+            this.unionChart.Series.Add(series1);
             this.unionChart.Size = new System.Drawing.Size(1060, 247);
             this.unionChart.TabIndex = 6;
             this.unionChart.Text = "chart1";
@@ -741,7 +741,7 @@ namespace WMS
             // 
             this.карта.Controls.Add(this.tabPageSensor);
             this.карта.Controls.Add(this.tabPage1);
-            this.карта.Location = new System.Drawing.Point(12, 29);
+            this.карта.Location = new System.Drawing.Point(11, 29);
             this.карта.Name = "карта";
             this.карта.SelectedIndex = 0;
             this.карта.Size = new System.Drawing.Size(1092, 640);
