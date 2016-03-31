@@ -31,7 +31,7 @@ namespace WMS
                 {
                     MessageBox.Show("Авторизация прошла успешно!");
                     (this.Owner as MainForm).btnRefreshDB.Enabled = true;
-                    (this.Owner as MainForm).AuthorMenu.Enabled = false;
+                   // (this.Owner as MainForm).AuthorMenu.Enabled = false;
                     this.Close();
                 }
                 else MessageBox.Show("Неверный логин и/или пароль!");

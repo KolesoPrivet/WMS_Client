@@ -93,11 +93,11 @@ namespace WMS
             this.RestartMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.PropertiesMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.AuthorMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.AddSensMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutProgramMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.generalDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SValuesBindingSource)).BeginInit();
             this.tabPage1.SuspendLayout();
@@ -773,18 +773,10 @@ namespace WMS
             // PropertiesMenu
             // 
             this.PropertiesMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AuthorMenu,
             this.AddSensMenu});
             this.PropertiesMenu.Name = "PropertiesMenu";
             this.PropertiesMenu.Size = new System.Drawing.Size(79, 20);
             this.PropertiesMenu.Text = "Настройки";
-            // 
-            // AuthorMenu
-            // 
-            this.AuthorMenu.Name = "AuthorMenu";
-            this.AuthorMenu.Size = new System.Drawing.Size(166, 22);
-            this.AuthorMenu.Text = "Авторизация";
-            this.AuthorMenu.Click += new System.EventHandler(this.AuthorMenu_Click);
             // 
             // AddSensMenu
             // 
@@ -816,15 +808,25 @@ namespace WMS
             this.HelpMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1116, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1111, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Location = new System.Drawing.Point(12, 675);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(1087, 198);
+            this.groupBox10.TabIndex = 5;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Мониторинг";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1116, 681);
+            this.ClientSize = new System.Drawing.Size(1111, 885);
+            this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.карта);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -915,7 +917,6 @@ namespace WMS
         private System.Windows.Forms.ToolStripMenuItem FileMenu;
         private System.Windows.Forms.ToolStripMenuItem ExitMenu;
         private System.Windows.Forms.ToolStripMenuItem PropertiesMenu;
-        internal System.Windows.Forms.ToolStripMenuItem AuthorMenu;
         private System.Windows.Forms.ToolStripMenuItem HelpMenu;
         private System.Windows.Forms.ToolStripMenuItem AboutProgramMenu;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -934,6 +935,7 @@ namespace WMS
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label15;
         internal System.Windows.Forms.Button btnStartMonitoring;
+        private System.Windows.Forms.GroupBox groupBox10;
     }
 }
 

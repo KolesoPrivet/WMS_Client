@@ -86,7 +86,6 @@ namespace WMS
         private void DisEnableControsl()
         {
             //Выключаем контролы
-            btnRefreshDB.Enabled = false;
             btnShwMap.Enabled = false;
             txtbxSName.Enabled = false;
             txtbxDate.Enabled = false;
@@ -212,13 +211,6 @@ namespace WMS
         }
 
         //------------------------MENU------------------------//
-        private void AuthorMenu_Click(object sender, EventArgs e)
-        {
-            //создаем объект формы авторизации
-            AuthorForm af = new AuthorForm();
-            af.Owner = this;
-            af.Show();
-        }
         private void AboutProgramMenu_Click(object sender, EventArgs e)
         {
             //объект формы "о программе"
