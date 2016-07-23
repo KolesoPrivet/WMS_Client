@@ -55,6 +55,7 @@
             this.textBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.textBox1.Location = new System.Drawing.Point(121, 23);
             this.textBox1.Name = "textBox1";
+            this.textBox1.Text = "Arduino";
             this.textBox1.Size = new System.Drawing.Size(248, 20);
             this.textBox1.TabIndex = 1;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -88,6 +89,7 @@
             this.textBox3.Enabled = false;
             this.textBox3.Location = new System.Drawing.Point(121, 49);
             this.textBox3.Name = "textBox3";
+            this.textBox3.Text = "Датчик температуры";
             this.textBox3.Size = new System.Drawing.Size(248, 20);
             this.textBox3.TabIndex = 5;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;

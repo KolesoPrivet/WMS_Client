@@ -15,8 +15,6 @@ namespace WMS.UI
         {
             InitializeComponent();
             button2.Enabled = false;
-            textBox1.Text = "Arduino";
-            textBox3.Text = "Датчик температуры";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -33,50 +31,59 @@ namespace WMS.UI
             Start(cts);
         }
 
-        public async Task<string> Monitoring(CancellationTokenSource cts)
-        {
-            return await Task.Run(() => GetMonitor());
-        }
-
-        public string GetMonitor()
-        {
-            if (!cts.IsCancellationRequested)
-            {
-                sp.WriteLine("G");
-                string stroke = sp.ReadLine();
-
-                return stroke;
-            }
-            return " ";
-        }
-
+        /// <summary>
+        /// Начинает асинхронный опрос датчика и запись ответа в TextBox.
+        /// </summary>
+        /// <param name="cts"></param>
         public async void Start(CancellationTokenSource cts)
         {
-            while ( !cts.IsCancellationRequested )
+            do
             {
-                TB_Data.Text = await Monitoring(cts);
-            }
+                TB_Data.Text = await Task.Run(() =>
+                {
+                    if (!cts.IsCancellationRequested)
+                    {
+                        if (sp.IsOpen)
+                        {
+                            sp.WriteLine("G");
+                            string stroke = sp.ReadLine();
+
+                            return stroke;
+                        }
+                    }
+                    return " ";
+                });
+            } while (!cts.IsCancellationRequested);
+
             sp.Close();
+        }
+
+        /// <summary>
+        /// Отправка отменяющего токена.
+        /// </summary>
+        private void Stop()
+        {
+            if (sp.IsOpen)
+            {
+                if (cts != null)
+                {
+                    cts.Cancel();
+
+                    button2.Enabled = false;
+                    button1.Enabled = true;
+                }
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (cts != null)
-            {
-                cts.Cancel();
-
-                button2.Enabled = false;
-                button1.Enabled = true;
-            }
+            Stop();
         }
 
         private void Test_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if ( sp.IsOpen )
-            {
-                cts.Cancel();
-                sp.Close();
-            }
+            Stop();
         }
+      
     }
 }
