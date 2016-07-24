@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище DBModelContainer" CdmEntityContainer="GeneralDBEntities">
+    <EntitySetMapping Name="Sensors">
+      <EntityTypeMapping TypeName="DBModel.Sensors">
+        <MappingFragment StoreEntitySet="Sensors">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="C_" ColumnName="№" />
+          <ScalarProperty Name="Название" ColumnName="Название" />
+          <ScalarProperty Name="Тип" ColumnName="Тип" />
+          <ScalarProperty Name="LAT" ColumnName="LAT" />
+          <ScalarProperty Name="LNG" ColumnName="LNG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SValues">
+      <EntityTypeMapping TypeName="DBModel.Values">
+        <MappingFragment StoreEntitySet="SValues">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SensorID" ColumnName="SensorID" />
+          <ScalarProperty Name="C_" ColumnName="№" />
+          <ScalarProperty Name="Дата" ColumnName="Дата" />
+          <ScalarProperty Name="Время" ColumnName="Время" />
+          <ScalarProperty Name="Значение" ColumnName="Значение" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
