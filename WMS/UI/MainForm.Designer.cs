@@ -40,7 +40,6 @@ namespace WMS
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnMapAskSens = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -98,6 +97,10 @@ namespace WMS
             this.AboutProgramMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.comboBoxCheckForQuery = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.generalDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SValuesBindingSource)).BeginInit();
             this.tabPage1.SuspendLayout();
@@ -120,6 +123,7 @@ namespace WMS
             ((System.ComponentModel.ISupportInitialize)(this.dgvSens)).BeginInit();
             this.карта.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // generalDBDataSet
@@ -138,7 +142,7 @@ namespace WMS
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1084, 614);
+            this.tabPage1.Size = new System.Drawing.Size(1084, 673);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Карта датчиков";
             // 
@@ -160,36 +164,29 @@ namespace WMS
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.MainMap);
-            this.splitContainer1.Size = new System.Drawing.Size(1078, 608);
+            this.splitContainer1.Size = new System.Drawing.Size(1078, 667);
             this.splitContainer1.SplitterDistance = 289;
             this.splitContainer1.TabIndex = 0;
             // 
             // groupBox9
             // 
-            this.groupBox9.Controls.Add(this.comboBox1);
+            this.groupBox9.Controls.Add(this.dataGridView1);
+            this.groupBox9.Controls.Add(this.button2);
+            this.groupBox9.Controls.Add(this.button1);
+            this.groupBox9.Controls.Add(this.comboBoxCheckForQuery);
             this.groupBox9.Controls.Add(this.btnMapAskSens);
             this.groupBox9.Controls.Add(this.label15);
             this.groupBox9.Location = new System.Drawing.Point(4, 323);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(283, 84);
+            this.groupBox9.Size = new System.Drawing.Size(283, 284);
             this.groupBox9.TabIndex = 24;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Опрос";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(90, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(181, 21);
-            this.comboBox1.TabIndex = 22;
-            // 
             // btnMapAskSens
             // 
             this.btnMapAskSens.Enabled = false;
-            this.btnMapAskSens.Location = new System.Drawing.Point(7, 46);
+            this.btnMapAskSens.Location = new System.Drawing.Point(6, 249);
             this.btnMapAskSens.Name = "btnMapAskSens";
             this.btnMapAskSens.Size = new System.Drawing.Size(271, 29);
             this.btnMapAskSens.TabIndex = 23;
@@ -208,7 +205,7 @@ namespace WMS
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.txtBxCheckInternet);
-            this.groupBox6.Location = new System.Drawing.Point(3, 544);
+            this.groupBox6.Location = new System.Drawing.Point(3, 613);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(283, 51);
             this.groupBox6.TabIndex = 22;
@@ -439,10 +436,11 @@ namespace WMS
             this.MainMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.MainMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.MainMap.ShowTileGridLines = false;
-            this.MainMap.Size = new System.Drawing.Size(785, 611);
+            this.MainMap.Size = new System.Drawing.Size(785, 674);
             this.MainMap.TabIndex = 0;
             this.MainMap.Visible = false;
             this.MainMap.Zoom = 0D;
+            this.MainMap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.MainMap_OnMarkerClick);
             this.MainMap.Load += new System.EventHandler(this.MainMap_Load);
             // 
             // tabPageSensor
@@ -744,7 +742,7 @@ namespace WMS
             this.карта.Location = new System.Drawing.Point(11, 29);
             this.карта.Name = "карта";
             this.карта.SelectedIndex = 0;
-            this.карта.Size = new System.Drawing.Size(1092, 640);
+            this.карта.Size = new System.Drawing.Size(1092, 699);
             this.карта.TabIndex = 4;
             // 
             // FileMenu
@@ -814,12 +812,48 @@ namespace WMS
             // 
             // groupBox10
             // 
-            this.groupBox10.Location = new System.Drawing.Point(12, 675);
+            this.groupBox10.Location = new System.Drawing.Point(12, 734);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(1087, 198);
+            this.groupBox10.Size = new System.Drawing.Size(1087, 139);
             this.groupBox10.TabIndex = 5;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Мониторинг";
+            // 
+            // comboBoxCheckForQuery
+            // 
+            this.comboBoxCheckForQuery.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxCheckForQuery.Enabled = false;
+            this.comboBoxCheckForQuery.FormattingEnabled = true;
+            this.comboBoxCheckForQuery.Location = new System.Drawing.Point(90, 19);
+            this.comboBoxCheckForQuery.Name = "comboBoxCheckForQuery";
+            this.comboBoxCheckForQuery.Size = new System.Drawing.Size(181, 21);
+            this.comboBoxCheckForQuery.TabIndex = 22;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 51);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(130, 23);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "Добавить";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(146, 51);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(130, 23);
+            this.button2.TabIndex = 25;
+            this.button2.Text = "Удалить";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 80);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(270, 163);
+            this.dataGridView1.TabIndex = 26;
             // 
             // MainForm
             // 
@@ -865,6 +899,7 @@ namespace WMS
             this.карта.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -932,10 +967,13 @@ namespace WMS
         private System.Windows.Forms.ToolStripMenuItem AddSensMenu;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.Button btnMapAskSens;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label15;
         internal System.Windows.Forms.Button btnStartMonitoring;
         private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox comboBoxCheckForQuery;
     }
 }
 

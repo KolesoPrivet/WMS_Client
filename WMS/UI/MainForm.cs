@@ -7,6 +7,7 @@ using WMS.UI;
 using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using System.Collections.Generic;
 
 namespace WMS
 {
@@ -16,7 +17,8 @@ namespace WMS
         DataSet GenDataSet;
         DoSome ds = new DoSome();
         DataView SensorDV, ValuesDV;
-        
+        GMapOverlay markersOverlay;
+
         private string value; //переменная для подсчета количества данных в datagridview
         private string sensors; //переменная для подсчета количества сенсоров в datagridview
 
@@ -40,12 +42,6 @@ namespace WMS
 
                 dgvSens.DataSource = SensorDV;
                 dgvData.DataSource = ValuesDV;
-        }
-
-        //TODO: Допили клик по маркеру
-        private void TestMethod(object sender, EventArgs e)
-        {
-            MessageBox.Show("Событие");
         }
 
         private void DelColnRowForSens()
@@ -143,7 +139,7 @@ namespace WMS
              * по текущим значениям долготы и широты каждого датчика*/
             try
             {
-                GMapOverlay markersOverlay = new GMapOverlay("markers");
+                markersOverlay = new GMapOverlay("markers");
                 markersOverlay.Markers.Clear();
                 double lat, lng;
                 int count = 0;
@@ -153,6 +149,7 @@ namespace WMS
                 {
                     sensorName = dgvSens.Rows[count].Cells[2].Value.ToString();
                     sensorName += "\n" + dgvSens.Rows[count].Cells[3].Value.ToString();
+                    comboBoxCheckForQuery.Items.Add(sensorName);
                     comboBoxSNMap.Items.Add(sensorName);
 
                     lat = Convert.ToDouble(dgvSens.Rows[count].Cells[4].Value);
@@ -205,6 +202,7 @@ namespace WMS
             //отображаем карту
             MainMap.Visible = true;
             comboBoxSNMap.Enabled = true;
+            comboBoxCheckForQuery.Enabled = true;
 
             //выключаем кнопку от греха подальше
             btnShwMap.Enabled = false;
@@ -390,9 +388,6 @@ namespace WMS
                 GMap.NET.AccessMode.ServerOnly;  
             
             MainMap.Position = new PointLatLng(55.75393, 37.620795);
-
-            //Вешаем обработчик клика по маркеру
-            MainMap.OnMarkerClick += new MarkerClick(TestMethod);
         }
 
         private void btnStartMonitoring_Click(object sender, EventArgs e)
@@ -400,6 +395,28 @@ namespace WMS
             Test test = new Test();
             test.Owner = this;
             test.Show();
+        }
+
+        //TODO: Допили клик по маркеру
+        private void MainMap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
+        {
+            //PointLatLng pos = item.Position;
+
+            //List<PointLatLng> list = new List<PointLatLng>();
+            //double segm = Math.PI * 2 / 100;
+
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    double theta = segm * i;
+            //    double a = pos.Lat + Math.Cos(theta) * 0.02;
+            //    double b = pos.Lng + Math.Sin(theta) * 0.02;
+
+            //    PointLatLng point = new PointLatLng(a, b);
+            //    list.Add(point);
+            //}
+
+            //GMapPolygon poly = new GMapPolygon(list, "pol1");
+            //markersOverlay.Polygons.Add(poly);
         }
 
         //------------------------CLOSE_APPLICATION------------------------// 
