@@ -8,16 +8,17 @@ using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using System.Collections.Generic;
+using WMS.DAL;
+using System.Linq;
 
 namespace WMS
 {
     //TODO: всю логику нужно вынести из форм
     public partial class MainForm : Form    
     {
-        DataSet GenDataSet;
-        DoSome ds = new DoSome();
-        DataView SensorDV, ValuesDV;
-        GMapOverlay markersOverlay;
+        private DataView SensorDV, ValuesDV;
+        private GMapOverlay markersOverlay;
+        private readonly DBEntitiesContext context;
 
         private string value; //переменная для подсчета количества данных в datagridview
         private string sensors; //переменная для подсчета количества сенсоров в datagridview
@@ -27,47 +28,10 @@ namespace WMS
         {
             InitializeComponent();
             CenterToScreen();
+            context = new DBEntitiesContext();
         }
 
         //*******************************************************SOME_METHODS*******************************************************//
-        private void FillGenDataSet()
-        {
-            //заполняем DataSet и устанавливаем отношения между таблицами
-            GenDataSet = ds.GetAllInfo();
-        }
-        private void BindingGridView()
-        {
-            // если в DataSet есть таблицы, то связываем DataGridView с DataView
-            if (GenDataSet.Tables.Count > 0)
-
-                dgvSens.DataSource = SensorDV;
-                dgvData.DataSource = ValuesDV;
-        }
-
-        private void DelColnRowForSens()
-        {
-            //удаляем страшную шапку
-            dgvSens.RowHeadersVisible = false;
-
-            //устанавливает автоматический размер для колонки с номерами строк
-            dgvSens.AutoResizeColumn(1);
-
-            //удаляем ненужные для отображения столбцы ID, LAT, LNG
-            dgvSens.Columns["ID"].Visible = false;
-            dgvSens.Columns["LAT"].Visible = false;
-            dgvSens.Columns["LNG"].Visible = false;
-        }
-
-        private void DelColnRowForData()
-        {
-            //удаляем страшную шапку
-            dgvData.RowHeadersVisible = false;
-
-            //удаляем ненужные для отображения столбцы ID, №, SensorID
-            dgvData.Columns["ID"].Visible = false;
-            dgvData.Columns["№"].Visible = false;
-            dgvData.Columns["SensorID"].Visible = false;
-        }
 
         private void EnableControls()
         {
@@ -182,20 +146,41 @@ namespace WMS
         //------------------------BUTTONS------------------------//
         private void btnRefreshDB_Click(object sender, EventArgs e)
         {
-            FillGenDataSet();
+            try
+            {
+                dgvSens.DataSource = context.Sensors.ToList();
+                dgvData.DataSource = context.SValues.ToList();
+                //SensorDV = new DataView(new DataTable("Sensors"));
+                //ValuesDV = new DataView(dgvData.DataSource);
 
-            //закидываем в переменные ссылки на экземлпяры DataView в конструктора которых кидаем таблицы из DataSet
-            SensorDV = new DataView(GenDataSet.Tables["SensorsTable"]);
-            ValuesDV = new DataView(GenDataSet.Tables["ValuesTable"]);
+                dgvSens.RowHeadersVisible = false;
+                dgvSens.AutoResizeColumn(1);
 
-            BindingGridView();
-            CheckAmountSens();
-            DelColnRowForData();
-            DelColnRowForSens();
-            EnableControls();
-            MakeMarkers();
+                //удаляем ненужные для отображения столбцы ID, LAT, LNG
+                dgvSens.Columns["ID"].Visible = false;
+                dgvSens.Columns["C_"].Visible = false;
+                dgvSens.Columns["SValues"].Visible = false;
+                dgvSens.Columns["LAT"].Visible = false;
+                dgvSens.Columns["LNG"].Visible = false;
 
-            btnRefreshDB.Enabled = false;
+                dgvData.RowHeadersVisible = false;
+
+                //удаляем ненужные для отображения столбцы ID, №, SensorID
+                dgvData.Columns["ID"].Visible = false;
+                dgvData.Columns["C_"].Visible = false;
+                dgvData.Columns["Sensors"].Visible = false;
+                dgvData.Columns["SensorID"].Visible = false;
+
+                CheckAmountSens();
+                EnableControls();
+                //MakeMarkers();
+
+                btnRefreshDB.Enabled = false;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }             
         private void btnShwMap_Click(object sender, EventArgs e)
         {

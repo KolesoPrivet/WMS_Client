@@ -34,12 +34,14 @@ namespace WMS
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.generalDBDataSet = new WMS.DAL.GeneralDBDataSet();
             this.SValuesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.SValuesTableAdapter = new WMS.DAL.GeneralDBDataSetTableAdapters.SValuesTableAdapter();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.comboBoxCheckForQuery = new System.Windows.Forms.ComboBox();
             this.btnMapAskSens = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -97,11 +99,6 @@ namespace WMS
             this.AboutProgramMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.comboBoxCheckForQuery = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.generalDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SValuesBindingSource)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -109,6 +106,7 @@ namespace WMS
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBox9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -123,17 +121,7 @@ namespace WMS
             ((System.ComponentModel.ISupportInitialize)(this.dgvSens)).BeginInit();
             this.карта.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // generalDBDataSet
-            // 
-            this.generalDBDataSet.DataSetName = "GeneralDBDataSet";
-            this.generalDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // SValuesTableAdapter
-            // 
-            this.SValuesTableAdapter.ClearBeforeFill = true;
             // 
             // tabPage1
             // 
@@ -182,6 +170,42 @@ namespace WMS
             this.groupBox9.TabIndex = 24;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Опрос";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 80);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(270, 163);
+            this.dataGridView1.TabIndex = 26;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(146, 51);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(130, 23);
+            this.button2.TabIndex = 25;
+            this.button2.Text = "Удалить";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 51);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(130, 23);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "Добавить";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxCheckForQuery
+            // 
+            this.comboBoxCheckForQuery.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxCheckForQuery.Enabled = false;
+            this.comboBoxCheckForQuery.FormattingEnabled = true;
+            this.comboBoxCheckForQuery.Location = new System.Drawing.Point(90, 19);
+            this.comboBoxCheckForQuery.Name = "comboBoxCheckForQuery";
+            this.comboBoxCheckForQuery.Size = new System.Drawing.Size(181, 21);
+            this.comboBoxCheckForQuery.TabIndex = 22;
             // 
             // btnMapAskSens
             // 
@@ -453,7 +477,7 @@ namespace WMS
             this.tabPageSensor.Location = new System.Drawing.Point(4, 22);
             this.tabPageSensor.Name = "tabPageSensor";
             this.tabPageSensor.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSensor.Size = new System.Drawing.Size(1084, 614);
+            this.tabPageSensor.Size = new System.Drawing.Size(1084, 673);
             this.tabPageSensor.TabIndex = 0;
             this.tabPageSensor.Text = "Датчики";
             // 
@@ -662,6 +686,7 @@ namespace WMS
             this.dgvSens.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSens.Size = new System.Drawing.Size(513, 213);
             this.dgvSens.TabIndex = 16;
+            //TODO: !!!
             this.dgvSens.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSens_CellEnter);
             this.dgvSens.SelectionChanged += new System.EventHandler(this.dgvSens_SelectionChanged);
             // 
@@ -819,42 +844,6 @@ namespace WMS
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Мониторинг";
             // 
-            // comboBoxCheckForQuery
-            // 
-            this.comboBoxCheckForQuery.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxCheckForQuery.Enabled = false;
-            this.comboBoxCheckForQuery.FormattingEnabled = true;
-            this.comboBoxCheckForQuery.Location = new System.Drawing.Point(90, 19);
-            this.comboBoxCheckForQuery.Name = "comboBoxCheckForQuery";
-            this.comboBoxCheckForQuery.Size = new System.Drawing.Size(181, 21);
-            this.comboBoxCheckForQuery.TabIndex = 22;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(6, 51);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 23);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "Добавить";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(146, 51);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(130, 23);
-            this.button2.TabIndex = 25;
-            this.button2.Text = "Удалить";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 80);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(270, 163);
-            this.dataGridView1.TabIndex = 26;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -868,7 +857,6 @@ namespace WMS
             this.Text = "Беспроводная система мониторинга WMS";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.generalDBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SValuesBindingSource)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -877,6 +865,7 @@ namespace WMS
             this.splitContainer1.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -899,17 +888,13 @@ namespace WMS
             this.карта.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private GeneralDBDataSet generalDBDataSet;
         private System.Windows.Forms.BindingSource SValuesBindingSource;
-        private DAL.GeneralDBDataSetTableAdapters.SValuesTableAdapter SValuesTableAdapter;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox groupBox6;

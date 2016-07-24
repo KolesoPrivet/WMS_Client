@@ -38,3 +38,8 @@ C:\Users\Александр\Desktop\Учеба\Бакалавриат\Дипло
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\WMS.Properties.Resources.resources
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\WMS.UI.Test.resources
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\WMS.csproj.GenerateResource.Cache
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\bin\Release\EntityFramework.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\bin\Release\EntityFramework.xml
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\bin\Release\ru\EntityFramework.resources.dll
