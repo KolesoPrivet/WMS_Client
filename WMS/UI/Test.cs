@@ -9,7 +9,6 @@ namespace WMS.UI
     public partial class Test : Form
     {
         private CancellationTokenSource cts;
-        private bool pin1, pin2, pin3, pin4, pin5, pin6, pin7, pin8, pin9;
         SerialPort sp = new SerialPort();
 
         public Test()
@@ -126,16 +125,7 @@ namespace WMS.UI
         {
             if (sp.IsOpen)
             {
-                if (!pin5)
-                {
-                    sp.WriteLine("");
-                    pin5 = true;
-                }
-                else
-                {
-                    sp.WriteLine("");
-                    pin5 = false;
-                }
+				sp.WriteLine("5");
             }
         }
     }
