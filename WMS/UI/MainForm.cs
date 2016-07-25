@@ -10,15 +10,16 @@ using GMap.NET.WindowsForms.Markers;
 using System.Collections.Generic;
 using WMS.DAL;
 using System.Linq;
+using System.Threading;
 
 namespace WMS
 {
     //TODO: всю логику нужно вынести из форм
     public partial class MainForm : Form    
     {
-        private DataView SensorDV, ValuesDV;
         private GMapOverlay markersOverlay;
         private readonly DBEntitiesContext context;
+        private BindingSource bsForSensors, bsForValues;
 
         private string value; //переменная для подсчета количества данных в datagridview
         private string sensors; //переменная для подсчета количества сенсоров в datagridview
@@ -80,7 +81,10 @@ namespace WMS
             {
                 status = new Ping().Send("yandex.ru").Status;
             }
-            catch { }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
 
             if (status == IPStatus.Success)
             {
@@ -108,8 +112,8 @@ namespace WMS
                 double lat, lng;
                 int count = 0;
                 string sensorName;
-                //пробежимся по Сенсоровской гридвьюшке и из нее выцепим названия сенсоров и их координаты
-                foreach (var row in SensorDV)
+
+                foreach (var row in dgvSens.Rows)
                 {
                     sensorName = dgvSens.Rows[count].Cells[2].Value.ToString();
                     sensorName += "\n" + dgvSens.Rows[count].Cells[3].Value.ToString();
@@ -148,8 +152,14 @@ namespace WMS
         {
             try
             {
-                dgvSens.DataSource = context.Sensors.ToList();
-                dgvData.DataSource = context.SValues.ToList();
+                bsForSensors = new BindingSource();
+                bsForValues = new BindingSource();
+
+                bsForSensors.DataSource = context.Sensors.ToList();
+                bsForValues.DataSource = context.SValues.ToList();
+                dgvSens.DataSource = bsForSensors;
+                dgvData.DataSource = bsForValues;
+
                 //SensorDV = new DataView(new DataTable("Sensors"));
                 //ValuesDV = new DataView(dgvData.DataSource);
 
@@ -173,9 +183,10 @@ namespace WMS
 
                 CheckAmountSens();
                 EnableControls();
-                //MakeMarkers();
+                MakeMarkers();
 
                 btnRefreshDB.Enabled = false;
+
             }
             catch(Exception ex)
             {
@@ -221,17 +232,14 @@ namespace WMS
         private void textBoxSenName_TextChanged(object sender, EventArgs e)
         {
             string _filter = string.Format("Название LIKE '{0}%' +'%'", txtbxSName.Text);
-            SensorDV.RowFilter = _filter;
         } 
         private void textBoxForDate_TextChanged(object sender, EventArgs e)
         {
             string _filter = string.Format("Convert([Дата], 'System.String') LIKE '{0}%' +'%'", txtbxDate.Text);
-            ValuesDV.RowFilter = _filter;
         }
         private void comboBoxSensorType_SelectedIndexChanged(object sender, EventArgs e)
         {
             string _filter = string.Format("[Тип] LIKE '{0}%' +'%'", comboBoxSensorType.Text);
-            SensorDV.RowFilter = _filter;
             CheckAmountSens();
         }
         private void comboBoxInterval_SelectedIndexChanged(object sender, EventArgs e)
@@ -242,7 +250,7 @@ namespace WMS
             double lat, lng;
             string name;
 
-            SensorDV.RowFilter = null;
+            bsForSensors.DataSource = context.Sensors.ToList();
             comboBoxSensorType.SelectedIndex = -1;
             //получаем координаты выбранных в combobox сенсоров
             lat = Convert.ToDouble(dgvSens.Rows[(comboBoxSNMap.SelectedIndex)].Cells[4].Value);
@@ -254,7 +262,8 @@ namespace WMS
             txtbxMapSStatus.Text = "Рабочее"; //TODO: сделать адекватную привязку состояния сенсора к программе
 
             //фильтруем вьюшку по имени выбранного в комбике сенсора
-            SensorDV.RowFilter = string.Format("Название LIKE '{0}%' +'%'", name);
+            bsForSensors.DataSource = context.Sensors.Where(v => v.Название == txtbxMapSType.Text).ToList();
+            dgvData.Refresh();
             //вставляем дату, время, значение последнего замера сенсором, 
             //дата, время, значение последнего замера = текущее количество показаний - 1, т.к. order by Дата, Время
 
@@ -264,10 +273,6 @@ namespace WMS
 
             MainMap.Position = new PointLatLng(lat, lng);
             //MainMap.OnMarkerClick;
-
-            //в конце чистим фильтр
-            SensorDV.RowFilter = null;
-
         }
         private void textBoxForTimeFrom_TextChanged(object sender, EventArgs e)
         {
@@ -282,23 +287,21 @@ namespace WMS
         private void dgvSens_SelectionChanged(object sender, EventArgs e)
         {
             //при фильтрации в сенсорской DataGridView не забудем обновить текущее количество отображаемых сенсоров
+
+            //фильтруем значения сенсоров в зависимости от выбранного сенсора
+
+            //опять считаем количество сенсоров и значений
+            CheckAmountSens();
+
             sensors = dgvSens.Rows.Count.ToString();
             rtbAmountSensors.Text = "Количество датчиков: " + sensors;
 
             //привязываем график к значениям сенсоров
-            unionChart.DataSource = ValuesDV;
             unionChart.Series["Датчик"].XValueMember = "Дата";
             unionChart.Series["Датчик"].YValueMembers = "Значение";
             unionChart.DataBind();
         }
-        private void dgvSens_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            //фильтруем значения сенсоров в зависимости от выбранного сенсора
-            ValuesDV.RowFilter = string.Format("SensorID ='{0}'", dgvSens[0, e.RowIndex].FormattedValue.ToString());
 
-            //опять считаем количество сенсоров и значений
-            CheckAmountSens();
-        }
         private void dgvData_SelectionChanged(object sender, EventArgs e)
         {
             //при фильтрации значений не забываем считать количество значений
@@ -309,8 +312,6 @@ namespace WMS
         //------------------------LOADING_MAIN_FORM------------------------//
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'generalDBDataSet.SensorValues' table. You can move, or remove it, as needed.
-            dgvSens.CellEnter += new DataGridViewCellEventHandler(dgvSens_CellEnter);
             DisEnableControsl();   
         }
 
@@ -380,6 +381,13 @@ namespace WMS
             Test test = new Test();
             test.Owner = this;
             test.Show();
+        }
+
+        private void dgvSens_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = int.Parse(dgvSens[0, e.RowIndex].FormattedValue.ToString());
+            bsForValues.DataSource = context.SValues.Where(v => v.SensorID == id).ToList();
+            dgvData.Refresh();
         }
 
         //TODO: Допили клик по маркеру
