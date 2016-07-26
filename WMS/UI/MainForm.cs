@@ -7,6 +7,8 @@ using WMS.UI;
 using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using WMS.DAL;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace WMS
@@ -14,61 +16,23 @@ namespace WMS
     //TODO: всю логику нужно вынести из форм
     public partial class MainForm : Form    
     {
-        DataSet GenDataSet;
-        DoSome ds = new DoSome();
-        DataView SensorDV, ValuesDV;
-        GMapOverlay markersOverlay;
+        #region Fields
+        private GMapOverlay markersOverlay;
+        private readonly DBEntitiesContext context;
+        private BindingSource bsForSensors, bsForValues;
 
         private string value; //переменная для подсчета количества данных в datagridview
         private string sensors; //переменная для подсчета количества сенсоров в datagridview
-
+        #endregion
 
         public MainForm()
         {
             InitializeComponent();
             CenterToScreen();
+            context = new DBEntitiesContext();
         }
 
-        //*******************************************************SOME_METHODS*******************************************************//
-        private void FillGenDataSet()
-        {
-            //заполняем DataSet и устанавливаем отношения между таблицами
-            GenDataSet = ds.GetAllInfo();
-        }
-        private void BindingGridView()
-        {
-            // если в DataSet есть таблицы, то связываем DataGridView с DataView
-            if (GenDataSet.Tables.Count > 0)
-
-                dgvSens.DataSource = SensorDV;
-                dgvData.DataSource = ValuesDV;
-        }
-
-        private void DelColnRowForSens()
-        {
-            //удаляем страшную шапку
-            dgvSens.RowHeadersVisible = false;
-
-            //устанавливает автоматический размер для колонки с номерами строк
-            dgvSens.AutoResizeColumn(1);
-
-            //удаляем ненужные для отображения столбцы ID, LAT, LNG
-            dgvSens.Columns["ID"].Visible = false;
-            dgvSens.Columns["LAT"].Visible = false;
-            dgvSens.Columns["LNG"].Visible = false;
-        }
-
-        private void DelColnRowForData()
-        {
-            //удаляем страшную шапку
-            dgvData.RowHeadersVisible = false;
-
-            //удаляем ненужные для отображения столбцы ID, №, SensorID
-            dgvData.Columns["ID"].Visible = false;
-            dgvData.Columns["№"].Visible = false;
-            dgvData.Columns["SensorID"].Visible = false;
-        }
-
+        #region Supporting methods
         private void EnableControls()
         {
             //Включаем контролы
@@ -116,7 +80,10 @@ namespace WMS
             {
                 status = new Ping().Send("yandex.ru").Status;
             }
-            catch { }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
 
             if (status == IPStatus.Success)
             {
@@ -144,8 +111,8 @@ namespace WMS
                 double lat, lng;
                 int count = 0;
                 string sensorName;
-                //пробежимся по Сенсоровской гридвьюшке и из нее выцепим названия сенсоров и их координаты
-                foreach (var row in SensorDV)
+
+                foreach (var row in dgvSens.Rows)
                 {
                     sensorName = dgvSens.Rows[count].Cells[2].Value.ToString();
                     sensorName += "\n" + dgvSens.Rows[count].Cells[3].Value.ToString();
@@ -175,28 +142,52 @@ namespace WMS
                 MessageBox.Show(ex.ToString());
             }
         }
+        #endregion
 
-
-        //*******************************************************EVENTS*******************************************************//
-        
-        //------------------------BUTTONS------------------------//
+        #region Buttons
         private void btnRefreshDB_Click(object sender, EventArgs e)
         {
-            FillGenDataSet();
+            try
+            {
+                bsForSensors = new BindingSource();
+                bsForValues = new BindingSource();
 
-            //закидываем в переменные ссылки на экземлпяры DataView в конструктора которых кидаем таблицы из DataSet
-            SensorDV = new DataView(GenDataSet.Tables["SensorsTable"]);
-            ValuesDV = new DataView(GenDataSet.Tables["ValuesTable"]);
+                bsForSensors.DataSource = context.Sensors.ToList();
+                bsForValues.DataSource = context.SValues.ToList();
+                dgvSens.DataSource = bsForSensors;
+                dgvData.DataSource = bsForValues;
 
-            BindingGridView();
-            CheckAmountSens();
-            DelColnRowForData();
-            DelColnRowForSens();
-            EnableControls();
-            MakeMarkers();
+                dgvSens.RowHeadersVisible = false;
+                dgvSens.AutoResizeColumn(1);
 
-            btnRefreshDB.Enabled = false;
+                //удаляем ненужные для отображения столбцы ID, LAT, LNG
+                dgvSens.Columns["ID"].Visible = false;
+                dgvSens.Columns["C_"].Visible = false;
+                dgvSens.Columns["SValues"].Visible = false;
+                dgvSens.Columns["LAT"].Visible = false;
+                dgvSens.Columns["LNG"].Visible = false;
+
+                dgvData.RowHeadersVisible = false;
+
+                //удаляем ненужные для отображения столбцы ID, №, SensorID
+                dgvData.Columns["ID"].Visible = false;
+                dgvData.Columns["C_"].Visible = false;
+                dgvData.Columns["Sensors"].Visible = false;
+                dgvData.Columns["SensorID"].Visible = false;
+
+                CheckAmountSens();
+                EnableControls();
+                MakeMarkers();
+
+                btnRefreshDB.Enabled = false;
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }             
+
         private void btnShwMap_Click(object sender, EventArgs e)
         {
             //отображаем карту
@@ -208,21 +199,38 @@ namespace WMS
             btnShwMap.Enabled = false;
         }
 
-        //------------------------MENU------------------------//
+        private void btnStartMonitoring_Click(object sender, EventArgs e)
+        {
+            Test test = new Test();
+            test.Owner = this;
+            test.Show();
+        }
+
+        //TODO: Допили клик по маркеру
+        private void MainMap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Menu
         private void AboutProgramMenu_Click(object sender, EventArgs e)
         {
             //объект формы "о программе"
             AboutForm af = new AboutForm();
             af.Show();
         } 
+
         private void RestartMenu_Click(object sender, EventArgs e)
         {
             Application.Restart();
         }
+
         private void ExitMenu_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
         private void AddSensMenu_Click(object sender, EventArgs e)
         {
             ASForm asf = new ASForm();
@@ -231,33 +239,37 @@ namespace WMS
             dgvSens.Refresh();
             dgvData.Refresh();
         }
+        #endregion
 
-        //------------------------FILTERS------------------------//
+        #region Filters
         private void textBoxSenName_TextChanged(object sender, EventArgs e)
         {
-            string _filter = string.Format("Название LIKE '{0}%' +'%'", txtbxSName.Text);
-            SensorDV.RowFilter = _filter;
+            bsForSensors.DataSource = context.Sensors.Where(s => s.Название == txtbxSName.Text).ToList();
+            dgvData.Refresh();
         } 
+
         private void textBoxForDate_TextChanged(object sender, EventArgs e)
         {
             string _filter = string.Format("Convert([Дата], 'System.String') LIKE '{0}%' +'%'", txtbxDate.Text);
-            ValuesDV.RowFilter = _filter;
         }
+
         private void comboBoxSensorType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string _filter = string.Format("[Тип] LIKE '{0}%' +'%'", comboBoxSensorType.Text);
-            SensorDV.RowFilter = _filter;
+            bsForSensors.DataSource = context.Sensors.Where(s => s.Тип == comboBoxSensorType.Text).ToList();
+            dgvData.Refresh();
             CheckAmountSens();
         }
+
         private void comboBoxInterval_SelectedIndexChanged(object sender, EventArgs e)
         {
         } //TODO: допилить интервал 
+
         private void comboBoxSNMap_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             double lat, lng;
             string name;
 
-            SensorDV.RowFilter = null;
+            bsForSensors.DataSource = context.Sensors.ToList();
             comboBoxSensorType.SelectedIndex = -1;
             //получаем координаты выбранных в combobox сенсоров
             lat = Convert.ToDouble(dgvSens.Rows[(comboBoxSNMap.SelectedIndex)].Cells[4].Value);
@@ -269,7 +281,8 @@ namespace WMS
             txtbxMapSStatus.Text = "Рабочее"; //TODO: сделать адекватную привязку состояния сенсора к программе
 
             //фильтруем вьюшку по имени выбранного в комбике сенсора
-            SensorDV.RowFilter = string.Format("Название LIKE '{0}%' +'%'", name);
+            bsForSensors.DataSource = context.Sensors.Where(v => v.Название == txtbxMapSType.Text).ToList();
+            dgvData.Refresh();
             //вставляем дату, время, значение последнего замера сенсором, 
             //дата, время, значение последнего замера = текущее количество показаний - 1, т.к. order by Дата, Время
 
@@ -279,53 +292,55 @@ namespace WMS
 
             MainMap.Position = new PointLatLng(lat, lng);
             //MainMap.OnMarkerClick;
-
-            //в конце чистим фильтр
-            SensorDV.RowFilter = null;
-
         }
+
         private void textBoxForTimeFrom_TextChanged(object sender, EventArgs e)
         {
 
         } //TODO: допилить временной промежутком
+
         private void textBoxForTimeTo_TextChanged(object sender, EventArgs e)
         {
 
         } //TODO: допилить временной промежутком
+        #endregion
 
-        //------------------------DATA_GRID_VIEW------------------------//
+        #region DataGridView
+        private void dgvSens_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = int.Parse(dgvSens[0, e.RowIndex].FormattedValue.ToString());
+            bsForValues.DataSource = context.SValues.Where(v => v.SensorID == id).ToList();
+            dgvData.Refresh();
+        }
+
         private void dgvSens_SelectionChanged(object sender, EventArgs e)
         {
             //при фильтрации в сенсорской DataGridView не забудем обновить текущее количество отображаемых сенсоров
+
+            //фильтруем значения сенсоров в зависимости от выбранного сенсора
+
+            //опять считаем количество сенсоров и значений
+            CheckAmountSens();
+
             sensors = dgvSens.Rows.Count.ToString();
             rtbAmountSensors.Text = "Количество датчиков: " + sensors;
 
             //привязываем график к значениям сенсоров
-            unionChart.DataSource = ValuesDV;
             unionChart.Series["Датчик"].XValueMember = "Дата";
             unionChart.Series["Датчик"].YValueMembers = "Значение";
             unionChart.DataBind();
         }
-        private void dgvSens_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            //фильтруем значения сенсоров в зависимости от выбранного сенсора
-            ValuesDV.RowFilter = string.Format("SensorID ='{0}'", dgvSens[0, e.RowIndex].FormattedValue.ToString());
 
-            //опять считаем количество сенсоров и значений
-            CheckAmountSens();
-        }
         private void dgvData_SelectionChanged(object sender, EventArgs e)
         {
-            //при фильтрации значений не забываем считать количество значений
             value = dgvData.Rows.Count.ToString();
             rtbSensorsValue.Text = "Показаний датчика: " + value;
         }
+        #endregion
 
         //------------------------LOADING_MAIN_FORM------------------------//
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'generalDBDataSet.SensorValues' table. You can move, or remove it, as needed.
-            dgvSens.CellEnter += new DataGridViewCellEventHandler(dgvSens_CellEnter);
             DisEnableControsl();   
         }
 
@@ -390,40 +405,14 @@ namespace WMS
             MainMap.Position = new PointLatLng(55.75393, 37.620795);
         }
 
-        private void btnStartMonitoring_Click(object sender, EventArgs e)
-        {
-            Test test = new Test();
-            test.Owner = this;
-            test.Show();
-        }
-
-        //TODO: Допили клик по маркеру
-        private void MainMap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
-        {
-            //PointLatLng pos = item.Position;
-
-            //List<PointLatLng> list = new List<PointLatLng>();
-            //double segm = Math.PI * 2 / 100;
-
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    double theta = segm * i;
-            //    double a = pos.Lat + Math.Cos(theta) * 0.02;
-            //    double b = pos.Lng + Math.Sin(theta) * 0.02;
-
-            //    PointLatLng point = new PointLatLng(a, b);
-            //    list.Add(point);
-            //}
-
-            //GMapPolygon poly = new GMapPolygon(list, "pol1");
-            //markersOverlay.Polygons.Add(poly);
-        }
-
         //------------------------CLOSE_APPLICATION------------------------// 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(MessageBox.Show("Вы действительно желаете закрыть приложение?", "Закрыть", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBox.Show("Вы действительно желаете закрыть приложение?", "Закрыть", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
                 e.Cancel = false;
+                context.Dispose();
+            }
             else
                 e.Cancel = true;
         }

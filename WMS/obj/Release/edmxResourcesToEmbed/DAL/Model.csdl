@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Sensors">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_" Type="Int32" Nullable="false" />
+    <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Тип" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LAT" Type="Double" />
+    <Property Name="LNG" Type="Double" />
+    <NavigationProperty Name="SValues" Relationship="Self.FK_Values_Sensors" FromRole="Sensors" ToRole="SValues" />
+  </EntityType>
+  <EntityType Name="Values">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SensorID" Type="Int32" Nullable="false" />
+    <Property Name="C_" Type="Int32" Nullable="false" />
+    <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Время" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Значение" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Sensors" Relationship="Self.FK_Values_Sensors" FromRole="SValues" ToRole="Sensors" />
+  </EntityType>
+  <Association Name="FK_Values_Sensors">
+    <End Role="Sensors" Type="Self.Sensors" Multiplicity="1" />
+    <End Role="SValues" Type="DBModel.Values" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sensors">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SValues">
+        <PropertyRef Name="SensorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GeneralDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Sensors" EntityType="Self.Sensors" />
+    <EntitySet Name="SValues" EntityType="DBModel.Values" />
+    <AssociationSet Name="FK_Values_Sensors" Association="Self.FK_Values_Sensors">
+      <End Role="Sensors" EntitySet="Sensors" />
+      <End Role="SValues" EntitySet="SValues" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
