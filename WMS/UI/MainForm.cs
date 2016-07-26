@@ -9,12 +9,11 @@ using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using WMS.DAL;
 using System.Linq;
-using System.Collections.Generic;
 
 namespace WMS
 {
     //TODO: всю логику нужно вынести из форм
-    public partial class MainForm : Form    
+    public partial class MainForm : Form
     {
         #region Fields
         private GMapOverlay markersOverlay;
@@ -106,7 +105,7 @@ namespace WMS
             txtbxDate.Enabled = true;
             txtbxSName.Enabled = true;
             comboBoxSensorType.Enabled = true;
-            AddSensMenu.Enabled = true;        
+            AddSensMenu.Enabled = true;
         }
 
         private void DisEnableControsl()
@@ -153,7 +152,7 @@ namespace WMS
 
             if (status == IPStatus.Success)
             {
-                txtBxCheckInternet.ForeColor = Color.FromArgb(0,192,0);
+                txtBxCheckInternet.ForeColor = Color.FromArgb(0, 192, 0);
                 txtBxCheckInternet.Text = "Доступно";
                 comboBoxSNMap.Enabled = true;
             }
@@ -162,11 +161,11 @@ namespace WMS
                 txtBxCheckInternet.ForeColor = Color.FromArgb(192, 0, 0);
                 txtBxCheckInternet.Text = "Отсутствует";
             }
-        }  
+        }
 
         private void MakeMarkers()
         {
-            
+
             comboBoxSNMap.Items.Clear();
             /* Создание маркеров на карте 
              * по текущим значениям долготы и широты каждого датчика*/
@@ -187,18 +186,18 @@ namespace WMS
                     lat = Convert.ToDouble(dgvSens.Rows[count].Cells[4].Value);
                     lng = Convert.ToDouble(dgvSens.Rows[count].Cells[5].Value);
 
-                //по координатам ставим маркер на карте
-                GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(lat, lng),
-                  GMarkerGoogleType.red);
+                    //по координатам ставим маркер на карте
+                    GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(lat, lng),
+                      GMarkerGoogleType.red);
 
-                //текущий маркер добавляем в список маркеров
-                markersOverlay.Markers.Add(marker);
+                    //текущий маркер добавляем в список маркеров
+                    markersOverlay.Markers.Add(marker);
 
-                //текст над маркером
-                marker.ToolTipText = sensorName; 
+                    //текст над маркером
+                    marker.ToolTipText = sensorName;
 
                     count++;
-                } 
+                }
                 //добавляем список маркеров на карту
                 MainMap.Overlays.Add(markersOverlay);
             }
@@ -241,13 +240,15 @@ namespace WMS
                 MakeMarkers();
 
                 btnRefreshDB.Enabled = false;
+
                 dgvSens.ClearSelection();
+                dgvData.ClearSelection();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-        }             
+        }
 
         private void btnShwMap_Click(object sender, EventArgs e)
         {
@@ -280,7 +281,7 @@ namespace WMS
             //объект формы "о программе"
             AboutForm af = new AboutForm();
             af.Show();
-        } 
+        }
 
         private void RestartMenu_Click(object sender, EventArgs e)
         {
@@ -305,8 +306,8 @@ namespace WMS
         #region Filters
         private void textBoxSenName_TextChanged(object sender, EventArgs e)
         {
-            dgvSens.DataSource = context.Sensors.Where(s => s.Название == txtbxSName.Text).ToList();
-        } 
+            dgvSens.DataSource = context.Sensors.Where(s => s.Название == txtbxSName.Text).First();
+        }
 
         private void textBoxForDate_TextChanged(object sender, EventArgs e)
         {
@@ -329,25 +330,32 @@ namespace WMS
         {
             double lat, lng;
 
+            var sensor = (from c in context.Sensors
+                          where c.Название == comboBoxSNMap.Text
+                          select new { c.ID, c.LAT, c.LNG, c.Тип }).First();
+
+            var data = (from c in context.SValues
+                        where c.SensorID == sensor.ID
+                        orderby c.Дата
+                        orderby c.Время
+                        select new { c.Дата, c.Время, c.Значение }).ToList();
+
             comboBoxSensorType.SelectedIndex = -1;
-          
-            var sensor = context.Sensors.Where(s => s.Название == comboBoxSNMap.Text).ToList();
 
             //получаем координаты выбранных в combobox сенсоров
-            lat = Convert.ToDouble(sensor.Average(l => l.LAT));
+            lat = Convert.ToDouble(sensor.LAT);
             //lat = Convert.ToDouble(dgvSens.Rows[(comboBoxSNMap.SelectedIndex)].Cells[4].Value);
-            lng = Convert.ToDouble(sensor.Average(l => l.LNG));
-
+            lng = Convert.ToDouble(sensor.LNG);
             //добавляем текст в textbox'ы 1 - тип сенсора, 2 - состояние
-            txtbxMapSType.Text = sensor[0].Тип;
+            txtbxMapSType.Text = sensor.Тип;
             txtbxMapSStatus.Text = "Рабочее"; //TODO: сделать адекватную привязку состояния сенсора к программе
 
             //вставляем дату, время, значение последнего замера сенсором, 
             //дата, время, значение последнего замера = текущее количество показаний - 1, т.к. order by Дата, Время
 
-                 //txtbxMapLastDate.Text = (Convert.ToString(dgvData.Rows[Convert.ToInt16(value)-1].Cells[3].Value)).Remove(10, 8);
-                 //txtbxMapLastTime.Text = Convert.ToString(dgvData.Rows[Convert.ToInt16(value) - 1].Cells[4].Value);
-                 //txtbxMapLastValue.Text = Convert.ToString(dgvData.Rows[Convert.ToInt16(value) - 1].Cells[5].Value);
+            txtbxMapLastDate.Text = data[data.Count - 1].Дата.ToString().Remove(10, 8);
+            txtbxMapLastTime.Text = data[data.Count - 1].Время.ToString();
+            txtbxMapLastValue.Text = data[data.Count - 1].Значение.ToString();
 
             MainMap.Position = new PointLatLng(lat, lng);
             //MainMap.OnMarkerClick;
@@ -403,7 +411,7 @@ namespace WMS
 
 
         //------------------------LOADING_MAIN_MAP------------------------//
-      
+
 
         //------------------------CLOSE_APPLICATION------------------------// 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
