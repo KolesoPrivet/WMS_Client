@@ -19,18 +19,84 @@ namespace WMS
         #region Fields
         private GMapOverlay markersOverlay;
         private readonly DBEntitiesContext context;
-        private BindingSource bsForSensors, bsForValues;
 
         private string value; //переменная для подсчета количества данных в datagridview
         private string sensors; //переменная для подсчета количества сенсоров в datagridview
         #endregion
 
+        #region Constructors
         public MainForm()
         {
             InitializeComponent();
             CenterToScreen();
             context = new DBEntitiesContext();
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            DisEnableControsl();
+        }
+
+        private void MainMap_Load(object sender, EventArgs e)
+        {
+            CheckConToInternet();
+            //Настройки для компонента GMap.
+            MainMap.Bearing = 0;
+
+            //CanDragMap - Если параметр установлен в True,
+            //пользователь может перетаскивать карту
+            //с помощью правой кнопки мыши.
+            MainMap.CanDragMap = true;
+
+            //Указываем, что перетаскивание карты осуществляется
+            //с использованием левой клавишей мыши.
+            //По умолчанию - правая.
+            MainMap.DragButton = MouseButtons.Left;
+
+            MainMap.GrayScaleMode = true;
+
+            //MarkersEnabled - Если параметр установлен в True,
+            //любые маркеры, заданные вручную будет показаны.
+            //Если нет, они не появятся.
+            MainMap.MarkersEnabled = true;
+
+            //Указываем значение максимального приближения.
+            MainMap.MaxZoom = 18;
+
+            //Указываем значение минимального приближения.
+            MainMap.MinZoom = 2;
+
+            //Устанавливаем центр приближения/удаления
+            //курсор мыши.
+            MainMap.MouseWheelZoomType =
+                GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+
+            //Отказываемся от негативного режима.
+            MainMap.NegativeMode = false;
+
+            //Разрешаем полигоны.
+            MainMap.PolygonsEnabled = true;
+
+            //Разрешаем маршруты
+            MainMap.RoutesEnabled = true;
+
+            //Скрываем внешнюю сетку карты
+            //с заголовками.
+            MainMap.ShowTileGridLines = false;
+
+            //Указываем, что при загрузке карты будет использоваться
+            //18ти кратное приближение.
+            MainMap.Zoom = 5;
+
+            //Указываем что будем использовать карты Google.
+            MainMap.MapProvider =
+                GMap.NET.MapProviders.GMapProviders.GoogleMap;
+            GMap.NET.GMaps.Instance.Mode =
+                GMap.NET.AccessMode.ServerOnly;
+
+            MainMap.Position = new PointLatLng(55.75393, 37.620795);
+        }
+        #endregion
 
         #region Supporting methods
         private void EnableControls()
@@ -115,7 +181,6 @@ namespace WMS
                 foreach (var row in dgvSens.Rows)
                 {
                     sensorName = dgvSens.Rows[count].Cells[2].Value.ToString();
-                    sensorName += "\n" + dgvSens.Rows[count].Cells[3].Value.ToString();
                     comboBoxCheckForQuery.Items.Add(sensorName);
                     comboBoxSNMap.Items.Add(sensorName);
 
@@ -149,13 +214,9 @@ namespace WMS
         {
             try
             {
-                bsForSensors = new BindingSource();
-                bsForValues = new BindingSource();
 
-                bsForSensors.DataSource = context.Sensors.ToList();
-                bsForValues.DataSource = context.SValues.ToList();
-                dgvSens.DataSource = bsForSensors;
-                dgvData.DataSource = bsForValues;
+                dgvSens.DataSource = context.Sensors.ToList();
+                dgvData.DataSource = context.SValues.ToList();
 
                 dgvSens.RowHeadersVisible = false;
                 dgvSens.AutoResizeColumn(1);
@@ -180,7 +241,7 @@ namespace WMS
                 MakeMarkers();
 
                 btnRefreshDB.Enabled = false;
-
+                dgvSens.ClearSelection();
             }
             catch(Exception ex)
             {
@@ -244,8 +305,7 @@ namespace WMS
         #region Filters
         private void textBoxSenName_TextChanged(object sender, EventArgs e)
         {
-            bsForSensors.DataSource = context.Sensors.Where(s => s.Название == txtbxSName.Text).ToList();
-            dgvData.Refresh();
+            dgvSens.DataSource = context.Sensors.Where(s => s.Название == txtbxSName.Text).ToList();
         } 
 
         private void textBoxForDate_TextChanged(object sender, EventArgs e)
@@ -255,8 +315,7 @@ namespace WMS
 
         private void comboBoxSensorType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            bsForSensors.DataSource = context.Sensors.Where(s => s.Тип == comboBoxSensorType.Text).ToList();
-            dgvData.Refresh();
+            dgvSens.DataSource = context.Sensors.Where(s => s.Тип == comboBoxSensorType.Text).ToList();
             CheckAmountSens();
         }
 
@@ -264,31 +323,31 @@ namespace WMS
         {
         } //TODO: допилить интервал 
 
+
+        //TODO: LINQ TO EF
         private void comboBoxSNMap_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             double lat, lng;
-            string name;
 
-            bsForSensors.DataSource = context.Sensors.ToList();
             comboBoxSensorType.SelectedIndex = -1;
+          
+            var sensor = context.Sensors.Where(s => s.Название == comboBoxSNMap.Text).ToList();
+
             //получаем координаты выбранных в combobox сенсоров
-            lat = Convert.ToDouble(dgvSens.Rows[(comboBoxSNMap.SelectedIndex)].Cells[4].Value);
-            lng = Convert.ToDouble(dgvSens.Rows[(comboBoxSNMap.SelectedIndex)].Cells[5].Value);
-            name = Convert.ToString(dgvSens.Rows[(comboBoxSNMap.SelectedIndex)].Cells[2].Value);
+            lat = Convert.ToDouble(sensor.Average(l => l.LAT));
+            //lat = Convert.ToDouble(dgvSens.Rows[(comboBoxSNMap.SelectedIndex)].Cells[4].Value);
+            lng = Convert.ToDouble(sensor.Average(l => l.LNG));
 
             //добавляем текст в textbox'ы 1 - тип сенсора, 2 - состояние
-            txtbxMapSType.Text = Convert.ToString(dgvSens.Rows[(comboBoxSNMap.SelectedIndex)].Cells[3].Value);
+            txtbxMapSType.Text = sensor[0].Тип;
             txtbxMapSStatus.Text = "Рабочее"; //TODO: сделать адекватную привязку состояния сенсора к программе
 
-            //фильтруем вьюшку по имени выбранного в комбике сенсора
-            bsForSensors.DataSource = context.Sensors.Where(v => v.Название == txtbxMapSType.Text).ToList();
-            dgvData.Refresh();
             //вставляем дату, время, значение последнего замера сенсором, 
             //дата, время, значение последнего замера = текущее количество показаний - 1, т.к. order by Дата, Время
 
-                 txtbxMapLastDate.Text = (Convert.ToString(dgvData.Rows[Convert.ToInt16(value)-1].Cells[3].Value)).Remove(10, 8);
-                 txtbxMapLastTime.Text = Convert.ToString(dgvData.Rows[Convert.ToInt16(value) - 1].Cells[4].Value);
-                 txtbxMapLastValue.Text = Convert.ToString(dgvData.Rows[Convert.ToInt16(value) - 1].Cells[5].Value);
+                 //txtbxMapLastDate.Text = (Convert.ToString(dgvData.Rows[Convert.ToInt16(value)-1].Cells[3].Value)).Remove(10, 8);
+                 //txtbxMapLastTime.Text = Convert.ToString(dgvData.Rows[Convert.ToInt16(value) - 1].Cells[4].Value);
+                 //txtbxMapLastValue.Text = Convert.ToString(dgvData.Rows[Convert.ToInt16(value) - 1].Cells[5].Value);
 
             MainMap.Position = new PointLatLng(lat, lng);
             //MainMap.OnMarkerClick;
@@ -308,9 +367,11 @@ namespace WMS
         #region DataGridView
         private void dgvSens_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            int id = int.Parse(dgvSens[0, e.RowIndex].FormattedValue.ToString());
-            bsForValues.DataSource = context.SValues.Where(v => v.SensorID == id).ToList();
-            dgvData.Refresh();
+            if (dgvSens.CurrentCell != null)
+            {
+                var currentSensor = dgvSens.CurrentRow.DataBoundItem as Sensors;
+                dgvData.DataSource = currentSensor.SValues.ToList();
+            }
         }
 
         private void dgvSens_SelectionChanged(object sender, EventArgs e)
@@ -339,71 +400,10 @@ namespace WMS
         #endregion
 
         //------------------------LOADING_MAIN_FORM------------------------//
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            DisEnableControsl();   
-        }
+
 
         //------------------------LOADING_MAIN_MAP------------------------//
-        private void MainMap_Load(object sender, EventArgs e)
-        {
-            CheckConToInternet();
-           //Настройки для компонента GMap.
-            MainMap.Bearing = 0;
- 
-            //CanDragMap - Если параметр установлен в True,
-            //пользователь может перетаскивать карту
-            //с помощью правой кнопки мыши.
-            MainMap.CanDragMap = true;
- 
-            //Указываем, что перетаскивание карты осуществляется
-            //с использованием левой клавишей мыши.
-            //По умолчанию - правая.
-            MainMap.DragButton = MouseButtons.Left;
- 
-            MainMap.GrayScaleMode = true;
- 
-            //MarkersEnabled - Если параметр установлен в True,
-            //любые маркеры, заданные вручную будет показаны.
-            //Если нет, они не появятся.
-            MainMap.MarkersEnabled = true;
- 
-            //Указываем значение максимального приближения.
-            MainMap.MaxZoom = 18;
- 
-            //Указываем значение минимального приближения.
-            MainMap.MinZoom = 2;
- 
-            //Устанавливаем центр приближения/удаления
-            //курсор мыши.
-            MainMap.MouseWheelZoomType =
-                GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
- 
-            //Отказываемся от негативного режима.
-            MainMap.NegativeMode = false;
- 
-            //Разрешаем полигоны.
-            MainMap.PolygonsEnabled = true;
- 
-            //Разрешаем маршруты
-            MainMap.RoutesEnabled = true;
- 
-            //Скрываем внешнюю сетку карты
-            //с заголовками.
-            MainMap.ShowTileGridLines = false;
- 
-            //Указываем, что при загрузке карты будет использоваться
-            //18ти кратное приближение.
-            MainMap.Zoom = 5;
-  
-            //Указываем что будем использовать карты Google.
-            MainMap.MapProvider = 
-                GMap.NET.MapProviders.GMapProviders.GoogleMap;
-            GMap.NET.GMaps.Instance.Mode =
-                GMap.NET.AccessMode.ServerOnly;  
-            
-            MainMap.Position = new PointLatLng(55.75393, 37.620795);
-        }
+      
 
         //------------------------CLOSE_APPLICATION------------------------// 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
