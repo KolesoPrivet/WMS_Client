@@ -7,23 +7,23 @@ using WMS.UI;
 using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
-using System.Collections.Generic;
 using WMS.DAL;
 using System.Linq;
-using System.Threading;
+using System.Collections.Generic;
 
 namespace WMS
 {
     //TODO: всю логику нужно вынести из форм
     public partial class MainForm : Form    
     {
+        #region Fields
         private GMapOverlay markersOverlay;
         private readonly DBEntitiesContext context;
         private BindingSource bsForSensors, bsForValues;
 
         private string value; //переменная для подсчета количества данных в datagridview
         private string sensors; //переменная для подсчета количества сенсоров в datagridview
-
+        #endregion
 
         public MainForm()
         {
@@ -32,8 +32,7 @@ namespace WMS
             context = new DBEntitiesContext();
         }
 
-        //*******************************************************SOME_METHODS*******************************************************//
-
+        #region Supporting methods
         private void EnableControls()
         {
             //Включаем контролы
@@ -143,11 +142,9 @@ namespace WMS
                 MessageBox.Show(ex.ToString());
             }
         }
+        #endregion
 
-
-        //*******************************************************EVENTS*******************************************************//
-        
-        //------------------------BUTTONS------------------------//
+        #region Buttons
         private void btnRefreshDB_Click(object sender, EventArgs e)
         {
             try
@@ -159,9 +156,6 @@ namespace WMS
                 bsForValues.DataSource = context.SValues.ToList();
                 dgvSens.DataSource = bsForSensors;
                 dgvData.DataSource = bsForValues;
-
-                //SensorDV = new DataView(new DataTable("Sensors"));
-                //ValuesDV = new DataView(dgvData.DataSource);
 
                 dgvSens.RowHeadersVisible = false;
                 dgvSens.AutoResizeColumn(1);
@@ -193,6 +187,7 @@ namespace WMS
                 MessageBox.Show(ex.ToString());
             }
         }             
+
         private void btnShwMap_Click(object sender, EventArgs e)
         {
             //отображаем карту
@@ -204,21 +199,38 @@ namespace WMS
             btnShwMap.Enabled = false;
         }
 
-        //------------------------MENU------------------------//
+        private void btnStartMonitoring_Click(object sender, EventArgs e)
+        {
+            Test test = new Test();
+            test.Owner = this;
+            test.Show();
+        }
+
+        //TODO: Допили клик по маркеру
+        private void MainMap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Menu
         private void AboutProgramMenu_Click(object sender, EventArgs e)
         {
             //объект формы "о программе"
             AboutForm af = new AboutForm();
             af.Show();
         } 
+
         private void RestartMenu_Click(object sender, EventArgs e)
         {
             Application.Restart();
         }
+
         private void ExitMenu_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
         private void AddSensMenu_Click(object sender, EventArgs e)
         {
             ASForm asf = new ASForm();
@@ -227,24 +239,31 @@ namespace WMS
             dgvSens.Refresh();
             dgvData.Refresh();
         }
+        #endregion
 
-        //------------------------FILTERS------------------------//
+        #region Filters
         private void textBoxSenName_TextChanged(object sender, EventArgs e)
         {
-            string _filter = string.Format("Название LIKE '{0}%' +'%'", txtbxSName.Text);
+            bsForSensors.DataSource = context.Sensors.Where(s => s.Название == txtbxSName.Text).ToList();
+            dgvData.Refresh();
         } 
+
         private void textBoxForDate_TextChanged(object sender, EventArgs e)
         {
             string _filter = string.Format("Convert([Дата], 'System.String') LIKE '{0}%' +'%'", txtbxDate.Text);
         }
+
         private void comboBoxSensorType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string _filter = string.Format("[Тип] LIKE '{0}%' +'%'", comboBoxSensorType.Text);
+            bsForSensors.DataSource = context.Sensors.Where(s => s.Тип == comboBoxSensorType.Text).ToList();
+            dgvData.Refresh();
             CheckAmountSens();
         }
+
         private void comboBoxInterval_SelectedIndexChanged(object sender, EventArgs e)
         {
         } //TODO: допилить интервал 
+
         private void comboBoxSNMap_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             double lat, lng;
@@ -274,16 +293,26 @@ namespace WMS
             MainMap.Position = new PointLatLng(lat, lng);
             //MainMap.OnMarkerClick;
         }
+
         private void textBoxForTimeFrom_TextChanged(object sender, EventArgs e)
         {
 
         } //TODO: допилить временной промежутком
+
         private void textBoxForTimeTo_TextChanged(object sender, EventArgs e)
         {
 
         } //TODO: допилить временной промежутком
+        #endregion
 
-        //------------------------DATA_GRID_VIEW------------------------//
+        #region DataGridView
+        private void dgvSens_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = int.Parse(dgvSens[0, e.RowIndex].FormattedValue.ToString());
+            bsForValues.DataSource = context.SValues.Where(v => v.SensorID == id).ToList();
+            dgvData.Refresh();
+        }
+
         private void dgvSens_SelectionChanged(object sender, EventArgs e)
         {
             //при фильтрации в сенсорской DataGridView не забудем обновить текущее количество отображаемых сенсоров
@@ -304,10 +333,10 @@ namespace WMS
 
         private void dgvData_SelectionChanged(object sender, EventArgs e)
         {
-            //при фильтрации значений не забываем считать количество значений
             value = dgvData.Rows.Count.ToString();
             rtbSensorsValue.Text = "Показаний датчика: " + value;
         }
+        #endregion
 
         //------------------------LOADING_MAIN_FORM------------------------//
         private void MainForm_Load(object sender, EventArgs e)
@@ -376,47 +405,14 @@ namespace WMS
             MainMap.Position = new PointLatLng(55.75393, 37.620795);
         }
 
-        private void btnStartMonitoring_Click(object sender, EventArgs e)
-        {
-            Test test = new Test();
-            test.Owner = this;
-            test.Show();
-        }
-
-        private void dgvSens_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            int id = int.Parse(dgvSens[0, e.RowIndex].FormattedValue.ToString());
-            bsForValues.DataSource = context.SValues.Where(v => v.SensorID == id).ToList();
-            dgvData.Refresh();
-        }
-
-        //TODO: Допили клик по маркеру
-        private void MainMap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
-        {
-            //PointLatLng pos = item.Position;
-
-            //List<PointLatLng> list = new List<PointLatLng>();
-            //double segm = Math.PI * 2 / 100;
-
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    double theta = segm * i;
-            //    double a = pos.Lat + Math.Cos(theta) * 0.02;
-            //    double b = pos.Lng + Math.Sin(theta) * 0.02;
-
-            //    PointLatLng point = new PointLatLng(a, b);
-            //    list.Add(point);
-            //}
-
-            //GMapPolygon poly = new GMapPolygon(list, "pol1");
-            //markersOverlay.Polygons.Add(poly);
-        }
-
         //------------------------CLOSE_APPLICATION------------------------// 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(MessageBox.Show("Вы действительно желаете закрыть приложение?", "Закрыть", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBox.Show("Вы действительно желаете закрыть приложение?", "Закрыть", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
                 e.Cancel = false;
+                context.Dispose();
+            }
             else
                 e.Cancel = true;
         }
