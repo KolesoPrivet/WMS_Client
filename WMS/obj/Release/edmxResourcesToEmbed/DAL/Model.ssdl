@@ -1,30 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Хранилище DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="DBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DBModelStoreContainer">
+    <EntitySet Name="Sensors" EntityType="DBModel.Store.Sensors" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Values" EntityType="DBModel.Store.Values" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Values_Sensors" Association="DBModel.Store.FK_Values_Sensors">
+      <End Role="Sensors" EntitySet="Sensors" />
+      <End Role="SValues" EntitySet="Values" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="Sensors">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="№" Type="int" Nullable="false" />
-    <Property Name="Название" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Тип" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="LAT" Type="float" />
-    <Property Name="LNG" Type="float" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Type" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LAT" Type="float" Nullable="true" />
+    <Property Name="LNG" Type="float" Nullable="true" />
+    <Property Name="Radius" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <EntityType Name="SValues">
+  <EntityType Name="Values">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SensorID" Type="int" Nullable="false" />
-    <Property Name="№" Type="int" Nullable="false" />
-    <Property Name="Дата" Type="date" Nullable="false" />
-    <Property Name="Время" Type="time" Precision="7" Nullable="false" />
-    <Property Name="Значение" Type="float" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Time" Type="time" Nullable="false" Precision="7" />
+    <Property Name="Value" Type="float" Nullable="false" />
   </EntityType>
   <Association Name="FK_Values_Sensors">
-    <End Role="Sensors" Type="Self.Sensors" Multiplicity="1" />
-    <End Role="SValues" Type="Self.SValues" Multiplicity="*" />
+    <End Role="Sensors" Type="DBModel.Store.Sensors" Multiplicity="1" />
+    <End Role="SValues" Type="DBModel.Store.Values" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Sensors">
         <PropertyRef Name="ID" />
@@ -34,12 +41,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Хранилище DBModelContainer">
-    <EntitySet Name="Sensors" EntityType="Self.Sensors" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SValues" EntityType="Self.SValues" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_Values_Sensors" Association="Self.FK_Values_Sensors">
-      <End Role="Sensors" EntitySet="Sensors" />
-      <End Role="SValues" EntitySet="SValues" />
-    </AssociationSet>
-  </EntityContainer>
 </Schema>

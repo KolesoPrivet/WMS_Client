@@ -26,6 +26,6 @@ namespace WMS.DAL
         }
     
         public virtual DbSet<Sensors> Sensors { get; set; }
-        public virtual DbSet<Values> SValues { get; set; }
+        public virtual DbSet<Values> Values { get; set; }
     }
 }

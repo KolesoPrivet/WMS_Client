@@ -107,11 +107,11 @@
     <Compile Include="UI\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ASForm.cs">
+    <Compile Include="UI\AddSensorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\ASForm.Designer.cs">
-      <DependentUpon>ASForm.cs</DependentUpon>
+    <Compile Include="UI\AddSensorForm.Designer.cs">
+      <DependentUpon>AddSensorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\AuthorForm.cs">
       <SubType>Form</SubType>
@@ -127,6 +127,12 @@
     </Compile>
     <Compile Include="BLL\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\SelectSensorsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SelectSensorsForm.Designer.cs">
+      <DependentUpon>SelectSensorsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Test.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,8 +142,8 @@
     <EmbeddedResource Include="UI\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\ASForm.resx">
-      <DependentUpon>ASForm.cs</DependentUpon>
+    <EmbeddedResource Include="UI\AddSensorForm.resx">
+      <DependentUpon>AddSensorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AuthorForm.resx">
       <DependentUpon>AuthorForm.cs</DependentUpon>
@@ -155,6 +161,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\SelectSensorsForm.resx">
+      <DependentUpon>SelectSensorsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Test.resx">
       <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
@@ -229,6 +238,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="DAL\Model.edmx.sql" />
     <Content Include="DAL\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>

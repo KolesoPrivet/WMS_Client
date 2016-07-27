@@ -16,11 +16,10 @@ namespace WMS.DAL
     {
         public int ID { get; set; }
         public int SensorID { get; set; }
-        public int C_ { get; set; }
-        public System.DateTime Дата { get; set; }
-        public System.TimeSpan Время { get; set; }
-        public double Значение { get; set; }
+        public System.DateTime Date { get; set; }
+        public System.TimeSpan Time { get; set; }
+        public double Value { get; set; }
     
-        public virtual Sensors Sensors { get; set; }
+        public virtual Sensors Sensor { get; set; }
     }
 }
