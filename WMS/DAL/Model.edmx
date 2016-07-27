@@ -4,51 +4,49 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Sensors">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="№" Type="int" Nullable="false" />
-          <Property Name="Название" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Тип" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="LAT" Type="float" />
-          <Property Name="LNG" Type="float" />
-        </EntityType>
-        <EntityType Name="SValues">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SensorID" Type="int" Nullable="false" />
-          <Property Name="№" Type="int" Nullable="false" />
-          <Property Name="Дата" Type="date" Nullable="false" />
-          <Property Name="Время" Type="time" Precision="7" Nullable="false" />
-          <Property Name="Значение" Type="float" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_Values_Sensors">
-          <End Role="Sensors" Type="Self.Sensors" Multiplicity="1" />
-          <End Role="SValues" Type="Self.SValues" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sensors">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SValues">
-              <PropertyRef Name="SensorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="Хранилище DBModelContainer">
-          <EntitySet Name="Sensors" EntityType="Self.Sensors" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SValues" EntityType="Self.SValues" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Values_Sensors" Association="Self.FK_Values_Sensors">
-            <End Role="Sensors" EntitySet="Sensors" />
-            <End Role="SValues" EntitySet="SValues" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="DBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DBModelStoreContainer">
+    <EntitySet Name="Sensors" EntityType="DBModel.Store.Sensors" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Values" EntityType="DBModel.Store.Values" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Values_Sensors" Association="DBModel.Store.FK_Values_Sensors">
+      <End Role="Sensors" EntitySet="Sensors" />
+      <End Role="SValues" EntitySet="Values" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Sensors">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Type" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LAT" Type="float" Nullable="true" />
+    <Property Name="LNG" Type="float" Nullable="true" />
+    <Property Name="Radius" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Values">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SensorID" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Time" Type="time" Nullable="false" Precision="7" />
+    <Property Name="Value" Type="float" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Values_Sensors">
+    <End Role="Sensors" Type="DBModel.Store.Sensors" Multiplicity="1" />
+    <End Role="SValues" Type="DBModel.Store.Values" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sensors">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SValues">
+        <PropertyRef Name="SensorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -57,12 +55,12 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="C_" Type="Int32" Nullable="false" />
-          <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Тип" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
           <Property Name="LAT" Type="Double" />
           <Property Name="LNG" Type="Double" />
-          <NavigationProperty Name="SValues" Relationship="Self.FK_Values_Sensors" FromRole="Sensors" ToRole="SValues" />
+          <NavigationProperty Name="Values" Relationship="Self.FK_Values_Sensors" FromRole="Sensors" ToRole="SValues" />
+          <Property Name="Radius" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Values">
           <Key>
@@ -70,11 +68,10 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SensorID" Type="Int32" Nullable="false" />
-          <Property Name="C_" Type="Int32" Nullable="false" />
-          <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Время" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="Значение" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Sensors" Relationship="Self.FK_Values_Sensors" FromRole="SValues" ToRole="Sensors" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Value" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Sensor" Relationship="Self.FK_Values_Sensors" FromRole="SValues" ToRole="Sensors" />
         </EntityType>
         <Association Name="FK_Values_Sensors">
           <End Role="Sensors" Type="Self.Sensors" Multiplicity="1" />
@@ -90,45 +87,43 @@
         </Association>
         <EntityContainer Name="GeneralDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Sensors" EntityType="Self.Sensors" />
-          <EntitySet Name="SValues" EntityType="DBModel.Values" />
+          <EntitySet Name="Values" EntityType="DBModel.Values" />
           <AssociationSet Name="FK_Values_Sensors" Association="Self.FK_Values_Sensors">
             <End Role="Sensors" EntitySet="Sensors" />
-            <End Role="SValues" EntitySet="SValues" />
+            <End Role="SValues" EntitySet="Values" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище DBModelContainer" CdmEntityContainer="GeneralDBEntities">
-          <EntitySetMapping Name="Sensors">
-            <EntityTypeMapping TypeName="DBModel.Sensors">
-              <MappingFragment StoreEntitySet="Sensors">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="C_" ColumnName="№" />
-                <ScalarProperty Name="Название" ColumnName="Название" />
-                <ScalarProperty Name="Тип" ColumnName="Тип" />
-                <ScalarProperty Name="LAT" ColumnName="LAT" />
-                <ScalarProperty Name="LNG" ColumnName="LNG" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SValues">
-            <EntityTypeMapping TypeName="DBModel.Values">
-              <MappingFragment StoreEntitySet="SValues">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="SensorID" ColumnName="SensorID" />
-                <ScalarProperty Name="C_" ColumnName="№" />
-                <ScalarProperty Name="Дата" ColumnName="Дата" />
-                <ScalarProperty Name="Время" ColumnName="Время" />
-                <ScalarProperty Name="Значение" ColumnName="Значение" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="GeneralDBEntities">
+    <EntitySetMapping Name="Sensors">
+      <EntityTypeMapping TypeName="IsTypeOf(DBModel.Sensors)">
+        <MappingFragment StoreEntitySet="Sensors">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="LAT" ColumnName="LAT" />
+          <ScalarProperty Name="LNG" ColumnName="LNG" />
+          <ScalarProperty Name="Radius" ColumnName="Radius" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Values">
+      <EntityTypeMapping TypeName="IsTypeOf(DBModel.Values)">
+        <MappingFragment StoreEntitySet="Values">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SensorID" ColumnName="SensorID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -142,7 +137,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
       </DesignerInfoPropertySet>
     </Options>

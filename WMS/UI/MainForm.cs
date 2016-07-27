@@ -9,6 +9,9 @@ using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using WMS.DAL;
 using System.Linq;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace WMS
 {
@@ -18,9 +21,6 @@ namespace WMS
         #region Fields
         private GMapOverlay markersOverlay;
         private readonly DBEntitiesContext context;
-
-        private string value; //переменная для подсчета количества данных в datagridview
-        private string sensors; //переменная для подсчета количества сенсоров в datagridview
         #endregion
 
         #region Constructors
@@ -103,38 +103,23 @@ namespace WMS
             //Включаем контролы
             btnShwMap.Enabled = true;
             txtbxDate.Enabled = true;
-            txtbxSName.Enabled = true;
-            comboBoxSensorType.Enabled = true;
             AddSensMenu.Enabled = true;
+            rButtonAllSensors.Enabled = true;
+            rButtonChooseSensors.Enabled = true;
         }
 
         private void DisEnableControsl()
         {
             //Выключаем контролы
+            rButtonAllSensors.Enabled = false;
+            rButtonChooseSensors.Enabled = false;
             btnShwMap.Enabled = false;
-            txtbxSName.Enabled = false;
             txtbxDate.Enabled = false;
             txtbxTimeFrom.Enabled = false;
             txtbxTimeTo.Enabled = false;
-            comboBoxSensorType.Enabled = false;
             comboBoxInterval.Enabled = false;
             comboBoxSNMap.Enabled = false;
             AddSensMenu.Enabled = false;
-        }
-
-        private void CheckAmountSens()
-        {
-            //узнать количество отображаемых показаний датчиков
-            value = dgvData.Rows.Count.ToString();
-
-            //показать значение value
-            rtbSensorsValue.Text = "Показаний датчика: " + value;
-
-            //узнать количество отображаемых датчиков
-            sensors = dgvSens.Rows.Count.ToString();
-
-            //показать значение sensors
-            rtbAmountSensors.Text = "Количество датчиков: " + sensors;
         }
 
         private void CheckConToInternet()
@@ -213,36 +198,42 @@ namespace WMS
         {
             try
             {
+                progressBarLoadDataFromDB.Minimum = 1;
+                progressBarLoadDataFromDB.Maximum = context.Sensors.Count() + context.Values.Count();
 
+                #region dgvSens settings
                 dgvSens.DataSource = context.Sensors.ToList();
-                dgvData.DataSource = context.SValues.ToList();
 
                 dgvSens.RowHeadersVisible = false;
-                dgvSens.AutoResizeColumn(1);
 
-                //удаляем ненужные для отображения столбцы ID, LAT, LNG
                 dgvSens.Columns["ID"].Visible = false;
-                dgvSens.Columns["C_"].Visible = false;
-                dgvSens.Columns["SValues"].Visible = false;
-                dgvSens.Columns["LAT"].Visible = false;
-                dgvSens.Columns["LNG"].Visible = false;
+                dgvSens.Columns["Values"].Visible = false;
+
+                dgvSens.Columns["Name"].Width = 50;
+                dgvSens.Columns["Type"].Width = 200;
+
+                dgvSens.ClearSelection();
+                #endregion
+
+                #region dgvData settings
+                dgvData.DataSource = context.Values.ToList();
 
                 dgvData.RowHeadersVisible = false;
 
-                //удаляем ненужные для отображения столбцы ID, №, SensorID
                 dgvData.Columns["ID"].Visible = false;
-                dgvData.Columns["C_"].Visible = false;
-                dgvData.Columns["Sensors"].Visible = false;
+                dgvData.Columns["Sensor"].Visible = false;
                 dgvData.Columns["SensorID"].Visible = false;
 
-                CheckAmountSens();
+                dgvData.ClearSelection();
+                #endregion
+
+                rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
+                rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
+
                 EnableControls();
                 MakeMarkers();
 
                 btnRefreshDB.Enabled = false;
-
-                dgvSens.ClearSelection();
-                dgvData.ClearSelection();
             }
             catch (Exception ex)
             {
@@ -266,6 +257,33 @@ namespace WMS
             Test test = new Test();
             test.Owner = this;
             test.Show();
+        }
+
+        private void rButtonAllSensors_MouseClick(object sender, MouseEventArgs e)
+        {
+            dgvSens.DataSource = context.Sensors.ToList();
+
+            rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
+        }
+
+        private void rButtonChooseSensors_MouseClick(object sender, MouseEventArgs e)
+        {
+            List<Sensors> sensors = new List<Sensors>();
+            SelectSensorsForm selectSensorsForm = new SelectSensorsForm(context, sensors);
+            selectSensorsForm.Owner = this;
+            selectSensorsForm.ShowDialog();
+
+            if (selectSensorsForm.IsDisposed)
+            {
+                dgvSens.DataSource = sensors;
+            }
+            else
+            {
+                selectSensorsForm.Dispose();
+                dgvSens.DataSource = sensors;
+            }
+
+            dgvSens.Refresh();
         }
 
         //TODO: Допили клик по маркеру
@@ -295,35 +313,24 @@ namespace WMS
 
         private void AddSensMenu_Click(object sender, EventArgs e)
         {
-            ASForm asf = new ASForm();
-            asf.Owner = this;
-            asf.Show();
+            AddSensorForm addSensorForm = new AddSensorForm();
+            addSensorForm.Owner = this;
+            addSensorForm.Show();
             dgvSens.Refresh();
             dgvData.Refresh();
         }
         #endregion
 
         #region Filters
-        private void textBoxSenName_TextChanged(object sender, EventArgs e)
-        {
-            dgvSens.DataSource = context.Sensors.Where(s => s.Название == txtbxSName.Text).First();
-        }
 
         private void textBoxForDate_TextChanged(object sender, EventArgs e)
         {
             string _filter = string.Format("Convert([Дата], 'System.String') LIKE '{0}%' +'%'", txtbxDate.Text);
         }
 
-        private void comboBoxSensorType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            dgvSens.DataSource = context.Sensors.Where(s => s.Тип == comboBoxSensorType.Text).ToList();
-            CheckAmountSens();
-        }
-
         private void comboBoxInterval_SelectedIndexChanged(object sender, EventArgs e)
         {
         } //TODO: допилить интервал 
-
 
         //TODO: LINQ TO EF
         private void comboBoxSNMap_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -331,31 +338,25 @@ namespace WMS
             double lat, lng;
 
             var sensor = (from c in context.Sensors
-                          where c.Название == comboBoxSNMap.Text
-                          select new { c.ID, c.LAT, c.LNG, c.Тип }).First();
+                          where c.Name == comboBoxSNMap.Text
+                          select new { c.ID, c.LAT, c.LNG, c.Type }).First();
 
-            var data = (from c in context.SValues
+            var data = (from c in context.Values
                         where c.SensorID == sensor.ID
-                        orderby c.Дата
-                        orderby c.Время
-                        select new { c.Дата, c.Время, c.Значение }).ToList();
-
-            comboBoxSensorType.SelectedIndex = -1;
+                        orderby c.Date
+                        orderby c.Time
+                        select new { c.Date, c.Time, c.Value }).ToList();
 
             //получаем координаты выбранных в combobox сенсоров
             lat = Convert.ToDouble(sensor.LAT);
-            //lat = Convert.ToDouble(dgvSens.Rows[(comboBoxSNMap.SelectedIndex)].Cells[4].Value);
             lng = Convert.ToDouble(sensor.LNG);
-            //добавляем текст в textbox'ы 1 - тип сенсора, 2 - состояние
-            txtbxMapSType.Text = sensor.Тип;
+
+            txtbxMapSType.Text = sensor.Type;
             txtbxMapSStatus.Text = "Рабочее"; //TODO: сделать адекватную привязку состояния сенсора к программе
 
-            //вставляем дату, время, значение последнего замера сенсором, 
-            //дата, время, значение последнего замера = текущее количество показаний - 1, т.к. order by Дата, Время
-
-            txtbxMapLastDate.Text = data[data.Count - 1].Дата.ToString().Remove(10, 8);
-            txtbxMapLastTime.Text = data[data.Count - 1].Время.ToString();
-            txtbxMapLastValue.Text = data[data.Count - 1].Значение.ToString();
+            txtbxMapLastDate.Text = data[data.Count - 1].Date.ToString().Remove(10, 8);
+            txtbxMapLastTime.Text = data[data.Count - 1].Time.ToString();
+            txtbxMapLastValue.Text = data[data.Count - 1].Value.ToString();
 
             MainMap.Position = new PointLatLng(lat, lng);
             //MainMap.OnMarkerClick;
@@ -378,21 +379,14 @@ namespace WMS
             if (dgvSens.CurrentCell != null)
             {
                 var currentSensor = dgvSens.CurrentRow.DataBoundItem as Sensors;
-                dgvData.DataSource = currentSensor.SValues.ToList();
+                dgvData.DataSource = currentSensor.Values.ToList();
             }
         }
 
         private void dgvSens_SelectionChanged(object sender, EventArgs e)
         {
-            //при фильтрации в сенсорской DataGridView не забудем обновить текущее количество отображаемых сенсоров
-
-            //фильтруем значения сенсоров в зависимости от выбранного сенсора
-
-            //опять считаем количество сенсоров и значений
-            CheckAmountSens();
-
-            sensors = dgvSens.Rows.Count.ToString();
-            rtbAmountSensors.Text = "Количество датчиков: " + sensors;
+            rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
+            rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
 
             //привязываем график к значениям сенсоров
             unionChart.Series["Датчик"].XValueMember = "Дата";
@@ -402,16 +396,9 @@ namespace WMS
 
         private void dgvData_SelectionChanged(object sender, EventArgs e)
         {
-            value = dgvData.Rows.Count.ToString();
-            rtbSensorsValue.Text = "Показаний датчика: " + value;
+            rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
         }
         #endregion
-
-        //------------------------LOADING_MAIN_FORM------------------------//
-
-
-        //------------------------LOADING_MAIN_MAP------------------------//
-
 
         //------------------------CLOSE_APPLICATION------------------------// 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

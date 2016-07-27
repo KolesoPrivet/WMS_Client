@@ -34,40 +34,39 @@ namespace WMS
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.SValuesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.gpBoxSensorQuery = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBoxCheckForQuery = new System.Windows.Forms.ComboBox();
             this.btnMapAskSens = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.lbSensorNameForQuery = new System.Windows.Forms.Label();
+            this.gpBoxInternetConnectionCheck = new System.Windows.Forms.GroupBox();
             this.txtBxCheckInternet = new System.Windows.Forms.TextBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.gpBoxMapView = new System.Windows.Forms.GroupBox();
             this.btnShwMap = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gpBoxSearch = new System.Windows.Forms.GroupBox();
             this.comboBoxSNMap = new System.Windows.Forms.ComboBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.gpBoxSearchResult = new System.Windows.Forms.GroupBox();
+            this.gpBoxLastActivity = new System.Windows.Forms.GroupBox();
+            this.lbTimeOfLastActivity = new System.Windows.Forms.Label();
             this.txtbxMapLastTime = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lbValueOfLastActivity = new System.Windows.Forms.Label();
+            this.lbDateOfLastActivity = new System.Windows.Forms.Label();
             this.txtbxMapLastDate = new System.Windows.Forms.TextBox();
             this.txtbxMapLastValue = new System.Windows.Forms.TextBox();
             this.txtbxMapSStatus = new System.Windows.Forms.TextBox();
             this.txtbxMapSType = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lbSensorTypeForResultOfSearch = new System.Windows.Forms.Label();
+            this.lbSensorState = new System.Windows.Forms.Label();
+            this.lbSensorNameForSearch = new System.Windows.Forms.Label();
             this.MainMap = new GMap.NET.WindowsForms.GMapControl();
             this.tabPageSensor = new System.Windows.Forms.TabPage();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.gpBoxGraphic = new System.Windows.Forms.GroupBox();
             this.unionChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gpBoxData = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.comboBoxInterval = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -79,17 +78,19 @@ namespace WMS
             this.rtbSensorsValue = new System.Windows.Forms.RichTextBox();
             this.txtbxTimeFrom = new System.Windows.Forms.TextBox();
             this.txtbxTimeTo = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnStartMonitoring = new System.Windows.Forms.Button();
+            this.gpBoxSensorIdentity = new System.Windows.Forms.GroupBox();
+            this.progressBarLoadDataFromDB = new System.Windows.Forms.ProgressBar();
+            this.gpBoxSensorsView = new System.Windows.Forms.GroupBox();
+            this.rButtonAllSensors = new System.Windows.Forms.RadioButton();
+            this.rButtonChooseSensors = new System.Windows.Forms.RadioButton();
             this.dgvSens = new System.Windows.Forms.DataGridView();
             this.btnRefreshDB = new System.Windows.Forms.Button();
             this.rtbAmountSensors = new System.Windows.Forms.RichTextBox();
-            this.comboBoxSensorType = new System.Windows.Forms.ComboBox();
-            this.txtbxSName = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.карта = new System.Windows.Forms.TabControl();
+            this.Мониторинг = new System.Windows.Forms.TabPage();
+            this.btnStartMonitoring = new System.Windows.Forms.Button();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.FileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.RestartMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,29 +99,32 @@ namespace WMS
             this.HelpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutProgramMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.SValuesBindingSource)).BeginInit();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.SValuesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.groupBox9.SuspendLayout();
+            this.gpBoxSensorQuery.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.groupBox6.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.groupBox8.SuspendLayout();
+            this.gpBoxInternetConnectionCheck.SuspendLayout();
+            this.gpBoxMapView.SuspendLayout();
+            this.gpBoxSearch.SuspendLayout();
+            this.gpBoxSearchResult.SuspendLayout();
+            this.gpBoxLastActivity.SuspendLayout();
             this.tabPageSensor.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.gpBoxGraphic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.unionChart)).BeginInit();
-            this.groupBox3.SuspendLayout();
+            this.gpBoxData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            this.gpBoxSensorIdentity.SuspendLayout();
+            this.gpBoxSensorsView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSens)).BeginInit();
             this.карта.SuspendLayout();
+            this.Мониторинг.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SValuesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPage1
@@ -144,10 +148,10 @@ namespace WMS
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.splitContainer1.Panel1.Controls.Add(this.groupBox9);
-            this.splitContainer1.Panel1.Controls.Add(this.groupBox6);
-            this.splitContainer1.Panel1.Controls.Add(this.groupBox5);
-            this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.gpBoxSensorQuery);
+            this.splitContainer1.Panel1.Controls.Add(this.gpBoxInternetConnectionCheck);
+            this.splitContainer1.Panel1.Controls.Add(this.gpBoxMapView);
+            this.splitContainer1.Panel1.Controls.Add(this.gpBoxSearch);
             // 
             // splitContainer1.Panel2
             // 
@@ -156,20 +160,20 @@ namespace WMS
             this.splitContainer1.SplitterDistance = 289;
             this.splitContainer1.TabIndex = 0;
             // 
-            // groupBox9
+            // gpBoxSensorQuery
             // 
-            this.groupBox9.Controls.Add(this.dataGridView1);
-            this.groupBox9.Controls.Add(this.button2);
-            this.groupBox9.Controls.Add(this.button1);
-            this.groupBox9.Controls.Add(this.comboBoxCheckForQuery);
-            this.groupBox9.Controls.Add(this.btnMapAskSens);
-            this.groupBox9.Controls.Add(this.label15);
-            this.groupBox9.Location = new System.Drawing.Point(4, 323);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(283, 284);
-            this.groupBox9.TabIndex = 24;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Опрос";
+            this.gpBoxSensorQuery.Controls.Add(this.dataGridView1);
+            this.gpBoxSensorQuery.Controls.Add(this.button2);
+            this.gpBoxSensorQuery.Controls.Add(this.button1);
+            this.gpBoxSensorQuery.Controls.Add(this.comboBoxCheckForQuery);
+            this.gpBoxSensorQuery.Controls.Add(this.btnMapAskSens);
+            this.gpBoxSensorQuery.Controls.Add(this.lbSensorNameForQuery);
+            this.gpBoxSensorQuery.Location = new System.Drawing.Point(4, 323);
+            this.gpBoxSensorQuery.Name = "gpBoxSensorQuery";
+            this.gpBoxSensorQuery.Size = new System.Drawing.Size(283, 284);
+            this.gpBoxSensorQuery.TabIndex = 24;
+            this.gpBoxSensorQuery.TabStop = false;
+            this.gpBoxSensorQuery.Text = "Опрос";
             // 
             // dataGridView1
             // 
@@ -217,24 +221,24 @@ namespace WMS
             this.btnMapAskSens.Text = "Опросить";
             this.btnMapAskSens.UseVisualStyleBackColor = true;
             // 
-            // label15
+            // lbSensorNameForQuery
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(12, 24);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(60, 13);
-            this.label15.TabIndex = 21;
-            this.label15.Text = "Название:";
+            this.lbSensorNameForQuery.AutoSize = true;
+            this.lbSensorNameForQuery.Location = new System.Drawing.Point(12, 24);
+            this.lbSensorNameForQuery.Name = "lbSensorNameForQuery";
+            this.lbSensorNameForQuery.Size = new System.Drawing.Size(60, 13);
+            this.lbSensorNameForQuery.TabIndex = 21;
+            this.lbSensorNameForQuery.Text = "Название:";
             // 
-            // groupBox6
+            // gpBoxInternetConnectionCheck
             // 
-            this.groupBox6.Controls.Add(this.txtBxCheckInternet);
-            this.groupBox6.Location = new System.Drawing.Point(3, 613);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(283, 51);
-            this.groupBox6.TabIndex = 22;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Подключение к сети Интернет";
+            this.gpBoxInternetConnectionCheck.Controls.Add(this.txtBxCheckInternet);
+            this.gpBoxInternetConnectionCheck.Location = new System.Drawing.Point(3, 613);
+            this.gpBoxInternetConnectionCheck.Name = "gpBoxInternetConnectionCheck";
+            this.gpBoxInternetConnectionCheck.Size = new System.Drawing.Size(283, 51);
+            this.gpBoxInternetConnectionCheck.TabIndex = 22;
+            this.gpBoxInternetConnectionCheck.TabStop = false;
+            this.gpBoxInternetConnectionCheck.Text = "Подключение к сети Интернет";
             // 
             // txtBxCheckInternet
             // 
@@ -248,15 +252,15 @@ namespace WMS
             this.txtBxCheckInternet.TabStop = false;
             this.txtBxCheckInternet.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // groupBox5
+            // gpBoxMapView
             // 
-            this.groupBox5.Controls.Add(this.btnShwMap);
-            this.groupBox5.Location = new System.Drawing.Point(4, 260);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(283, 57);
-            this.groupBox5.TabIndex = 21;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Отображение карты";
+            this.gpBoxMapView.Controls.Add(this.btnShwMap);
+            this.gpBoxMapView.Location = new System.Drawing.Point(4, 260);
+            this.gpBoxMapView.Name = "gpBoxMapView";
+            this.gpBoxMapView.Size = new System.Drawing.Size(283, 57);
+            this.gpBoxMapView.TabIndex = 21;
+            this.gpBoxMapView.TabStop = false;
+            this.gpBoxMapView.Text = "Отображение карты";
             // 
             // btnShwMap
             // 
@@ -268,17 +272,17 @@ namespace WMS
             this.btnShwMap.UseVisualStyleBackColor = true;
             this.btnShwMap.Click += new System.EventHandler(this.btnShwMap_Click);
             // 
-            // groupBox1
+            // gpBoxSearch
             // 
-            this.groupBox1.Controls.Add(this.comboBoxSNMap);
-            this.groupBox1.Controls.Add(this.groupBox7);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Location = new System.Drawing.Point(3, 14);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(283, 240);
-            this.groupBox1.TabIndex = 20;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = " Поиск";
+            this.gpBoxSearch.Controls.Add(this.comboBoxSNMap);
+            this.gpBoxSearch.Controls.Add(this.gpBoxSearchResult);
+            this.gpBoxSearch.Controls.Add(this.lbSensorNameForSearch);
+            this.gpBoxSearch.Location = new System.Drawing.Point(3, 14);
+            this.gpBoxSearch.Name = "gpBoxSearch";
+            this.gpBoxSearch.Size = new System.Drawing.Size(283, 240);
+            this.gpBoxSearch.TabIndex = 20;
+            this.gpBoxSearch.TabStop = false;
+            this.gpBoxSearch.Text = " Поиск";
             // 
             // comboBoxSNMap
             // 
@@ -290,43 +294,43 @@ namespace WMS
             this.comboBoxSNMap.TabIndex = 20;
             this.comboBoxSNMap.SelectedIndexChanged += new System.EventHandler(this.comboBoxSNMap_SelectedIndexChanged_1);
             // 
-            // groupBox7
+            // gpBoxSearchResult
             // 
-            this.groupBox7.Controls.Add(this.groupBox8);
-            this.groupBox7.Controls.Add(this.txtbxMapSStatus);
-            this.groupBox7.Controls.Add(this.txtbxMapSType);
-            this.groupBox7.Controls.Add(this.label11);
-            this.groupBox7.Controls.Add(this.label13);
-            this.groupBox7.Location = new System.Drawing.Point(6, 48);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(271, 184);
-            this.groupBox7.TabIndex = 19;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Результаты поиска";
+            this.gpBoxSearchResult.Controls.Add(this.gpBoxLastActivity);
+            this.gpBoxSearchResult.Controls.Add(this.txtbxMapSStatus);
+            this.gpBoxSearchResult.Controls.Add(this.txtbxMapSType);
+            this.gpBoxSearchResult.Controls.Add(this.lbSensorTypeForResultOfSearch);
+            this.gpBoxSearchResult.Controls.Add(this.lbSensorState);
+            this.gpBoxSearchResult.Location = new System.Drawing.Point(6, 48);
+            this.gpBoxSearchResult.Name = "gpBoxSearchResult";
+            this.gpBoxSearchResult.Size = new System.Drawing.Size(271, 184);
+            this.gpBoxSearchResult.TabIndex = 19;
+            this.gpBoxSearchResult.TabStop = false;
+            this.gpBoxSearchResult.Text = "Результаты поиска";
             // 
-            // groupBox8
+            // gpBoxLastActivity
             // 
-            this.groupBox8.Controls.Add(this.label14);
-            this.groupBox8.Controls.Add(this.txtbxMapLastTime);
-            this.groupBox8.Controls.Add(this.label10);
-            this.groupBox8.Controls.Add(this.label5);
-            this.groupBox8.Controls.Add(this.txtbxMapLastDate);
-            this.groupBox8.Controls.Add(this.txtbxMapLastValue);
-            this.groupBox8.Location = new System.Drawing.Point(6, 74);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(259, 101);
-            this.groupBox8.TabIndex = 24;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Последняя активность";
+            this.gpBoxLastActivity.Controls.Add(this.lbTimeOfLastActivity);
+            this.gpBoxLastActivity.Controls.Add(this.txtbxMapLastTime);
+            this.gpBoxLastActivity.Controls.Add(this.lbValueOfLastActivity);
+            this.gpBoxLastActivity.Controls.Add(this.lbDateOfLastActivity);
+            this.gpBoxLastActivity.Controls.Add(this.txtbxMapLastDate);
+            this.gpBoxLastActivity.Controls.Add(this.txtbxMapLastValue);
+            this.gpBoxLastActivity.Location = new System.Drawing.Point(6, 74);
+            this.gpBoxLastActivity.Name = "gpBoxLastActivity";
+            this.gpBoxLastActivity.Size = new System.Drawing.Size(259, 101);
+            this.gpBoxLastActivity.TabIndex = 24;
+            this.gpBoxLastActivity.TabStop = false;
+            this.gpBoxLastActivity.Text = "Последняя активность";
             // 
-            // label14
+            // lbTimeOfLastActivity
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 48);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(43, 13);
-            this.label14.TabIndex = 27;
-            this.label14.Text = "Время:";
+            this.lbTimeOfLastActivity.AutoSize = true;
+            this.lbTimeOfLastActivity.Location = new System.Drawing.Point(6, 48);
+            this.lbTimeOfLastActivity.Name = "lbTimeOfLastActivity";
+            this.lbTimeOfLastActivity.Size = new System.Drawing.Size(43, 13);
+            this.lbTimeOfLastActivity.TabIndex = 27;
+            this.lbTimeOfLastActivity.Text = "Время:";
             // 
             // txtbxMapLastTime
             // 
@@ -341,23 +345,23 @@ namespace WMS
             this.txtbxMapLastTime.TabStop = false;
             this.txtbxMapLastTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label10
+            // lbValueOfLastActivity
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 74);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(58, 13);
-            this.label10.TabIndex = 25;
-            this.label10.Text = "Значение:";
+            this.lbValueOfLastActivity.AutoSize = true;
+            this.lbValueOfLastActivity.Location = new System.Drawing.Point(6, 74);
+            this.lbValueOfLastActivity.Name = "lbValueOfLastActivity";
+            this.lbValueOfLastActivity.Size = new System.Drawing.Size(58, 13);
+            this.lbValueOfLastActivity.TabIndex = 25;
+            this.lbValueOfLastActivity.Text = "Значение:";
             // 
-            // label5
+            // lbDateOfLastActivity
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 22);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 13);
-            this.label5.TabIndex = 24;
-            this.label5.Text = "Дата:";
+            this.lbDateOfLastActivity.AutoSize = true;
+            this.lbDateOfLastActivity.Location = new System.Drawing.Point(6, 22);
+            this.lbDateOfLastActivity.Name = "lbDateOfLastActivity";
+            this.lbDateOfLastActivity.Size = new System.Drawing.Size(36, 13);
+            this.lbDateOfLastActivity.TabIndex = 24;
+            this.lbDateOfLastActivity.Text = "Дата:";
             // 
             // txtbxMapLastDate
             // 
@@ -412,32 +416,32 @@ namespace WMS
             this.txtbxMapSType.TabStop = false;
             this.txtbxMapSType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label11
+            // lbSensorTypeForResultOfSearch
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 25);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(72, 13);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "Тип датчика:";
+            this.lbSensorTypeForResultOfSearch.AutoSize = true;
+            this.lbSensorTypeForResultOfSearch.Location = new System.Drawing.Point(6, 25);
+            this.lbSensorTypeForResultOfSearch.Name = "lbSensorTypeForResultOfSearch";
+            this.lbSensorTypeForResultOfSearch.Size = new System.Drawing.Size(72, 13);
+            this.lbSensorTypeForResultOfSearch.TabIndex = 3;
+            this.lbSensorTypeForResultOfSearch.Text = "Тип датчика:";
             // 
-            // label13
+            // lbSensorState
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(12, 51);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(64, 13);
-            this.label13.TabIndex = 17;
-            this.label13.Text = "Состояние:";
+            this.lbSensorState.AutoSize = true;
+            this.lbSensorState.Location = new System.Drawing.Point(7, 51);
+            this.lbSensorState.Name = "lbSensorState";
+            this.lbSensorState.Size = new System.Drawing.Size(64, 13);
+            this.lbSensorState.TabIndex = 17;
+            this.lbSensorState.Text = "Состояние:";
             // 
-            // label12
+            // lbSensorNameForSearch
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(12, 24);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(60, 13);
-            this.label12.TabIndex = 1;
-            this.label12.Text = "Название:";
+            this.lbSensorNameForSearch.AutoSize = true;
+            this.lbSensorNameForSearch.Location = new System.Drawing.Point(12, 24);
+            this.lbSensorNameForSearch.Name = "lbSensorNameForSearch";
+            this.lbSensorNameForSearch.Size = new System.Drawing.Size(60, 13);
+            this.lbSensorNameForSearch.TabIndex = 1;
+            this.lbSensorNameForSearch.Text = "Название:";
             // 
             // MainMap
             // 
@@ -447,7 +451,7 @@ namespace WMS
             this.MainMap.GrayScaleMode = false;
             this.MainMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.MainMap.LevelsKeepInMemmory = 5;
-            this.MainMap.Location = new System.Drawing.Point(7, 0);
+            this.MainMap.Location = new System.Drawing.Point(15, -4);
             this.MainMap.MarkersEnabled = true;
             this.MainMap.MaxZoom = 2;
             this.MainMap.MinZoom = 2;
@@ -470,26 +474,26 @@ namespace WMS
             // tabPageSensor
             // 
             this.tabPageSensor.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabPageSensor.Controls.Add(this.groupBox4);
-            this.tabPageSensor.Controls.Add(this.groupBox3);
-            this.tabPageSensor.Controls.Add(this.groupBox2);
+            this.tabPageSensor.Controls.Add(this.gpBoxGraphic);
+            this.tabPageSensor.Controls.Add(this.gpBoxData);
+            this.tabPageSensor.Controls.Add(this.gpBoxSensorIdentity);
             this.tabPageSensor.Controls.Add(this.label3);
             this.tabPageSensor.Location = new System.Drawing.Point(4, 22);
             this.tabPageSensor.Name = "tabPageSensor";
             this.tabPageSensor.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageSensor.Size = new System.Drawing.Size(1084, 673);
             this.tabPageSensor.TabIndex = 0;
-            this.tabPageSensor.Text = "Датчики";
+            this.tabPageSensor.Text = "Данные";
             // 
-            // groupBox4
+            // gpBoxGraphic
             // 
-            this.groupBox4.Controls.Add(this.unionChart);
-            this.groupBox4.Location = new System.Drawing.Point(6, 336);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1072, 272);
-            this.groupBox4.TabIndex = 16;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "График";
+            this.gpBoxGraphic.Controls.Add(this.unionChart);
+            this.gpBoxGraphic.Location = new System.Drawing.Point(6, 336);
+            this.gpBoxGraphic.Name = "gpBoxGraphic";
+            this.gpBoxGraphic.Size = new System.Drawing.Size(1072, 331);
+            this.gpBoxGraphic.TabIndex = 16;
+            this.gpBoxGraphic.TabStop = false;
+            this.gpBoxGraphic.Text = "График";
             // 
             // unionChart
             // 
@@ -507,29 +511,29 @@ namespace WMS
             series4.Name = "Датчик";
             series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
             this.unionChart.Series.Add(series4);
-            this.unionChart.Size = new System.Drawing.Size(1060, 247);
+            this.unionChart.Size = new System.Drawing.Size(1060, 306);
             this.unionChart.TabIndex = 6;
             this.unionChart.Text = "chart1";
             // 
-            // groupBox3
+            // gpBoxData
             // 
-            this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.comboBoxInterval);
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.txtbxDate);
-            this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.dgvData);
-            this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.rtbSensorsValue);
-            this.groupBox3.Controls.Add(this.txtbxTimeFrom);
-            this.groupBox3.Controls.Add(this.txtbxTimeTo);
-            this.groupBox3.Location = new System.Drawing.Point(553, 6);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(525, 324);
-            this.groupBox3.TabIndex = 14;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Данные";
+            this.gpBoxData.Controls.Add(this.label7);
+            this.gpBoxData.Controls.Add(this.comboBoxInterval);
+            this.gpBoxData.Controls.Add(this.label2);
+            this.gpBoxData.Controls.Add(this.txtbxDate);
+            this.gpBoxData.Controls.Add(this.label9);
+            this.gpBoxData.Controls.Add(this.dgvData);
+            this.gpBoxData.Controls.Add(this.label1);
+            this.gpBoxData.Controls.Add(this.label8);
+            this.gpBoxData.Controls.Add(this.rtbSensorsValue);
+            this.gpBoxData.Controls.Add(this.txtbxTimeFrom);
+            this.gpBoxData.Controls.Add(this.txtbxTimeTo);
+            this.gpBoxData.Location = new System.Drawing.Point(537, 6);
+            this.gpBoxData.Name = "gpBoxData";
+            this.gpBoxData.Size = new System.Drawing.Size(541, 324);
+            this.gpBoxData.TabIndex = 14;
+            this.gpBoxData.TabStop = false;
+            this.gpBoxData.Text = "Данные";
             // 
             // label7
             // 
@@ -595,7 +599,7 @@ namespace WMS
             this.dgvData.Name = "dgvData";
             this.dgvData.ReadOnly = true;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(513, 213);
+            this.dgvData.Size = new System.Drawing.Size(529, 213);
             this.dgvData.TabIndex = 0;
             this.dgvData.SelectionChanged += new System.EventHandler(this.dgvData_SelectionChanged);
             // 
@@ -644,33 +648,62 @@ namespace WMS
             this.txtbxTimeTo.TabIndex = 10;
             this.txtbxTimeTo.TextChanged += new System.EventHandler(this.textBoxForTimeTo_TextChanged);
             // 
-            // groupBox2
+            // gpBoxSensorIdentity
             // 
-            this.groupBox2.Controls.Add(this.btnStartMonitoring);
-            this.groupBox2.Controls.Add(this.dgvSens);
-            this.groupBox2.Controls.Add(this.btnRefreshDB);
-            this.groupBox2.Controls.Add(this.rtbAmountSensors);
-            this.groupBox2.Controls.Add(this.comboBoxSensorType);
-            this.groupBox2.Controls.Add(this.txtbxSName);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(6, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(525, 324);
-            this.groupBox2.TabIndex = 13;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Идентификация датчиков";
+            this.gpBoxSensorIdentity.Controls.Add(this.progressBarLoadDataFromDB);
+            this.gpBoxSensorIdentity.Controls.Add(this.gpBoxSensorsView);
+            this.gpBoxSensorIdentity.Controls.Add(this.dgvSens);
+            this.gpBoxSensorIdentity.Controls.Add(this.btnRefreshDB);
+            this.gpBoxSensorIdentity.Controls.Add(this.rtbAmountSensors);
+            this.gpBoxSensorIdentity.Location = new System.Drawing.Point(6, 6);
+            this.gpBoxSensorIdentity.Name = "gpBoxSensorIdentity";
+            this.gpBoxSensorIdentity.Size = new System.Drawing.Size(525, 324);
+            this.gpBoxSensorIdentity.TabIndex = 13;
+            this.gpBoxSensorIdentity.TabStop = false;
+            this.gpBoxSensorIdentity.Text = "Идентификация датчиков";
             // 
-            // btnStartMonitoring
+            // progressBarLoadDataFromDB
             // 
-            this.btnStartMonitoring.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStartMonitoring.Location = new System.Drawing.Point(392, 16);
-            this.btnStartMonitoring.Name = "btnStartMonitoring";
-            this.btnStartMonitoring.Size = new System.Drawing.Size(127, 75);
-            this.btnStartMonitoring.TabIndex = 17;
-            this.btnStartMonitoring.Text = "Начать мониторинг";
-            this.btnStartMonitoring.UseVisualStyleBackColor = true;
-            this.btnStartMonitoring.Click += new System.EventHandler(this.btnStartMonitoring_Click);
+            this.progressBarLoadDataFromDB.Location = new System.Drawing.Point(230, 74);
+            this.progressBarLoadDataFromDB.Name = "progressBarLoadDataFromDB";
+            this.progressBarLoadDataFromDB.Size = new System.Drawing.Size(289, 23);
+            this.progressBarLoadDataFromDB.TabIndex = 5;
+            // 
+            // gpBoxSensorsView
+            // 
+            this.gpBoxSensorsView.Controls.Add(this.rButtonAllSensors);
+            this.gpBoxSensorsView.Controls.Add(this.rButtonChooseSensors);
+            this.gpBoxSensorsView.Location = new System.Drawing.Point(6, 16);
+            this.gpBoxSensorsView.Name = "gpBoxSensorsView";
+            this.gpBoxSensorsView.Size = new System.Drawing.Size(218, 53);
+            this.gpBoxSensorsView.TabIndex = 19;
+            this.gpBoxSensorsView.TabStop = false;
+            this.gpBoxSensorsView.Text = "Отобразить";
+            // 
+            // rButtonAllSensors
+            // 
+            this.rButtonAllSensors.AutoSize = true;
+            this.rButtonAllSensors.Checked = true;
+            this.rButtonAllSensors.Location = new System.Drawing.Point(17, 24);
+            this.rButtonAllSensors.Name = "rButtonAllSensors";
+            this.rButtonAllSensors.Size = new System.Drawing.Size(87, 17);
+            this.rButtonAllSensors.TabIndex = 17;
+            this.rButtonAllSensors.TabStop = true;
+            this.rButtonAllSensors.Text = "Все датчики";
+            this.rButtonAllSensors.UseVisualStyleBackColor = true;
+            this.rButtonAllSensors.MouseClick += new System.Windows.Forms.MouseEventHandler(this.rButtonAllSensors_MouseClick);
+            // 
+            // rButtonChooseSensors
+            // 
+            this.rButtonChooseSensors.AutoSize = true;
+            this.rButtonChooseSensors.Location = new System.Drawing.Point(119, 24);
+            this.rButtonChooseSensors.Name = "rButtonChooseSensors";
+            this.rButtonChooseSensors.Size = new System.Drawing.Size(81, 17);
+            this.rButtonChooseSensors.TabIndex = 18;
+            this.rButtonChooseSensors.TabStop = true;
+            this.rButtonChooseSensors.Text = "Выборочно";
+            this.rButtonChooseSensors.UseVisualStyleBackColor = true;
+            this.rButtonChooseSensors.MouseClick += new System.Windows.Forms.MouseEventHandler(this.rButtonChooseSensors_MouseClick);
             // 
             // dgvSens
             // 
@@ -692,9 +725,9 @@ namespace WMS
             // btnRefreshDB
             // 
             this.btnRefreshDB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRefreshDB.Location = new System.Drawing.Point(261, 16);
+            this.btnRefreshDB.Location = new System.Drawing.Point(230, 16);
             this.btnRefreshDB.Name = "btnRefreshDB";
-            this.btnRefreshDB.Size = new System.Drawing.Size(127, 75);
+            this.btnRefreshDB.Size = new System.Drawing.Size(289, 53);
             this.btnRefreshDB.TabIndex = 13;
             this.btnRefreshDB.Text = "Получить данные";
             this.btnRefreshDB.UseVisualStyleBackColor = true;
@@ -707,49 +740,9 @@ namespace WMS
             this.rtbAmountSensors.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rtbAmountSensors.Location = new System.Drawing.Point(6, 75);
             this.rtbAmountSensors.Name = "rtbAmountSensors";
-            this.rtbAmountSensors.Size = new System.Drawing.Size(249, 24);
+            this.rtbAmountSensors.Size = new System.Drawing.Size(218, 24);
             this.rtbAmountSensors.TabIndex = 15;
             this.rtbAmountSensors.Text = "Количество датчиков: 0";
-            // 
-            // comboBoxSensorType
-            // 
-            this.comboBoxSensorType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxSensorType.FormattingEnabled = true;
-            this.comboBoxSensorType.Items.AddRange(new object[] {
-            "Датчик температуры",
-            "Датчик атмосферного давления",
-            "Датчик скорости ветра"});
-            this.comboBoxSensorType.Location = new System.Drawing.Point(87, 45);
-            this.comboBoxSensorType.Name = "comboBoxSensorType";
-            this.comboBoxSensorType.Size = new System.Drawing.Size(168, 21);
-            this.comboBoxSensorType.TabIndex = 14;
-            this.comboBoxSensorType.SelectedIndexChanged += new System.EventHandler(this.comboBoxSensorType_SelectedIndexChanged);
-            // 
-            // txtbxSName
-            // 
-            this.txtbxSName.Location = new System.Drawing.Point(87, 22);
-            this.txtbxSName.Name = "txtbxSName";
-            this.txtbxSName.Size = new System.Drawing.Size(168, 20);
-            this.txtbxSName.TabIndex = 9;
-            this.txtbxSName.TextChanged += new System.EventHandler(this.textBoxSenName_TextChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 27);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 13);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Название:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 48);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Тип датчика:";
             // 
             // label3
             // 
@@ -761,13 +754,49 @@ namespace WMS
             // 
             // карта
             // 
+            this.карта.AccessibleName = "";
             this.карта.Controls.Add(this.tabPageSensor);
             this.карта.Controls.Add(this.tabPage1);
-            this.карта.Location = new System.Drawing.Point(11, 29);
+            this.карта.Controls.Add(this.Мониторинг);
+            this.карта.Location = new System.Drawing.Point(7, 30);
             this.карта.Name = "карта";
             this.карта.SelectedIndex = 0;
             this.карта.Size = new System.Drawing.Size(1092, 699);
             this.карта.TabIndex = 4;
+            this.карта.Tag = "";
+            // 
+            // Мониторинг
+            // 
+            this.Мониторинг.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Мониторинг.Controls.Add(this.btnStartMonitoring);
+            this.Мониторинг.Controls.Add(this.groupBox10);
+            this.Мониторинг.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Мониторинг.Location = new System.Drawing.Point(4, 22);
+            this.Мониторинг.Name = "Мониторинг";
+            this.Мониторинг.Padding = new System.Windows.Forms.Padding(3);
+            this.Мониторинг.Size = new System.Drawing.Size(1084, 673);
+            this.Мониторинг.TabIndex = 2;
+            this.Мониторинг.Text = "Мониторинг";
+            // 
+            // btnStartMonitoring
+            // 
+            this.btnStartMonitoring.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStartMonitoring.Location = new System.Drawing.Point(351, 36);
+            this.btnStartMonitoring.Name = "btnStartMonitoring";
+            this.btnStartMonitoring.Size = new System.Drawing.Size(127, 75);
+            this.btnStartMonitoring.TabIndex = 18;
+            this.btnStartMonitoring.Text = "Начать мониторинг";
+            this.btnStartMonitoring.UseVisualStyleBackColor = true;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.groupBox10.Location = new System.Drawing.Point(99, 123);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(200, 100);
+            this.groupBox10.TabIndex = 0;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "groupBox10";
             // 
             // FileMenu
             // 
@@ -830,25 +859,15 @@ namespace WMS
             this.HelpMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1111, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1106, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Location = new System.Drawing.Point(12, 734);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(1087, 139);
-            this.groupBox10.TabIndex = 5;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Мониторинг";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1111, 885);
-            this.Controls.Add(this.groupBox10);
+            this.ClientSize = new System.Drawing.Size(1106, 734);
             this.Controls.Add(this.карта);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -856,37 +875,39 @@ namespace WMS
             this.Text = "Беспроводная система мониторинга WMS";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.SValuesBindingSource)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
+            this.gpBoxSensorQuery.ResumeLayout(false);
+            this.gpBoxSensorQuery.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
+            this.gpBoxInternetConnectionCheck.ResumeLayout(false);
+            this.gpBoxInternetConnectionCheck.PerformLayout();
+            this.gpBoxMapView.ResumeLayout(false);
+            this.gpBoxSearch.ResumeLayout(false);
+            this.gpBoxSearch.PerformLayout();
+            this.gpBoxSearchResult.ResumeLayout(false);
+            this.gpBoxSearchResult.PerformLayout();
+            this.gpBoxLastActivity.ResumeLayout(false);
+            this.gpBoxLastActivity.PerformLayout();
             this.tabPageSensor.ResumeLayout(false);
             this.tabPageSensor.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
+            this.gpBoxGraphic.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.unionChart)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.gpBoxData.ResumeLayout(false);
+            this.gpBoxData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.gpBoxSensorIdentity.ResumeLayout(false);
+            this.gpBoxSensorsView.ResumeLayout(false);
+            this.gpBoxSensorsView.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSens)).EndInit();
             this.карта.ResumeLayout(false);
+            this.Мониторинг.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SValuesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -896,22 +917,22 @@ namespace WMS
         private System.Windows.Forms.BindingSource SValuesBindingSource;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox gpBoxInternetConnectionCheck;
         private System.Windows.Forms.TextBox txtBxCheckInternet;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox gpBoxMapView;
         private System.Windows.Forms.Button btnShwMap;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.GroupBox gpBoxSearch;
+        private System.Windows.Forms.GroupBox gpBoxSearchResult;
         private System.Windows.Forms.TextBox txtbxMapSStatus;
         private System.Windows.Forms.TextBox txtbxMapSType;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lbSensorTypeForResultOfSearch;
+        private System.Windows.Forms.Label lbSensorState;
+        private System.Windows.Forms.Label lbSensorNameForSearch;
         private GMap.NET.WindowsForms.GMapControl MainMap;
         private System.Windows.Forms.TabPage tabPageSensor;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox gpBoxGraphic;
         private System.Windows.Forms.DataVisualization.Charting.Chart unionChart;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gpBoxData;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboBoxInterval;
         private System.Windows.Forms.Label label2;
@@ -923,14 +944,10 @@ namespace WMS
         private System.Windows.Forms.RichTextBox rtbSensorsValue;
         private System.Windows.Forms.TextBox txtbxTimeFrom;
         private System.Windows.Forms.TextBox txtbxTimeTo;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gpBoxSensorIdentity;
         private System.Windows.Forms.DataGridView dgvSens;
         internal System.Windows.Forms.Button btnRefreshDB;
         private System.Windows.Forms.RichTextBox rtbAmountSensors;
-        private System.Windows.Forms.ComboBox comboBoxSensorType;
-        private System.Windows.Forms.TextBox txtbxSName;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabControl карта;
         private System.Windows.Forms.ToolStripMenuItem FileMenu;
@@ -942,22 +959,28 @@ namespace WMS
         private System.Windows.Forms.ComboBox comboBoxSNMap;
         private System.Windows.Forms.TextBox txtbxMapLastValue;
         private System.Windows.Forms.TextBox txtbxMapLastDate;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.GroupBox gpBoxLastActivity;
+        private System.Windows.Forms.Label lbValueOfLastActivity;
+        private System.Windows.Forms.Label lbDateOfLastActivity;
+        private System.Windows.Forms.Label lbTimeOfLastActivity;
         private System.Windows.Forms.TextBox txtbxMapLastTime;
         private System.Windows.Forms.ToolStripMenuItem RestartMenu;
         private System.Windows.Forms.ToolStripMenuItem AddSensMenu;
-        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.GroupBox gpBoxSensorQuery;
         private System.Windows.Forms.Button btnMapAskSens;
-        private System.Windows.Forms.Label label15;
-        internal System.Windows.Forms.Button btnStartMonitoring;
-        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.Label lbSensorNameForQuery;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBoxCheckForQuery;
+        private System.Windows.Forms.TabPage Мониторинг;
+        private System.Windows.Forms.GroupBox groupBox10;
+        internal System.Windows.Forms.Button btnStartMonitoring;
+        private System.Windows.Forms.GroupBox gpBoxSensorsView;
+        private System.Windows.Forms.RadioButton rButtonAllSensors;
+        private System.Windows.Forms.RadioButton rButtonChooseSensors;
+        private System.Windows.Forms.ProgressBar progressBarLoadDataFromDB;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

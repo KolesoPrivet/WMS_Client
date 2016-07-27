@@ -17,17 +17,17 @@ namespace WMS.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Sensors()
         {
-            this.SValues = new HashSet<Values>();
+            this.Values = new HashSet<Values>();
         }
     
         public int ID { get; set; }
-        public int C_ { get; set; }
-        public string Название { get; set; }
-        public string Тип { get; set; }
+        public string Name { get; set; }
+        public string Type { get; set; }
         public Nullable<double> LAT { get; set; }
         public Nullable<double> LNG { get; set; }
+        public string Radius { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Values> SValues { get; set; }
+        public virtual ICollection<Values> Values { get; set; }
     }
 }
