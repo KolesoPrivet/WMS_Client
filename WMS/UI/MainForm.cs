@@ -10,17 +10,15 @@ using GMap.NET.WindowsForms.Markers;
 using WMS.DAL;
 using System.Linq;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace WMS
 {
-    //TODO: всю логику нужно вынести из форм
     public partial class MainForm : Form
     {
         #region Fields
         private GMapOverlay markersOverlay;
         private readonly DBEntitiesContext context;
+        private bool isDataLoadedFromDB;
         #endregion
 
         #region Constructors
@@ -196,10 +194,13 @@ namespace WMS
         #region Buttons
         private void btnRefreshDB_Click(object sender, EventArgs e)
         {
+            dgvSens.DataSource = null;
+            dgvData.DataSource = null;
+
             try
             {
-                progressBarLoadDataFromDB.Minimum = 1;
-                progressBarLoadDataFromDB.Maximum = context.Sensors.Count() + context.Values.Count();
+                //progressBarLoadDataFromDB.Minimum = 1;
+                //progressBarLoadDataFromDB.Maximum = context.Sensors.Count() + context.Values.Count();
 
                 #region dgvSens settings
                 dgvSens.DataSource = context.Sensors.ToList();
@@ -208,7 +209,6 @@ namespace WMS
 
                 dgvSens.Columns["ID"].Visible = false;
                 dgvSens.Columns["Values"].Visible = false;
-
                 dgvSens.Columns["Name"].Width = 50;
                 dgvSens.Columns["Type"].Width = 200;
 
@@ -216,24 +216,22 @@ namespace WMS
                 #endregion
 
                 #region dgvData settings
-                dgvData.DataSource = context.Values.ToList();
+                dgvData.DataSource = (from c in context.Values
+                                      orderby c.Date
+                                      select c).ToList();
 
                 dgvData.RowHeadersVisible = false;
 
                 dgvData.Columns["ID"].Visible = false;
                 dgvData.Columns["Sensor"].Visible = false;
                 dgvData.Columns["SensorID"].Visible = false;
-
-                dgvData.ClearSelection();
                 #endregion
 
-                rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
-                rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
-
-                EnableControls();
                 MakeMarkers();
+                EnableControls();
 
                 btnRefreshDB.Enabled = false;
+                isDataLoadedFromDB = true;
             }
             catch (Exception ex)
             {
@@ -376,27 +374,32 @@ namespace WMS
         #region DataGridView
         private void dgvSens_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvSens.CurrentCell != null)
+            if (isDataLoadedFromDB)
             {
                 var currentSensor = dgvSens.CurrentRow.DataBoundItem as Sensors;
-                dgvData.DataSource = currentSensor.Values.ToList();
+                dgvData.DataSource = currentSensor.Values.OrderBy(v => v.Date).ToList();
+
+                rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
+
+                unionChart.DataSource = dgvData.DataSource;
+                unionChart.Series["Датчик"].XValueMember = "Date";
+                unionChart.Series["Датчик"].YValueMembers = "Value";
+                unionChart.DataBind();
             }
         }
 
         private void dgvSens_SelectionChanged(object sender, EventArgs e)
         {
-            rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
-            rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
+            if (isDataLoadedFromDB)
+            {
+                rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
 
-            //привязываем график к значениям сенсоров
-            unionChart.Series["Датчик"].XValueMember = "Дата";
-            unionChart.Series["Датчик"].YValueMembers = "Значение";
-            unionChart.DataBind();
-        }
-
-        private void dgvData_SelectionChanged(object sender, EventArgs e)
-        {
-            rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
+                //привязываем график к значениям сенсоров
+                unionChart.DataSource = dgvData.DataSource;
+                unionChart.Series["Датчик"].XValueMember = "Date";
+                unionChart.Series["Датчик"].YValueMembers = "Value";
+                unionChart.DataBind();
+            }
         }
         #endregion
 

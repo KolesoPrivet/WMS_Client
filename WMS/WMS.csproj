@@ -113,12 +113,6 @@
     <Compile Include="UI\AddSensorForm.Designer.cs">
       <DependentUpon>AddSensorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\AuthorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\AuthorForm.Designer.cs">
-      <DependentUpon>AuthorForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,9 +138,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AddSensorForm.resx">
       <DependentUpon>AddSensorForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\AuthorForm.resx">
-      <DependentUpon>AuthorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
