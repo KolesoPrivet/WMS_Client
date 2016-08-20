@@ -10,6 +10,8 @@ using GMap.NET.WindowsForms.Markers;
 using WMS.DAL;
 using System.Linq;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace WMS
 {
@@ -18,7 +20,7 @@ namespace WMS
         #region Fields
         private GMapOverlay markersOverlay;
         private readonly DBEntitiesContext context;
-        private bool isDataLoadedFromDB;
+        private static bool isDataLoadedFromDB = false;
         #endregion
 
         #region Constructors
@@ -189,54 +191,66 @@ namespace WMS
                 MessageBox.Show(ex.ToString());
             }
         }
+
         #endregion
 
         #region Buttons
-        private void btnRefreshDB_Click(object sender, EventArgs e)
+        private async void btnRefreshDB_Click(object sender, EventArgs e)
         {
-            dgvSens.DataSource = null;
-            dgvData.DataSource = null;
+            progressBarLoadDataFromDB.Minimum = 1;
+            progressBarLoadDataFromDB.Maximum = 10;
+            progressBarLoadDataFromDB.Style = ProgressBarStyle.Marquee;
+            progressBarLoadDataFromDB.MarqueeAnimationSpeed = 30;
 
-            try
+            List<Sensors> sensors = await Task.Factory.StartNew(() =>
             {
-                //progressBarLoadDataFromDB.Minimum = 1;
-                //progressBarLoadDataFromDB.Maximum = context.Sensors.Count() + context.Values.Count();
+                return context.Sensors.ToList();
+            });
 
-                #region dgvSens settings
-                dgvSens.DataSource = context.Sensors.ToList();
-
-                dgvSens.RowHeadersVisible = false;
-
-                dgvSens.Columns["ID"].Visible = false;
-                dgvSens.Columns["Values"].Visible = false;
-                dgvSens.Columns["Name"].Width = 50;
-                dgvSens.Columns["Type"].Width = 200;
-
-                dgvSens.ClearSelection();
-                #endregion
-
-                #region dgvData settings
-                dgvData.DataSource = (from c in context.Values
-                                      orderby c.Date
-                                      select c).ToList();
-
-                dgvData.RowHeadersVisible = false;
-
-                dgvData.Columns["ID"].Visible = false;
-                dgvData.Columns["Sensor"].Visible = false;
-                dgvData.Columns["SensorID"].Visible = false;
-                #endregion
-
-                MakeMarkers();
-                EnableControls();
-
-                btnRefreshDB.Enabled = false;
-                isDataLoadedFromDB = true;
-            }
-            catch (Exception ex)
+            List<Values> values = await Task.Factory.StartNew(() =>
             {
-                MessageBox.Show(ex.ToString());
-            }
+                return (from c in context.Values
+                        orderby c.Date
+                        select c).ToList();
+            });
+
+            dgvSens.DataSource = sensors;
+            dgvData.DataSource = values;
+
+            sensors = null; 
+            values = null;
+
+            btnRefreshDB.Enabled = false;
+
+            btnShwMap.Enabled = true;
+            txtbxDate.Enabled = true;
+            AddSensMenu.Enabled = true;
+            rButtonAllSensors.Enabled = true;
+            rButtonChooseSensors.Enabled = true;
+
+            dgvSens.RowHeadersVisible = false;
+
+            dgvSens.Columns["ID"].Visible = false;
+            dgvSens.Columns["Values"].Visible = false;
+            dgvSens.Columns["Name"].Width = 50;
+            dgvSens.Columns["Type"].Width = 200;
+
+            dgvSens.ClearSelection();
+
+            dgvData.RowHeadersVisible = false;
+
+            dgvData.Columns["ID"].Visible = false;
+            dgvData.Columns["Sensor"].Visible = false;
+            dgvData.Columns["SensorID"].Visible = false;
+
+            isDataLoadedFromDB = true;
+            progressBarLoadDataFromDB.Style = ProgressBarStyle.Continuous;
+            progressBarLoadDataFromDB.MarqueeAnimationSpeed = 0;
+
+            rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
+            rtbSensorsValue.Text = "Показаний датчиков: " + dgvData.Rows.Count.ToString();
+
+            MakeMarkers(); //TODO: await
         }
 
         private void btnShwMap_Click(object sender, EventArgs e)
