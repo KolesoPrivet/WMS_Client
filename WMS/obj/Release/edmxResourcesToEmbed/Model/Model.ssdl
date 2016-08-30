@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DBModelStoreContainer">
+    <EntitySet Name="Sensors" EntityType="DBModel.Store.Sensors" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Values" EntityType="DBModel.Store.Values" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Values_Sensors" Association="DBModel.Store.FK_Values_Sensors">
+      <End Role="Sensors" EntitySet="Sensors" />
+      <End Role="SValues" EntitySet="Values" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Sensors">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Type" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LAT" Type="float" Nullable="true" />
+    <Property Name="LNG" Type="float" Nullable="true" />
+    <Property Name="Radius" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Values">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SensorID" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Time" Type="time" Nullable="false" Precision="7" />
+    <Property Name="Value" Type="float" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Values_Sensors">
+    <End Role="Sensors" Type="DBModel.Store.Sensors" Multiplicity="1" />
+    <End Role="SValues" Type="DBModel.Store.Values" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sensors">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SValues">
+        <PropertyRef Name="SensorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
