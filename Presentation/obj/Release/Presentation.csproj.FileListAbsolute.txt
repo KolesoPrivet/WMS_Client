@@ -1,0 +1,9 @@
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\Presentation\bin\Release\Presentation.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\Presentation\bin\Release\Presentation.pdb
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\Presentation\bin\Release\DomainModel.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\Presentation\bin\Release\EntityFramework.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\Presentation\bin\Release\DomainModel.pdb
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\Presentation\bin\Release\EntityFramework.xml
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\Presentation\obj\Release\Presentation.csprojResolveAssemblyReference.cache
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\Presentation\obj\Release\Presentation.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\Presentation\obj\Release\Presentation.pdb

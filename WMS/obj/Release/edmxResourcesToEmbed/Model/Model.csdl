@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Sensors">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Type" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="LAT" Type="Double" />
+    <Property Name="LNG" Type="Double" />
+    <NavigationProperty Name="Values" Relationship="Self.FK_Values_Sensors" FromRole="Sensors" ToRole="SValues" />
+    <Property Name="Radius" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Values">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SensorID" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Value" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Sensor" Relationship="Self.FK_Values_Sensors" FromRole="SValues" ToRole="Sensors" />
+  </EntityType>
+  <Association Name="FK_Values_Sensors">
+    <End Role="Sensors" Type="Self.Sensors" Multiplicity="1" />
+    <End Role="SValues" Type="DBModel.Values" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sensors">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SValues">
+        <PropertyRef Name="SensorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GeneralDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Sensors" EntityType="Self.Sensors" />
+    <EntitySet Name="Values" EntityType="DBModel.Values" />
+    <AssociationSet Name="FK_Values_Sensors" Association="Self.FK_Values_Sensors">
+      <End Role="Sensors" EntitySet="Sensors" />
+      <End Role="SValues" EntitySet="Values" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

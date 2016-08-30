@@ -1,0 +1,15 @@
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\UnitTests.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\UnitTests.pdb
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\DomainModel.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\Ninject.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\Presentation.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\EntityFramework.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\DomainModel.pdb
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\Presentation.pdb
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\Ninject.xml
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\EntityFramework.xml
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\obj\Release\UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\obj\Release\UnitTests.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\obj\Release\UnitTests.pdb
