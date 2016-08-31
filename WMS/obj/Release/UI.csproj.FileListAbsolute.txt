@@ -21,6 +21,6 @@ C:\Users\Александр\Desktop\Учеба\Бакалавриат\Дипло
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\bin\Release\ru\EntityFramework.resources.dll
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\Presentation.Common.AboutForm.resources
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\UI.View.MainForm.resources
-C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\Presentation.Common.SelectSensorsForm.resources
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\Presentation.Common.Test.resources
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\UI.View.AddSensorForm.resources
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\WMS\obj\Release\UI.View.SelectSensorsForm.resources

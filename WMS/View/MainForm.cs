@@ -11,6 +11,7 @@ using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 
+using DomainModel.Abstract;
 using DomainModel.Concrete;
 using DomainModel.Entity;
 
@@ -23,7 +24,9 @@ namespace UI.View
     {
         #region Fields
         private GMapOverlay markersOverlay;
-        private static bool isDataLoadedFromDB = false;
+        private readonly ISensorRepository sensorRepository;
+        private readonly IDataRepository dataRepository;
+        private bool isDataLoadedFromDB = false;
         #endregion
 
         #region Constructors
@@ -31,6 +34,9 @@ namespace UI.View
         {
             InitializeComponent();
             CenterToScreen();
+
+            sensorRepository = new EFSensorRepository();
+            dataRepository = new EFDataRepository();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -214,12 +220,12 @@ namespace UI.View
 
                 dgvSens.DataSource = await Task.Factory.StartNew(() => 
                 {
-                    return MainPresenter.GetSensorsListAsync(new EFSensorRepository());
+                    return MainPresenter.GetSensorsListAsync(sensorRepository);
                 });
 
                 dgvData.DataSource = await Task.Factory.StartNew(() => 
                 {
-                    return MainPresenter.GetDataListAsync(new EFDataRepository());
+                    return MainPresenter.GetDataListAsync(dataRepository);
                 });
 
                 btnRefreshDB.Enabled = false;
@@ -232,11 +238,10 @@ namespace UI.View
 
                 dgvSens.RowHeadersVisible = false;
 
-                //Переименовать столбцы
                 dgvSens.Columns["SensorId"].Visible = false;
                 dgvSens.Columns["DataCollection"].Visible = false;
                 dgvSens.Columns["Name"].Width = 50;
-                dgvSens.Columns["Type"].Width = 200;
+                dgvSens.Columns["SensorType"].Width = 200;
 
                 dgvData.RowHeadersVisible = false;
 
@@ -248,7 +253,6 @@ namespace UI.View
                 progressBarLoadDataFromDB.Style = ProgressBarStyle.Continuous;
                 progressBarLoadDataFromDB.MarqueeAnimationSpeed = 0;
 
-                dgvSens.Rows[0].Selected = true;
                 rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
                 rtbSensorsValue.Text = "Показаний датчиков: " + dgvData.Rows.Count.ToString();
 
@@ -263,7 +267,6 @@ namespace UI.View
             {
                 MessageBox.Show(ex.ToString());
             }
-            //TODO: await
         }
 
         private void btnShwMap_Click(object sender, EventArgs e)
@@ -286,31 +289,25 @@ namespace UI.View
 
         private void rButtonAllSensors_MouseClick(object sender, MouseEventArgs e)
         {
-            //dgvSens.DataSource = context.Sensors.ToList();
+            dgvSens.DataSource = MainPresenter.GetSensorsListAsync(sensorRepository);
 
             rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
         }
 
         private void rButtonChooseSensors_MouseClick(object sender, MouseEventArgs e)
         {
-            List<Sensor> sensors = new List<Sensor>();
+            //TODO: вылетает NullReference после первого обращения к форме.
+            SelectSensorsPresenter.StartClosing += () => ReturnSelectedSensors();
+            var presenter = new SelectSensorsPresenter(new SelectSensorsForm());
+            presenter.Run(sensorRepository, dataRepository);
+        }
 
-            //переделать не через контекст
-            SelectSensorsForm selectSensorsForm = new SelectSensorsForm(new EFDatabaseContext(), sensors);
-            selectSensorsForm.Owner = this;
-            selectSensorsForm.ShowDialog();
-
-            if (selectSensorsForm.IsDisposed)
+        private void ReturnSelectedSensors()
+        {
+            if(SelectSensorsPresenter.FinalList.Count > 0)
             {
-                dgvSens.DataSource = sensors;
+                dgvSens.DataSource = SelectSensorsPresenter.FinalList;
             }
-            else
-            {
-                selectSensorsForm.Dispose();
-                dgvSens.DataSource = sensors;
-            }
-
-            dgvSens.Refresh();
         }
 
         //TODO: Допили клик по маркеру
@@ -323,7 +320,6 @@ namespace UI.View
         #region Menu
         private void AboutProgramMenu_Click(object sender, EventArgs e)
         {
-            //объект формы "о программе"
             var presenter = new AboutPresenter(new AboutForm());
             presenter.Run();
         }
