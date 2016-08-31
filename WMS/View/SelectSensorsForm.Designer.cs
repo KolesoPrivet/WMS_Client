@@ -1,4 +1,4 @@
-﻿namespace Presentation.Common
+﻿namespace UI.View
 {
     partial class SelectSensorsForm
     {
@@ -31,8 +31,8 @@
             this.chBoxSensorsNames = new System.Windows.Forms.CheckedListBox();
             this.gpBoxSelectSensorsNames = new System.Windows.Forms.GroupBox();
             this.gpBoxSelectSensorsTypes = new System.Windows.Forms.GroupBox();
-            this.btnAcceptSelection = new System.Windows.Forms.Button();
             this.comboBoxSensorType = new System.Windows.Forms.ComboBox();
+            this.btnAcceptSelection = new System.Windows.Forms.Button();
             this.gpBoxSelectSensorsNames.SuspendLayout();
             this.gpBoxSelectSensorsTypes.SuspendLayout();
             this.SuspendLayout();
@@ -45,7 +45,6 @@
             this.chBoxSensorsNames.Name = "chBoxSensorsNames";
             this.chBoxSensorsNames.Size = new System.Drawing.Size(255, 109);
             this.chBoxSensorsNames.TabIndex = 21;
-            this.chBoxSensorsNames.SelectedIndexChanged += new System.EventHandler(this.chBoxSensorsNames_SelectedIndexChanged);
             // 
             // gpBoxSelectSensorsNames
             // 
@@ -67,16 +66,6 @@
             this.gpBoxSelectSensorsTypes.TabStop = false;
             this.gpBoxSelectSensorsTypes.Text = "По типу датчика";
             // 
-            // btnAcceptSelection
-            // 
-            this.btnAcceptSelection.Location = new System.Drawing.Point(12, 210);
-            this.btnAcceptSelection.Name = "btnAcceptSelection";
-            this.btnAcceptSelection.Size = new System.Drawing.Size(267, 39);
-            this.btnAcceptSelection.TabIndex = 24;
-            this.btnAcceptSelection.Text = "OK";
-            this.btnAcceptSelection.UseVisualStyleBackColor = true;
-            this.btnAcceptSelection.Click += new System.EventHandler(this.btnAcceptSelection_Click);
-            // 
             // comboBoxSensorType
             // 
             this.comboBoxSensorType.AllowDrop = true;
@@ -88,6 +77,16 @@
             this.comboBoxSensorType.TabIndex = 0;
             this.comboBoxSensorType.SelectedIndexChanged += new System.EventHandler(this.comboBoxSensorType_SelectedIndexChanged);
             // 
+            // btnAcceptSelection
+            // 
+            this.btnAcceptSelection.Location = new System.Drawing.Point(12, 210);
+            this.btnAcceptSelection.Name = "btnAcceptSelection";
+            this.btnAcceptSelection.Size = new System.Drawing.Size(267, 39);
+            this.btnAcceptSelection.TabIndex = 24;
+            this.btnAcceptSelection.Text = "OK";
+            this.btnAcceptSelection.UseVisualStyleBackColor = true;
+            this.btnAcceptSelection.Click += new System.EventHandler(this.btnAcceptSelection_Click);
+            // 
             // SelectSensorsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -98,6 +97,7 @@
             this.Controls.Add(this.gpBoxSelectSensorsNames);
             this.Name = "SelectSensorsForm";
             this.Text = "Выборка датчиков";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SelectSensorsForm_FormClosed);
             this.Load += new System.EventHandler(this.SelectSensorsForm_Load);
             this.gpBoxSelectSensorsNames.ResumeLayout(false);
             this.gpBoxSelectSensorsTypes.ResumeLayout(false);

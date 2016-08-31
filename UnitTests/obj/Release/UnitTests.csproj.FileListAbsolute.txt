@@ -13,3 +13,7 @@ C:\Users\Александр\Desktop\Учеба\Бакалавриат\Дипло
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\obj\Release\UnitTests.csprojResolveAssemblyReference.cache
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\obj\Release\UnitTests.dll
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\obj\Release\UnitTests.pdb
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\Castle.Core.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\Moq.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\Castle.Core.xml
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\Moq.xml
