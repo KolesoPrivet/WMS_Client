@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using DomainModel.Abstract;
+using DomainModel.Entity;
 using Presentation.Common;
 using UI.View;
 
@@ -41,6 +43,11 @@ namespace UI.View
         private void ASForm_Load(object sender, EventArgs e)
         {
             con.Open();
+        }
+
+        public void Show(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
+        {
+            throw new NotImplementedException();
         }
     }
 }

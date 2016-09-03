@@ -28,6 +28,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -49,8 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IDataRepository.cs" />
-    <Compile Include="Abstract\ISensorRepository.cs" />
+    <Compile Include="Abstract\IEntity.cs" />
+    <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Concrete\EFDatabaseContext.cs" />
     <Compile Include="Concrete\EFDataRepository.cs" />
     <Compile Include="Concrete\EFSensorRepository.cs" />

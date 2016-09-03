@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using DomainModel.Abstract;
+using DomainModel.Entity;
 using Presentation.Presenter;
-using Presentation.Common;
-using System.Collections.Generic;
 using Presentation.Views;
 
 namespace UI.View
@@ -31,7 +31,7 @@ namespace UI.View
         {
             chBoxSensorsNames.Items.Clear();
 
-            foreach (var s in SelectSensorsPresenter.GetSensorsByType(comboBoxSensorType.Text))
+            foreach (var s in SelectSensorsPresenter.GetSensorsNames(comboBoxSensorType.Text))
             {
                 chBoxSensorsNames.Items.Add(s);
             }
@@ -40,9 +40,10 @@ namespace UI.View
         private void btnAcceptSelection_Click(object sender, EventArgs e)
         {
 
-            foreach (var l in SelectSensorsPresenter.GetSensorsByName(chBoxSensorsNames.CheckedItems.OfType<string>()))
+            foreach (var l in chBoxSensorsNames.CheckedItems.OfType<string>())
             {
-                SelectSensorsPresenter.FinalList.Add(l);
+                SelectSensorsPresenter.FinalList.AddRange(SelectSensorsPresenter.GetSensorsByName( l ));
+                
             }
 
             Close();
@@ -51,7 +52,10 @@ namespace UI.View
 
         private void SelectSensorsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            SelectSensorsPresenter.Invoke();
+        }
+
+        public void Show(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
+        {
         }
     }
 }

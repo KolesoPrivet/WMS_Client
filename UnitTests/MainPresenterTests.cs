@@ -15,25 +15,25 @@ namespace UnitTests
         [TestMethod]
         public void Can_Get_Sensors_and_Data_Async()
         {
-            Mock<ISensorRepository> mockSensor = new Mock<ISensorRepository>();
+            Mock<IRepository<Sensor>> mockSensor = new Mock<IRepository<Sensor>>();
 
-            mockSensor.Setup(m => m.Sensors).Returns(new List<Sensor>
+            mockSensor.Setup(m => m.Get).Returns(new List<Sensor>
             {
-                new Sensor { SensorId = 1, Name = "Sensor1", SensorType = "Type1", Radius = "5", Lat = 21, Lng = 20 }
+                new Sensor { Id = 1, Name = "Sensor1", SensorType = "Type1", Radius = "5", Lat = 21, Lng = 20 }
             });
 
-            Mock<IDataRepository> mockData = new Mock<IDataRepository>();
+            Mock<IRepository<Data>> mockData = new Mock<IRepository<Data>>();
 
-            mockData.Setup(m => m.Data).Returns(new List<Data>
+            mockData.Setup(m => m.Get).Returns(new List<Data>
             {
-                new Data { DataId = 1, SensorId = 1, Date = DateTime.Now.Date, Time = TimeSpan.Zero, Value = 50  },
-                 new Data { DataId = 2, SensorId = 1, Date = DateTime.Now.Date, Time = TimeSpan.Zero, Value = 150  },
-                  new Data { DataId = 3, SensorId = 1, Date = DateTime.Now.Date, Time = TimeSpan.Zero, Value = 250  }
+                new Data { Id = 1, SensorId = 1, Date = DateTime.Now.Date, Time = TimeSpan.Zero, Value = 50  },
+                 new Data { Id = 2, SensorId = 1, Date = DateTime.Now.Date, Time = TimeSpan.Zero, Value = 150  },
+                  new Data { Id = 3, SensorId = 1, Date = DateTime.Now.Date, Time = TimeSpan.Zero, Value = 250  }
             });
 
-            List<Sensor> sensor = MainPresenter.GetSensorsListAsync(mockSensor.Object);
+            List<Sensor> sensor = (List<Sensor>) MainPresenter.GetSensorsList();
 
-            List<Data> data = MainPresenter.GetDataListAsync(mockData.Object);
+            List<Data> data = (List<Data>) MainPresenter.GetDataList();
 
             Assert.AreEqual(sensor.Count, 1);
             Assert.AreEqual(data.Count, 3);

@@ -287,7 +287,7 @@
             this.comboBoxSNMap.Name = "comboBoxSNMap";
             this.comboBoxSNMap.Size = new System.Drawing.Size(181, 21);
             this.comboBoxSNMap.TabIndex = 20;
-            this.comboBoxSNMap.SelectedIndexChanged += new System.EventHandler(this.comboBoxSNMap_SelectedIndexChanged_1);
+            this.comboBoxSNMap.SelectedIndexChanged += new System.EventHandler(this.comboBoxSNMap_SelectedIndexChanged);
             // 
             // gpBoxSearchResult
             // 
@@ -715,7 +715,6 @@
             this.dgvSens.Size = new System.Drawing.Size(513, 213);
             this.dgvSens.TabIndex = 16;
             this.dgvSens.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSens_CellEnter);
-            this.dgvSens.SelectionChanged += new System.EventHandler(this.dgvSens_SelectionChanged);
             // 
             // btnRefreshDB
             // 

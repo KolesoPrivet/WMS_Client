@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using DomainModel.Abstract;
+using System.Collections.Generic;
 
 namespace DomainModel.Entity
 {
-    public class Sensor
+    public class Sensor : IEntity
     {
-        public int SensorId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string SensorType { get; set; }
         public double? Lat { get; set; }

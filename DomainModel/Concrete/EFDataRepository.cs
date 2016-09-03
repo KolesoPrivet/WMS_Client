@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace DomainModel.Concrete
 {
-    public class EFDataRepository : IDataRepository
+    public class EFDataRepository : IRepository<Data>
     {
-        private readonly EFDatabaseContext context = EFDatabaseContext.GetInstance();
+        private static readonly EFDatabaseContext context = EFDatabaseContext.GetInstance();
 
-        public IEnumerable<Data> Data
+        public IEnumerable<Data> Get
         {
             get
             {

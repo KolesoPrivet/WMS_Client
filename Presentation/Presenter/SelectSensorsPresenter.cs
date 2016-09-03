@@ -1,96 +1,87 @@
-﻿using DomainModel.Abstract;
-using DomainModel.Entity;
-using Presentation.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
+using DomainModel.Abstract;
+using DomainModel.Entity;
 using DomainModel.Extentions;
+
+using Presentation.Common;
 using Presentation.Views;
 
 namespace Presentation.Presenter
 {
     public class SelectSensorsPresenter : IPresenter
     {
-        private readonly IViewSelectSensors view;
-        public static ISensorRepository SensorRepository { get; private set; }
-        public static IDataRepository DataRepository { get; private set; }
-        public static List<Sensor> FinalList { get; set; }
-
-        public static event Action StartClosing;
-
-        public SelectSensorsPresenter(IViewSelectSensors viewParam)
+        private IViewSelectSensors view;
+        public IViewSelectSensors View
         {
-            view = viewParam;
-            FinalList = new List<Sensor>();
+            get { return view; }
+            set
+            {
+                if (view != null)
+                    return;
+
+                view = value;
+            }
         }
 
-        static SelectSensorsPresenter() { }
+        public static IRepository<Sensor> SensorRepository { get; private set; }
+        public static IRepository<Data> DataRepository { get; private set; }
+        public static List<Sensor> FinalList { get; set; }
+
+        public event Action StartClosing;
+
+        public SelectSensorsPresenter()
+        {
+            FinalList = new List<Sensor>();
+        }
 
         public void Run()
         {
             view.ShowDialog();
         }
 
-        public void Run(ISensorRepository sensorRepositoryParam, IDataRepository dataRepositoryParam)
+        public void Run(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
         {
             SensorRepository = sensorRepositoryParam;
             DataRepository = dataRepositoryParam;
 
             view.ShowDialog();
         }
-        public static IEnumerable<string> GetSensorsByType(string sensorTypeParam)
+
+        public static IEnumerable<Sensor> GetSensorsByName(string sensorNameParam)
         {
-            var names = (from s in SensorRepository.GetAllSensors()
-                         where s.SensorType == sensorTypeParam
-                         select s).ToList();
-
-            foreach (var name in names)
-            {
-                yield return name.Name;
-            }
-        }
-
-        public static IEnumerable<Sensor> GetSensorsByName(IEnumerable<string> sensorNameParam)
-        {
-            var sensors = (from s in SensorRepository.Sensors
-                           from t in sensorNameParam
-                           where s.Name == t
-                           select s);
-
-            foreach (var s in sensors)
+            foreach (var s in SensorRepository.Filter( s => s.Name == sensorNameParam ))
             {
                 yield return s;
             }
         }
 
-        //public static List<Sensor> GetSensorsByName1(List<string> sensorNameParam)
-        //{
-        //    foreach(var s in sensorNameParam)
-        //    {
-
-        //    }
-        //    return (from s in SensorRepository.Sensors
-        //            where s.Name == sensorNameParam.
-        //            select s).ToList();
-        //}
-
         public static IEnumerable<string> GetSensorsNames()
         {
-            foreach (var s in SensorRepository.Sensors)
+            foreach (var s in SensorRepository.Get)
             {
                 yield return s.Name;
             }
         }
 
+        public static IEnumerable<string> GetSensorsNames(string sensorTypeParam)
+        {
+            foreach (var name in SensorRepository.Filter( s => s.SensorType == sensorTypeParam ))
+            {
+                yield return name.Name;
+            }
+        }
+
         public static IEnumerable<string> GetSensorsTypes()
         {
-            foreach (var s in SensorRepository.Sensors)
+            foreach (var s in SensorRepository.Get)
             {
                 yield return s.SensorType;
             }
         }
 
-        public static void Invoke()
+        public void Invoke()
         {
             if (StartClosing != null)
             {

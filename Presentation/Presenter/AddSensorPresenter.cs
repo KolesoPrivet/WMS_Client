@@ -1,4 +1,6 @@
-﻿using Presentation.Common;
+﻿using DomainModel.Abstract;
+using DomainModel.Entity;
+using Presentation.Common;
 
 namespace Presentation.Presenter
 {
@@ -10,9 +12,9 @@ namespace Presentation.Presenter
         {
             view = viewParam;
         }
-        public void Run()
+        public void Run(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
         {
-            view.Show();
+            view.Show( sensorRepositoryParam, dataRepositoryParam );
         }
     }
 }
