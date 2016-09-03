@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+
 using DomainModel.Abstract;
 using DomainModel.Entity;
-using System.Linq;
 
 namespace DomainModel.Concrete
 {
-    public class EFSensorRepository : ISensorRepository
+    public class EFSensorRepository : IRepository<Sensor>
     {
-        private readonly EFDatabaseContext context = EFDatabaseContext.GetInstance();
+        private static readonly EFDatabaseContext context = EFDatabaseContext.GetInstance();
 
-        public IEnumerable<Sensor> Sensors
+        public IEnumerable<Sensor> Get
         {
             get
             {

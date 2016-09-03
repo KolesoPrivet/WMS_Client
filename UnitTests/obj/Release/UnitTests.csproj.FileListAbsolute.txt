@@ -17,3 +17,7 @@ C:\Users\Александр\Desktop\Учеба\Бакалавриат\Дипло
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\Moq.dll
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\Castle.Core.xml
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\Moq.xml
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\GMap.NET.WindowsForms.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\GMap.NET.Core.dll
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\GMap.NET.WindowsForms.xml
+C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\UnitTests\bin\Release\GMap.NET.Core.xml

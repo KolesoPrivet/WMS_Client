@@ -8,9 +8,8 @@ namespace DomainModel.Concrete
         private static EFDatabaseContext instance;
         private static readonly object obj = new object();
 
-        protected EFDatabaseContext() : base("name = EFDatabaseContext")
+        protected EFDatabaseContext() : base("name = EFDatabaseContext" )
         {
-
         }
 
         public static EFDatabaseContext GetInstance()

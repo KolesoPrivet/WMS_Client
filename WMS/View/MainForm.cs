@@ -4,12 +4,10 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Net.NetworkInformation;
 using System.Linq;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using GMap.NET;
 using GMap.NET.WindowsForms;
-using GMap.NET.WindowsForms.Markers;
 
 using DomainModel.Abstract;
 using DomainModel.Concrete;
@@ -17,15 +15,15 @@ using DomainModel.Entity;
 
 using Presentation.Presenter;
 using Presentation.Common;
+using System.Threading;
 
 namespace UI.View
 {
     public partial class MainForm : Form, IView
     {
         #region Fields
-        private GMapOverlay markersOverlay;
-        private readonly ISensorRepository sensorRepository;
-        private readonly IDataRepository dataRepository;
+        public IRepository<Sensor> SensorRepository { get; private set; }
+        public IRepository<Data> DataRepository { get; private set; }
         private bool isDataLoadedFromDB = false;
         #endregion
 
@@ -34,9 +32,6 @@ namespace UI.View
         {
             InitializeComponent();
             CenterToScreen();
-
-            sensorRepository = new EFSensorRepository();
-            dataRepository = new EFDataRepository();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -46,7 +41,7 @@ namespace UI.View
 
         private void MainMap_Load(object sender, EventArgs e)
         {
-            CheckConToInternet();
+            
             //Настройки для компонента GMap.
             MainMap.Bearing = 0;
 
@@ -101,7 +96,7 @@ namespace UI.View
             GMap.NET.GMaps.Instance.Mode =
                 GMap.NET.AccessMode.ServerOnly;
 
-            MainMap.Position = new PointLatLng(55.75393, 37.620795);
+            MainMap.Position = new PointLatLng( 55.75393, 37.620795 );
         }
         #endregion
 
@@ -109,7 +104,8 @@ namespace UI.View
 
         public new void Show()
         {
-            Application.Run(this);
+            Application.Run( this );
+
         }
 
         private void EnableControls()
@@ -136,73 +132,11 @@ namespace UI.View
             AddSensMenu.Enabled = false;
         }
 
-        private void CheckConToInternet()
+        private void ReturnSelectedSensors()
         {
-            //пингуем yandex.ru для проверки подключения интернета
-            IPStatus status = IPStatus.Unknown;
-            try
+            if (SelectSensorsPresenter.FinalList.Count > 0)
             {
-                status = new Ping().Send("yandex.ru").Status;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-
-            if (status == IPStatus.Success)
-            {
-                txtBxCheckInternet.ForeColor = Color.FromArgb(0, 192, 0);
-                txtBxCheckInternet.Text = "Доступно";
-                comboBoxSNMap.Enabled = true;
-            }
-            else
-            {
-                txtBxCheckInternet.ForeColor = Color.FromArgb(192, 0, 0);
-                txtBxCheckInternet.Text = "Отсутствует";
-            }
-        }
-
-        private void MakeMarkers()
-        {
-
-            comboBoxSNMap.Items.Clear();
-            /* Создание маркеров на карте 
-             * по текущим значениям долготы и широты каждого датчика*/
-            try
-            {
-                markersOverlay = new GMapOverlay("markers");
-                markersOverlay.Markers.Clear();
-                double lat, lng;
-                int count = 0;
-                string sensorName;
-
-                foreach (var row in dgvSens.Rows)
-                {
-                    sensorName = dgvSens.Rows[count].Cells[2].Value.ToString();
-                    comboBoxCheckForQuery.Items.Add(sensorName);
-                    comboBoxSNMap.Items.Add(sensorName);
-
-                    lat = Convert.ToDouble(dgvSens.Rows[count].Cells[4].Value);
-                    lng = Convert.ToDouble(dgvSens.Rows[count].Cells[5].Value);
-
-                    //по координатам ставим маркер на карте
-                    GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(lat, lng),
-                      GMarkerGoogleType.red);
-
-                    //текущий маркер добавляем в список маркеров
-                    markersOverlay.Markers.Add(marker);
-
-                    //текст над маркером
-                    marker.ToolTipText = sensorName;
-
-                    count++;
-                }
-                //добавляем список маркеров на карту
-                MainMap.Overlays.Add(markersOverlay);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
+                dgvSens.DataSource = SelectSensorsPresenter.FinalList;
             }
         }
 
@@ -218,15 +152,21 @@ namespace UI.View
                 progressBarLoadDataFromDB.Style = ProgressBarStyle.Marquee;
                 progressBarLoadDataFromDB.MarqueeAnimationSpeed = 30;
 
-                dgvSens.DataSource = await Task.Factory.StartNew(() => 
-                {
-                    return MainPresenter.GetSensorsListAsync(sensorRepository);
-                });
+                dgvSens.DataSource = await Task.Factory.StartNew( () =>
+                 {
+                     return MainPresenter.GetSensorsList();
+                 } );
 
-                dgvData.DataSource = await Task.Factory.StartNew(() => 
-                {
-                    return MainPresenter.GetDataListAsync(dataRepository);
-                });
+                dgvData.DataSource = await Task.Factory.StartNew( () =>
+                 {
+                     return MainPresenter.GetDataList();
+                 } );
+
+                await Task.Factory.StartNew( () =>
+                 {
+                     MainMap.Overlays.Add( MainPresenter.GetMarkersOfSensors() );
+
+                 } );
 
                 btnRefreshDB.Enabled = false;
 
@@ -238,14 +178,14 @@ namespace UI.View
 
                 dgvSens.RowHeadersVisible = false;
 
-                dgvSens.Columns["SensorId"].Visible = false;
+                dgvSens.Columns["Id"].Visible = false;
                 dgvSens.Columns["DataCollection"].Visible = false;
                 dgvSens.Columns["Name"].Width = 50;
                 dgvSens.Columns["SensorType"].Width = 200;
 
                 dgvData.RowHeadersVisible = false;
 
-                dgvData.Columns["DataId"].Visible = false;
+                dgvData.Columns["Id"].Visible = false;
                 dgvData.Columns["SingleSensor"].Visible = false;
                 dgvData.Columns["SensorId"].Visible = false;
 
@@ -260,54 +200,69 @@ namespace UI.View
                 unionChart.Series["Датчик"].XValueMember = "Date";
                 unionChart.Series["Датчик"].YValueMembers = "Value";
                 unionChart.DataBind();
-
-                MakeMarkers();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show( ex.ToString() );
             }
         }
 
-        private void btnShwMap_Click(object sender, EventArgs e)
+        private async void btnShwMap_Click(object sender, EventArgs e)
         {
-            //отображаем карту
             MainMap.Visible = true;
             comboBoxSNMap.Enabled = true;
             comboBoxCheckForQuery.Enabled = true;
 
-            //выключаем кнопку от греха подальше
-            btnShwMap.Enabled = false;
+            await Task.Factory.StartNew( () => 
+            {
+                IPStatus status = IPStatus.Unknown;
+                try
+                {
+                    status = new Ping().Send( "yandex.ru" ).Status;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show( ex.ToString() );
+                }
+
+                if (status == IPStatus.Success)
+                {
+                    txtBxCheckInternet.ForeColor = Color.FromArgb( 0, 192, 0 );
+                    txtBxCheckInternet.Text = "Доступно";
+                    comboBoxSNMap.Enabled = true;
+                }
+                else
+                {
+                    txtBxCheckInternet.ForeColor = Color.FromArgb( 192, 0, 0 );
+                    txtBxCheckInternet.Text = "Отсутствует";
+                }
+            } );
         }
 
         private void btnStartMonitoring_Click(object sender, EventArgs e)
         {
-            Test test = new Test();
-            test.Owner = this;
-            test.Show();
+            //Test test = new Test();
+            //test.Owner = this;
+            //test.Show();
         }
 
         private void rButtonAllSensors_MouseClick(object sender, MouseEventArgs e)
         {
-            dgvSens.DataSource = MainPresenter.GetSensorsListAsync(sensorRepository);
+            dgvSens.DataSource = MainPresenter.GetSensorsList();
 
             rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
         }
 
         private void rButtonChooseSensors_MouseClick(object sender, MouseEventArgs e)
         {
-            //TODO: вылетает NullReference после первого обращения к форме.
-            SelectSensorsPresenter.StartClosing += () => ReturnSelectedSensors();
-            var presenter = new SelectSensorsPresenter(new SelectSensorsForm());
-            presenter.Run(sensorRepository, dataRepository);
-        }
+            SelectSensorsPresenter presenter = new SelectSensorsPresenter();
+            SelectSensorsForm form = new SelectSensorsForm();
 
-        private void ReturnSelectedSensors()
-        {
-            if(SelectSensorsPresenter.FinalList.Count > 0)
-            {
-                dgvSens.DataSource = SelectSensorsPresenter.FinalList;
-            }
+            form.FormClosed += (s, ev) => presenter.Invoke();
+            presenter.StartClosing += () => ReturnSelectedSensors();
+
+            presenter.View = form;
+            presenter.Run( SensorRepository, DataRepository );
         }
 
         //TODO: Допили клик по маркеру
@@ -320,8 +275,8 @@ namespace UI.View
         #region Menu
         private void AboutProgramMenu_Click(object sender, EventArgs e)
         {
-            var presenter = new AboutPresenter(new AboutForm());
-            presenter.Run();
+            var presenter = new AboutPresenter( new AboutForm() );
+            presenter.Run(SensorRepository, DataRepository);
         }
 
         private void RestartMenu_Click(object sender, EventArgs e)
@@ -336,11 +291,11 @@ namespace UI.View
 
         private void AddSensMenu_Click(object sender, EventArgs e)
         {
-            var presenter = new AddSensorPresenter(new AddSensorForm());
-            presenter.Run();
+            //var presenter = new AddSensorPresenter( new AddSensorForm() );
+            //presenter.Run();
 
-            dgvSens.Refresh();
-            dgvData.Refresh();
+            //dgvSens.Refresh();
+            //dgvData.Refresh();
         }
         #endregion
 
@@ -348,7 +303,7 @@ namespace UI.View
 
         private void textBoxForDate_TextChanged(object sender, EventArgs e)
         {
-            string _filter = string.Format("Convert([Дата], 'System.String') LIKE '{0}%' +'%'", txtbxDate.Text);
+            string _filter = string.Format( "Convert([Дата], 'System.String') LIKE '{0}%' +'%'", txtbxDate.Text );
         }
 
         private void comboBoxInterval_SelectedIndexChanged(object sender, EventArgs e)
@@ -356,8 +311,9 @@ namespace UI.View
         } //TODO: допилить интервал 
 
         //TODO: LINQ TO EF
-        private void comboBoxSNMap_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void comboBoxSNMap_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //foreach(Sensor s in SensorRepository.)
             //double lat, lng;
 
             //var sensor = (from c in context.Sensors
@@ -402,8 +358,9 @@ namespace UI.View
             if (isDataLoadedFromDB)
             {
                 var currentSensor = dgvSens.CurrentRow.DataBoundItem as Sensor;
-                dgvData.DataSource = currentSensor.DataCollection.OrderBy(v => v.Date).ToList();
+                dgvData.DataSource = currentSensor.DataCollection.OrderBy( v => v.Date ).ToList();
 
+                rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
                 rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
 
                 unionChart.DataSource = dgvData.DataSource;
@@ -413,34 +370,25 @@ namespace UI.View
             }
         }
 
-        private void dgvSens_SelectionChanged(object sender, EventArgs e)
-        {
-            if (isDataLoadedFromDB)
-            {
-                var currentSensor = dgvSens.CurrentRow.DataBoundItem as Sensor;
-                dgvData.DataSource = currentSensor.DataCollection.OrderBy(v => v.Date).ToList();
-
-                rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
-
-                //привязываем график к значениям сенсоров
-                unionChart.DataSource = dgvData.DataSource;
-                unionChart.Series["Датчик"].XValueMember = "Date";
-                unionChart.Series["Датчик"].YValueMembers = "Value";
-                unionChart.DataBind();
-            }
-        }
         #endregion
 
         //------------------------CLOSE_APPLICATION------------------------// 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("Вы действительно желаете закрыть приложение?", "Закрыть", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBox.Show( "Вы действительно желаете закрыть приложение?", "Закрыть", MessageBoxButtons.OKCancel ) == DialogResult.OK)
             {
                 e.Cancel = false;
-                //context.Dispose();
             }
             else
                 e.Cancel = true;
-        }       
+        }
+
+        public void Show(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
+        {
+            SensorRepository = sensorRepositoryParam;
+            DataRepository = dataRepositoryParam;
+
+            Application.Run( this );
+        }
     }
 }
