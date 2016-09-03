@@ -10,12 +10,11 @@ using GMap.NET;
 using GMap.NET.WindowsForms;
 
 using DomainModel.Abstract;
-using DomainModel.Concrete;
 using DomainModel.Entity;
 
 using Presentation.Presenter;
 using Presentation.Common;
-using System.Threading;
+using UI.View;
 
 namespace UI.View
 {
@@ -101,18 +100,18 @@ namespace UI.View
         #endregion
 
         #region Supporting methods
-
-        public new void Show()
+        public void Show(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
         {
-            Application.Run( this );
+            SensorRepository = sensorRepositoryParam;
+            DataRepository = dataRepositoryParam;
 
+            Application.Run( this );
         }
 
         private void EnableControls()
         {
             //Включаем контролы
             btnShwMap.Enabled = true;
-            txtbxDate.Enabled = true;
             AddSensMenu.Enabled = true;
             rButtonAllSensors.Enabled = true;
             rButtonChooseSensors.Enabled = true;
@@ -124,10 +123,6 @@ namespace UI.View
             rButtonAllSensors.Enabled = false;
             rButtonChooseSensors.Enabled = false;
             btnShwMap.Enabled = false;
-            txtbxDate.Enabled = false;
-            txtbxTimeFrom.Enabled = false;
-            txtbxTimeTo.Enabled = false;
-            comboBoxInterval.Enabled = false;
             comboBoxSNMap.Enabled = false;
             AddSensMenu.Enabled = false;
         }
@@ -137,6 +132,14 @@ namespace UI.View
             if (SelectSensorsPresenter.FinalList.Count > 0)
             {
                 dgvSens.DataSource = SelectSensorsPresenter.FinalList;
+            }
+        }
+
+        private void ReturnSelectedDates()
+        {
+            if(SelectDatePresenter.FinalList.Count > 0)
+            {
+                dgvData.DataSource = SelectDatePresenter.FinalList;
             }
         }
 
@@ -171,7 +174,6 @@ namespace UI.View
                 btnRefreshDB.Enabled = false;
 
                 btnShwMap.Enabled = true;
-                txtbxDate.Enabled = true;
                 AddSensMenu.Enabled = true;
                 rButtonAllSensors.Enabled = true;
                 rButtonChooseSensors.Enabled = true;
@@ -265,6 +267,30 @@ namespace UI.View
             presenter.Run( SensorRepository, DataRepository );
         }
 
+        private void rButtonAllDates_MouseClick(object sender, EventArgs e)
+        {
+            //TODO: доделать
+            dgvData.DataSource = MainPresenter.GetDataList();
+
+            rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
+        }
+
+        private void rButtonChooseDate_MouseClick(object sender, EventArgs e)
+        {
+            var currentSensor = dgvSens.CurrentRow.DataBoundItem as Sensor;
+            if(currentSensor != null)
+            {
+                SelectDatePresenter presenter = new SelectDatePresenter();
+                SelectDateForm form = new SelectDateForm( currentSensor.Id );
+
+                form.FormClosed += (s, ev) => presenter.Invoke();
+                presenter.StartClosing += () => ReturnSelectedDates();
+
+                presenter.View = form;
+                presenter.Run( SensorRepository, DataRepository );
+            }
+        }
+
         //TODO: Допили клик по маркеру
         private void MainMap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
         {
@@ -300,16 +326,6 @@ namespace UI.View
         #endregion
 
         #region Filters
-
-        private void textBoxForDate_TextChanged(object sender, EventArgs e)
-        {
-            string _filter = string.Format( "Convert([Дата], 'System.String') LIKE '{0}%' +'%'", txtbxDate.Text );
-        }
-
-        private void comboBoxInterval_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        } //TODO: допилить интервал 
-
         //TODO: LINQ TO EF
         private void comboBoxSNMap_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -340,16 +356,6 @@ namespace UI.View
             //MainMap.Position = new PointLatLng(lat, lng);
             //MainMap.OnMarkerClick;
         }
-
-        private void textBoxForTimeFrom_TextChanged(object sender, EventArgs e)
-        {
-
-        } //TODO: допилить временной промежутком
-
-        private void textBoxForTimeTo_TextChanged(object sender, EventArgs e)
-        {
-
-        } //TODO: допилить временной промежутком
         #endregion
 
         #region DataGridView
@@ -357,22 +363,26 @@ namespace UI.View
         {
             if (isDataLoadedFromDB)
             {
-                var currentSensor = dgvSens.CurrentRow.DataBoundItem as Sensor;
-                dgvData.DataSource = currentSensor.DataCollection.OrderBy( v => v.Date ).ToList();
+                Sensor currentSensor = dgvSens.CurrentRow.DataBoundItem as Sensor;
 
-                rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
-                rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
+                if (currentSensor != null)
+                {
+                    //переделать!
+                    dgvData.DataSource = currentSensor.DataCollection.OrderBy( v => v.Date ).ToList();
 
-                unionChart.DataSource = dgvData.DataSource;
-                unionChart.Series["Датчик"].XValueMember = "Date";
-                unionChart.Series["Датчик"].YValueMembers = "Value";
-                unionChart.DataBind();
+                    rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
+                    rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
+
+                    unionChart.DataSource = dgvData.DataSource;
+                    unionChart.Series["Датчик"].XValueMember = "Date";
+                    unionChart.Series["Датчик"].YValueMembers = "Value";
+                    unionChart.DataBind();
+                }
             }
         }
 
         #endregion
 
-        //------------------------CLOSE_APPLICATION------------------------// 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (MessageBox.Show( "Вы действительно желаете закрыть приложение?", "Закрыть", MessageBoxButtons.OKCancel ) == DialogResult.OK)
@@ -381,14 +391,6 @@ namespace UI.View
             }
             else
                 e.Cancel = true;
-        }
-
-        public void Show(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
-        {
-            SensorRepository = sensorRepositoryParam;
-            DataRepository = dataRepositoryParam;
-
-            Application.Run( this );
         }
     }
 }

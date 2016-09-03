@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gpBoxSensorQuery = new System.Windows.Forms.GroupBox();
@@ -65,17 +65,11 @@
             this.gpBoxGraphic = new System.Windows.Forms.GroupBox();
             this.unionChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.gpBoxData = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.comboBoxInterval = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtbxDate = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rButtonAllDates = new System.Windows.Forms.RadioButton();
+            this.rButtonChooseDate = new System.Windows.Forms.RadioButton();
             this.dgvData = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.rtbSensorsValue = new System.Windows.Forms.RichTextBox();
-            this.txtbxTimeFrom = new System.Windows.Forms.TextBox();
-            this.txtbxTimeTo = new System.Windows.Forms.TextBox();
             this.gpBoxSensorIdentity = new System.Windows.Forms.GroupBox();
             this.progressBarLoadDataFromDB = new System.Windows.Forms.ProgressBar();
             this.gpBoxSensorsView = new System.Windows.Forms.GroupBox();
@@ -115,6 +109,7 @@
             this.gpBoxGraphic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.unionChart)).BeginInit();
             this.gpBoxData.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.gpBoxSensorIdentity.SuspendLayout();
             this.gpBoxSensorsView.SuspendLayout();
@@ -492,38 +487,30 @@
             // 
             // unionChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.unionChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.unionChart.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.unionChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.unionChart.Legends.Add(legend2);
             this.unionChart.Location = new System.Drawing.Point(6, 19);
             this.unionChart.Name = "unionChart";
-            series1.BorderWidth = 3;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Color = System.Drawing.Color.Blue;
-            series1.IsXValueIndexed = true;
-            series1.Legend = "Legend1";
-            series1.Name = "Датчик";
-            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
-            this.unionChart.Series.Add(series1);
+            series2.BorderWidth = 3;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Color = System.Drawing.Color.Blue;
+            series2.IsXValueIndexed = true;
+            series2.Legend = "Legend1";
+            series2.Name = "Датчик";
+            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
+            this.unionChart.Series.Add(series2);
             this.unionChart.Size = new System.Drawing.Size(1060, 306);
             this.unionChart.TabIndex = 6;
             this.unionChart.Text = "chart1";
             // 
             // gpBoxData
             // 
-            this.gpBoxData.Controls.Add(this.label7);
-            this.gpBoxData.Controls.Add(this.comboBoxInterval);
-            this.gpBoxData.Controls.Add(this.label2);
-            this.gpBoxData.Controls.Add(this.txtbxDate);
-            this.gpBoxData.Controls.Add(this.label9);
+            this.gpBoxData.Controls.Add(this.groupBox1);
             this.gpBoxData.Controls.Add(this.dgvData);
-            this.gpBoxData.Controls.Add(this.label1);
-            this.gpBoxData.Controls.Add(this.label8);
             this.gpBoxData.Controls.Add(this.rtbSensorsValue);
-            this.gpBoxData.Controls.Add(this.txtbxTimeFrom);
-            this.gpBoxData.Controls.Add(this.txtbxTimeTo);
             this.gpBoxData.Location = new System.Drawing.Point(537, 6);
             this.gpBoxData.Name = "gpBoxData";
             this.gpBoxData.Size = new System.Drawing.Size(541, 324);
@@ -531,57 +518,41 @@
             this.gpBoxData.TabStop = false;
             this.gpBoxData.Text = "Данные";
             // 
-            // label7
+            // groupBox1
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(262, 36);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(119, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Часовой промежуток:";
+            this.groupBox1.Controls.Add(this.rButtonAllDates);
+            this.groupBox1.Controls.Add(this.rButtonChooseDate);
+            this.groupBox1.Location = new System.Drawing.Point(6, 16);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(218, 53);
+            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Отобразить";
             // 
-            // comboBoxInterval
+            // rButtonAllDates
             // 
-            this.comboBoxInterval.AllowDrop = true;
-            this.comboBoxInterval.Cursor = System.Windows.Forms.Cursors.Default;
-            this.comboBoxInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxInterval.FormattingEnabled = true;
-            this.comboBoxInterval.Items.AddRange(new object[] {
-            "за всё время",
-            "30 минут",
-            "1 час",
-            "5 часов"});
-            this.comboBoxInterval.Location = new System.Drawing.Point(336, 75);
-            this.comboBoxInterval.Name = "comboBoxInterval";
-            this.comboBoxInterval.Size = new System.Drawing.Size(174, 21);
-            this.comboBoxInterval.TabIndex = 9;
-            this.comboBoxInterval.SelectedIndexChanged += new System.EventHandler(this.comboBoxInterval_SelectedIndexChanged);
+            this.rButtonAllDates.AutoSize = true;
+            this.rButtonAllDates.Checked = true;
+            this.rButtonAllDates.Location = new System.Drawing.Point(17, 24);
+            this.rButtonAllDates.Name = "rButtonAllDates";
+            this.rButtonAllDates.Size = new System.Drawing.Size(87, 17);
+            this.rButtonAllDates.TabIndex = 17;
+            this.rButtonAllDates.TabStop = true;
+            this.rButtonAllDates.Text = "Все датчики";
+            this.rButtonAllDates.UseVisualStyleBackColor = true;
+            this.rButtonAllDates.MouseClick += new System.Windows.Forms.MouseEventHandler( this.rButtonAllDates_MouseClick );
             // 
-            // label2
+            // rButtonChooseDate
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(268, 78);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = " Интервал:";
-            // 
-            // txtbxDate
-            // 
-            this.txtbxDate.Location = new System.Drawing.Point(56, 33);
-            this.txtbxDate.Name = "txtbxDate";
-            this.txtbxDate.Size = new System.Drawing.Size(130, 20);
-            this.txtbxDate.TabIndex = 12;
-            this.txtbxDate.TextChanged += new System.EventHandler(this.textBoxForDate_TextChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(382, 48);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(22, 13);
-            this.label9.TabIndex = 13;
-            this.label9.Text = "До";
+            this.rButtonChooseDate.AutoSize = true;
+            this.rButtonChooseDate.Location = new System.Drawing.Point(119, 24);
+            this.rButtonChooseDate.Name = "rButtonChooseDate";
+            this.rButtonChooseDate.Size = new System.Drawing.Size(81, 17);
+            this.rButtonChooseDate.TabIndex = 18;
+            this.rButtonChooseDate.TabStop = true;
+            this.rButtonChooseDate.Text = "Выборочно";
+            this.rButtonChooseDate.UseVisualStyleBackColor = true;
+            this.rButtonChooseDate.MouseClick += new System.Windows.Forms.MouseEventHandler( this.rButtonChooseDate_MouseClick );
             // 
             // dgvData
             // 
@@ -598,24 +569,6 @@
             this.dgvData.Size = new System.Drawing.Size(529, 213);
             this.dgvData.TabIndex = 0;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Дата:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(382, 25);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(26, 13);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "От: ";
-            // 
             // rtbSensorsValue
             // 
             this.rtbSensorsValue.BackColor = System.Drawing.SystemColors.Menu;
@@ -623,25 +576,9 @@
             this.rtbSensorsValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rtbSensorsValue.Location = new System.Drawing.Point(6, 73);
             this.rtbSensorsValue.Name = "rtbSensorsValue";
-            this.rtbSensorsValue.Size = new System.Drawing.Size(249, 24);
+            this.rtbSensorsValue.Size = new System.Drawing.Size(218, 24);
             this.rtbSensorsValue.TabIndex = 10;
             this.rtbSensorsValue.Text = "Показаний датчика: 0";
-            // 
-            // txtbxTimeFrom
-            // 
-            this.txtbxTimeFrom.Location = new System.Drawing.Point(410, 22);
-            this.txtbxTimeFrom.Name = "txtbxTimeFrom";
-            this.txtbxTimeFrom.Size = new System.Drawing.Size(100, 20);
-            this.txtbxTimeFrom.TabIndex = 11;
-            this.txtbxTimeFrom.TextChanged += new System.EventHandler(this.textBoxForTimeFrom_TextChanged);
-            // 
-            // txtbxTimeTo
-            // 
-            this.txtbxTimeTo.Location = new System.Drawing.Point(410, 45);
-            this.txtbxTimeTo.Name = "txtbxTimeTo";
-            this.txtbxTimeTo.Size = new System.Drawing.Size(100, 20);
-            this.txtbxTimeTo.TabIndex = 10;
-            this.txtbxTimeTo.TextChanged += new System.EventHandler(this.textBoxForTimeTo_TextChanged);
             // 
             // gpBoxSensorIdentity
             // 
@@ -686,7 +623,6 @@
             this.rButtonAllSensors.TabStop = true;
             this.rButtonAllSensors.Text = "Все датчики";
             this.rButtonAllSensors.UseVisualStyleBackColor = true;
-            this.rButtonAllSensors.MouseClick += new System.Windows.Forms.MouseEventHandler(this.rButtonAllSensors_MouseClick);
             // 
             // rButtonChooseSensors
             // 
@@ -698,7 +634,6 @@
             this.rButtonChooseSensors.TabStop = true;
             this.rButtonChooseSensors.Text = "Выборочно";
             this.rButtonChooseSensors.UseVisualStyleBackColor = true;
-            this.rButtonChooseSensors.MouseClick += new System.Windows.Forms.MouseEventHandler(this.rButtonChooseSensors_MouseClick);
             // 
             // dgvSens
             // 
@@ -891,7 +826,8 @@
             this.gpBoxGraphic.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.unionChart)).EndInit();
             this.gpBoxData.ResumeLayout(false);
-            this.gpBoxData.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.gpBoxSensorIdentity.ResumeLayout(false);
             this.gpBoxSensorsView.ResumeLayout(false);
@@ -927,17 +863,8 @@
         private System.Windows.Forms.GroupBox gpBoxGraphic;
         private System.Windows.Forms.DataVisualization.Charting.Chart unionChart;
         private System.Windows.Forms.GroupBox gpBoxData;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBoxInterval;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtbxDate;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dgvData;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.RichTextBox rtbSensorsValue;
-        private System.Windows.Forms.TextBox txtbxTimeFrom;
-        private System.Windows.Forms.TextBox txtbxTimeTo;
         private System.Windows.Forms.GroupBox gpBoxSensorIdentity;
         private System.Windows.Forms.DataGridView dgvSens;
         private System.Windows.Forms.Button btnRefreshDB;
@@ -975,6 +902,9 @@
         private System.Windows.Forms.RadioButton rButtonChooseSensors;
         private System.Windows.Forms.ProgressBar progressBarLoadDataFromDB;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rButtonAllDates;
+        private System.Windows.Forms.RadioButton rButtonChooseDate;
     }
 }
 

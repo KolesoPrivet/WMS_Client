@@ -8,7 +8,7 @@ using Presentation.Views;
 
 namespace UI.View
 {
-    public partial class SelectSensorsForm : Form, IViewSelectSensors
+    public partial class SelectSensorsForm : Form, IViewSelection
     {
         #region Constructors
         public SelectSensorsForm()
@@ -56,6 +56,7 @@ namespace UI.View
 
         public void Show(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
         {
+            throw new NotImplementedException();
         }
     }
 }

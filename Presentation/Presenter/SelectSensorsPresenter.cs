@@ -12,8 +12,8 @@ namespace Presentation.Presenter
 {
     public class SelectSensorsPresenter : IPresenter
     {
-        private IViewSelectSensors view;
-        public IViewSelectSensors View
+        private IViewSelection view;
+        public IViewSelection View
         {
             get { return view; }
             set
@@ -36,11 +36,6 @@ namespace Presentation.Presenter
             FinalList = new List<Sensor>();
         }
 
-        public void Run()
-        {
-            view.ShowDialog();
-        }
-
         public void Run(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
         {
             SensorRepository = sensorRepositoryParam;
@@ -51,7 +46,7 @@ namespace Presentation.Presenter
 
         public static IEnumerable<Sensor> GetSensorsByName(string sensorNameParam)
         {
-            foreach (var s in SensorRepository.Filter( s => s.Name == sensorNameParam ))
+            foreach (var s in SensorRepository.SensorFilter( s => s.Name == sensorNameParam ))
             {
                 yield return s;
             }
@@ -67,7 +62,7 @@ namespace Presentation.Presenter
 
         public static IEnumerable<string> GetSensorsNames(string sensorTypeParam)
         {
-            foreach (var name in SensorRepository.Filter( s => s.SensorType == sensorTypeParam ))
+            foreach (var name in SensorRepository.SensorFilter( s => s.SensorType == sensorTypeParam ))
             {
                 yield return name.Name;
             }

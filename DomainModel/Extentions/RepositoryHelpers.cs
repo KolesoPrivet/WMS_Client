@@ -17,13 +17,24 @@ namespace DomainModel.Extentions
         /// <param name="repositoryParam"></param>
         /// <param name="selectorParam"></param>
         /// <returns></returns>
-        public static IEnumerable<Sensor> Filter(this IRepository<Sensor> repositoryParam, Func<Sensor, bool> selectorParam)
+        public static IEnumerable<Sensor> SensorFilter(this IRepository<Sensor> repositoryParam, Func<Sensor, bool> selectorParam)
         {
-            foreach(Sensor s in repositoryParam.Get)
+            foreach (Sensor s in repositoryParam.Get)
             {
-                if (selectorParam(s))
+                if (selectorParam( s ))
                 {
                     yield return s;
+                }
+            }
+        }
+
+        public static IEnumerable<Data> DataFilter(this IRepository<Data> repositoryParam, Func<Data, bool> selectoParam)
+        {
+            foreach (Data d in repositoryParam.Get)
+            {
+                if (selectoParam( d ))
+                {
+                    yield return d;
                 }
             }
         }
