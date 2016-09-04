@@ -8,7 +8,7 @@ using Presentation.Views;
 
 namespace UI.View
 {
-    public partial class SelectSensorsForm : Form, IViewSelectSensors
+    public partial class SelectSensorsForm : Form, IViewSelection
     {
         #region Constructors
         public SelectSensorsForm()
@@ -39,12 +39,8 @@ namespace UI.View
 
         private void btnAcceptSelection_Click(object sender, EventArgs e)
         {
-
             foreach (var l in chBoxSensorsNames.CheckedItems.OfType<string>())
-            {
                 SelectSensorsPresenter.FinalList.AddRange(SelectSensorsPresenter.GetSensorsByName( l ));
-                
-            }
 
             Close();
         }
@@ -56,6 +52,7 @@ namespace UI.View
 
         public void Show(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
         {
+            throw new NotImplementedException();
         }
     }
 }

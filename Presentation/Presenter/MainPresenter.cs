@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 using DomainModel.Abstract;
@@ -19,10 +18,12 @@ namespace Presentation.Presenter
         private readonly IView view;
         public static IRepository<Sensor> SensorRepository { get; private set; }
         public static IRepository<Data> DataRepository { get; private set; }
+        public static List<Sensor> RequestList { get; private set; }
 
         public MainPresenter(IView viewParam)
         {
             view = viewParam;
+            RequestList = new List<Sensor>();
         }
 
         public static IEnumerable<Sensor> GetSensorsList()
@@ -38,12 +39,14 @@ namespace Presentation.Presenter
                     select c).ToList();
         }
 
-        public static IEnumerable<Sensor> GetSensorsByName(string sensorNameParam)
+        public static Data GetLastData(Sensor currentSensorParam)
         {
-            foreach (var s in SensorRepository.Filter( s => s.Name == sensorNameParam ))
-            {
-                yield return s;
-            }
+            return DataRepository.SingleDataFilter( d => d.SensorId == currentSensorParam.Id );
+        }
+
+        public static Sensor GetSensorByName(string sensorNameParam)
+        {
+            return SensorRepository.Get.Where( s => s.Name == sensorNameParam ).FirstOrDefault();
         }
 
         public static GMapOverlay GetMarkersOfSensors()

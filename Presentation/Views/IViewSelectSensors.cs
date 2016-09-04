@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Presentation.Views
 {
-    public interface IViewSelectSensors : IView
+    public interface IViewSelection : IView
     {
         DialogResult ShowDialog();
     }
