@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using DomainModel.Extentions;
 
 namespace Presentation.Presenter
-{
+{   
     public class SelectDatePresenter : IPresenter
     {
         private IViewSelection view;
@@ -25,20 +25,41 @@ namespace Presentation.Presenter
 
         public static IRepository<Sensor> SensorRepository { get; private set; }
         public static IRepository<Data> DataRepository { get; private set; }
-        public static List<Sensor> FinalList { get; set; }
+        public static List<Data> FinalList { get; set; }
 
         public event Action StartClosing;
 
         public SelectDatePresenter()
         {
-            FinalList = new List<Sensor>();
+            FinalList = new List<Data>();
         }
 
         public static IEnumerable<DateTime> GetDates(int selectedSensorIdParam)
         {
-            foreach(var date in DataRepository.DataFilter( d => d.Id == selectedSensorIdParam ))
+            foreach(var date in DataRepository.DataFilter( d => d.SensorId == selectedSensorIdParam ))
             {
                 yield return date.Date;
+            }
+        }
+
+        public static IEnumerable<Data> GetData(IEnumerable<DateTime> dates, TimeSpan firstTime, TimeSpan secondTime)
+        {
+            foreach(var date in dates)
+            {
+                foreach (var data in DataRepository.DataFilter( d => d.Date == date 
+                                                                && d.Time >= firstTime 
+                                                                && d.Time <= secondTime ))
+                {
+                    yield return data;
+                }
+            }
+        }
+
+        public static IEnumerable<TimeSpan> GetTime(TimeSpan firstTime, TimeSpan secondTime)
+        {
+            foreach(var data in DataRepository.DataFilter( d => d.Time >= firstTime && d.Time <= secondTime ))
+            {
+                yield return data.Time;
             }
         }
 

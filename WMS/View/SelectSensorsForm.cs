@@ -39,12 +39,8 @@ namespace UI.View
 
         private void btnAcceptSelection_Click(object sender, EventArgs e)
         {
-
             foreach (var l in chBoxSensorsNames.CheckedItems.OfType<string>())
-            {
                 SelectSensorsPresenter.FinalList.AddRange(SelectSensorsPresenter.GetSensorsByName( l ));
-                
-            }
 
             Close();
         }

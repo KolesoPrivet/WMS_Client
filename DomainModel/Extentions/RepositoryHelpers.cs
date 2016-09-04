@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using DomainModel.Abstract;
@@ -6,25 +7,14 @@ using DomainModel.Entity;
 
 namespace DomainModel.Extentions
 {
-    /// <summary>
-    /// Class, that contains extension methods for repositories
-    /// </summary>
     public static class RepositoryHelpers
     {
-        /// <summary>
-        /// Common filter for Sensors
-        /// </summary>
-        /// <param name="repositoryParam"></param>
-        /// <param name="selectorParam"></param>
-        /// <returns></returns>
         public static IEnumerable<Sensor> SensorFilter(this IRepository<Sensor> repositoryParam, Func<Sensor, bool> selectorParam)
         {
             foreach (Sensor s in repositoryParam.Get)
             {
                 if (selectorParam( s ))
-                {
                     yield return s;
-                }
             }
         }
 
@@ -33,10 +23,37 @@ namespace DomainModel.Extentions
             foreach (Data d in repositoryParam.Get)
             {
                 if (selectoParam( d ))
-                {
                     yield return d;
+            }
+        }
+
+        public static Data SingleDataFilter(this IRepository<Data> repositoryParam, Func<Data, bool> selectoParam)
+        {
+            Data result = null;
+
+            foreach (Data d in repositoryParam.Get)
+            {
+                if (selectoParam( d ))
+                {
+                    result = d;
                 }
             }
+            return result;
+        }
+
+        public static Data LastDataFilter(this IRepository<Data> repositoryParam, Func<Data, bool> selectoParam)
+        {
+            Data result = null;
+
+            foreach (Data d in repositoryParam.Get.OrderByDescending( d => d.Date ).ThenByDescending(d => d.Time))
+            {
+                if (selectoParam( d ))
+                {
+                    result = d;
+                }
+            }
+
+            return result;
         }
     }
 }
