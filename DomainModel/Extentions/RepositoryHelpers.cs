@@ -9,33 +9,24 @@ namespace DomainModel.Extentions
 {
     public static class RepositoryHelpers
     {
-        public static IEnumerable<Sensor> SensorFilter(this IRepository<Sensor> repositoryParam, Func<Sensor, bool> selectorParam)
+        public static IEnumerable<T> Filter<T>(this IRepository<T> repositoryParam, Func<T, bool> selectorParam) where T: class, IEntity
         {
-            foreach (Sensor s in repositoryParam.Get)
+            foreach (T t in repositoryParam.Get)
             {
-                if (selectorParam( s ))
-                    yield return s;
+                if (selectorParam( t ))
+                    yield return t;
             }
         }
 
-        public static IEnumerable<Data> DataFilter(this IRepository<Data> repositoryParam, Func<Data, bool> selectoParam)
+        public static T SingleFilter<T>(this IRepository<T> repositoryParam, Func<T, bool> selectorParam) where T : class, IEntity
         {
-            foreach (Data d in repositoryParam.Get)
-            {
-                if (selectoParam( d ))
-                    yield return d;
-            }
-        }
+            T result = null;
 
-        public static Data SingleDataFilter(this IRepository<Data> repositoryParam, Func<Data, bool> selectoParam)
-        {
-            Data result = null;
-
-            foreach (Data d in repositoryParam.Get)
+            foreach (T t in repositoryParam.Get)
             {
-                if (selectoParam( d ))
+                if (selectorParam( t ))
                 {
-                    result = d;
+                    result = t;
                 }
             }
             return result;
