@@ -36,9 +36,17 @@ namespace Presentation.Presenter
 
         public static IEnumerable<DateTime> GetDates(int selectedSensorIdParam)
         {
-            foreach(var date in DataRepository.DataFilter( d => d.SensorId == selectedSensorIdParam ))
+            foreach(var date in DataRepository.Filter( d => d.SensorId == selectedSensorIdParam ))
             {
                 yield return date.Date;
+            }
+        }
+
+        public static IEnumerable<TimeSpan> GetTime(TimeSpan firstTime, TimeSpan secondTime)
+        {
+            foreach (var data in DataRepository.Filter( d => d.Time >= firstTime && d.Time <= secondTime ))
+            {
+                yield return data.Time;
             }
         }
 
@@ -46,20 +54,12 @@ namespace Presentation.Presenter
         {
             foreach(var date in dates)
             {
-                foreach (var data in DataRepository.DataFilter( d => d.Date == date 
+                foreach (var data in DataRepository.Filter( d => d.Date == date 
                                                                 && d.Time >= firstTime 
                                                                 && d.Time <= secondTime ))
                 {
                     yield return data;
                 }
-            }
-        }
-
-        public static IEnumerable<TimeSpan> GetTime(TimeSpan firstTime, TimeSpan secondTime)
-        {
-            foreach(var data in DataRepository.DataFilter( d => d.Time >= firstTime && d.Time <= secondTime ))
-            {
-                yield return data.Time;
             }
         }
 

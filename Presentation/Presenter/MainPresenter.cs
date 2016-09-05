@@ -26,12 +26,12 @@ namespace Presentation.Presenter
             RequestList = new List<Sensor>();
         }
 
-        public static IEnumerable<Sensor> GetSensorsList()
+        public static List<Sensor> GetSensorsList()
         {
             return SensorRepository.Get.ToList();
         }
 
-        public static IEnumerable<Data> GetDataList()
+        public static List<Data> GetDataList()
         {
             return (from c in DataRepository.Get
                     where c.SensorId == SensorRepository.Get.FirstOrDefault().Id
@@ -41,12 +41,12 @@ namespace Presentation.Presenter
 
         public static Data GetLastData(Sensor currentSensorParam)
         {
-            return DataRepository.SingleDataFilter( d => d.SensorId == currentSensorParam.Id );
+            return DataRepository.SingleFilter( d => d.SensorId == currentSensorParam.Id );
         }
 
         public static Sensor GetSensorByName(string sensorNameParam)
         {
-            return SensorRepository.Get.Where( s => s.Name == sensorNameParam ).FirstOrDefault();
+            return SensorRepository.SingleFilter( s => s.Name == sensorNameParam );
         }
 
         public static GMapOverlay GetMarkersOfSensors()

@@ -374,14 +374,19 @@ namespace UI.View
             Sensor currentSensor = MainPresenter.GetSensorByName( comboBoxSNMap.Text );
             Data lastDataOfCurrentSensor = MainPresenter.GetLastData( currentSensor );
 
-            txtBoxMapSType.Text = currentSensor.SensorType;
-            txtBoxMapSStatus.Text = "Рабочее"; //доделать
-            txtBoxMapLastDate.Text = lastDataOfCurrentSensor.Date.ToString().Remove(10, 8);
-            txtBoxMapLastTime.Text = lastDataOfCurrentSensor.Time.ToString();
-            txtBoxMapLastValue.Text = lastDataOfCurrentSensor.Value.ToString();
+            if (lastDataOfCurrentSensor != null)
+            {
 
-            if (currentSensor.Lat != null && currentSensor.Lng != null)
-                MainMap.Position = new PointLatLng( (double)currentSensor.Lat, (double)currentSensor.Lng );
+                txtBoxMapSType.Text = currentSensor.SensorType;
+                txtBoxMapSStatus.Text = "Рабочее"; //доделать
+                txtBoxMapLastDate.Text = lastDataOfCurrentSensor.Date.ToString().Remove( 10, 8 );
+                txtBoxMapLastTime.Text = lastDataOfCurrentSensor.Time.ToString();
+                txtBoxMapLastValue.Text = lastDataOfCurrentSensor.Value.ToString();
+
+                if (currentSensor.Lat != null && currentSensor.Lng != null)
+                    MainMap.Position = new PointLatLng( (double)currentSensor.Lat, (double)currentSensor.Lng );
+            }
+            else MessageBox.Show( "Выбранный датчик еще не получал данных" );
         }
         #endregion
 
