@@ -17,7 +17,8 @@
 - [ ] Add function which will save data in Excel file;
 - [ ] Create an abstract data source, which can be any Arduino device or something like that;
 - [ ] Realize single sensor request;
-- [ ] Realize async monitoring of data with possibility to write data, which we've got
+- [ ] Realize async monitoring of data with possibility to write data, which we've got;
+- [ ] Realize logging.
 
 #Русский
 
@@ -36,5 +37,6 @@
 - [x] Реализовать карту датчиков, с возможностью отображения последней информации выбранного сенсора.
 - [ ] Добавить возможность сохранения данных в Excel файл;
 - [ ] Создать абстрактный источник данных, которым в конечном итоге может выступать любое Arduino устройство и пр;
-- [ ] Реализовать точечный разовый опрос сенсоров.
-- [ ] Реализовать асинхронный мониторинг данных с возможностью записи полученных данных в базу данных.
+- [ ] Реализовать точечный разовый опрос сенсоров;
+- [ ] Реализовать асинхронный мониторинг данных с возможностью записи полученных данных в базу данных;
+- [ ] Реализовать логи.
