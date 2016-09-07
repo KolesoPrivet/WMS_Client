@@ -27,6 +27,8 @@ namespace Presentation.Presenter
         public static IRepository<Data> DataRepository { get; private set; }
         public static List<Data> FinalList { get; set; }
 
+        public event Action StartClosing;
+
         public SelectDatePresenter()
         {
             FinalList = new List<Data>();
@@ -67,6 +69,14 @@ namespace Presentation.Presenter
             DataRepository = dataRepositoryParam;
 
             view.ShowDialog();
+        }
+
+        public void Invoke()
+        {
+            if (StartClosing != null)
+            {
+                StartClosing();
+            }
         }
     }
 }

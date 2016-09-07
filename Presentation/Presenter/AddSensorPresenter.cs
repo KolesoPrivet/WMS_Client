@@ -14,7 +14,7 @@ namespace Presentation.Presenter
         }
         public void Run(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
         {
-            view.Show();
+            view.Show( sensorRepositoryParam, dataRepositoryParam );
         }
     }
 }

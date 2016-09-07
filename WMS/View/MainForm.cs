@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using GMap.NET;
+using GMap.NET.WindowsForms;
 
 using DomainModel.Abstract;
 using DomainModel.Entity;
@@ -20,6 +21,8 @@ namespace UI.View
     public partial class MainForm : Form, IView
     {
         #region Fields
+        public IRepository<Sensor> SensorRepository { get; private set; }
+        public IRepository<Data> DataRepository { get; private set; }
         private bool isDataLoadedFromDB = false;
         #endregion
 
@@ -97,8 +100,11 @@ namespace UI.View
         #endregion
 
         #region Supporting methods
-        void IView.Show()
+        public void Show(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
         {
+            SensorRepository = sensorRepositoryParam;
+            DataRepository = dataRepositoryParam;
+
             Application.Run( this );
         }
 
@@ -242,14 +248,15 @@ namespace UI.View
             SelectSensorsPresenter presenter = new SelectSensorsPresenter();
             SelectSensorsForm form = new SelectSensorsForm();
 
-            form.FormClosed += (s, ev) =>
+            form.FormClosed += (s, ev) => presenter.Invoke();
+            presenter.StartClosing += () =>
             {
                 MainPresenter.RequestList.AddRange( SelectSensorsPresenter.FinalList );
                 lblSelectedSensorsCount.Text = MainPresenter.RequestList.Count.ToString();
             };
 
             presenter.View = form;
-            presenter.Run( MainPresenter.SensorRepository, MainPresenter.DataRepository );
+            presenter.Run( SensorRepository, DataRepository );
         }
 
         private void btnMapRequest_Click(object sender, EventArgs e)
@@ -262,7 +269,8 @@ namespace UI.View
             SelectSensorsPresenter presenter = new SelectSensorsPresenter();
             SelectSensorsForm form = new SelectSensorsForm();
 
-            form.FormClosed += (s, ev) =>
+            form.FormClosed += (s, ev) => presenter.Invoke();
+            presenter.StartClosing += () =>
             {
                 if (SelectSensorsPresenter.FinalList.Count > 0)
                 {
@@ -271,7 +279,7 @@ namespace UI.View
             };
 
             presenter.View = form;
-            presenter.Run( MainPresenter.SensorRepository, MainPresenter.DataRepository );
+            presenter.Run( SensorRepository, DataRepository );
         }
 
         private void rButtonAllSensors_MouseClick(object sender, MouseEventArgs e)
@@ -291,7 +299,8 @@ namespace UI.View
                 SelectDatePresenter presenter = new SelectDatePresenter();
                 SelectDateForm form = new SelectDateForm( currentSensor.Id );
 
-                form.FormClosed += (s, ev) =>
+                form.FormClosed += (s, ev) => presenter.Invoke();
+                presenter.StartClosing += () =>
                 {
                     if (SelectDatePresenter.FinalList.Count > 0)
                     {
@@ -300,7 +309,7 @@ namespace UI.View
                 };
 
                 presenter.View = form;
-                presenter.Run( MainPresenter.SensorRepository, MainPresenter.DataRepository );
+                presenter.Run( SensorRepository, DataRepository );
             }
             else
             {
@@ -330,7 +339,7 @@ namespace UI.View
         private void AboutProgramMenu_Click(object sender, EventArgs e)
         {
             var presenter = new AboutPresenter( new AboutForm() );
-            presenter.Run( MainPresenter.SensorRepository, MainPresenter.DataRepository );
+            presenter.Run( SensorRepository, DataRepository );
         }
 
         private void RestartMenu_Click(object sender, EventArgs e)
@@ -408,11 +417,6 @@ namespace UI.View
             }
             else
                 e.Cancel = true;
-        }
-
-        private void tsmSaveReport_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

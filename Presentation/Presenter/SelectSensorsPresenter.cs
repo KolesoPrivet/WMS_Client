@@ -29,6 +29,8 @@ namespace Presentation.Presenter
         public static IRepository<Data> DataRepository { get; private set; }
         public static List<Sensor> FinalList { get; set; }
 
+        public event Action StartClosing;
+
         public SelectSensorsPresenter()
         {
             FinalList = new List<Sensor>();
@@ -71,6 +73,14 @@ namespace Presentation.Presenter
             foreach (var s in SensorRepository.Get)
             {
                 yield return s.SensorType;
+            }
+        }
+
+        public void Invoke()
+        {
+            if (StartClosing != null)
+            {
+                StartClosing();
             }
         }
     }

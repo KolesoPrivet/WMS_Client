@@ -38,9 +38,6 @@
       <HintPath>..\packages\GMap.NET.WindowsForms.1.7.1\lib\net40\GMap.NET.WindowsForms.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -58,12 +55,11 @@
     <Compile Include="Presenter\AboutPresenter.cs" />
     <Compile Include="Presenter\AddSensorPresenter.cs" />
     <Compile Include="Presenter\MainPresenter.cs" />
-    <Compile Include="Presenter\SaveRepoortPresenter.cs" />
     <Compile Include="Presenter\SelectDatePresenter.cs" />
     <Compile Include="Presenter\SelectSensorsPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Log.cs" />
-    <Compile Include="Views\IViewSelection.cs" />
+    <Compile Include="Views\IViewSelectSensors.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DomainModel\DomainModel.csproj">

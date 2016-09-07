@@ -6,7 +6,6 @@ using System;
 using Presentation.Presenter;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Presentation.Common;
 
 namespace UI.View
 {
@@ -55,6 +54,11 @@ namespace UI.View
             {
                 MessageBox.Show( "Неккоректный ввод времени!" );
             }
+        }
+
+        public void Show(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
+        {
+            throw new NotImplementedException();
         }
 
         private void txtBoxFirstTimeValue_MouseEnter(object sender, EventArgs e)
