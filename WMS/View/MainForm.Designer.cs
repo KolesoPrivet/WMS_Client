@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gpBoxSensorQuery = new System.Windows.Forms.GroupBox();
@@ -82,7 +82,6 @@
             this.карта = new System.Windows.Forms.TabControl();
             this.Мониторинг = new System.Windows.Forms.TabPage();
             this.grBoxGettingData = new System.Windows.Forms.GroupBox();
-            this.grBoxFiltration = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.grBoxMonitoringSettings = new System.Windows.Forms.GroupBox();
             this.btnStartMonitoring = new System.Windows.Forms.Button();
@@ -94,8 +93,7 @@
             this.HelpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutProgramMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.rtbLogs = new System.Windows.Forms.RichTextBox();
-            this.grBoxLogs = new System.Windows.Forms.GroupBox();
+            this.grBoxFiltration = new System.Windows.Forms.GroupBox();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -124,7 +122,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grBoxMonitoringSettings.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.grBoxLogs.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage1
@@ -459,6 +456,7 @@
             this.MainMap.TabIndex = 0;
             this.MainMap.Visible = false;
             this.MainMap.Zoom = 0D;
+            this.MainMap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.MainMap_OnMarkerClick);
             this.MainMap.Load += new System.EventHandler(this.MainMap_Load);
             // 
             // tabPageSensor
@@ -487,21 +485,21 @@
             // 
             // unionChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.unionChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.unionChart.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.unionChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.unionChart.Legends.Add(legend1);
             this.unionChart.Location = new System.Drawing.Point(6, 19);
             this.unionChart.Name = "unionChart";
-            series2.BorderWidth = 3;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Color = System.Drawing.Color.Blue;
-            series2.IsXValueIndexed = true;
-            series2.Legend = "Legend1";
-            series2.Name = "Датчик";
-            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
-            this.unionChart.Series.Add(series2);
+            series1.BorderWidth = 3;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Color = System.Drawing.Color.Blue;
+            series1.IsXValueIndexed = true;
+            series1.Legend = "Legend1";
+            series1.Name = "Датчик";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
+            this.unionChart.Series.Add(series1);
             this.unionChart.Size = new System.Drawing.Size(1060, 306);
             this.unionChart.TabIndex = 6;
             this.unionChart.Text = "chart1";
@@ -744,15 +742,6 @@
             this.grBoxGettingData.TabStop = false;
             this.grBoxGettingData.Text = "Получаемые данные";
             // 
-            // grBoxFiltration
-            // 
-            this.grBoxFiltration.Location = new System.Drawing.Point(6, 384);
-            this.grBoxFiltration.Name = "grBoxFiltration";
-            this.grBoxFiltration.Size = new System.Drawing.Size(617, 274);
-            this.grBoxFiltration.TabIndex = 2;
-            this.grBoxFiltration.TabStop = false;
-            this.grBoxFiltration.Text = "Фильтрация";
-            // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -847,30 +836,20 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // rtbLogs
+            // grBoxFiltration
             // 
-            this.rtbLogs.Location = new System.Drawing.Point(6, 19);
-            this.rtbLogs.Name = "rtbLogs";
-            this.rtbLogs.Size = new System.Drawing.Size(1071, 139);
-            this.rtbLogs.TabIndex = 5;
-            this.rtbLogs.Text = "";
-            // 
-            // grBoxLogs
-            // 
-            this.grBoxLogs.Controls.Add(this.rtbLogs);
-            this.grBoxLogs.Location = new System.Drawing.Point(11, 735);
-            this.grBoxLogs.Name = "grBoxLogs";
-            this.grBoxLogs.Size = new System.Drawing.Size(1083, 164);
-            this.grBoxLogs.TabIndex = 5;
-            this.grBoxLogs.TabStop = false;
-            this.grBoxLogs.Text = "Вывод";
+            this.grBoxFiltration.Location = new System.Drawing.Point(6, 384);
+            this.grBoxFiltration.Name = "grBoxFiltration";
+            this.grBoxFiltration.Size = new System.Drawing.Size(617, 274);
+            this.grBoxFiltration.TabIndex = 2;
+            this.grBoxFiltration.TabStop = false;
+            this.grBoxFiltration.Text = "Фильтрация";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1106, 911);
-            this.Controls.Add(this.grBoxLogs);
+            this.ClientSize = new System.Drawing.Size(1106, 734);
             this.Controls.Add(this.карта);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -916,7 +895,6 @@
             this.grBoxMonitoringSettings.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.grBoxLogs.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -986,8 +964,6 @@
         private System.Windows.Forms.Label lblSelectedSensorsCount;
         private System.Windows.Forms.Label lblSelectedSensors;
         private System.Windows.Forms.GroupBox grBoxFiltration;
-        private System.Windows.Forms.RichTextBox rtbLogs;
-        private System.Windows.Forms.GroupBox grBoxLogs;
     }
 }
 

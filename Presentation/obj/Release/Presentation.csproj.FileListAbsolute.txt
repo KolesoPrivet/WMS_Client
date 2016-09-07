@@ -11,6 +11,3 @@ C:\Users\Александр\Desktop\Учеба\Бакалавриат\Дипло
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\Presentation\bin\Release\GMap.NET.WindowsForms.dll
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\Presentation\bin\Release\GMap.NET.Core.xml
 C:\Users\Александр\Desktop\Учеба\Бакалавриат\Диплом\WMS\Presentation\bin\Release\GMap.NET.WindowsForms.xml
-C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\obj\Release\Presentation.csprojResolveAssemblyReference.cache
-C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\obj\Release\Presentation.dll
-C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\obj\Release\Presentation.pdb

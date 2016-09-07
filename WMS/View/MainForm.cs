@@ -14,7 +14,6 @@ using DomainModel.Entity;
 
 using Presentation.Presenter;
 using Presentation.Common;
-using Presentation.ViewModels;
 
 namespace UI.View
 {
@@ -110,6 +109,7 @@ namespace UI.View
 
         private void DisEnableControsl()
         {
+            //Выключаем контролы
             rButtonAllDates.Enabled = false;
             rButtonChooseDate.Enabled = false;
             rButtonAllSensors.Enabled = false;
@@ -196,7 +196,7 @@ namespace UI.View
             }
             catch (Exception ex)
             {
-                MainPresenter.LogsList.Add( new Log( DateTime.Now, Level.Critical, ex.ToString() ) );
+                MessageBox.Show( ex.ToString() );
             }
         }
 
@@ -332,6 +332,12 @@ namespace UI.View
             {
                 MessageBox.Show( "Необходимо выбрать датчик в таблице датчиков" );
             }
+        }
+
+        //TODO: Допили клик по маркеру
+        private void MainMap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
+        {
+
         }
         #endregion
 
