@@ -5,6 +5,7 @@ using DomainModel.Abstract;
 using DomainModel.Entity;
 using Presentation.Presenter;
 using Presentation.Views;
+using Presentation.Common;
 
 namespace UI.View
 {
@@ -48,11 +49,6 @@ namespace UI.View
 
         private void SelectSensorsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-        }
-
-        public void Show(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
-        {
-            throw new NotImplementedException();
         }
     }
 }
