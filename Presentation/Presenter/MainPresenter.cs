@@ -10,20 +10,25 @@ using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 
 using Presentation.Common;
+using Presentation.ViewModels;
 
 namespace Presentation.Presenter
 {
     public class MainPresenter : IPresenter
     {
         private readonly IView view;
+
         public static IRepository<Sensor> SensorRepository { get; private set; }
         public static IRepository<Data> DataRepository { get; private set; }
+
         public static List<Sensor> RequestList { get; private set; }
+        public static List<Log> LogsList { get; private set; }
 
         public MainPresenter(IView viewParam)
         {
             view = viewParam;
             RequestList = new List<Sensor>();
+            LogsList = new List<Log>();
         }
 
         public static List<Sensor> GetSensorsList()

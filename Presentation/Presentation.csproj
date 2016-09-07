@@ -58,6 +58,7 @@
     <Compile Include="Presenter\SelectDatePresenter.cs" />
     <Compile Include="Presenter\SelectSensorsPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Log.cs" />
     <Compile Include="Views\IViewSelectSensors.cs" />
   </ItemGroup>
   <ItemGroup>
