@@ -20,10 +20,9 @@ namespace Presentation
             IKernel ninjectKernel = new StandardKernel();
             ninjectKernel.Bind<IRepository<Sensor>>().To<EFSensorRepository>();
             ninjectKernel.Bind<IRepository<Data>>().To<EFDataRepository>();
-
+            
             IRepository<Sensor> sensorRepository = ninjectKernel.Get<IRepository<Sensor>>();
             IRepository<Data> dataRepository = ninjectKernel.Get<IRepository<Data>>();
-
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

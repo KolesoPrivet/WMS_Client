@@ -62,13 +62,10 @@ namespace Presentation.Presenter
 
             foreach (Sensor s in SensorRepository.Get)
             {
-                if (s.Lat != null && s.Lng != null)
-                {
-                    GMarkerGoogle marker = new GMarkerGoogle( new PointLatLng( (double)s.Lat, (double)s.Lng ), GMarkerGoogleType.red );
+                GMarkerGoogle marker = new GMarkerGoogle( new PointLatLng( s.Lat, s.Lng ), GMarkerGoogleType.red );
 
-                    markersOverlay.Markers.Add( marker );
-                    marker.ToolTipText = s.Name;
-                }
+                markersOverlay.Markers.Add( marker );
+                marker.ToolTipText = s.Name;
             }
             return markersOverlay;
         }

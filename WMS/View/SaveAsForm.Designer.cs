@@ -1,4 +1,4 @@
-﻿namespace WMS.View
+﻿namespace UI.View
 {
     partial class SaveAsForm
     {
@@ -215,6 +215,7 @@
             this.Controls.Add(this.gpBoxSaveReportSensors);
             this.Name = "SaveAsForm";
             this.Text = "Сохранить в...";
+            this.Load += new System.EventHandler(this.SaveAsForm_Load);
             this.grBoxSaveAs.ResumeLayout(false);
             this.grBoxSaveAs.PerformLayout();
             this.gpBoxSelectTimeInterval.ResumeLayout(false);

@@ -51,4 +51,8 @@ C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.View.SelectDateForm.resources
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.View.SelectSensorsForm.resources
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.csproj.GenerateResource.Cache
-C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\WMS.View.SaveAsForm.resources
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\bin\Release\Castle.Core.dll
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\bin\Release\Moq.dll
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\bin\Release\Castle.Core.xml
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\bin\Release\Moq.xml
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.View.SaveAsForm.resources

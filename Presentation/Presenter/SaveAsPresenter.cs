@@ -5,7 +5,7 @@ using Presentation.Views;
 
 namespace Presentation.Presenter
 {
-    class SaveRepoortPresenter : IPresenter
+    public class SaveAsPresenter : IPresenter
     {
         private IViewSelection view;
         public IViewSelection View

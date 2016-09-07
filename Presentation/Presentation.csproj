@@ -58,7 +58,7 @@
     <Compile Include="Presenter\AboutPresenter.cs" />
     <Compile Include="Presenter\AddSensorPresenter.cs" />
     <Compile Include="Presenter\MainPresenter.cs" />
-    <Compile Include="Presenter\SaveReportPresenter.cs" />
+    <Compile Include="Presenter\SaveAsPresenter.cs" />
     <Compile Include="Presenter\SelectDatePresenter.cs" />
     <Compile Include="Presenter\SelectSensorsPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -231,9 +231,7 @@ namespace UI.View
 
         private void btnStartMonitoring_Click(object sender, EventArgs e)
         {
-            //Test test = new Test();
-            //test.Owner = this;
-            //test.Show();
+            throw new NotImplementedException();
         }
 
         private void btnSelectSensorsForQuiz_Click(object sender, EventArgs e)
@@ -314,6 +312,7 @@ namespace UI.View
             if (currentRow != null)
             {
                 var currentSensor = currentRow.DataBoundItem as Sensor;
+
                 dgvData.DataSource = currentSensor.DataCollection.OrderBy( v => v.Date ).ToList();
 
                 rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
@@ -344,11 +343,21 @@ namespace UI.View
 
         private void AddSensMenu_Click(object sender, EventArgs e)
         {
-            //var presenter = new AddSensorPresenter( new AddSensorForm() );
-            //presenter.Run();
+            throw new NotImplementedException();
+        }
 
-            //dgvSens.Refresh();
-            //dgvData.Refresh();
+        private void SaveAsMenu_Click(object sender, EventArgs e)
+        {
+            SaveAsPresenter presenter = new SaveAsPresenter();
+            SaveAsForm form = new SaveAsForm();
+
+            form.FormClosed += (s, ev) =>
+            {
+                //TODO: доделай логику обработки события закрытия формы сохранения
+            };
+
+            presenter.View = form;
+            presenter.Run( MainPresenter.SensorRepository, MainPresenter.DataRepository );
         }
         #endregion
 
@@ -362,13 +371,12 @@ namespace UI.View
             {
 
                 txtBoxMapSType.Text = currentSensor.SensorType;
-                txtBoxMapSStatus.Text = "Рабочее"; //доделать
+                txtBoxMapSStatus.Text = "Рабочее"; //TODO: реализуй алгоритм проверки состояния датчика
                 txtBoxMapLastDate.Text = lastDataOfCurrentSensor.Date.ToString().Remove( 10, 8 );
                 txtBoxMapLastTime.Text = lastDataOfCurrentSensor.Time.ToString();
                 txtBoxMapLastValue.Text = lastDataOfCurrentSensor.Value.ToString();
 
-                if (currentSensor.Lat != null && currentSensor.Lng != null)
-                    MainMap.Position = new PointLatLng( (double)currentSensor.Lat, (double)currentSensor.Lng );
+                MainMap.Position = new PointLatLng( currentSensor.Lat, currentSensor.Lng );
             }
             else MessageBox.Show( "Выбранный датчик еще не получал данных" );
         }
@@ -384,6 +392,7 @@ namespace UI.View
                 if (currentSensor != null)
                 {
                     txtBoxCurrentSensor.Text = currentSensor.Name;
+
 
                     dgvData.DataSource = currentSensor.DataCollection.OrderBy( v => v.Date ).ToList();
 
