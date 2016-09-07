@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using DomainModel.Abstract;
-using DomainModel.Entity;
 using Presentation.Presenter;
 using Presentation.Views;
 
@@ -19,10 +17,10 @@ namespace UI.View
         private void SelectSensorsForm_Load(object sender, EventArgs e)
         {
             foreach (var s in SelectSensorsPresenter.GetSensorsNames())
-                chBoxSensorsNames.Items.Add(s);
+                chBoxSensorsNames.Items.Add( s );
 
             foreach (var s in SelectSensorsPresenter.GetSensorsTypes())
-                comboBoxSensorType.Items.Add(s);
+                comboBoxSensorType.Items.Add( s );
         }
         #endregion
 
@@ -31,16 +29,16 @@ namespace UI.View
         {
             chBoxSensorsNames.Items.Clear();
 
-            foreach (var s in SelectSensorsPresenter.GetSensorsNames(comboBoxSensorType.Text))
+            foreach (var s in SelectSensorsPresenter.GetSensorsNames( comboBoxSensorType.Text ))
             {
-                chBoxSensorsNames.Items.Add(s);
+                chBoxSensorsNames.Items.Add( s );
             }
         }
 
         private void btnAcceptSelection_Click(object sender, EventArgs e)
         {
             foreach (var l in chBoxSensorsNames.CheckedItems.OfType<string>())
-                SelectSensorsPresenter.FinalList.AddRange(SelectSensorsPresenter.GetSensorsByName( l ));
+                SelectSensorsPresenter.FinalList.AddRange( SelectSensorsPresenter.GetSensorsByName( l ) );
 
             Close();
         }
@@ -48,11 +46,6 @@ namespace UI.View
 
         private void SelectSensorsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-        }
-
-        public void Show(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
-        {
-            throw new NotImplementedException();
         }
     }
 }

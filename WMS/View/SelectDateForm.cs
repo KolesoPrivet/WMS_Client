@@ -1,7 +1,5 @@
 ﻿using Presentation.Views;
 using System.Windows.Forms;
-using DomainModel.Abstract;
-using DomainModel.Entity;
 using System;
 using Presentation.Presenter;
 using System.Linq;
@@ -54,11 +52,6 @@ namespace UI.View
             {
                 MessageBox.Show( "Неккоректный ввод времени!" );
             }
-        }
-
-        public void Show(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
-        {
-            throw new NotImplementedException();
         }
 
         private void txtBoxFirstTimeValue_MouseEnter(object sender, EventArgs e)

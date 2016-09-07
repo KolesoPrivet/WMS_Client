@@ -5,7 +5,7 @@ namespace Presentation.Common
 {
     public interface IView
     {
-        void Show(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam);
+        void Show();
         void Close();
     }
 }

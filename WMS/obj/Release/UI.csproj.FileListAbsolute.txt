@@ -50,5 +50,5 @@ C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\WMS.Properties.Resources.resources
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.View.SelectDateForm.resources
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.View.SelectSensorsForm.resources
-C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\Presentation.Common.Test.resources
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.csproj.GenerateResource.Cache
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\WMS.View.SaveAsForm.resources

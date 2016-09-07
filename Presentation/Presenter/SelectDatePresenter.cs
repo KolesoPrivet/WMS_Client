@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using DomainModel.Extentions;
 
 namespace Presentation.Presenter
-{   
+{
     public class SelectDatePresenter : IPresenter
     {
         private IViewSelection view;
@@ -27,8 +27,6 @@ namespace Presentation.Presenter
         public static IRepository<Data> DataRepository { get; private set; }
         public static List<Data> FinalList { get; set; }
 
-        public event Action StartClosing;
-
         public SelectDatePresenter()
         {
             FinalList = new List<Data>();
@@ -36,7 +34,7 @@ namespace Presentation.Presenter
 
         public static IEnumerable<DateTime> GetDates(int selectedSensorIdParam)
         {
-            foreach(var date in DataRepository.Filter( d => d.SensorId == selectedSensorIdParam ))
+            foreach (var date in DataRepository.Filter( d => d.SensorId == selectedSensorIdParam ))
             {
                 yield return date.Date;
             }
@@ -52,10 +50,10 @@ namespace Presentation.Presenter
 
         public static IEnumerable<Data> GetData(IEnumerable<DateTime> dates, TimeSpan firstTime, TimeSpan secondTime)
         {
-            foreach(var date in dates)
+            foreach (var date in dates)
             {
-                foreach (var data in DataRepository.Filter( d => d.Date == date 
-                                                                && d.Time >= firstTime 
+                foreach (var data in DataRepository.Filter( d => d.Date == date
+                                                                && d.Time >= firstTime
                                                                 && d.Time <= secondTime ))
                 {
                     yield return data;
@@ -69,14 +67,6 @@ namespace Presentation.Presenter
             DataRepository = dataRepositoryParam;
 
             view.ShowDialog();
-        }
-
-        public void Invoke()
-        {
-            if (StartClosing != null)
-            {
-                StartClosing();
-            }
         }
     }
 }

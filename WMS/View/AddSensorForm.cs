@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using DomainModel.Abstract;
 using DomainModel.Entity;
 using Presentation.Common;
-using UI.View;
 
 namespace UI.View
 {

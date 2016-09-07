@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using DomainModel.Abstract;
 using DomainModel.Entity;
@@ -28,8 +27,6 @@ namespace Presentation.Presenter
         public static IRepository<Sensor> SensorRepository { get; private set; }
         public static IRepository<Data> DataRepository { get; private set; }
         public static List<Sensor> FinalList { get; set; }
-
-        public event Action StartClosing;
 
         public SelectSensorsPresenter()
         {
@@ -73,14 +70,6 @@ namespace Presentation.Presenter
             foreach (var s in SensorRepository.Get)
             {
                 yield return s.SensorType;
-            }
-        }
-
-        public void Invoke()
-        {
-            if (StartClosing != null)
-            {
-                StartClosing();
             }
         }
     }

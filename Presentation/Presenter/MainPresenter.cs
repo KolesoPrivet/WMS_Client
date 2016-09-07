@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Excel = Microsoft.Office.Interop.Excel;
 
 using DomainModel.Abstract;
 using DomainModel.Entity;
@@ -77,7 +78,7 @@ namespace Presentation.Presenter
             SensorRepository = sensorRepositoryParam;
             DataRepository = dataRepositoryParam;
 
-            view.Show(sensorRepositoryParam, dataRepositoryParam);
+            view.Show();
         }
     }
 }
