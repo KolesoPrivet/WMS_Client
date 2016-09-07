@@ -13,5 +13,10 @@ namespace WMS.View
         {
             InitializeComponent();
         }
+
+        private void btnSaveFile_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

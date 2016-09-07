@@ -194,6 +194,7 @@
             this.btnSaveFile.TabIndex = 29;
             this.btnSaveFile.Text = "Сохранить";
             this.btnSaveFile.UseVisualStyleBackColor = true;
+            this.btnSaveFile.Click += new System.EventHandler(this.btnSaveFile_Click);
             // 
             // progressBarSavingReport
             // 
