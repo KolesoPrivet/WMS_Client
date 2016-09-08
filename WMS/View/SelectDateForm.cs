@@ -38,19 +38,28 @@ namespace UI.View
 
         private void btnAcceptSelection_Click(object sender, EventArgs e)
         {
-            if (regexPatternForTime.IsMatch( txtBoxFirstTimeValue.Text )
-                && regexPatternForTime.IsMatch( txtBoxSecondTimeValue.Text ))
+            if (!txtBoxFirstTimeValue.Enabled)
             {
-                SelectDatePresenter.FinalList.AddRange(
-                    SelectDatePresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>(),
-                                                 TimeSpan.Parse( txtBoxFirstTimeValue.Text ),
-                                                 TimeSpan.Parse( txtBoxSecondTimeValue.Text ) ) );
+                SelectDatePresenter.FinalList.AddRange( SelectDatePresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>() ) );
 
                 Close();
             }
             else
             {
-                MessageBox.Show( "Неккоректный ввод времени!" );
+                if (regexPatternForTime.IsMatch( txtBoxFirstTimeValue.Text )
+                    && regexPatternForTime.IsMatch( txtBoxSecondTimeValue.Text ))
+                {
+                    SelectDatePresenter.FinalList.AddRange(
+                        SelectDatePresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>(),
+                                                     TimeSpan.Parse( txtBoxFirstTimeValue.Text ),
+                                                     TimeSpan.Parse( txtBoxSecondTimeValue.Text ) ) );
+
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show( "Неккоректный ввод времени!" );
+                }
             }
         }
 
@@ -66,6 +75,20 @@ namespace UI.View
             toolTipForSelectDateForm.ToolTipTitle = "Внимание!";
             toolTipForSelectDateForm.SetToolTip( txtBoxFirstTimeValue, "Введите время в 24-часовом формате. 00:00" );
             toolTipForSelectDateForm.SetToolTip( txtBoxSecondTimeValue, "Введите время в 24-часовом формате. 00:00" );
+        }
+
+        private void checkBoxEnableTimeInterval_CheckedChanged(object sender, EventArgs e)
+        {
+            if (txtBoxFirstTimeValue.Enabled)
+            {
+                txtBoxFirstTimeValue.Enabled = false;
+                txtBoxSecondTimeValue.Enabled = false;
+            }
+            else
+            {
+                txtBoxFirstTimeValue.Enabled = true;
+                txtBoxSecondTimeValue.Enabled = true;
+            }
         }
     }
 }

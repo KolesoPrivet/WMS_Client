@@ -25,7 +25,7 @@ namespace Presentation.Presenter
 
         public static IRepository<Sensor> SensorRepository { get; private set; }
         public static IRepository<Data> DataRepository { get; private set; }
-        public static List<Data> FinalList { get; set; }
+        public static List<Data> FinalList { get; private set; }
 
         public SelectDatePresenter()
         {
@@ -34,9 +34,9 @@ namespace Presentation.Presenter
 
         public static IEnumerable<DateTime> GetDates(int selectedSensorIdParam)
         {
-            foreach (var date in DataRepository.Filter( d => d.SensorId == selectedSensorIdParam ))
+            foreach (var data in DataRepository.Filter( d => d.SensorId == selectedSensorIdParam ))
             {
-                yield return date.Date;
+                yield return data.Date;
             }
         }
 
@@ -45,6 +45,17 @@ namespace Presentation.Presenter
             foreach (var data in DataRepository.Filter( d => d.Time >= firstTime && d.Time <= secondTime ))
             {
                 yield return data.Time;
+            }
+        }
+
+        public static IEnumerable<Data> GetData(IEnumerable<DateTime> dates)
+        {
+            foreach (var date in dates)
+            {
+                foreach (var data in DataRepository.Filter( d => d.Date == date))
+                {
+                    yield return data;
+                }
             }
         }
 

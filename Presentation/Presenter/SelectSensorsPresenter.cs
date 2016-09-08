@@ -59,9 +59,9 @@ namespace Presentation.Presenter
 
         public static IEnumerable<string> GetSensorsNames(string sensorTypeParam)
         {
-            foreach (var name in SensorRepository.Filter( s => s.SensorType == sensorTypeParam ))
+            foreach (var sensor in SensorRepository.Filter( s => s.SensorType == sensorTypeParam ))
             {
-                yield return name.Name;
+                yield return sensor.Name;
             }
         }
 

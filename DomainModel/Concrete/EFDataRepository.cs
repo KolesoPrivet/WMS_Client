@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 using DomainModel.Abstract;
 using DomainModel.Entity;
@@ -13,7 +14,7 @@ namespace DomainModel.Concrete
         {
             get
             {
-                return context.DataSet;
+                return context.DataSet.ToList();
             }
         }
     }

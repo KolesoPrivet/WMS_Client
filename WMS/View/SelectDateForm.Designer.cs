@@ -38,6 +38,7 @@
             this.gpBoxSelectDate = new System.Windows.Forms.GroupBox();
             this.chBoxDates = new System.Windows.Forms.CheckedListBox();
             this.toolTipForSelectDateForm = new System.Windows.Forms.ToolTip(this.components);
+            this.checkBoxEnableTimeInterval = new System.Windows.Forms.CheckBox();
             this.gpBoxSelectTimeInterval.SuspendLayout();
             this.gpBoxSelectDate.SuspendLayout();
             this.SuspendLayout();
@@ -54,6 +55,7 @@
             // 
             // gpBoxSelectTimeInterval
             // 
+            this.gpBoxSelectTimeInterval.Controls.Add(this.checkBoxEnableTimeInterval);
             this.gpBoxSelectTimeInterval.Controls.Add(this.lblSecondTimeValue);
             this.gpBoxSelectTimeInterval.Controls.Add(this.txtBoxSecondTimeValue);
             this.gpBoxSelectTimeInterval.Controls.Add(this.lblFirstTimeValue);
@@ -68,7 +70,7 @@
             // lblSecondTimeValue
             // 
             this.lblSecondTimeValue.AutoSize = true;
-            this.lblSecondTimeValue.Location = new System.Drawing.Point(132, 22);
+            this.lblSecondTimeValue.Location = new System.Drawing.Point(144, 23);
             this.lblSecondTimeValue.Name = "lblSecondTimeValue";
             this.lblSecondTimeValue.Size = new System.Drawing.Size(25, 13);
             this.lblSecondTimeValue.TabIndex = 3;
@@ -76,10 +78,11 @@
             // 
             // txtBoxSecondTimeValue
             // 
-            this.txtBoxSecondTimeValue.Location = new System.Drawing.Point(163, 19);
+            this.txtBoxSecondTimeValue.Enabled = false;
+            this.txtBoxSecondTimeValue.Location = new System.Drawing.Point(175, 19);
             this.txtBoxSecondTimeValue.MaxLength = 5;
             this.txtBoxSecondTimeValue.Name = "txtBoxSecondTimeValue";
-            this.txtBoxSecondTimeValue.Size = new System.Drawing.Size(98, 20);
+            this.txtBoxSecondTimeValue.Size = new System.Drawing.Size(86, 20);
             this.txtBoxSecondTimeValue.TabIndex = 2;
             this.txtBoxSecondTimeValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBoxSecondTimeValue.MouseEnter += new System.EventHandler(this.txtBoxSecondTimeValue_MouseEnter);
@@ -87,7 +90,7 @@
             // lblFirstTimeValue
             // 
             this.lblFirstTimeValue.AutoSize = true;
-            this.lblFirstTimeValue.Location = new System.Drawing.Point(6, 22);
+            this.lblFirstTimeValue.Location = new System.Drawing.Point(27, 22);
             this.lblFirstTimeValue.Name = "lblFirstTimeValue";
             this.lblFirstTimeValue.Size = new System.Drawing.Size(23, 13);
             this.lblFirstTimeValue.TabIndex = 1;
@@ -95,10 +98,11 @@
             // 
             // txtBoxFirstTimeValue
             // 
-            this.txtBoxFirstTimeValue.Location = new System.Drawing.Point(35, 19);
+            this.txtBoxFirstTimeValue.Enabled = false;
+            this.txtBoxFirstTimeValue.Location = new System.Drawing.Point(56, 19);
             this.txtBoxFirstTimeValue.MaxLength = 5;
             this.txtBoxFirstTimeValue.Name = "txtBoxFirstTimeValue";
-            this.txtBoxFirstTimeValue.Size = new System.Drawing.Size(87, 20);
+            this.txtBoxFirstTimeValue.Size = new System.Drawing.Size(82, 20);
             this.txtBoxFirstTimeValue.TabIndex = 0;
             this.txtBoxFirstTimeValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBoxFirstTimeValue.MouseEnter += new System.EventHandler(this.txtBoxFirstTimeValue_MouseEnter);
@@ -121,6 +125,16 @@
             this.chBoxDates.Name = "chBoxDates";
             this.chBoxDates.Size = new System.Drawing.Size(255, 109);
             this.chBoxDates.TabIndex = 21;
+            // 
+            // checkBoxEnableTimeInterval
+            // 
+            this.checkBoxEnableTimeInterval.AutoSize = true;
+            this.checkBoxEnableTimeInterval.Location = new System.Drawing.Point(6, 25);
+            this.checkBoxEnableTimeInterval.Name = "checkBoxEnableTimeInterval";
+            this.checkBoxEnableTimeInterval.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxEnableTimeInterval.TabIndex = 4;
+            this.checkBoxEnableTimeInterval.UseVisualStyleBackColor = true;
+            this.checkBoxEnableTimeInterval.CheckedChanged += new System.EventHandler(this.checkBoxEnableTimeInterval_CheckedChanged);
             // 
             // SelectDateForm
             // 
@@ -151,5 +165,6 @@
         private System.Windows.Forms.TextBox txtBoxSecondTimeValue;
         private System.Windows.Forms.Label lblFirstTimeValue;
         private System.Windows.Forms.ToolTip toolTipForSelectDateForm;
+        private System.Windows.Forms.CheckBox checkBoxEnableTimeInterval;
     }
 }

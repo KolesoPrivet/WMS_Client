@@ -39,7 +39,6 @@ namespace DomainModel.Extentions
                     return d;
                 }
             }
-
             return null;
         }
     }
