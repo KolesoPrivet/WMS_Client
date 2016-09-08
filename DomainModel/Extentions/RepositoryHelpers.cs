@@ -20,31 +20,27 @@ namespace DomainModel.Extentions
 
         public static T SingleFilter<T>(this IRepository<T> repositoryParam, Func<T, bool> selectorParam) where T : class, IEntity
         {
-            T result = null;
-
             foreach (T t in repositoryParam.Get)
             {
                 if (selectorParam( t ))
                 {
-                    result = t;
+                    return t;
                 }
             }
-            return result;
+            return null;
         }
 
         public static Data LastDataFilter(this IRepository<Data> repositoryParam, Func<Data, bool> selectoParam)
         {
-            Data result = null;
-
             foreach (Data d in repositoryParam.Get.OrderByDescending( d => d.Date ).ThenByDescending(d => d.Time))
             {
                 if (selectoParam( d ))
                 {
-                    result = d;
+                    return d;
                 }
             }
 
-            return result;
+            return null;
         }
     }
 }
