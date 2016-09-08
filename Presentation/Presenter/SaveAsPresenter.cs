@@ -40,6 +40,15 @@ namespace Presentation.Presenter
         }
 
         //TODO: GetSensorsTypes in 2 presenters!
+        public static IEnumerable<string> GetSensorsNames(string sensorTypeParam)
+        {
+            foreach (var sensor in SensorRepository.Filter( s => s.SensorType == sensorTypeParam ))
+            {
+                yield return sensor.Name;
+            }
+        }
+
+        //TODO: GetSensorsTypes in 2 presenters!
         public static IEnumerable<string> GetSensorsTypes()
         {
             foreach (var s in SensorRepository.Get)
@@ -54,6 +63,18 @@ namespace Presentation.Presenter
             foreach (var data in DataRepository.Filter( d => d.SensorId == selectedSensorIdParam ))
             {
                 yield return data.Date;
+            }
+        }
+
+        //TODO: GetData in 2 presenters!
+        public static IEnumerable<Data> GetData(IEnumerable<DateTime> dates)
+        {
+            foreach (var date in dates)
+            {
+                foreach (var data in DataRepository.Filter( d => d.Date == date ))
+                {
+                    yield return data;
+                }
             }
         }
 
