@@ -7,12 +7,14 @@
     <ProjectGuid>{C332C930-C349-422F-AC61-EE1CC1584EAE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WMS</RootNamespace>
+    <RootNamespace>UI</RootNamespace>
     <AssemblyName>WMS</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,10 +27,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -85,32 +85,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="View\AboutForm.cs" />
-    <Compile Include="View\AboutForm.Designer.cs">
+    <Compile Include="ViewFactory\Abstract\Factory.cs" />
+    <Compile Include="ViewFactory\Client\View.cs" />
+    <Compile Include="ViewFactory\Concrete\MainFactory.cs" />
+    <Compile Include="ViewFactory\Concrete\SaveAsFactory.cs" />
+    <Compile Include="ViewFactory\Concrete\SelectDateFactory.cs" />
+    <Compile Include="ViewFactory\Concrete\SelectSensorsFactory.cs" />
+    <Compile Include="Views\AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\MainForm.cs" />
-    <Compile Include="View\MainForm.Designer.cs">
+    <Compile Include="Views\AddSensorForm.cs" />
+    <Compile Include="Views\AddSensorForm.Designer.cs">
+      <DependentUpon>AddSensorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\SaveAsForm.cs" />
-    <Compile Include="View\SaveAsForm.Designer.cs">
+    <Compile Include="Views\SaveAsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SaveAsForm.Designer.cs">
       <DependentUpon>SaveAsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\SelectDateForm.cs" />
-    <Compile Include="View\SelectDateForm.Designer.cs">
+    <Compile Include="Views\SelectDateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SelectDateForm.Designer.cs">
       <DependentUpon>SelectDateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\SelectSensorsForm.cs" />
-    <Compile Include="View\SelectSensorsForm.Designer.cs">
+    <Compile Include="Views\SelectSensorsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SelectSensorsForm.Designer.cs">
       <DependentUpon>SelectSensorsForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\AboutForm.resx">
+    <EmbeddedResource Include="Views\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\MainForm.resx">
+    <EmbeddedResource Include="Views\AddSensorForm.resx">
+      <DependentUpon>AddSensorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -123,13 +146,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="View\SaveAsForm.resx">
+    <EmbeddedResource Include="Views\SaveAsForm.resx">
       <DependentUpon>SaveAsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\SelectDateForm.resx">
+    <EmbeddedResource Include="Views\SelectDateForm.resx">
       <DependentUpon>SelectDateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\SelectSensorsForm.resx">
+    <EmbeddedResource Include="Views\SelectSensorsForm.resx">
       <DependentUpon>SelectSensorsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

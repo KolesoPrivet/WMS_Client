@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using DomainModel.Abstract;
+using DomainModel.Entity;
+using System.Windows.Forms;
 
 namespace Presentation.Common
 {

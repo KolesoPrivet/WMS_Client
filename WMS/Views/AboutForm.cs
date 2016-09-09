@@ -13,20 +13,18 @@ namespace UI.Views
             InitializeComponent();
         }
 
-        private Presenter _ownPresenter;
-
         public Presenter OwnPresenter
         {
             get
             {
-                return _ownPresenter;
+                return OwnPresenter;
             }
 
             set
             {
                 if (value != null)
                 {
-                    _ownPresenter = value;
+                    OwnPresenter = value;
                 }
             }
         }

@@ -1,47 +1,42 @@
 ﻿using System.Windows.Forms;
 using System;
-using System.Collections.Generic;
+using Presentation.Presenters;
 using System.Linq;
 using System.Text.RegularExpressions;
-
-using Presentation.Presenters;
 using Presentation.Common;
-
-using DomainModel.Entity;
 
 namespace UI.Views
 {
     public partial class SelectDateForm : Form, IView
     {
+        private readonly int selectedSensorId;
         private readonly Regex regexPatternForTime = new Regex( "^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$" );
 
-        private Presenter _ownPresenter;
         public Presenter OwnPresenter
         {
             get
             {
-                return _ownPresenter;
+                return OwnPresenter;
             }
 
             set
             {
                 if (value != null)
                 {
-                    _ownPresenter = value;
+                    OwnPresenter = value;
                 }
             }
         }
 
-        public static List<Data> FinalList { get; private set; } = new List<Data>();
-
-        public SelectDateForm()
+        public SelectDateForm(int selectedSensorIdParam)
         {
+            selectedSensorId = selectedSensorIdParam;
             InitializeComponent();
         }
 
         private void SelectDateForm_Load(object sender, EventArgs e)
         {
-            foreach (var s in OwnPresenter.GetDates())
+            foreach (var s in SelectDatePresenter.GetDates( selectedSensorId ))
             {
                 if (!chBoxDates.Items.Contains( s ))
                     chBoxDates.Items.Add( s.Date );
@@ -59,16 +54,9 @@ namespace UI.Views
 
         private void btnAcceptSelection_Click(object sender, EventArgs e)
         {
-            FinalList.Clear();
-
             if (!txtBoxFirstTimeValue.Enabled)
             {
-                foreach (var d in OwnPresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>() ))
-                {
-                    if (!FinalList.Contains( d ))
-                        FinalList.Add( d );
-                }
-
+                SelectDatePresenter.FinalList.AddRange( SelectDatePresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>() ) );
 
                 Close();
             }
@@ -77,9 +65,10 @@ namespace UI.Views
                 if (regexPatternForTime.IsMatch( txtBoxFirstTimeValue.Text )
                     && regexPatternForTime.IsMatch( txtBoxSecondTimeValue.Text ))
                 {
-                    FinalList.AddRange( OwnPresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>(),
-                                        TimeSpan.Parse( txtBoxFirstTimeValue.Text ),
-                                        TimeSpan.Parse( txtBoxSecondTimeValue.Text ) ) );
+                    SelectDatePresenter.FinalList.AddRange(
+                        SelectDatePresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>(),
+                                                     TimeSpan.Parse( txtBoxFirstTimeValue.Text ),
+                                                     TimeSpan.Parse( txtBoxSecondTimeValue.Text ) ) );
 
                     Close();
                 }

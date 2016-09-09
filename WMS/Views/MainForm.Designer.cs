@@ -91,6 +91,7 @@
             this.RestartMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.PropertiesMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddSensMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutProgramMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -815,6 +816,8 @@
             // 
             // PropertiesMenu
             // 
+            this.PropertiesMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddSensMenu});
             this.PropertiesMenu.Name = "PropertiesMenu";
             this.PropertiesMenu.Size = new System.Drawing.Size(79, 20);
             this.PropertiesMenu.Text = "Настройки";
@@ -963,6 +966,7 @@
         private System.Windows.Forms.Label lbTimeOfLastActivity;
         private System.Windows.Forms.TextBox txtBoxMapLastTime;
         private System.Windows.Forms.ToolStripMenuItem RestartMenu;
+        private System.Windows.Forms.ToolStripMenuItem AddSensMenu;
         private System.Windows.Forms.GroupBox gpBoxSensorQuery;
         private System.Windows.Forms.Button btnMapRequest;
         private System.Windows.Forms.DataGridView dgvQA;

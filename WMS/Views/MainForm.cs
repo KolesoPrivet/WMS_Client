@@ -24,19 +24,18 @@ namespace UI.Views
         #region Fields
         private bool isDataLoadedFromDB = false;
 
-        private Presenter _ownPresenter;
         public Presenter OwnPresenter
         {
             get
             {
-                return _ownPresenter;
+                return OwnPresenter;
             }
 
             set
             {
-                if (value != null)
+                if(value != null)
                 {
-                    _ownPresenter = value;
+                    OwnPresenter = value;
                 }
             }
         }
@@ -128,37 +127,8 @@ namespace UI.Views
             rButtonAllSensors.Enabled = false;
             rButtonChooseSensors.Enabled = false;
             btnShwMap.Enabled = false;
+            AddSensMenu.Enabled = false;
             comboBoxSNMap.Enabled = false;
-        }
-
-        private void SettingColumns()
-        {
-            dgvSens.RowHeadersVisible = false;
-
-            dgvSens.Columns["Id"].Visible = false;
-            dgvSens.Columns["DataCollection"].Visible = false;
-            dgvSens.Columns["Name"].Width = 50;
-            dgvSens.Columns["SensorType"].Width = 200;
-
-            dgvData.RowHeadersVisible = false;
-
-            dgvData.Columns["Id"].Visible = false;
-            dgvData.Columns["SingleSensor"].Visible = false;
-            dgvData.Columns["SensorId"].Visible = false;
-        }
-
-        private void BindChart()
-        {
-            unionChart.DataSource = dgvData.DataSource;
-            unionChart.Series["Датчик"].XValueMember = "Date";
-            unionChart.Series["Датчик"].YValueMembers = "Value";
-            unionChart.DataBind();
-        }
-
-        private void CheckSensorDataCount()
-        {
-            rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
-            rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
         }
         #endregion
 
@@ -179,7 +149,7 @@ namespace UI.Views
 
                 dgvSens.DataSource = await Task.Factory.StartNew( () =>
                 {
-                    var items = ((MainPresenter)OwnPresenter).GetSensorsList();
+                    var items = MainPresenter.GetSensorsList();
 
                     foreach (var i in items)
                         comboBoxSNMap.Items.Add( i.Name );
@@ -189,17 +159,18 @@ namespace UI.Views
 
                 dgvData.DataSource = await Task.Factory.StartNew( () =>
                 {
-                    return ((MainPresenter)OwnPresenter).GetDataList();
+                    return MainPresenter.GetDataList();
                 } );
 
                 await Task.Factory.StartNew( () =>
                 {
-                    MainMap.Overlays.Add( ((MainPresenter)OwnPresenter).GetMarkersOfSensors() );
+                    MainMap.Overlays.Add( MainPresenter.GetMarkersOfSensors() );
                 } );
 
                 if (!isDataLoadedFromDB)
                 {
                     btnShwMap.Enabled = true;
+                    AddSensMenu.Enabled = true;
                     rButtonAllSensors.Enabled = true;
                     rButtonChooseSensors.Enabled = true;
                     rButtonAllDates.Enabled = true;
@@ -208,15 +179,30 @@ namespace UI.Views
                     btnRefreshDB.Text = "Обновить данные";
                 }
 
-                SettingColumns();
+                dgvSens.RowHeadersVisible = false;
+
+                dgvSens.Columns["Id"].Visible = false;
+                dgvSens.Columns["DataCollection"].Visible = false;
+                dgvSens.Columns["Name"].Width = 50;
+                dgvSens.Columns["SensorType"].Width = 200;
+
+                dgvData.RowHeadersVisible = false;
+
+                dgvData.Columns["Id"].Visible = false;
+                dgvData.Columns["SingleSensor"].Visible = false;
+                dgvData.Columns["SensorId"].Visible = false;
 
                 isDataLoadedFromDB = true;
                 progressBarLoadDataFromDB.Style = ProgressBarStyle.Continuous;
                 progressBarLoadDataFromDB.MarqueeAnimationSpeed = 0;
 
-                CheckSensorDataCount();
+                rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
+                rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
 
-                BindChart();
+                unionChart.DataSource = dgvData.DataSource;
+                unionChart.Series["Датчик"].XValueMember = "Date";
+                unionChart.Series["Датчик"].YValueMembers = "Value";
+                unionChart.DataBind();
 
                 btnRefreshDB.Enabled = true;
             }
@@ -270,8 +256,8 @@ namespace UI.Views
         private void btnSelectSensorsForQuiz_Click(object sender, EventArgs e)
         {
             //TODO: realize dependency injection
-            ViewPresenter view = new ViewPresenter( new SelectSensorsFactory(),
-                OwnPresenter.SensorRepository, OwnPresenter.DataRepository );
+            ViewPresenter view = new ViewPresenter( new SelectSensorsFactory(), 
+                MainPresenter.SensorRepository, MainPresenter.DataRepository );
 
             view.Run();
 
@@ -285,19 +271,24 @@ namespace UI.Views
 
         private void rButtonChooseSensors_MouseClick(object sender, MouseEventArgs e)
         {
-            ViewPresenter view = new ViewPresenter( new SelectSensorsFactory(),
-                OwnPresenter.SensorRepository, OwnPresenter.DataRepository );
+            SelectSensorsPresenter presenter = new SelectSensorsPresenter();
+            SelectSensorsForm form = new SelectSensorsForm();
 
-            view.Run();
+            form.FormClosed += (s, ev) =>
+            {
+                if (SelectSensorsPresenter.FinalList.Count > 0)
+                {
+                    dgvSens.DataSource = SelectSensorsPresenter.FinalList;
+                }
+            };
 
-            //Без ToList() неадекватно отображает отфильтрованные сенсоры
-            dgvSens.DataSource = SelectSensorsForm.FinalList.ToList();
-            rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.RowCount.ToString();
+            presenter.View = form;
+            presenter.Run( MainPresenter.SensorRepository, MainPresenter.DataRepository );
         }
 
         private void rButtonAllSensors_MouseClick(object sender, MouseEventArgs e)
         {
-            dgvSens.DataSource = ((MainPresenter)OwnPresenter).GetSensorsList();
+            dgvSens.DataSource = MainPresenter.GetSensorsList();
 
             rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
         }
@@ -305,19 +296,23 @@ namespace UI.Views
         private void rButtonChooseDate_MouseClick(object sender, EventArgs e)
         {
             var currentRow = dgvSens.CurrentRow;
-
             if (currentRow != null)
             {
                 var currentSensor = currentRow.DataBoundItem as Sensor;
 
-                ViewPresenter view = new ViewPresenter( new SelectDateFactory(),
-                    OwnPresenter.SensorRepository, OwnPresenter.DataRepository );
+                SelectDatePresenter presenter = new SelectDatePresenter();
+                SelectDateForm form = new SelectDateForm( currentSensor.Id );
 
-                view.Run( currentSensor.Id );
+                form.FormClosed += (s, ev) =>
+                {
+                    if (SelectDatePresenter.FinalList.Count > 0)
+                    {
+                        dgvData.DataSource = SelectDatePresenter.FinalList.OrderBy( d => d.Date ).ToList();
+                    }
+                };
 
-                dgvData.DataSource = SelectDateForm.FinalList.OrderBy( d => d.Date ).ToList();
-
-                rtbSensorsValue.Text = "Количество датчиков: " + dgvData.Rows.Count.ToString();
+                presenter.View = form;
+                presenter.Run( MainPresenter.SensorRepository, MainPresenter.DataRepository );
             }
             else
             {
@@ -347,10 +342,8 @@ namespace UI.Views
         #region Menu
         private void AboutProgramMenu_Click(object sender, EventArgs e)
         {
-            ViewPresenter view = new ViewPresenter( new AboutFactory(),
-                OwnPresenter.SensorRepository, OwnPresenter.DataRepository );
-
-            view.Run();
+            var presenter = new AboutPresenter( new AboutForm() );
+            presenter.Run( MainPresenter.SensorRepository, MainPresenter.DataRepository );
         }
 
         private void RestartMenu_Click(object sender, EventArgs e)
@@ -365,20 +358,24 @@ namespace UI.Views
 
         private void SaveAsMenu_Click(object sender, EventArgs e)
         {
-            ViewPresenter view = new ViewPresenter( new SaveAsFactory(),
-                OwnPresenter.SensorRepository, OwnPresenter.DataRepository );
+            SaveAsPresenter presenter = new SaveAsPresenter();
+            SaveAsForm form = new SaveAsForm();
 
-            view.Run();
+            form.FormClosed += (s, ev) =>
+            {
+                //TODO: доделай логику обработки события закрытия формы сохранения
+            };
 
-            //TODO: доделай логику обработки события закрытия формы сохранения
+            presenter.View = form;
+            presenter.Run( MainPresenter.SensorRepository, MainPresenter.DataRepository );
         }
         #endregion
 
         #region Filters
         private void comboBoxSNMap_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Sensor currentSensor = OwnPresenter.GetSensorByName( comboBoxSNMap.Text );
-            Data lastDataOfCurrentSensor = ((MainPresenter)OwnPresenter).GetLastData( currentSensor );
+            Sensor currentSensor = MainPresenter.GetSensorByName( comboBoxSNMap.Text );
+            Data lastDataOfCurrentSensor = MainPresenter.GetLastData( currentSensor );
 
             if (lastDataOfCurrentSensor != null)
             {
@@ -409,9 +406,13 @@ namespace UI.Views
 
                     dgvData.DataSource = currentSensor.DataCollection.OrderBy( v => v.Date ).ToList();
 
-                    CheckSensorDataCount();
+                    rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
+                    rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
 
-                    BindChart();
+                    unionChart.DataSource = dgvData.DataSource;
+                    unionChart.Series["Датчик"].XValueMember = "Date";
+                    unionChart.Series["Датчик"].YValueMembers = "Value";
+                    unionChart.DataBind();
                 }
             }
         }
