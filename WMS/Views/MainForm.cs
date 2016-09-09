@@ -130,6 +130,36 @@ namespace UI.Views
             btnShwMap.Enabled = false;
             comboBoxSNMap.Enabled = false;
         }
+
+        private void SettingColumns()
+        {
+            dgvSens.RowHeadersVisible = false;
+
+            dgvSens.Columns["Id"].Visible = false;
+            dgvSens.Columns["DataCollection"].Visible = false;
+            dgvSens.Columns["Name"].Width = 50;
+            dgvSens.Columns["SensorType"].Width = 200;
+
+            dgvData.RowHeadersVisible = false;
+
+            dgvData.Columns["Id"].Visible = false;
+            dgvData.Columns["SingleSensor"].Visible = false;
+            dgvData.Columns["SensorId"].Visible = false;
+        }
+
+        private void BindChart()
+        {
+            unionChart.DataSource = dgvData.DataSource;
+            unionChart.Series["Датчик"].XValueMember = "Date";
+            unionChart.Series["Датчик"].YValueMembers = "Value";
+            unionChart.DataBind();
+        }
+
+        private void CheckSensorDataCount()
+        {
+            rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
+            rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
+        }
         #endregion
 
         #region Buttons
@@ -178,30 +208,15 @@ namespace UI.Views
                     btnRefreshDB.Text = "Обновить данные";
                 }
 
-                dgvSens.RowHeadersVisible = false;
-
-                dgvSens.Columns["Id"].Visible = false;
-                dgvSens.Columns["DataCollection"].Visible = false;
-                dgvSens.Columns["Name"].Width = 50;
-                dgvSens.Columns["SensorType"].Width = 200;
-
-                dgvData.RowHeadersVisible = false;
-
-                dgvData.Columns["Id"].Visible = false;
-                dgvData.Columns["SingleSensor"].Visible = false;
-                dgvData.Columns["SensorId"].Visible = false;
+                SettingColumns();
 
                 isDataLoadedFromDB = true;
                 progressBarLoadDataFromDB.Style = ProgressBarStyle.Continuous;
                 progressBarLoadDataFromDB.MarqueeAnimationSpeed = 0;
 
-                rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
-                rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
+                CheckSensorDataCount();
 
-                unionChart.DataSource = dgvData.DataSource;
-                unionChart.Series["Датчик"].XValueMember = "Date";
-                unionChart.Series["Датчик"].YValueMembers = "Value";
-                unionChart.DataBind();
+                BindChart();
 
                 btnRefreshDB.Enabled = true;
             }
@@ -394,13 +409,9 @@ namespace UI.Views
 
                     dgvData.DataSource = currentSensor.DataCollection.OrderBy( v => v.Date ).ToList();
 
-                    rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
-                    rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
+                    CheckSensorDataCount();
 
-                    unionChart.DataSource = dgvData.DataSource;
-                    unionChart.Series["Датчик"].XValueMember = "Date";
-                    unionChart.Series["Датчик"].YValueMembers = "Value";
-                    unionChart.DataBind();
+                    BindChart();
                 }
             }
         }
