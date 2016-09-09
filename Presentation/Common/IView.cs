@@ -1,5 +1,6 @@
 ﻿using DomainModel.Abstract;
 using DomainModel.Entity;
+using System.Windows.Forms;
 
 namespace Presentation.Common
 {
@@ -7,5 +8,7 @@ namespace Presentation.Common
     {
         void Show();
         void Close();
+        DialogResult ShowDialog();
+        Presenter OwnPresenter { get; set; }
     }
 }

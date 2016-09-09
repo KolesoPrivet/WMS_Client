@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
-using UI.View;
-using Presentation.Presenter;
+using ViewPresenter = UI.ViewFactory.Client.View;
 using DomainModel.Entity;
 using DomainModel.Abstract;
 using Ninject;
 using DomainModel.Concrete;
+using UI.ViewFactory.Concrete;
 
 namespace Presentation
 {
@@ -27,8 +27,8 @@ namespace Presentation
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var presenter = new MainPresenter(new MainForm());
-            presenter.Run(sensorRepository, dataRepository);
+            ViewPresenter view = new ViewPresenter( new MainFactory(), sensorRepository, dataRepository );
+            view.Run();
         }
     }
 }

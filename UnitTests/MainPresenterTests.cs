@@ -4,7 +4,7 @@ using Moq;
 using DomainModel.Abstract;
 using System.Collections.Generic;
 using DomainModel.Entity;
-using Presentation.Presenter;
+using Presentation.Presenters;
 using Presentation.Common;
 
 namespace UnitTests
