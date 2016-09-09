@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Presentation.Common;
+﻿using Presentation.Common;
+using Presentation.Presenters;
+
 using UI.ViewFactory.Abstract;
+using UI.Views;
 
 namespace UI.ViewFactory.Concrete
 {
@@ -12,12 +10,12 @@ namespace UI.ViewFactory.Concrete
     {
         public override Presenter CreatePresenter()
         {
-            throw new NotImplementedException();
+            return new SelectDatePresenter();
         }
 
         public override IView CreateView()
         {
-            throw new NotImplementedException();
+            return new SelectDateForm();
         }
     }
 }

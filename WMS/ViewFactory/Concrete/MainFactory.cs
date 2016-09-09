@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Presentation.Common;
+﻿using Presentation.Common;
+using Presentation.Presenters;
+
 using UI.ViewFactory.Abstract;
 using UI.Views;
-using Presentation.Presenters;
 
 namespace UI.ViewFactory.Concrete
 {
