@@ -50,7 +50,6 @@ C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\bin\Release\Castle.Core.xml
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\bin\Release\Moq.xml
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.Views.AboutForm.resources
-C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.Views.AddSensorForm.resources
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.Views.MainForm.resources
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.Views.SaveAsForm.resources
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.Views.SelectDateForm.resources

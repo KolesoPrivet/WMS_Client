@@ -1,21 +1,17 @@
-﻿using DomainModel.Abstract;
+﻿using System;
+using DomainModel.Abstract;
 using DomainModel.Entity;
 using Presentation.Common;
 
 namespace Presentation.Presenters
 {
-    public class AboutPresenter
+    public class AboutPresenter : Presenter
     {
-        private readonly IView view;
-
-        public AboutPresenter(IView viewParam)
+        public override void Run(IView viewParam, IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
         {
-            view = viewParam;
-        }
+            View = viewParam;
 
-        public void Run(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
-        {
-            view.Show();
+            View.ShowDialog();
         }
     }
 }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WMS.Properties {
+namespace UI.Properties {
     using System;
     
     

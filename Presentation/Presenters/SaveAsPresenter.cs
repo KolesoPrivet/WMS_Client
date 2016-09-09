@@ -1,9 +1,9 @@
-﻿using Presentation.Common;
+﻿using System.Collections.Generic;
+
+using Presentation.Common;
+
 using DomainModel.Abstract;
 using DomainModel.Entity;
-using System.Collections.Generic;
-using System;
-using DomainModel.Extentions;
 
 namespace Presentation.Presenters
 {

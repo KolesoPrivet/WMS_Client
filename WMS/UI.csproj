@@ -88,6 +88,7 @@
   <ItemGroup>
     <Compile Include="ViewFactory\Abstract\Factory.cs" />
     <Compile Include="ViewFactory\Client\View.cs" />
+    <Compile Include="ViewFactory\Concrete\AboutFactory.cs" />
     <Compile Include="ViewFactory\Concrete\MainFactory.cs" />
     <Compile Include="ViewFactory\Concrete\SaveAsFactory.cs" />
     <Compile Include="ViewFactory\Concrete\SelectDateFactory.cs" />
@@ -97,12 +98,6 @@
     </Compile>
     <Compile Include="Views\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AddSensorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\AddSensorForm.Designer.cs">
-      <DependentUpon>AddSensorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
@@ -132,9 +127,6 @@
     </Compile>
     <EmbeddedResource Include="Views\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\AddSensorForm.resx">
-      <DependentUpon>AddSensorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

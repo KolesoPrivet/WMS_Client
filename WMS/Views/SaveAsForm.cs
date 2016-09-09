@@ -20,18 +20,20 @@ namespace UI.Views
         private string _filePath;
         private readonly Regex regexPatternForTime = new Regex( "^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$" );
 
+        private Presenter _ownPresenter;
+
         public Presenter OwnPresenter
         {
             get
             {
-                return OwnPresenter;
+                return _ownPresenter;
             }
 
             set
             {
                 if (value != null)
                 {
-                    OwnPresenter = value;
+                    _ownPresenter = value;
                 }
             }
         }

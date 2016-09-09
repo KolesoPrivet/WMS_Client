@@ -6,16 +6,16 @@ using UI.Views;
 
 namespace UI.ViewFactory.Concrete
 {
-    class MainFactory : Factory
+    class AboutFactory : Factory
     {
-        public override IView CreateView()
-        {
-            return new MainForm();
-        }
-
         public override Presenter CreatePresenter()
         {
-            return new MainPresenter();
+            return new AboutPresenter();
+        }
+
+        public override IView CreateView()
+        {
+            return new AboutForm();
         }
     }
 }

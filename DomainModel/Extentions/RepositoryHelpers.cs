@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 
 using DomainModel.Abstract;
-using DomainModel.Entity;
 
 namespace DomainModel.Extentions
 {
@@ -25,18 +23,6 @@ namespace DomainModel.Extentions
                 if (selectorParam( t ))
                 {
                     return t;
-                }
-            }
-            return null;
-        }
-
-        public static Data LastDataFilter(this IRepository<Data> repositoryParam, Func<Data, bool> selectoParam)
-        {
-            foreach (Data d in repositoryParam.Get.OrderByDescending( d => d.Date ).ThenByDescending(d => d.Time))
-            {
-                if (selectoParam( d ))
-                {
-                    return d;
                 }
             }
             return null;
