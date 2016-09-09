@@ -10,6 +10,5 @@ namespace Presentation.Common
         void Show();
         void Close();
         DialogResult ShowDialog();
-        Presenter OwnPresenter { get; set; }
     }
 }

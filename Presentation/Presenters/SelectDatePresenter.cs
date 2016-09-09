@@ -2,7 +2,6 @@
 using System;
 using DomainModel.Abstract;
 using DomainModel.Entity;
-using Presentation.Views;
 using System.Collections.Generic;
 using DomainModel.Extentions;
 
@@ -10,8 +9,8 @@ namespace Presentation.Presenters
 {
     public class SelectDatePresenter : IPresenter
     {
-        private IViewSelection view;
-        public IViewSelection View
+        private IView view;
+        public IView View
         {
             get { return view; }
             set
