@@ -1,0 +1,9 @@
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\bin\Debug\DomainModel.dll.config
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\bin\Debug\DomainModel.dll
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\bin\Debug\DomainModel.pdb
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\bin\Debug\EntityFramework.dll
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\bin\Debug\EntityFramework.xml
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\obj\Debug\DomainModel.dll
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\obj\Debug\DomainModel.pdb

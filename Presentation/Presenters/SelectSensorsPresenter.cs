@@ -5,40 +5,17 @@ using DomainModel.Entity;
 using DomainModel.Extentions;
 
 using Presentation.Common;
-using Presentation.Views;
 
 namespace Presentation.Presenters
 {
-    public class SelectSensorsPresenter : IPresenter
+    public class SelectSensorsPresenter : Presenter
     {
-        private IViewSelection view;
-        public IViewSelection View
-        {
-            get { return view; }
-            set
-            {
-                if (view != null)
-                    return;
 
-                view = value;
-            }
-        }
-
-        public static IRepository<Sensor> SensorRepository { get; private set; }
-        public static IRepository<Data> DataRepository { get; private set; }
         public static List<Sensor> FinalList { get; set; }
 
         public SelectSensorsPresenter()
         {
             FinalList = new List<Sensor>();
-        }
-
-        public void Run(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
-        {
-            SensorRepository = sensorRepositoryParam;
-            DataRepository = dataRepositoryParam;
-
-            view.ShowDialog();
         }
 
         public static IEnumerable<Sensor> GetSensorsByName(string sensorNameParam)
@@ -71,6 +48,17 @@ namespace Presentation.Presenters
             {
                 yield return s.SensorType;
             }
+        }
+
+        public override void Run(IView viewParam, IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
+        {
+            View = viewParam;
+            View.FormClosed += (s, ev) => 
+
+            SensorRepository = sensorRepositoryParam;
+            DataRepository = dataRepositoryParam;
+
+            View.ShowDialog();
         }
     }
 }
