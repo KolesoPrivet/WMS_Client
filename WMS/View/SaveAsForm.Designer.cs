@@ -226,7 +226,6 @@
             this.comboBoxSensorName.Name = "comboBoxSensorName";
             this.comboBoxSensorName.Size = new System.Drawing.Size(243, 21);
             this.comboBoxSensorName.TabIndex = 0;
-            this.comboBoxSensorName.SelectedIndexChanged += new System.EventHandler(this.comboBoxSensorName_SelectedIndexChanged);
             // 
             // groupBox2
             // 
@@ -247,7 +246,6 @@
             this.comboBoxSensorType.Name = "comboBoxSensorType";
             this.comboBoxSensorType.Size = new System.Drawing.Size(243, 21);
             this.comboBoxSensorType.TabIndex = 0;
-            this.comboBoxSensorType.SelectedIndexChanged += new System.EventHandler(this.comboBoxSensorType_SelectedIndexChanged);
             // 
             // checkBoxEnableTimeInterval
             // 
