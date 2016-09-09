@@ -91,12 +91,6 @@
     <Compile Include="View\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\AddSensorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\AddSensorForm.Designer.cs">
-      <DependentUpon>AddSensorForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,9 +119,6 @@
     </Compile>
     <EmbeddedResource Include="View\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\AddSensorForm.resx">
-      <DependentUpon>AddSensorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

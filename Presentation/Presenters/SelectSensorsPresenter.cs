@@ -7,7 +7,7 @@ using DomainModel.Extentions;
 using Presentation.Common;
 using Presentation.Views;
 
-namespace Presentation.Presenter
+namespace Presentation.Presenters
 {
     public class SelectSensorsPresenter : IPresenter
     {

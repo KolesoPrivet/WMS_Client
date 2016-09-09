@@ -12,6 +12,19 @@ namespace Presentation.Common
             InitializeComponent();
         }
 
+        public Presenter OwnPresenter
+        {
+            get
+            {
+                return OwnPresenter;
+            }
+
+            set
+            {
+
+            }
+        }
+
         public void Show(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
         {
             throw new NotImplementedException();

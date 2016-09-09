@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using UI.View;
-using Presentation.Presenter;
+using Presentation.Presenters;
 using DomainModel.Entity;
 using DomainModel.Abstract;
 using Ninject;

@@ -10,7 +10,7 @@ using GMap.NET;
 
 using DomainModel.Entity;
 
-using Presentation.Presenter;
+using Presentation.Presenters;
 using Presentation.Common;
 using Presentation.ViewModels;
 
@@ -339,11 +339,6 @@ namespace UI.View
         private void ExitMenu_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void AddSensMenu_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         private void SaveAsMenu_Click(object sender, EventArgs e)

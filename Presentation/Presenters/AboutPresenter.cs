@@ -2,7 +2,7 @@
 using DomainModel.Entity;
 using Presentation.Common;
 
-namespace Presentation.Presenter
+namespace Presentation.Presenters
 {
     public class AboutPresenter
     {

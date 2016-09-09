@@ -45,7 +45,6 @@ C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\bin\Release\ru\EntityFramework.resources.dll
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.csprojResolveAssemblyReference.cache
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\Presentation.Common.AboutForm.resources
-C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.View.AddSensorForm.resources
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.View.MainForm.resources
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\WMS.Properties.Resources.resources
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.View.SelectDateForm.resources

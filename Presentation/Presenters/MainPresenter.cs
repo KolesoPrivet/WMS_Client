@@ -13,7 +13,7 @@ using GMap.NET.WindowsForms.Markers;
 using Presentation.Common;
 using Presentation.ViewModels;
 
-namespace Presentation.Presenter
+namespace Presentation.Presenters
 {
     public class MainPresenter : IPresenter
     {

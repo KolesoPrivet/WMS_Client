@@ -822,13 +822,6 @@
             this.PropertiesMenu.Size = new System.Drawing.Size(79, 20);
             this.PropertiesMenu.Text = "Настройки";
             // 
-            // AddSensMenu
-            // 
-            this.AddSensMenu.Name = "AddSensMenu";
-            this.AddSensMenu.Size = new System.Drawing.Size(166, 22);
-            this.AddSensMenu.Text = "Добавить датчик";
-            this.AddSensMenu.Click += new System.EventHandler(this.AddSensMenu_Click);
-            // 
             // HelpMenu
             // 
             this.HelpMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
