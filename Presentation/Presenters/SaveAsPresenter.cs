@@ -16,8 +16,6 @@ namespace Presentation.Presenters
             FinalList = new List<Data>();
         }
 
-        
-
         public override void Run(IView viewParam,IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
         {
             View = viewParam;
