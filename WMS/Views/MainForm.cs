@@ -33,10 +33,7 @@ namespace UI.Views
 
             set
             {
-                if(value != null)
-                {
-                    OwnPresenter = value;
-                }
+                OwnPresenter = value;
             }
         }
         #endregion
@@ -149,7 +146,7 @@ namespace UI.Views
 
                 dgvSens.DataSource = await Task.Factory.StartNew( () =>
                 {
-                    var items = MainPresenter.GetSensorsList();
+                    var items = ((MainPresenter)OwnPresenter).GetSensorsList();
 
                     foreach (var i in items)
                         comboBoxSNMap.Items.Add( i.Name );
@@ -159,12 +156,12 @@ namespace UI.Views
 
                 dgvData.DataSource = await Task.Factory.StartNew( () =>
                 {
-                    return MainPresenter.GetDataList();
+                    return ((MainPresenter)OwnPresenter).GetDataList();
                 } );
 
                 await Task.Factory.StartNew( () =>
                 {
-                    MainMap.Overlays.Add( MainPresenter.GetMarkersOfSensors() );
+                    MainMap.Overlays.Add( ((MainPresenter)OwnPresenter).GetMarkersOfSensors() );
                 } );
 
                 if (!isDataLoadedFromDB)
@@ -256,8 +253,8 @@ namespace UI.Views
         private void btnSelectSensorsForQuiz_Click(object sender, EventArgs e)
         {
             //TODO: realize dependency injection
-            ViewPresenter view = new ViewPresenter( new SelectSensorsFactory(), 
-                MainPresenter.SensorRepository, MainPresenter.DataRepository );
+            ViewPresenter view = new ViewPresenter( new SelectSensorsFactory(),
+                OwnPresenter.SensorRepository, OwnPresenter.DataRepository );
 
             view.Run();
 
@@ -271,53 +268,53 @@ namespace UI.Views
 
         private void rButtonChooseSensors_MouseClick(object sender, MouseEventArgs e)
         {
-            SelectSensorsPresenter presenter = new SelectSensorsPresenter();
-            SelectSensorsForm form = new SelectSensorsForm();
+            //SelectSensorsPresenter presenter = new SelectSensorsPresenter();
+            //SelectSensorsForm form = new SelectSensorsForm();
 
-            form.FormClosed += (s, ev) =>
-            {
-                if (SelectSensorsPresenter.FinalList.Count > 0)
-                {
-                    dgvSens.DataSource = SelectSensorsPresenter.FinalList;
-                }
-            };
+            //form.FormClosed += (s, ev) =>
+            //{
+            //    if (SelectSensorsPresenter.FinalList.Count > 0)
+            //    {
+            //        dgvSens.DataSource = SelectSensorsPresenter.FinalList;
+            //    }
+            //};
 
-            presenter.View = form;
-            presenter.Run( MainPresenter.SensorRepository, MainPresenter.DataRepository );
+            //presenter.View = form;
+            //presenter.Run( MainPresenter.SensorRepository, MainPresenter.DataRepository );
         }
 
         private void rButtonAllSensors_MouseClick(object sender, MouseEventArgs e)
         {
-            dgvSens.DataSource = MainPresenter.GetSensorsList();
+            dgvSens.DataSource = ((MainPresenter)OwnPresenter).GetSensorsList();
 
             rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
         }
 
         private void rButtonChooseDate_MouseClick(object sender, EventArgs e)
         {
-            var currentRow = dgvSens.CurrentRow;
-            if (currentRow != null)
-            {
-                var currentSensor = currentRow.DataBoundItem as Sensor;
+            //var currentRow = dgvSens.CurrentRow;
+            //if (currentRow != null)
+            //{
+            //    var currentSensor = currentRow.DataBoundItem as Sensor;
 
-                SelectDatePresenter presenter = new SelectDatePresenter();
-                SelectDateForm form = new SelectDateForm( currentSensor.Id );
+            //    SelectDatePresenter presenter = new SelectDatePresenter();
+            //    SelectDateForm form = new SelectDateForm( currentSensor.Id );
 
-                form.FormClosed += (s, ev) =>
-                {
-                    if (SelectDatePresenter.FinalList.Count > 0)
-                    {
-                        dgvData.DataSource = SelectDatePresenter.FinalList.OrderBy( d => d.Date ).ToList();
-                    }
-                };
+            //    form.FormClosed += (s, ev) =>
+            //    {
+            //        if (SelectDatePresenter.FinalList.Count > 0)
+            //        {
+            //            dgvData.DataSource = SelectDatePresenter.FinalList.OrderBy( d => d.Date ).ToList();
+            //        }
+            //    };
 
-                presenter.View = form;
-                presenter.Run( MainPresenter.SensorRepository, MainPresenter.DataRepository );
-            }
-            else
-            {
-                MessageBox.Show( "Необходимо выбрать датчик в таблице датчиков" );
-            }
+            //    presenter.View = form;
+            //    presenter.Run( MainPresenter.SensorRepository, MainPresenter.DataRepository );
+            //}
+            //else
+            //{
+            //    MessageBox.Show( "Необходимо выбрать датчик в таблице датчиков" );
+            //}
         }
 
         private void rButtonAllDates_MouseClick(object sender, EventArgs e)
@@ -343,7 +340,7 @@ namespace UI.Views
         private void AboutProgramMenu_Click(object sender, EventArgs e)
         {
             var presenter = new AboutPresenter( new AboutForm() );
-            presenter.Run( MainPresenter.SensorRepository, MainPresenter.DataRepository );
+            presenter.Run( OwnPresenter.SensorRepository, OwnPresenter.DataRepository );
         }
 
         private void RestartMenu_Click(object sender, EventArgs e)
@@ -363,24 +360,24 @@ namespace UI.Views
 
         private void SaveAsMenu_Click(object sender, EventArgs e)
         {
-            SaveAsPresenter presenter = new SaveAsPresenter();
-            SaveAsForm form = new SaveAsForm();
+            //SaveAsPresenter presenter = new SaveAsPresenter();
+            //SaveAsForm form = new SaveAsForm();
 
-            form.FormClosed += (s, ev) =>
-            {
-                //TODO: доделай логику обработки события закрытия формы сохранения
-            };
+            //form.FormClosed += (s, ev) =>
+            //{
+            //    //TODO: доделай логику обработки события закрытия формы сохранения
+            //};
 
-            presenter.View = form;
-            presenter.Run( MainPresenter.SensorRepository, MainPresenter.DataRepository );
+            //presenter.View = form;
+            //presenter.Run( MainPresenter.SensorRepository, MainPresenter.DataRepository );
         }
         #endregion
 
         #region Filters
         private void comboBoxSNMap_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Sensor currentSensor = MainPresenter.GetSensorByName( comboBoxSNMap.Text );
-            Data lastDataOfCurrentSensor = MainPresenter.GetLastData( currentSensor );
+            Sensor currentSensor = OwnPresenter.GetSensorByName( comboBoxSNMap.Text );
+            Data lastDataOfCurrentSensor = ((MainPresenter)OwnPresenter).GetLastData( currentSensor );
 
             if (lastDataOfCurrentSensor != null)
             {

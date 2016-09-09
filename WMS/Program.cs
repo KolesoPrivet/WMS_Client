@@ -21,13 +21,13 @@ namespace Presentation
             ninjectKernel.Bind<IRepository<Sensor>>().To<EFSensorRepository>();
             ninjectKernel.Bind<IRepository<Data>>().To<EFDataRepository>();
             
-            IRepository<Sensor> sensorRepository = ninjectKernel.Get<IRepository<Sensor>>();
-            IRepository<Data> dataRepository = ninjectKernel.Get<IRepository<Data>>();
+            //IRepository<Sensor> sensorRepository = ninjectKernel.Get<IRepository<Sensor>>();
+            //IRepository<Data> dataRepository = ninjectKernel.Get<IRepository<Data>>();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            ViewPresenter view = new ViewPresenter( new MainFactory(), sensorRepository, dataRepository );
+            ViewPresenter view = new ViewPresenter( new MainFactory(), new EFSensorRepository(), new EFDataRepository() );
             view.Run();
         }
     }

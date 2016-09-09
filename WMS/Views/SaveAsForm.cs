@@ -38,12 +38,12 @@ namespace UI.Views
 
         private void SaveAsForm_Load(object sender, EventArgs e)
         {
-            foreach (var s in SaveAsPresenter.GetSensorsNames())
+            foreach (var s in OwnPresenter.GetSensorsNames())
             {
                 comboBoxSensorName.Items.Add( s );
             }
 
-            foreach (var s in SaveAsPresenter.GetSensorsTypes())
+            foreach (var s in OwnPresenter.GetSensorsTypes())
             {
                 if(!comboBoxSensorType.Items.Contains(s))
                     comboBoxSensorType.Items.Add( s );
@@ -63,7 +63,7 @@ namespace UI.Views
              {
                  if (!txtBoxFirstTimeValue.Enabled)
                  {
-                     SaveAsPresenter.FinalList.AddRange( SaveAsPresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>() ) );
+                     SaveAsPresenter.FinalList.AddRange( OwnPresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>() ) );
 
                  }
                  else
@@ -91,7 +91,7 @@ namespace UI.Views
         private void comboBoxSensorType_SelectedIndexChanged(object sender, EventArgs e)
         {
             //TODO: filter comboboxSensorName by sensor type
-            foreach (var s in SelectSensorsPresenter.GetSensorsNames( comboBoxSensorType.Text ))
+            foreach (var s in ((SelectSensorsPresenter)OwnPresenter).GetSensorsNames( comboBoxSensorType.Text ))
             {
                 comboBoxSensorName.Items.Add( s );
             }

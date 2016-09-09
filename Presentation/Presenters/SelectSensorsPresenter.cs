@@ -18,7 +18,7 @@ namespace Presentation.Presenters
             FinalList = new List<Sensor>();
         }
 
-        public static IEnumerable<Sensor> GetSensorsByName(string sensorNameParam)
+        public IEnumerable<Sensor> GetSensorsByName(string sensorNameParam)
         {
             foreach (var s in SensorRepository.Filter( s => s.Name == sensorNameParam ))
             {
@@ -26,34 +26,9 @@ namespace Presentation.Presenters
             }
         }
 
-        public static IEnumerable<string> GetSensorsNames()
-        {
-            foreach (var s in SensorRepository.Get)
-            {
-                yield return s.Name;
-            }
-        }
-
-        public static IEnumerable<string> GetSensorsNames(string sensorTypeParam)
-        {
-            foreach (var sensor in SensorRepository.Filter( s => s.SensorType == sensorTypeParam ))
-            {
-                yield return sensor.Name;
-            }
-        }
-
-        public static IEnumerable<string> GetSensorsTypes()
-        {
-            foreach (var s in SensorRepository.Get)
-            {
-                yield return s.SensorType;
-            }
-        }
-
         public override void Run(IView viewParam, IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
         {
             View = viewParam;
-            View.FormClosed += (s, ev) => 
 
             SensorRepository = sensorRepositoryParam;
             DataRepository = dataRepositoryParam;

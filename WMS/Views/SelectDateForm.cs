@@ -36,7 +36,7 @@ namespace UI.Views
 
         private void SelectDateForm_Load(object sender, EventArgs e)
         {
-            foreach (var s in SelectDatePresenter.GetDates( selectedSensorId ))
+            foreach (var s in OwnPresenter.GetDates( selectedSensorId ))
             {
                 if (!chBoxDates.Items.Contains( s ))
                     chBoxDates.Items.Add( s.Date );
@@ -56,7 +56,7 @@ namespace UI.Views
         {
             if (!txtBoxFirstTimeValue.Enabled)
             {
-                SelectDatePresenter.FinalList.AddRange( SelectDatePresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>() ) );
+                SelectDatePresenter.FinalList.AddRange( OwnPresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>() ) );
 
                 Close();
             }
@@ -66,7 +66,7 @@ namespace UI.Views
                     && regexPatternForTime.IsMatch( txtBoxSecondTimeValue.Text ))
                 {
                     SelectDatePresenter.FinalList.AddRange(
-                        SelectDatePresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>(),
+                        OwnPresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>(),
                                                      TimeSpan.Parse( txtBoxFirstTimeValue.Text ),
                                                      TimeSpan.Parse( txtBoxSecondTimeValue.Text ) ) );
 

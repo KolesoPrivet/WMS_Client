@@ -36,10 +36,10 @@ namespace UI.Views
 
         private void SelectSensorsForm_Load(object sender, EventArgs e)
         {
-            foreach (var s in SelectSensorsPresenter.GetSensorsNames())
+            foreach (var s in ((SelectSensorsPresenter)OwnPresenter).GetSensorsNames())
                 chBoxSensorsNames.Items.Add( s );
 
-            foreach (var s in SelectSensorsPresenter.GetSensorsTypes())
+            foreach (var s in ((SelectSensorsPresenter)OwnPresenter).GetSensorsTypes())
                 comboBoxSensorType.Items.Add( s );
         }
         #endregion
@@ -49,7 +49,7 @@ namespace UI.Views
         {
             chBoxSensorsNames.Items.Clear();
 
-            foreach (var s in SelectSensorsPresenter.GetSensorsNames( comboBoxSensorType.Text ))
+            foreach (var s in ((SelectSensorsPresenter)OwnPresenter).GetSensorsNames( comboBoxSensorType.Text ))
             {
                 chBoxSensorsNames.Items.Add( s );
             }
