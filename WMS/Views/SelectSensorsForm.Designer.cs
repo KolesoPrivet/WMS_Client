@@ -97,7 +97,6 @@
             this.Controls.Add(this.gpBoxSelectSensorsNames);
             this.Name = "SelectSensorsForm";
             this.Text = "Выборка датчиков";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SelectSensorsForm_FormClosed);
             this.Load += new System.EventHandler(this.SelectSensorsForm_Load);
             this.gpBoxSelectSensorsNames.ResumeLayout(false);
             this.gpBoxSelectSensorsTypes.ResumeLayout(false);
