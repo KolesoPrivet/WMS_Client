@@ -10,23 +10,24 @@ namespace UI.Views
 {
     public partial class SelectSensorsForm : Form, IView
     {
+        private Presenter _ownPresenter;
         public Presenter OwnPresenter
         {
             get
             {
-                return OwnPresenter;
+                return _ownPresenter;
             }
 
             set
             {
                 if (value != null)
                 {
-                    OwnPresenter = value;
+                    _ownPresenter = value;
                 }
             }
         }
 
-        public static List<Sensor> FinalList { get; private set; } = new List<Sensor>();
+        public static List<Sensor> FinalList { get; } = new List<Sensor>();
 
         #region Constructors
         public SelectSensorsForm()
@@ -36,11 +37,14 @@ namespace UI.Views
 
         private void SelectSensorsForm_Load(object sender, EventArgs e)
         {
-            foreach (var s in SelectSensorsPresenter.GetSensorsNames())
+            foreach (var s in OwnPresenter.GetSensorsNames())
                 chBoxSensorsNames.Items.Add( s );
 
-            foreach (var s in SelectSensorsPresenter.GetSensorsTypes())
-                comboBoxSensorType.Items.Add( s );
+            foreach (var s in OwnPresenter.GetSensorsTypes())
+            {
+                if (!comboBoxSensorType.Items.Contains( s ))
+                    comboBoxSensorType.Items.Add( s );
+            }
         }
         #endregion
 
@@ -49,7 +53,7 @@ namespace UI.Views
         {
             chBoxSensorsNames.Items.Clear();
 
-            foreach (var s in SelectSensorsPresenter.GetSensorsNames( comboBoxSensorType.Text ))
+            foreach (var s in OwnPresenter.GetSensorsNames( comboBoxSensorType.Text ))
             {
                 chBoxSensorsNames.Items.Add( s );
             }

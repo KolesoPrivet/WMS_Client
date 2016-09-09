@@ -95,9 +95,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\SaveAsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\SaveAsForm.cs" />
     <Compile Include="View\SaveAsForm.Designer.cs">
       <DependentUpon>SaveAsForm.cs</DependentUpon>
     </Compile>
@@ -105,9 +103,7 @@
     <Compile Include="View\SelectDateForm.Designer.cs">
       <DependentUpon>SelectDateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\SelectSensorsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\SelectSensorsForm.cs" />
     <Compile Include="View\SelectSensorsForm.Designer.cs">
       <DependentUpon>SelectSensorsForm.cs</DependentUpon>
     </Compile>
