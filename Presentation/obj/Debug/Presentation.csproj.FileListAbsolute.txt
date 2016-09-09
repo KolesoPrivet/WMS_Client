@@ -1,0 +1,13 @@
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Debug\Presentation.dll
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Debug\Presentation.pdb
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Debug\DomainModel.dll
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Debug\GMap.NET.Core.dll
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Debug\GMap.NET.WindowsForms.dll
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Debug\EntityFramework.dll
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Debug\DomainModel.pdb
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Debug\GMap.NET.Core.xml
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Debug\GMap.NET.WindowsForms.xml
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Debug\EntityFramework.xml
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\obj\Debug\Presentation.csprojResolveAssemblyReference.cache
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\obj\Debug\Presentation.dll
+C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\obj\Debug\Presentation.pdb

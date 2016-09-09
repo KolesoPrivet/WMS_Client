@@ -54,8 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\IView.cs" />
-    <Compile Include="Common\IPresenter.cs" />
+    <Compile Include="Common\Presenter.cs" />
     <Compile Include="Presenters\AboutPresenter.cs" />
+    <Compile Include="Presenters\AddSensorPresenter.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
     <Compile Include="Presenters\SaveAsPresenter.cs" />
     <Compile Include="Presenters\SelectDatePresenter.cs" />

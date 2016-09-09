@@ -7,21 +7,8 @@ using DomainModel.Extentions;
 
 namespace Presentation.Presenters
 {
-    public class SelectDatePresenter : IPresenter
+    public class SelectDatePresenter : Presenter
     {
-        private IView view;
-        public IView View
-        {
-            get { return view; }
-            set
-            {
-                if (view != null)
-                    return;
-
-                view = value;
-            }
-        }
-
         public static IRepository<Sensor> SensorRepository { get; private set; }
         public static IRepository<Data> DataRepository { get; private set; }
         public static List<Data> FinalList { get; private set; }
@@ -71,12 +58,14 @@ namespace Presentation.Presenters
             }
         }
 
-        public void Run(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
+        public override void Run(IView viewParam, IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
         {
+            View = viewParam;
+
             SensorRepository = sensorRepositoryParam;
             DataRepository = dataRepositoryParam;
 
-            view.ShowDialog();
+            View.ShowDialog();
         }
     }
 }

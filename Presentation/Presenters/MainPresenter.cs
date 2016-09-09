@@ -15,19 +15,16 @@ using Presentation.ViewModels;
 
 namespace Presentation.Presenters
 {
-    public class MainPresenter : IPresenter
+    public class MainPresenter : Presenter
     {
-        private readonly IView view;
-
         public static IRepository<Sensor> SensorRepository { get; private set; }
         public static IRepository<Data> DataRepository { get; private set; }
 
         public static List<Sensor> RequestList { get; private set; }
         public static List<Log> LogsList { get; private set; }
 
-        public MainPresenter(IView viewParam)
+        public MainPresenter()
         {
-            view = viewParam;
             RequestList = new List<Sensor>();
             LogsList = new List<Log>();
         }
@@ -70,12 +67,13 @@ namespace Presentation.Presenters
             return markersOverlay;
         }
 
-        public void Run(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
+        public override void Run(IView viewParam, IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
         {
+            View = viewParam;
             SensorRepository = sensorRepositoryParam;
             DataRepository = dataRepositoryParam;
 
-            view.Show();
+            View.Show();
         }
     }
 }

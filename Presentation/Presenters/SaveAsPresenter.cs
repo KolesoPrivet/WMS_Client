@@ -7,21 +7,8 @@ using DomainModel.Extentions;
 
 namespace Presentation.Presenters
 {
-    public class SaveAsPresenter : IPresenter
+    public class SaveAsPresenter : Presenter
     {
-        private IView view;
-        public IView View
-        {
-            get { return view; }
-            set
-            {
-                if (view != null)
-                    return;
-
-                view = value;
-            }
-        }
-
         public static List<Data> FinalList { get; private set; }
 
         public SaveAsPresenter()
@@ -35,6 +22,15 @@ namespace Presentation.Presenters
             foreach (var s in SensorRepository.Get)
             {
                 yield return s.Name;
+            }
+        }
+
+        //TODO: GetSensorsTypes in 2 presenters!
+        public static IEnumerable<string> GetSensorsNames(string sensorTypeParam)
+        {
+            foreach (var sensor in SensorRepository.Filter( s => s.SensorType == sensorTypeParam ))
+            {
+                yield return sensor.Name;
             }
         }
 
@@ -57,6 +53,18 @@ namespace Presentation.Presenters
         }
 
         //TODO: GetData in 2 presenters!
+        public static IEnumerable<Data> GetData(IEnumerable<DateTime> dates)
+        {
+            foreach (var date in dates)
+            {
+                foreach (var data in DataRepository.Filter( d => d.Date == date ))
+                {
+                    yield return data;
+                }
+            }
+        }
+
+        //TODO: GetData in 2 presenters!
         public static IEnumerable<Data> GetData(IEnumerable<DateTime> dates, TimeSpan firstTime, TimeSpan secondTime)
         {
             foreach (var date in dates)
@@ -73,12 +81,14 @@ namespace Presentation.Presenters
         public static IRepository<Sensor> SensorRepository { get; private set; }
         public static IRepository<Data> DataRepository { get; private set; }
 
-        public void Run(IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
+        public override void Run(IView viewParam,IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
         {
+            View = viewParam;
+
             SensorRepository = sensorRepositoryParam;
             DataRepository = dataRepositoryParam;
 
-            view.ShowDialog();
+            View.ShowDialog();
         }
     }
 }
