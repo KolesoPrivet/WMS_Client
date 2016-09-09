@@ -17,9 +17,6 @@ namespace Presentation.Presenters
 {
     public class MainPresenter : Presenter
     {
-        public static IRepository<Sensor> SensorRepository { get; private set; }
-        public static IRepository<Data> DataRepository { get; private set; }
-
         public static List<Sensor> RequestList { get; private set; }
         public static List<Log> LogsList { get; private set; }
 
@@ -29,12 +26,12 @@ namespace Presentation.Presenters
             LogsList = new List<Log>();
         }
 
-        public static List<Sensor> GetSensorsList()
+        public List<Sensor> GetSensorsList()
         {
             return SensorRepository.Get.ToList();
         }
 
-        public static List<Data> GetDataList()
+        public List<Data> GetDataList()
         {
             return (from c in DataRepository.Get
                     where c.SensorId == SensorRepository.Get.FirstOrDefault().Id
@@ -42,17 +39,12 @@ namespace Presentation.Presenters
                     select c).ToList();
         }
 
-        public static Data GetLastData(Sensor currentSensorParam)
+        public Data GetLastData(Sensor currentSensorParam)
         {
             return DataRepository.SingleFilter( d => d.SensorId == currentSensorParam.Id );
         }
 
-        public static Sensor GetSensorByName(string sensorNameParam)
-        {
-            return SensorRepository.SingleFilter( s => s.Name == sensorNameParam );
-        }
-
-        public static GMapOverlay GetMarkersOfSensors()
+        public GMapOverlay GetMarkersOfSensors()
         {
             var markersOverlay = new GMapOverlay( "markers" );
             markersOverlay.Markers.Clear();
