@@ -5,6 +5,7 @@ using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace UI.View
@@ -44,12 +45,16 @@ namespace UI.View
         {
             await Task.Factory.StartNew( () =>
              {
-                 Excel.Application excelAppl = new Excel.Application();
-                 Excel._Worksheet workSheet = excelAppl.ActiveSheet;
+                 if (!txtBoxFirstTimeValue.Enabled)
+                 {
+                     SaveAsPresenter.FinalList.AddRange( SaveAsPresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>() ) );
 
-                 workSheet.Cells[1, "A"] = "Name";
-                 workSheet.Cells[1, "B"] = "Type";
-                 workSheet.Cells[1, "C"] = "Date";
+                 }
+                 else
+                 {
+
+                 }
+
              } );
         }
 
@@ -65,6 +70,20 @@ namespace UI.View
                 txtBoxFirstTimeValue.Enabled = true;
                 txtBoxSecondTimeValue.Enabled = true;
             }
+        }
+
+        private void comboBoxSensorType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO: filter comboboxSensorName by sensor type
+            foreach (var s in SelectSensorsPresenter.GetSensorsNames( comboBoxSensorType.Text ))
+            {
+                comboBoxSensorName.Items.Add( s );
+            }
+        }
+
+        private void comboBoxSensorName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO: filter chBox by sensor name
         }
     }
 }
