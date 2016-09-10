@@ -176,6 +176,7 @@
             // 
             // btnSelectSensorsForRequest
             // 
+            this.btnSelectSensorsForRequest.Enabled = false;
             this.btnSelectSensorsForRequest.Location = new System.Drawing.Point(136, 11);
             this.btnSelectSensorsForRequest.Name = "btnSelectSensorsForRequest";
             this.btnSelectSensorsForRequest.Size = new System.Drawing.Size(141, 23);
@@ -255,6 +256,7 @@
             // 
             // btnShwMap
             // 
+            this.btnShwMap.Enabled = false;
             this.btnShwMap.Location = new System.Drawing.Point(6, 19);
             this.btnShwMap.Name = "btnShwMap";
             this.btnShwMap.Size = new System.Drawing.Size(271, 29);
@@ -278,6 +280,7 @@
             // comboBoxSNMap
             // 
             this.comboBoxSNMap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSNMap.Enabled = false;
             this.comboBoxSNMap.FormattingEnabled = true;
             this.comboBoxSNMap.Location = new System.Drawing.Point(90, 19);
             this.comboBoxSNMap.Name = "comboBoxSNMap";
@@ -533,6 +536,7 @@
             // 
             this.rButtonAllDates.AutoSize = true;
             this.rButtonAllDates.Checked = true;
+            this.rButtonAllDates.Enabled = false;
             this.rButtonAllDates.Location = new System.Drawing.Point(17, 24);
             this.rButtonAllDates.Name = "rButtonAllDates";
             this.rButtonAllDates.Size = new System.Drawing.Size(85, 17);
@@ -545,6 +549,7 @@
             // rButtonChooseDate
             // 
             this.rButtonChooseDate.AutoSize = true;
+            this.rButtonChooseDate.Enabled = false;
             this.rButtonChooseDate.Location = new System.Drawing.Point(119, 24);
             this.rButtonChooseDate.Name = "rButtonChooseDate";
             this.rButtonChooseDate.Size = new System.Drawing.Size(81, 17);
@@ -638,6 +643,7 @@
             // 
             this.rButtonAllSensors.AutoSize = true;
             this.rButtonAllSensors.Checked = true;
+            this.rButtonAllSensors.Enabled = false;
             this.rButtonAllSensors.Location = new System.Drawing.Point(17, 24);
             this.rButtonAllSensors.Name = "rButtonAllSensors";
             this.rButtonAllSensors.Size = new System.Drawing.Size(87, 17);
@@ -650,6 +656,7 @@
             // rButtonChooseSensors
             // 
             this.rButtonChooseSensors.AutoSize = true;
+            this.rButtonChooseSensors.Enabled = false;
             this.rButtonChooseSensors.Location = new System.Drawing.Point(119, 24);
             this.rButtonChooseSensors.Name = "rButtonChooseSensors";
             this.rButtonChooseSensors.Size = new System.Drawing.Size(81, 17);
@@ -794,6 +801,7 @@
             // 
             // SaveAsMenu
             // 
+            this.SaveAsMenu.Enabled = false;
             this.SaveAsMenu.Name = "SaveAsMenu";
             this.SaveAsMenu.Size = new System.Drawing.Size(152, 22);
             this.SaveAsMenu.Text = "Сохранить в...";
@@ -876,7 +884,6 @@
             this.Name = "MainForm";
             this.Text = "Беспроводная система мониторинга WMS";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabPage1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

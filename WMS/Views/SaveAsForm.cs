@@ -1,27 +1,24 @@
-﻿using Presentation.Presenters;
-using Presentation.Common;
-
-using System;
+﻿using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Linq;
-using Excel = Microsoft.Office.Interop.Excel;
+using System.Collections.Generic;
+
+using Presentation.Presenters;
+using Presentation.Common;
+
+using DomainModel.Entity;
 
 namespace UI.Views
 {
     public partial class SaveAsForm : Form, IView
     {
-        public SaveAsForm()
-        {
-            InitializeComponent();
-        }
-
-        private string _filePath;
+        private string filePath = Environment.CurrentDirectory;
         private readonly Regex regexPatternForTime = new Regex( "^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$" );
+        public static List<Data> FinalList { get; } = new List<Data>();
 
         private Presenter _ownPresenter;
-
         public Presenter OwnPresenter
         {
             get
@@ -38,6 +35,11 @@ namespace UI.Views
             }
         }
 
+        public SaveAsForm()
+        {
+            InitializeComponent();
+        }
+
         private void SaveAsForm_Load(object sender, EventArgs e)
         {
             foreach (var s in OwnPresenter.GetSensorsNames())
@@ -47,7 +49,7 @@ namespace UI.Views
 
             foreach (var s in OwnPresenter.GetSensorsTypes())
             {
-                if(!comboBoxSensorType.Items.Contains(s))
+                if (!comboBoxSensorType.Items.Contains( s ))
                     comboBoxSensorType.Items.Add( s );
             }
         }
@@ -56,7 +58,7 @@ namespace UI.Views
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
             if (folderBrowser.ShowDialog() == DialogResult.OK)
-                _filePath = folderBrowser.SelectedPath;
+                filePath = folderBrowser.SelectedPath;
         }
 
         private async void btnSaveFile_Click(object sender, EventArgs e)
@@ -65,14 +67,13 @@ namespace UI.Views
              {
                  if (!txtBoxFirstTimeValue.Enabled)
                  {
-                     SaveAsPresenter.FinalList.AddRange( OwnPresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>() ) );
-
+                     FinalList.AddRange( OwnPresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>() ) );
+                     ((SaveAsPresenter)OwnPresenter).SaveFileExcel( FinalList, filePath, txtBoxFileName.Text );
                  }
                  else
                  {
-
+                     //TODO: filter data by time interval
                  }
-
              } );
         }
 
@@ -92,8 +93,9 @@ namespace UI.Views
 
         private void comboBoxSensorType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //TODO: filter comboboxSensorName by sensor type
-            foreach (var s in ((SelectSensorsPresenter)OwnPresenter).GetSensorsNames( comboBoxSensorType.Text ))
+            comboBoxSensorName.Items.Clear();
+
+            foreach (var s in OwnPresenter.GetSensorsNames( comboBoxSensorType.Text ))
             {
                 comboBoxSensorName.Items.Add( s );
             }
@@ -101,7 +103,12 @@ namespace UI.Views
 
         private void comboBoxSensorName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //TODO: filter chBox by sensor name
+            foreach (var d in OwnPresenter.GetDates( comboBoxSensorName.Text ).OrderBy( d => d.Date ).ToList())
+                chBoxDates.Items.Add( d );
+
+            chBoxDates.Enabled = true;
+            checkBoxEnableTimeInterval.Enabled = true;
+            btnSaveFile.Enabled = true;
         }
     }
 }

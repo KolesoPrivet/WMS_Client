@@ -1,6 +1,6 @@
-﻿using System;
-using DomainModel.Abstract;
+﻿using DomainModel.Abstract;
 using DomainModel.Entity;
+
 using Presentation.Common;
 
 namespace Presentation.Presenters

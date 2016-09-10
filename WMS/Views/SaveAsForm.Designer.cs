@@ -33,9 +33,10 @@
             this.grBoxSaveAs = new System.Windows.Forms.GroupBox();
             this.btnPathExplorer = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtBoxFileName = new System.Windows.Forms.TextBox();
             this.lblFileName = new System.Windows.Forms.Label();
             this.gpBoxSelectTimeInterval = new System.Windows.Forms.GroupBox();
+            this.checkBoxEnableTimeInterval = new System.Windows.Forms.CheckBox();
             this.lblSecondTimeValue = new System.Windows.Forms.Label();
             this.txtBoxSecondTimeValue = new System.Windows.Forms.TextBox();
             this.lblFirstTimeValue = new System.Windows.Forms.Label();
@@ -43,17 +44,16 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chBoxDates = new System.Windows.Forms.CheckedListBox();
             this.gpBoxSaveReportSensors = new System.Windows.Forms.GroupBox();
-            this.gpBoxSensorsNames = new System.Windows.Forms.GroupBox();
-            this.comboBoxSensorName = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBoxSensorType = new System.Windows.Forms.ComboBox();
-            this.checkBoxEnableTimeInterval = new System.Windows.Forms.CheckBox();
+            this.gpBoxSensorsNames = new System.Windows.Forms.GroupBox();
+            this.comboBoxSensorName = new System.Windows.Forms.ComboBox();
             this.grBoxSaveAs.SuspendLayout();
             this.gpBoxSelectTimeInterval.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gpBoxSaveReportSensors.SuspendLayout();
-            this.gpBoxSensorsNames.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.gpBoxSensorsNames.SuspendLayout();
             this.SuspendLayout();
             // 
             // progressBarSavingInto
@@ -78,7 +78,7 @@
             // 
             this.grBoxSaveAs.Controls.Add(this.btnPathExplorer);
             this.grBoxSaveAs.Controls.Add(this.label1);
-            this.grBoxSaveAs.Controls.Add(this.textBox1);
+            this.grBoxSaveAs.Controls.Add(this.txtBoxFileName);
             this.grBoxSaveAs.Controls.Add(this.lblFileName);
             this.grBoxSaveAs.Location = new System.Drawing.Point(12, 151);
             this.grBoxSaveAs.Name = "grBoxSaveAs";
@@ -106,14 +106,14 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Путь:";
             // 
-            // textBox1
+            // txtBoxFileName
             // 
-            this.textBox1.Location = new System.Drawing.Point(79, 21);
-            this.textBox1.MaxLength = 5;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(182, 20);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBoxFileName.Location = new System.Drawing.Point(79, 21);
+            this.txtBoxFileName.MaxLength = 5;
+            this.txtBoxFileName.Name = "txtBoxFileName";
+            this.txtBoxFileName.Size = new System.Drawing.Size(182, 20);
+            this.txtBoxFileName.TabIndex = 4;
+            this.txtBoxFileName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblFileName
             // 
@@ -137,6 +137,17 @@
             this.gpBoxSelectTimeInterval.TabIndex = 33;
             this.gpBoxSelectTimeInterval.TabStop = false;
             this.gpBoxSelectTimeInterval.Text = "Выберите часовой промежуток";
+            // 
+            // checkBoxEnableTimeInterval
+            // 
+            this.checkBoxEnableTimeInterval.AutoSize = true;
+            this.checkBoxEnableTimeInterval.Enabled = false;
+            this.checkBoxEnableTimeInterval.Location = new System.Drawing.Point(6, 25);
+            this.checkBoxEnableTimeInterval.Name = "checkBoxEnableTimeInterval";
+            this.checkBoxEnableTimeInterval.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxEnableTimeInterval.TabIndex = 5;
+            this.checkBoxEnableTimeInterval.UseVisualStyleBackColor = true;
+            this.checkBoxEnableTimeInterval.CheckedChanged += new System.EventHandler(this.checkBoxEnableTimeInterval_CheckedChanged);
             // 
             // lblSecondTimeValue
             // 
@@ -207,33 +218,12 @@
             this.gpBoxSaveReportSensors.TabStop = false;
             this.gpBoxSaveReportSensors.Text = "Выберите датчик";
             // 
-            // gpBoxSensorsNames
-            // 
-            this.gpBoxSensorsNames.Controls.Add(this.comboBoxSensorName);
-            this.gpBoxSensorsNames.Location = new System.Drawing.Point(6, 19);
-            this.gpBoxSensorsNames.Name = "gpBoxSensorsNames";
-            this.gpBoxSensorsNames.Size = new System.Drawing.Size(255, 55);
-            this.gpBoxSensorsNames.TabIndex = 24;
-            this.gpBoxSensorsNames.TabStop = false;
-            this.gpBoxSensorsNames.Text = "Имя датчика";
-            // 
-            // comboBoxSensorName
-            // 
-            this.comboBoxSensorName.AllowDrop = true;
-            this.comboBoxSensorName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxSensorName.FormattingEnabled = true;
-            this.comboBoxSensorName.Location = new System.Drawing.Point(6, 18);
-            this.comboBoxSensorName.Name = "comboBoxSensorName";
-            this.comboBoxSensorName.Size = new System.Drawing.Size(243, 21);
-            this.comboBoxSensorName.TabIndex = 0;
-            this.comboBoxSensorName.SelectedIndexChanged += new System.EventHandler(this.comboBoxSensorName_SelectedIndexChanged);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.comboBoxSensorType);
-            this.groupBox2.Location = new System.Drawing.Point(6, 74);
+            this.groupBox2.Location = new System.Drawing.Point(6, 19);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(255, 55);
+            this.groupBox2.Size = new System.Drawing.Size(255, 48);
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Тип датчика";
@@ -249,15 +239,26 @@
             this.comboBoxSensorType.TabIndex = 0;
             this.comboBoxSensorType.SelectedIndexChanged += new System.EventHandler(this.comboBoxSensorType_SelectedIndexChanged);
             // 
-            // checkBoxEnableTimeInterval
+            // gpBoxSensorsNames
             // 
-            this.checkBoxEnableTimeInterval.AutoSize = true;
-            this.checkBoxEnableTimeInterval.Location = new System.Drawing.Point(6, 25);
-            this.checkBoxEnableTimeInterval.Name = "checkBoxEnableTimeInterval";
-            this.checkBoxEnableTimeInterval.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxEnableTimeInterval.TabIndex = 5;
-            this.checkBoxEnableTimeInterval.UseVisualStyleBackColor = true;
-            this.checkBoxEnableTimeInterval.CheckedChanged += new System.EventHandler(this.checkBoxEnableTimeInterval_CheckedChanged);
+            this.gpBoxSensorsNames.Controls.Add(this.comboBoxSensorName);
+            this.gpBoxSensorsNames.Location = new System.Drawing.Point(6, 80);
+            this.gpBoxSensorsNames.Name = "gpBoxSensorsNames";
+            this.gpBoxSensorsNames.Size = new System.Drawing.Size(255, 48);
+            this.gpBoxSensorsNames.TabIndex = 24;
+            this.gpBoxSensorsNames.TabStop = false;
+            this.gpBoxSensorsNames.Text = "Имя датчика";
+            // 
+            // comboBoxSensorName
+            // 
+            this.comboBoxSensorName.AllowDrop = true;
+            this.comboBoxSensorName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSensorName.FormattingEnabled = true;
+            this.comboBoxSensorName.Location = new System.Drawing.Point(6, 18);
+            this.comboBoxSensorName.Name = "comboBoxSensorName";
+            this.comboBoxSensorName.Size = new System.Drawing.Size(243, 21);
+            this.comboBoxSensorName.TabIndex = 0;
+            this.comboBoxSensorName.SelectedIndexChanged += new System.EventHandler(this.comboBoxSensorName_SelectedIndexChanged);
             // 
             // SaveAsForm
             // 
@@ -279,8 +280,8 @@
             this.gpBoxSelectTimeInterval.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.gpBoxSaveReportSensors.ResumeLayout(false);
-            this.gpBoxSensorsNames.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.gpBoxSensorsNames.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -292,7 +293,7 @@
         private System.Windows.Forms.GroupBox grBoxSaveAs;
         private System.Windows.Forms.Button btnPathExplorer;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBoxFileName;
         private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.GroupBox gpBoxSelectTimeInterval;
         private System.Windows.Forms.Label lblSecondTimeValue;

@@ -22,7 +22,7 @@ namespace UI.Views
     public partial class MainForm : Form, IView
     {
         #region Fields
-        private bool isDataLoadedFromDB = false;
+        private bool isDataLoadedFromDB;
 
         private Presenter _ownPresenter;
         public Presenter OwnPresenter
@@ -47,11 +47,6 @@ namespace UI.Views
         {
             InitializeComponent();
             CenterToScreen();
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            DisEnableControsl();
         }
 
         private void MainMap_Load(object sender, EventArgs e)
@@ -121,14 +116,20 @@ namespace UI.Views
             Application.Run( this );
         }
 
-        private void DisEnableControsl()
+        private void EnableControsl()
         {
-            rButtonAllDates.Enabled = false;
-            rButtonChooseDate.Enabled = false;
-            rButtonAllSensors.Enabled = false;
-            rButtonChooseSensors.Enabled = false;
-            btnShwMap.Enabled = false;
-            comboBoxSNMap.Enabled = false;
+            rButtonAllDates.Enabled = true;
+            rButtonChooseDate.Enabled = true;
+            rButtonAllSensors.Enabled = true;
+            rButtonChooseSensors.Enabled = true;
+
+            btnShwMap.Enabled = true;
+            btnMapRequest.Enabled = true;
+            btnSelectSensorsForRequest.Enabled = true;
+
+            SaveAsMenu.Enabled = true;
+
+            comboBoxSNMap.Enabled = true;
         }
 
         private void SettingColumns()
@@ -199,11 +200,7 @@ namespace UI.Views
 
                 if (!isDataLoadedFromDB)
                 {
-                    btnShwMap.Enabled = true;
-                    rButtonAllSensors.Enabled = true;
-                    rButtonChooseSensors.Enabled = true;
-                    rButtonAllDates.Enabled = true;
-                    rButtonChooseDate.Enabled = true;
+                    EnableControsl();
 
                     btnRefreshDB.Text = "Обновить данные";
                 }
@@ -211,14 +208,13 @@ namespace UI.Views
                 SettingColumns();
 
                 isDataLoadedFromDB = true;
+
                 progressBarLoadDataFromDB.Style = ProgressBarStyle.Continuous;
                 progressBarLoadDataFromDB.MarqueeAnimationSpeed = 0;
 
                 CheckSensorDataCount();
 
                 BindChart();
-
-                btnRefreshDB.Enabled = true;
             }
             catch (Exception ex)
             {

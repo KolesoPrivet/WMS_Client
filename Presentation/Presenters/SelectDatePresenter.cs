@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-using Presentation.Common;
+﻿using Presentation.Common;
 
 using DomainModel.Abstract;
 using DomainModel.Entity;

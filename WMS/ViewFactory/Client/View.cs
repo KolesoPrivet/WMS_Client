@@ -14,14 +14,14 @@ namespace UI.ViewFactory.Client
 
         private readonly IRepository<Sensor> sensorRepository;
         private readonly IRepository<Data> dataRepository;
-        
+
         public View(Factory factory)
         {
             concreteView = factory.CreateView();
             concretePresenter = factory.CreatePresenter();
         }
 
-        public View(Factory factory, IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepoitoryParam) : this(factory)
+        public View(Factory factory, IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepoitoryParam) : this( factory )
         {
             sensorRepository = sensorRepositoryParam;
             dataRepository = dataRepoitoryParam;

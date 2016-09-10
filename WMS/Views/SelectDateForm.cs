@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-using Presentation.Presenters;
 using Presentation.Common;
 
 using DomainModel.Entity;
@@ -32,28 +31,26 @@ namespace UI.Views
             }
         }
 
-        public static List<Data> FinalList { get; private set; } = new List<Data>();
+        public static List<Data> FinalList { get; } = new List<Data>();
 
         public SelectDateForm()
         {
             InitializeComponent();
         }
 
+        private void WarningTime()
+        {
+            toolTipForSelectDateForm.ToolTipTitle = "Внимание!";
+            toolTipForSelectDateForm.SetToolTip( txtBoxFirstTimeValue, "Введите время в 24-часовом формате. 00:00" );
+            toolTipForSelectDateForm.SetToolTip( txtBoxSecondTimeValue, "Введите время в 24-часовом формате. 00:00" );
+        }
+
         private void SelectDateForm_Load(object sender, EventArgs e)
         {
-            foreach (var s in OwnPresenter.GetDates())
+            foreach (var s in OwnPresenter.GetDates().OrderBy( d => d.Date ).ToList())
             {
                 if (!chBoxDates.Items.Contains( s ))
                     chBoxDates.Items.Add( s.Date );
-            }
-
-            var items = chBoxDates.Items.Cast<DateTime>().OrderBy( d => d.Date ).ToList();
-
-            chBoxDates.Items.Clear();
-
-            foreach (var i in items)
-            {
-                chBoxDates.Items.Add( i );
             }
         }
 
@@ -92,16 +89,12 @@ namespace UI.Views
 
         private void txtBoxFirstTimeValue_MouseEnter(object sender, EventArgs e)
         {
-            toolTipForSelectDateForm.ToolTipTitle = "Внимание!";
-            toolTipForSelectDateForm.SetToolTip( txtBoxFirstTimeValue, "Введите время в 24-часовом формате. 00:00" );
-            toolTipForSelectDateForm.SetToolTip( txtBoxSecondTimeValue, "Введите время в 24-часовом формате. 00:00" );
+            WarningTime();
         }
 
         private void txtBoxSecondTimeValue_MouseEnter(object sender, EventArgs e)
         {
-            toolTipForSelectDateForm.ToolTipTitle = "Внимание!";
-            toolTipForSelectDateForm.SetToolTip( txtBoxFirstTimeValue, "Введите время в 24-часовом формате. 00:00" );
-            toolTipForSelectDateForm.SetToolTip( txtBoxSecondTimeValue, "Введите время в 24-часовом формате. 00:00" );
+            WarningTime();
         }
 
         private void checkBoxEnableTimeInterval_CheckedChanged(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using DomainModel.Abstract;
@@ -22,6 +23,10 @@ namespace Presentation.Common
             return SensorRepository.SingleFilter( s => s.Name == sensorNameParam );
         }
 
+        /// <summary>
+        /// Return collection of all sensor names
+        /// </summary>
+        /// <returns></returns>
         public virtual IEnumerable<string> GetSensorsNames()
         {
             foreach (var s in SensorRepository.Get)
@@ -30,6 +35,11 @@ namespace Presentation.Common
             }
         }
 
+        /// <summary>
+        /// Return collection of sensors, that type is param
+        /// </summary>
+        /// <param name="sensorTypeParam"></param>
+        /// <returns></returns>
         public virtual IEnumerable<string> GetSensorsNames(string sensorTypeParam)
         {
             foreach (var sensor in SensorRepository.Filter( s => s.SensorType == sensorTypeParam ))
@@ -47,9 +57,28 @@ namespace Presentation.Common
         }
         #endregion
 
+        /// <summary>
+        /// Return all dates of current sensor
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DateTime> GetDates()
         {
             foreach (var data in DataRepository.Filter( d => d.SensorId == SensorId ))
+            {
+                yield return data.Date;
+            }
+        }
+
+        /// <summary>
+        /// Return all dates of sensor name param
+        /// </summary>
+        /// <param name="sensorNameParam"></param>
+        /// <returns></returns>
+        public IEnumerable<DateTime> GetDates(string sensorNameParam)
+        {
+            var currentSensor = SensorRepository.Get.Where(s => s.Name == sensorNameParam).First();
+
+            foreach (var data in DataRepository.Filter( d => d.SensorId == currentSensor.Id ))
             {
                 yield return data.Date;
             }
