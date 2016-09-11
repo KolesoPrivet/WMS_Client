@@ -1,19 +1,13 @@
 ﻿using System;
+using System.Collections;
 
 namespace Presentation.ViewModels
 {
     public class Log
     {
-        public DateTime EventLogTime { get; private set; }
-        public Level LevelType { get; private set; }
-        public string Description { get; private set; }
-
-        public Log(DateTime EventLogTimeParam, Level LevelTypeParam, string DescriptionParam)
-        {
-            EventLogTime = EventLogTimeParam;
-            LevelType = LevelTypeParam;
-            Description = DescriptionParam;
-        }
+        public DateTime EventLogTime { get; set; }
+        public Level LevelType { get; set; }
+        public string Description { get; set; }
     }
 
     public enum Level

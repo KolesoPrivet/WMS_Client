@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Net.NetworkInformation;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 using GMap.NET;
 
@@ -16,6 +17,8 @@ using Presentation.ViewModels;
 
 using ViewPresenter = UI.ViewFactory.Client.View;
 using UI.ViewFactory.Concrete;
+using Presentation.LogsBuilder.Common;
+using Presentation.LogsBuilder.Concrete;
 
 namespace UI.Views
 {
@@ -23,6 +26,9 @@ namespace UI.Views
     {
         #region Fields
         private bool isDataLoadedFromDB;
+
+        public List<Log> LogsList { get; } = new List<Log>();
+        public List<Log> ErrorLogsList { get; } = new List<Log>();
 
         private Presenter _ownPresenter;
         public Presenter OwnPresenter
@@ -215,10 +221,18 @@ namespace UI.Views
                 CheckSensorDataCount();
 
                 BindChart();
+
+                throw new NotImplementedException();
             }
             catch (Exception ex)
             {
-                MainPresenter.LogsList.Add( new Log( DateTime.Now, Level.Critical, ex.ToString() ) );
+                Logger logger = new Logger( new CriticalLogBuilder() );
+                logger.WriteLog( LogsList, ex.ToString() );
+                Log result = logger.WriteLog( ErrorLogsList, ex.ToString() );
+
+                rtbLogs.AppendText(string.Format( "{0} {1}\n{2}:\n", result.EventLogTime, result.LevelType, result.Description ));
+                rtbLogs.AppendText( Environment.NewLine);
+                rtbLogs.AppendText(new string( '-', 350 ));
             }
         }
 

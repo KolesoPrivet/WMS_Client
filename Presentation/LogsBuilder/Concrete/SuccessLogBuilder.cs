@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Presentation.LogsBuilder.Abstract;
+using Presentation.ViewModels;
 
 namespace Presentation.LogsBuilder.Concrete
 {
-    class SuccessLogBuilder
+    public class SuccessLogBuilder : LogBuilder
     {
+        public override void SetDescription(string additionalDescriptionParam)
+        {
+            buildingLog.Description = string.Format("Success! {0}", additionalDescriptionParam); //TODO: Success description  
+        }      
+
+        public override void SetLevelType()
+        {
+            buildingLog.LevelType = Level.Success;
+        }
     }
 }
