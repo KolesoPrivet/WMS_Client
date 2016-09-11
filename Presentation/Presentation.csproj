@@ -55,6 +55,12 @@
   <ItemGroup>
     <Compile Include="Common\IView.cs" />
     <Compile Include="Common\Presenter.cs" />
+    <Compile Include="LogsBuilder\Abstract\LogBuilder.cs" />
+    <Compile Include="LogsBuilder\Concrete\AttentionLogBuilder.cs" />
+    <Compile Include="LogsBuilder\Concrete\CriticalLogBuilder.cs" />
+    <Compile Include="LogsBuilder\Concrete\ErrorLogBuilder.cs" />
+    <Compile Include="LogsBuilder\Concrete\InfoLogBuilder.cs" />
+    <Compile Include="LogsBuilder\Concrete\SuccessLogBuilder.cs" />
     <Compile Include="Presenters\AboutPresenter.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
     <Compile Include="Presenters\SaveAsPresenter.cs" />
