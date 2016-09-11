@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Presentation.LogsBuilder.Abstract;
+using Presentation.ViewModels;
 
 namespace Presentation.LogsBuilder.Concrete
 {
-    class ErrorLogBuilder
+    public class ErrorLogBuilder : LogBuilder
     {
+        public override void SetDescription(string additionalDescriptionParam)
+        {
+            buildingLog.Description = string.Format( "Error! {0}", additionalDescriptionParam ); //TODO: Error description        
+        }
+
+        public override void SetLevelType()
+        {
+            buildingLog.LevelType = Level.Error;
+        }
     }
 }

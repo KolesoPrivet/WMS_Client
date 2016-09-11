@@ -857,6 +857,7 @@
             // rtbLogs
             // 
             this.rtbLogs.BackColor = System.Drawing.SystemColors.GrayText;
+            this.rtbLogs.ForeColor = System.Drawing.SystemColors.Info;
             this.rtbLogs.Location = new System.Drawing.Point(6, 19);
             this.rtbLogs.Name = "rtbLogs";
             this.rtbLogs.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
