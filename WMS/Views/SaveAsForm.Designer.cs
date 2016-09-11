@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.progressBarSavingInto = new System.Windows.Forms.ProgressBar();
+            this.progressBarSavingFile = new System.Windows.Forms.ProgressBar();
             this.btnSaveFile = new System.Windows.Forms.Button();
             this.grBoxSaveAs = new System.Windows.Forms.GroupBox();
             this.btnPathExplorer = new System.Windows.Forms.Button();
@@ -56,12 +56,12 @@
             this.gpBoxSensorsNames.SuspendLayout();
             this.SuspendLayout();
             // 
-            // progressBarSavingInto
+            // progressBarSavingFile
             // 
-            this.progressBarSavingInto.Location = new System.Drawing.Point(12, 235);
-            this.progressBarSavingInto.Name = "progressBarSavingInto";
-            this.progressBarSavingInto.Size = new System.Drawing.Size(540, 10);
-            this.progressBarSavingInto.TabIndex = 30;
+            this.progressBarSavingFile.Location = new System.Drawing.Point(12, 235);
+            this.progressBarSavingFile.Name = "progressBarSavingFile";
+            this.progressBarSavingFile.Size = new System.Drawing.Size(540, 10);
+            this.progressBarSavingFile.TabIndex = 30;
             // 
             // btnSaveFile
             // 
@@ -265,14 +265,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(563, 251);
-            this.Controls.Add(this.progressBarSavingInto);
+            this.Controls.Add(this.progressBarSavingFile);
             this.Controls.Add(this.btnSaveFile);
             this.Controls.Add(this.grBoxSaveAs);
             this.Controls.Add(this.gpBoxSelectTimeInterval);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gpBoxSaveReportSensors);
             this.Name = "SaveAsForm";
-            this.Text = "Сохранить в...";
+            this.Text = "Сохранить в Excel...";
             this.Load += new System.EventHandler(this.SaveAsForm_Load);
             this.grBoxSaveAs.ResumeLayout(false);
             this.grBoxSaveAs.PerformLayout();
@@ -288,7 +288,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ProgressBar progressBarSavingInto;
+        private System.Windows.Forms.ProgressBar progressBarSavingFile;
         private System.Windows.Forms.Button btnSaveFile;
         private System.Windows.Forms.GroupBox grBoxSaveAs;
         private System.Windows.Forms.Button btnPathExplorer;

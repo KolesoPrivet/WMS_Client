@@ -63,6 +63,11 @@ namespace UI.Views
 
         private async void btnSaveFile_Click(object sender, EventArgs e)
         {
+            progressBarSavingFile.Minimum = 1;
+            progressBarSavingFile.Maximum = 10;
+            progressBarSavingFile.Style = ProgressBarStyle.Marquee;
+            progressBarSavingFile.MarqueeAnimationSpeed = 30;
+
             await Task.Factory.StartNew( () =>
              {
                  if (!txtBoxFirstTimeValue.Enabled)
@@ -72,9 +77,18 @@ namespace UI.Views
                  }
                  else
                  {
-                     //TODO: filter data by time interval
+                     if (regexPatternForTime.IsMatch( txtBoxFirstTimeValue.Text ) && regexPatternForTime.IsMatch( txtBoxSecondTimeValue.Text ))
+                     {
+                         FinalList.AddRange( OwnPresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>(),
+                                                                      TimeSpan.Parse( txtBoxFirstTimeValue.Text ),
+                                                                      TimeSpan.Parse( txtBoxSecondTimeValue.Text ) ) );
+                         ((SaveAsPresenter)OwnPresenter).SaveFileExcel( FinalList, filePath, txtBoxFileName.Text );
+                     }
                  }
              } );
+
+            progressBarSavingFile.Style = ProgressBarStyle.Continuous;
+            progressBarSavingFile.MarqueeAnimationSpeed = 0;
         }
 
         private void checkBoxEnableTimeInterval_CheckedChanged(object sender, EventArgs e)

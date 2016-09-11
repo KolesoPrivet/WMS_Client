@@ -25,7 +25,7 @@ namespace Presentation.Presenters
                 workSheet.Cells[1, "B"] = "Time";
                 workSheet.Cells[1, "C"] = "Value";
 
-                int row = 0;
+                int row = 1;
 
                 foreach (var d in dataForSavingParam)
                 {
@@ -38,6 +38,8 @@ namespace Presentation.Presenters
                 workSheet.SaveAs( string.Format(@"{0}\{1}.xlsx", filePathParam, fileNameParam) );
 
                 excelApp.Quit();
+
+                MessageBox.Show( "Файл успешно сохранен!" );
             }
             catch (Exception ex)
             {
