@@ -56,6 +56,7 @@
     <Compile Include="Common\IView.cs" />
     <Compile Include="Common\Presenter.cs" />
     <Compile Include="LogsBuilder\Abstract\LogBuilder.cs" />
+    <Compile Include="LogsBuilder\Common\Logger.cs" />
     <Compile Include="LogsBuilder\Concrete\AttentionLogBuilder.cs" />
     <Compile Include="LogsBuilder\Concrete\CriticalLogBuilder.cs" />
     <Compile Include="LogsBuilder\Concrete\ErrorLogBuilder.cs" />
