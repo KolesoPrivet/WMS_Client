@@ -14,7 +14,7 @@
 - [x] Use Entity Framework instead classic ADO.NET;
 - [x] Realize possibility to manipulate with static data (from database);
 - [x] Realize sensors map, with possibility to view the last data of selected sensor;
-- [ ] Add function which will save data in Excel file;
+- [x] Add function which will save data in Excel file;
 - [ ] Create an abstract data source, which can be any Arduino device or something like that;
 - [ ] Realize single sensor request;
 - [ ] Realize async monitoring of data with possibility to write data, which we've got;
@@ -35,7 +35,7 @@
 - [x] Использовать Entity Framework вместо классического ADO.NET;
 - [x] Реализовать возможность манипуляции со статическими данными (из базы данных);
 - [x] Реализовать карту датчиков, с возможностью отображения последней информации выбранного сенсора.
-- [ ] Добавить возможность сохранения данных в Excel файл;
+- [x] Добавить возможность сохранения данных в Excel файл;
 - [ ] Создать абстрактный источник данных, которым в конечном итоге может выступать любое Arduino устройство и пр;
 - [ ] Реализовать точечный разовый опрос сенсоров;
 - [ ] Реализовать асинхронный мониторинг данных с возможностью записи полученных данных в базу данных;
