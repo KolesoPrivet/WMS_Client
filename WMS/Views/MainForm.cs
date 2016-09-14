@@ -222,7 +222,8 @@ namespace UI.Views
 
                 BindChart();
 
-                throw new NotImplementedException();
+                //TEST
+                throw new NotImplementedException("TEST");
             }
             catch (Exception ex)
             {
