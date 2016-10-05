@@ -59,60 +59,58 @@ namespace UI.Views
         {
 
             //Настройки для компонента GMap.
-            MainMap.Bearing = 0;
+            sensorMap.Bearing = 0;
 
             //CanDragMap - Если параметр установлен в True,
             //пользователь может перетаскивать карту
             //с помощью правой кнопки мыши.
-            MainMap.CanDragMap = true;
+            sensorMap.CanDragMap = true;
 
             //Указываем, что перетаскивание карты осуществляется
             //с использованием левой клавишей мыши.
             //По умолчанию - правая.
-            MainMap.DragButton = MouseButtons.Left;
+            sensorMap.DragButton = MouseButtons.Left;
 
-            MainMap.GrayScaleMode = true;
+            sensorMap.GrayScaleMode = true;
 
             //MarkersEnabled - Если параметр установлен в True,
             //любые маркеры, заданные вручную будет показаны.
             //Если нет, они не появятся.
-            MainMap.MarkersEnabled = true;
+            sensorMap.MarkersEnabled = true;
 
             //Указываем значение максимального приближения.
-            MainMap.MaxZoom = 18;
+            sensorMap.MaxZoom = 18;
 
             //Указываем значение минимального приближения.
-            MainMap.MinZoom = 2;
+            sensorMap.MinZoom = 2;
 
             //Устанавливаем центр приближения/удаления
             //курсор мыши.
-            MainMap.MouseWheelZoomType =
+            sensorMap.MouseWheelZoomType =
                 GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
 
             //Отказываемся от негативного режима.
-            MainMap.NegativeMode = false;
+            sensorMap.NegativeMode = false;
 
             //Разрешаем полигоны.
-            MainMap.PolygonsEnabled = true;
+            sensorMap.PolygonsEnabled = true;
 
             //Разрешаем маршруты
-            MainMap.RoutesEnabled = true;
+            sensorMap.RoutesEnabled = true;
 
             //Скрываем внешнюю сетку карты
             //с заголовками.
-            MainMap.ShowTileGridLines = false;
+            sensorMap.ShowTileGridLines = false;
 
             //Указываем, что при загрузке карты будет использоваться
             //18ти кратное приближение.
-            MainMap.Zoom = 5;
+            sensorMap.Zoom = 5;
 
             //Указываем что будем использовать карты Google.
-            MainMap.MapProvider =
-                GMap.NET.MapProviders.GMapProviders.GoogleMap;
-            GMap.NET.GMaps.Instance.Mode =
-                GMap.NET.AccessMode.ServerOnly;
+            sensorMap.MapProvider = GMap.NET.MapProviders.GMapProviders.GoogleMap;
+            GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
 
-            MainMap.Position = new PointLatLng( 55.75393, 37.620795 );
+            sensorMap.Position = new PointLatLng( 55.75393, 37.620795 );
         }
         #endregion
 
@@ -201,7 +199,7 @@ namespace UI.Views
 
                 await Task.Factory.StartNew( () =>
                 {
-                    MainMap.Overlays.Add( ((MainPresenter)OwnPresenter).GetMarkersOfSensors() );
+                    sensorMap.Overlays.Add( ((MainPresenter)OwnPresenter).GetMarkersOfSensors() );
                 } );
 
                 if (!isDataLoadedFromDB)
@@ -221,9 +219,6 @@ namespace UI.Views
                 CheckSensorDataCount();
 
                 BindChart();
-
-                //TEST
-                throw new NotImplementedException("TEST");
             }
             catch (Exception ex)
             {
@@ -239,7 +234,7 @@ namespace UI.Views
 
         private async void btnShwMap_Click(object sender, EventArgs e)
         {
-            MainMap.Visible = true;
+            sensorMap.Visible = true;
 
             bool result = await Task.Factory.StartNew( () =>
             {
@@ -273,12 +268,7 @@ namespace UI.Views
             }
         }
 
-        private void btnStartMonitoring_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void btnSelectSensorsForQuiz_Click(object sender, EventArgs e)
+        private void btnSelectSensorsForRequest_Click(object sender, EventArgs e)
         {
             //TODO: realize dependency injection
             ViewPresenter view = new ViewPresenter( new SelectSensorsFactory(),
@@ -400,7 +390,7 @@ namespace UI.Views
                 txtBoxMapLastTime.Text = lastDataOfCurrentSensor.Time.ToString();
                 txtBoxMapLastValue.Text = lastDataOfCurrentSensor.Value.ToString();
 
-                MainMap.Position = new PointLatLng( currentSensor.Lat, currentSensor.Lng );
+                sensorMap.Position = new PointLatLng( currentSensor.Lat, currentSensor.Lng );
             }
             else MessageBox.Show( "Выбранный датчик еще не получал данных" );
         }
@@ -436,76 +426,6 @@ namespace UI.Views
             }
             else
                 e.Cancel = true;
-        }
-
-        private void gpBoxSearch_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbSensorNameForSearch_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbSensorTypeForResultOfSearch_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBoxMapSType_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBoxMapSStatus_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbSensorState_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void gpBoxSearchResult_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbDateOfLastActivity_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBoxMapLastDate_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void grBoxMonitoringSettings_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnStartMonitoring_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void grBoxFiltration_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rtbLogs_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
