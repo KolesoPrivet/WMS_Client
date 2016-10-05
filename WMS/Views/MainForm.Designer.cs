@@ -162,6 +162,9 @@
             // 
             // gpBoxSensorQuery
             // 
+            this.gpBoxSensorQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gpBoxSensorQuery.Controls.Add(this.btnSelectSensorsForRequest);
             this.gpBoxSensorQuery.Controls.Add(this.lblSelectedSensorsCount);
             this.gpBoxSensorQuery.Controls.Add(this.lblSelectedSensors);
@@ -176,6 +179,9 @@
             // 
             // btnSelectSensorsForRequest
             // 
+            this.btnSelectSensorsForRequest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSelectSensorsForRequest.Enabled = false;
             this.btnSelectSensorsForRequest.Location = new System.Drawing.Point(136, 11);
             this.btnSelectSensorsForRequest.Name = "btnSelectSensorsForRequest";
@@ -187,6 +193,9 @@
             // 
             // lblSelectedSensorsCount
             // 
+            this.lblSelectedSensorsCount.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSelectedSensorsCount.AutoSize = true;
             this.lblSelectedSensorsCount.Location = new System.Drawing.Point(116, 16);
             this.lblSelectedSensorsCount.Name = "lblSelectedSensorsCount";
@@ -197,6 +206,9 @@
             // 
             // lblSelectedSensors
             // 
+            this.lblSelectedSensors.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSelectedSensors.AutoSize = true;
             this.lblSelectedSensors.Location = new System.Drawing.Point(6, 16);
             this.lblSelectedSensors.Name = "lblSelectedSensors";
@@ -206,6 +218,9 @@
             // 
             // dgvQA
             // 
+            this.dgvQA.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvQA.Location = new System.Drawing.Point(5, 75);
             this.dgvQA.Name = "dgvQA";
             this.dgvQA.Size = new System.Drawing.Size(271, 203);
@@ -213,6 +228,9 @@
             // 
             // btnMapRequest
             // 
+            this.btnMapRequest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMapRequest.Enabled = false;
             this.btnMapRequest.Location = new System.Drawing.Point(5, 40);
             this.btnMapRequest.Name = "btnMapRequest";
@@ -224,6 +242,9 @@
             // 
             // gpBoxInternetConnectionCheck
             // 
+            this.gpBoxInternetConnectionCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gpBoxInternetConnectionCheck.Controls.Add(this.txtBoxCheckInternet);
             this.gpBoxInternetConnectionCheck.Location = new System.Drawing.Point(3, 613);
             this.gpBoxInternetConnectionCheck.Name = "gpBoxInternetConnectionCheck";
@@ -234,6 +255,9 @@
             // 
             // txtBoxCheckInternet
             // 
+            this.txtBoxCheckInternet.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCheckInternet.BackColor = System.Drawing.SystemColors.Window;
             this.txtBoxCheckInternet.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtBoxCheckInternet.Location = new System.Drawing.Point(6, 19);
@@ -246,6 +270,9 @@
             // 
             // gpBoxMapView
             // 
+            this.gpBoxMapView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gpBoxMapView.Controls.Add(this.btnShwMap);
             this.gpBoxMapView.Location = new System.Drawing.Point(4, 260);
             this.gpBoxMapView.Name = "gpBoxMapView";
@@ -256,6 +283,9 @@
             // 
             // btnShwMap
             // 
+            this.btnShwMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnShwMap.Enabled = false;
             this.btnShwMap.Location = new System.Drawing.Point(6, 19);
             this.btnShwMap.Name = "btnShwMap";
@@ -267,6 +297,9 @@
             // 
             // gpBoxSearch
             // 
+            this.gpBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gpBoxSearch.Controls.Add(this.comboBoxSNMap);
             this.gpBoxSearch.Controls.Add(this.gpBoxSearchResult);
             this.gpBoxSearch.Controls.Add(this.lbSensorNameForSearch);
@@ -276,9 +309,13 @@
             this.gpBoxSearch.TabIndex = 20;
             this.gpBoxSearch.TabStop = false;
             this.gpBoxSearch.Text = " Поиск";
+            this.gpBoxSearch.Enter += new System.EventHandler(this.gpBoxSearch_Enter);
             // 
             // comboBoxSNMap
             // 
+            this.comboBoxSNMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxSNMap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSNMap.Enabled = false;
             this.comboBoxSNMap.FormattingEnabled = true;
@@ -290,6 +327,9 @@
             // 
             // gpBoxSearchResult
             // 
+            this.gpBoxSearchResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gpBoxSearchResult.Controls.Add(this.gpBoxLastActivity);
             this.gpBoxSearchResult.Controls.Add(this.txtBoxMapSStatus);
             this.gpBoxSearchResult.Controls.Add(this.txtBoxMapSType);
@@ -301,9 +341,13 @@
             this.gpBoxSearchResult.TabIndex = 19;
             this.gpBoxSearchResult.TabStop = false;
             this.gpBoxSearchResult.Text = "Результаты поиска";
+            this.gpBoxSearchResult.Enter += new System.EventHandler(this.gpBoxSearchResult_Enter);
             // 
             // gpBoxLastActivity
             // 
+            this.gpBoxLastActivity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gpBoxLastActivity.Controls.Add(this.lbTimeOfLastActivity);
             this.gpBoxLastActivity.Controls.Add(this.txtBoxMapLastTime);
             this.gpBoxLastActivity.Controls.Add(this.lbValueOfLastActivity);
@@ -319,6 +363,9 @@
             // 
             // lbTimeOfLastActivity
             // 
+            this.lbTimeOfLastActivity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTimeOfLastActivity.AutoSize = true;
             this.lbTimeOfLastActivity.Location = new System.Drawing.Point(6, 48);
             this.lbTimeOfLastActivity.Name = "lbTimeOfLastActivity";
@@ -328,6 +375,9 @@
             // 
             // txtBoxMapLastTime
             // 
+            this.txtBoxMapLastTime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxMapLastTime.BackColor = System.Drawing.SystemColors.Window;
             this.txtBoxMapLastTime.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtBoxMapLastTime.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -341,6 +391,9 @@
             // 
             // lbValueOfLastActivity
             // 
+            this.lbValueOfLastActivity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbValueOfLastActivity.AutoSize = true;
             this.lbValueOfLastActivity.Location = new System.Drawing.Point(6, 74);
             this.lbValueOfLastActivity.Name = "lbValueOfLastActivity";
@@ -350,15 +403,22 @@
             // 
             // lbDateOfLastActivity
             // 
+            this.lbDateOfLastActivity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbDateOfLastActivity.AutoSize = true;
             this.lbDateOfLastActivity.Location = new System.Drawing.Point(6, 22);
             this.lbDateOfLastActivity.Name = "lbDateOfLastActivity";
             this.lbDateOfLastActivity.Size = new System.Drawing.Size(36, 13);
             this.lbDateOfLastActivity.TabIndex = 24;
             this.lbDateOfLastActivity.Text = "Дата:";
+            this.lbDateOfLastActivity.Click += new System.EventHandler(this.lbDateOfLastActivity_Click);
             // 
             // txtBoxMapLastDate
             // 
+            this.txtBoxMapLastDate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxMapLastDate.BackColor = System.Drawing.SystemColors.Window;
             this.txtBoxMapLastDate.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtBoxMapLastDate.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -369,9 +429,13 @@
             this.txtBoxMapLastDate.TabIndex = 19;
             this.txtBoxMapLastDate.TabStop = false;
             this.txtBoxMapLastDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBoxMapLastDate.TextChanged += new System.EventHandler(this.txtBoxMapLastDate_TextChanged);
             // 
             // txtBoxMapLastValue
             // 
+            this.txtBoxMapLastValue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxMapLastValue.BackColor = System.Drawing.SystemColors.Window;
             this.txtBoxMapLastValue.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtBoxMapLastValue.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -385,6 +449,9 @@
             // 
             // txtBoxMapSStatus
             // 
+            this.txtBoxMapSStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxMapSStatus.BackColor = System.Drawing.SystemColors.Window;
             this.txtBoxMapSStatus.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtBoxMapSStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
@@ -396,9 +463,13 @@
             this.txtBoxMapSStatus.TabIndex = 18;
             this.txtBoxMapSStatus.TabStop = false;
             this.txtBoxMapSStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBoxMapSStatus.TextChanged += new System.EventHandler(this.txtBoxMapSStatus_TextChanged);
             // 
             // txtBoxMapSType
             // 
+            this.txtBoxMapSType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxMapSType.BackColor = System.Drawing.SystemColors.Window;
             this.txtBoxMapSType.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtBoxMapSType.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -409,36 +480,52 @@
             this.txtBoxMapSType.TabIndex = 16;
             this.txtBoxMapSType.TabStop = false;
             this.txtBoxMapSType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBoxMapSType.TextChanged += new System.EventHandler(this.txtBoxMapSType_TextChanged);
             // 
             // lbSensorTypeForResultOfSearch
             // 
+            this.lbSensorTypeForResultOfSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbSensorTypeForResultOfSearch.AutoSize = true;
             this.lbSensorTypeForResultOfSearch.Location = new System.Drawing.Point(6, 25);
             this.lbSensorTypeForResultOfSearch.Name = "lbSensorTypeForResultOfSearch";
             this.lbSensorTypeForResultOfSearch.Size = new System.Drawing.Size(72, 13);
             this.lbSensorTypeForResultOfSearch.TabIndex = 3;
             this.lbSensorTypeForResultOfSearch.Text = "Тип датчика:";
+            this.lbSensorTypeForResultOfSearch.Click += new System.EventHandler(this.lbSensorTypeForResultOfSearch_Click);
             // 
             // lbSensorState
             // 
+            this.lbSensorState.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbSensorState.AutoSize = true;
             this.lbSensorState.Location = new System.Drawing.Point(7, 51);
             this.lbSensorState.Name = "lbSensorState";
             this.lbSensorState.Size = new System.Drawing.Size(64, 13);
             this.lbSensorState.TabIndex = 17;
             this.lbSensorState.Text = "Состояние:";
+            this.lbSensorState.Click += new System.EventHandler(this.lbSensorState_Click);
             // 
             // lbSensorNameForSearch
             // 
+            this.lbSensorNameForSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbSensorNameForSearch.AutoSize = true;
             this.lbSensorNameForSearch.Location = new System.Drawing.Point(12, 24);
             this.lbSensorNameForSearch.Name = "lbSensorNameForSearch";
             this.lbSensorNameForSearch.Size = new System.Drawing.Size(60, 13);
             this.lbSensorNameForSearch.TabIndex = 1;
             this.lbSensorNameForSearch.Text = "Название:";
+            this.lbSensorNameForSearch.Click += new System.EventHandler(this.lbSensorNameForSearch_Click);
             // 
             // MainMap
             // 
+            this.MainMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MainMap.Bearing = 0F;
             this.MainMap.CanDragMap = true;
             this.MainMap.EmptyTileColor = System.Drawing.Color.Navy;
@@ -480,6 +567,9 @@
             // 
             // gpBoxGraphic
             // 
+            this.gpBoxGraphic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gpBoxGraphic.Controls.Add(this.unionChart);
             this.gpBoxGraphic.Location = new System.Drawing.Point(6, 336);
             this.gpBoxGraphic.Name = "gpBoxGraphic";
@@ -490,6 +580,9 @@
             // 
             // unionChart
             // 
+            this.unionChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             chartArea1.Name = "ChartArea1";
             this.unionChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
@@ -523,6 +616,8 @@
             // 
             // grBoxDataView
             // 
+            this.grBoxDataView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grBoxDataView.Controls.Add(this.rButtonAllDates);
             this.grBoxDataView.Controls.Add(this.rButtonChooseDate);
             this.grBoxDataView.Location = new System.Drawing.Point(6, 16);
@@ -534,6 +629,7 @@
             // 
             // rButtonAllDates
             // 
+            this.rButtonAllDates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rButtonAllDates.AutoSize = true;
             this.rButtonAllDates.Checked = true;
             this.rButtonAllDates.Enabled = false;
@@ -548,6 +644,7 @@
             // 
             // rButtonChooseDate
             // 
+            this.rButtonChooseDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rButtonChooseDate.AutoSize = true;
             this.rButtonChooseDate.Enabled = false;
             this.rButtonChooseDate.Location = new System.Drawing.Point(119, 24);
@@ -565,6 +662,8 @@
             this.dgvData.AllowUserToDeleteRows = false;
             this.dgvData.AllowUserToResizeColumns = false;
             this.dgvData.AllowUserToResizeRows = false;
+            this.dgvData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvData.Location = new System.Drawing.Point(6, 102);
@@ -576,6 +675,7 @@
             // 
             // rtbSensorsValue
             // 
+            this.rtbSensorsValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbSensorsValue.BackColor = System.Drawing.SystemColors.Menu;
             this.rtbSensorsValue.Enabled = false;
             this.rtbSensorsValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -587,6 +687,8 @@
             // 
             // gpBoxSensorIdentity
             // 
+            this.gpBoxSensorIdentity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.gpBoxSensorIdentity.Controls.Add(this.grBoxCurrentSensor);
             this.gpBoxSensorIdentity.Controls.Add(this.progressBarLoadDataFromDB);
             this.gpBoxSensorIdentity.Controls.Add(this.gpBoxSensorsView);
@@ -622,6 +724,8 @@
             // 
             // progressBarLoadDataFromDB
             // 
+            this.progressBarLoadDataFromDB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.progressBarLoadDataFromDB.BackColor = System.Drawing.Color.YellowGreen;
             this.progressBarLoadDataFromDB.Location = new System.Drawing.Point(230, 74);
             this.progressBarLoadDataFromDB.Name = "progressBarLoadDataFromDB";
@@ -672,6 +776,8 @@
             this.dgvSens.AllowUserToDeleteRows = false;
             this.dgvSens.AllowUserToResizeColumns = false;
             this.dgvSens.AllowUserToResizeRows = false;
+            this.dgvSens.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvSens.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSens.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSens.Location = new System.Drawing.Point(6, 102);
@@ -685,7 +791,6 @@
             // 
             // btnRefreshDB
             // 
-            this.btnRefreshDB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRefreshDB.Location = new System.Drawing.Point(390, 16);
             this.btnRefreshDB.Name = "btnRefreshDB";
             this.btnRefreshDB.Size = new System.Drawing.Size(129, 53);
@@ -716,6 +821,9 @@
             // карта
             // 
             this.карта.AccessibleName = "";
+            this.карта.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.карта.Controls.Add(this.tabPageSensor);
             this.карта.Controls.Add(this.tabPage1);
             this.карта.Controls.Add(this.Мониторинг);
@@ -759,6 +867,7 @@
             this.grBoxFiltration.TabIndex = 2;
             this.grBoxFiltration.TabStop = false;
             this.grBoxFiltration.Text = "Фильтрация";
+            this.grBoxFiltration.Enter += new System.EventHandler(this.grBoxFiltration_Enter);
             // 
             // dataGridView1
             // 
@@ -767,6 +876,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(617, 359);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // grBoxMonitoringSettings
             // 
@@ -778,6 +888,7 @@
             this.grBoxMonitoringSettings.TabIndex = 0;
             this.grBoxMonitoringSettings.TabStop = false;
             this.grBoxMonitoringSettings.Text = "Настройки";
+            this.grBoxMonitoringSettings.Enter += new System.EventHandler(this.grBoxMonitoringSettings_Enter);
             // 
             // btnStartMonitoring
             // 
@@ -788,6 +899,7 @@
             this.btnStartMonitoring.TabIndex = 18;
             this.btnStartMonitoring.Text = "Начать мониторинг";
             this.btnStartMonitoring.UseVisualStyleBackColor = true;
+            this.btnStartMonitoring.Click += new System.EventHandler(this.btnStartMonitoring_Click_1);
             // 
             // FileMenu
             // 
@@ -838,24 +950,31 @@
             // AboutProgramMenu
             // 
             this.AboutProgramMenu.Name = "AboutProgramMenu";
-            this.AboutProgramMenu.Size = new System.Drawing.Size(149, 22);
+            this.AboutProgramMenu.Size = new System.Drawing.Size(152, 22);
             this.AboutProgramMenu.Text = "О программе";
             this.AboutProgramMenu.Click += new System.EventHandler(this.AboutProgramMenu_Click);
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileMenu,
             this.PropertiesMenu,
             this.HelpMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1106, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(203, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // rtbLogs
             // 
+            this.rtbLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbLogs.BackColor = System.Drawing.SystemColors.GrayText;
             this.rtbLogs.ForeColor = System.Drawing.SystemColors.Info;
             this.rtbLogs.Location = new System.Drawing.Point(6, 19);
@@ -864,9 +983,13 @@
             this.rtbLogs.Size = new System.Drawing.Size(1071, 139);
             this.rtbLogs.TabIndex = 5;
             this.rtbLogs.Text = "";
+            this.rtbLogs.TextChanged += new System.EventHandler(this.rtbLogs_TextChanged);
             // 
             // grBoxLogs
             // 
+            this.grBoxLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grBoxLogs.Controls.Add(this.rtbLogs);
             this.grBoxLogs.Location = new System.Drawing.Point(11, 735);
             this.grBoxLogs.Name = "grBoxLogs";
@@ -883,6 +1006,7 @@
             this.Controls.Add(this.grBoxLogs);
             this.Controls.Add(this.карта);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Беспроводная система мониторинга WMS";

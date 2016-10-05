@@ -437,5 +437,75 @@ namespace UI.Views
             else
                 e.Cancel = true;
         }
+
+        private void gpBoxSearch_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbSensorNameForSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbSensorTypeForResultOfSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxMapSType_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxMapSStatus_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbSensorState_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gpBoxSearchResult_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbDateOfLastActivity_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxMapLastDate_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grBoxMonitoringSettings_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStartMonitoring_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void grBoxFiltration_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rtbLogs_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
