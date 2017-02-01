@@ -9,7 +9,7 @@ namespace DomainModel.Extentions
     {
         public static IEnumerable<T> Filter<T>(this IRepository<T> repositoryParam, Func<T, bool> selectorParam) where T: class, IEntity
         {
-            foreach (T t in repositoryParam.Get)
+            foreach (T t in repositoryParam.GetAll)
             {
                 if (selectorParam( t ))
                     yield return t;
@@ -18,7 +18,7 @@ namespace DomainModel.Extentions
 
         public static T SingleFilter<T>(this IRepository<T> repositoryParam, Func<T, bool> selectorParam) where T : class, IEntity
         {
-            foreach (T t in repositoryParam.Get)
+            foreach (T t in repositoryParam.GetAll)
             {
                 if (selectorParam( t ))
                 {

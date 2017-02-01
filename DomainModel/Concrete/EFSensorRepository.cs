@@ -10,7 +10,7 @@ namespace DomainModel.Concrete
     {
         private static readonly EFDatabaseContext context = new EFDatabaseContext();
 
-        public IEnumerable<Sensor> Get
+        public IEnumerable<Sensor> GetAll
         {
             get
             {

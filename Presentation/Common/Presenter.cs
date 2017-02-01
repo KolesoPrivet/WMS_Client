@@ -29,7 +29,7 @@ namespace Presentation.Common
         /// <returns></returns>
         public virtual IEnumerable<string> GetSensorsNames()
         {
-            foreach (var s in SensorRepository.Get)
+            foreach (var s in SensorRepository.GetAll)
             {
                 yield return s.Name;
             }
@@ -50,7 +50,7 @@ namespace Presentation.Common
 
         public virtual IEnumerable<string> GetSensorsTypes()
         {
-            foreach (var s in SensorRepository.Get)
+            foreach (var s in SensorRepository.GetAll)
             {
                 yield return s.SensorType;
             }
@@ -76,7 +76,7 @@ namespace Presentation.Common
         /// <returns></returns>
         public IEnumerable<DateTime> GetDates(string sensorNameParam)
         {
-            var currentSensor = SensorRepository.Get.Where(s => s.Name == sensorNameParam).First();
+            Sensor currentSensor = SensorRepository.GetAll.Where(s => s.Name == sensorNameParam).First();
 
             foreach (var data in DataRepository.Filter( d => d.SensorId == currentSensor.Id ))
             {

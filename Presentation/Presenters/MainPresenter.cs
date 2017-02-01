@@ -28,13 +28,13 @@ namespace Presentation.Presenters
 
         public List<Sensor> GetSensorsList()
         {
-            return SensorRepository.Get.ToList();
+            return SensorRepository.GetAll.ToList();
         }
 
         public List<Data> GetDataList()
         {
-            return (from c in DataRepository.Get
-                    where c.SensorId == SensorRepository.Get.FirstOrDefault().Id
+            return (from c in DataRepository.GetAll
+                    where c.SensorId == SensorRepository.GetAll.FirstOrDefault().Id
                     orderby c.Date
                     select c).ToList();
         }
@@ -46,10 +46,10 @@ namespace Presentation.Presenters
 
         public GMapOverlay GetMarkersOfSensors()
         {
-            var markersOverlay = new GMapOverlay( "markers" );
+            GMapOverlay markersOverlay = new GMapOverlay( "markers" );
             markersOverlay.Markers.Clear();
 
-            foreach (Sensor s in SensorRepository.Get)
+            foreach (Sensor s in SensorRepository.GetAll)
             {
                 GMarkerGoogle marker = new GMarkerGoogle( new PointLatLng( s.Lat, s.Lng ), GMarkerGoogleType.red );
 
