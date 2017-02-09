@@ -8,6 +8,9 @@ using DomainModel.Entity;
 
 namespace Presentation.Common
 {
+    /// <summary>
+    /// Abstract class for all presenters
+    /// </summary>
     public abstract class Presenter
     {
         protected IView View { get; set; }

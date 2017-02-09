@@ -85,3 +85,5 @@ C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csha
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.Views.SelectDateForm.resources
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.Views.SelectSensorsForm.resources
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Release\UI.csproj.GenerateResource.Cache
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\bin\Release\ServiceContracts.dll
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\bin\Release\ServiceContracts.pdb

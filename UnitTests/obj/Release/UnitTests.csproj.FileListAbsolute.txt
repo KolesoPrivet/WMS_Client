@@ -67,3 +67,5 @@ C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csha
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\UnitTests\obj\Release\UnitTests.csprojResolveAssemblyReference.cache
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\UnitTests\obj\Release\UnitTests.dll
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\UnitTests\obj\Release\UnitTests.pdb
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\UnitTests\bin\Release\ServiceContracts.dll
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\UnitTests\bin\Release\ServiceContracts.pdb

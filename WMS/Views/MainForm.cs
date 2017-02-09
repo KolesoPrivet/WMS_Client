@@ -226,9 +226,9 @@ namespace UI.Views
                 logger.WriteLog( LogsList, ex.ToString() );
                 Log result = logger.WriteLog( ErrorLogsList, ex.ToString() );
 
-                rtbLogs.AppendText(string.Format( "{0} {1}\n{2}:\n", result.EventLogTime, result.LevelType, result.Description ));
-                rtbLogs.AppendText( Environment.NewLine);
-                rtbLogs.AppendText(new string( '-', 350 ));
+                rtbLogs.AppendText( string.Format( "{0} {1}\n{2}:\n", result.EventLogTime, result.LevelType, result.Description ) );
+                rtbLogs.AppendText( Environment.NewLine );
+                rtbLogs.AppendText( new string( '-', 350 ) );
             }
         }
 
@@ -279,9 +279,13 @@ namespace UI.Views
             lblSelectedSensorsCount.Text = SelectSensorsForm.FinalList.Count.ToString();
         }
 
-        private void btnMapRequest_Click(object sender, EventArgs e)
+        private async void btnMapRequest_Click(object sender, EventArgs e)
         {
             //TODO: Request to sensors
+            textBox1.Text = await Task.Factory.StartNew( () =>
+            {
+                return ((MainPresenter)OwnPresenter).RequestSensors();
+            } );
         }
 
         private void rButtonChooseSensors_MouseClick(object sender, MouseEventArgs e)

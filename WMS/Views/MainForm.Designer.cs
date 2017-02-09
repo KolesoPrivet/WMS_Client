@@ -101,6 +101,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.rtbLogs = new System.Windows.Forms.RichTextBox();
             this.grBoxLogs = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -857,6 +858,7 @@
             // 
             // grBoxMonitoringSettings
             // 
+            this.grBoxMonitoringSettings.Controls.Add(this.textBox1);
             this.grBoxMonitoringSettings.Controls.Add(this.grBoxMonitoringType);
             this.grBoxMonitoringSettings.Controls.Add(this.gpBoxSensorQuery);
             this.grBoxMonitoringSettings.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -953,6 +955,7 @@
             this.btnMapRequest.TabIndex = 23;
             this.btnMapRequest.Text = "Опросить";
             this.btnMapRequest.UseVisualStyleBackColor = true;
+            this.btnMapRequest.Click += new System.EventHandler(this.btnMapRequest_Click);
             // 
             // FileMenu
             // 
@@ -1050,6 +1053,13 @@
             this.grBoxLogs.TabStop = false;
             this.grBoxLogs.Text = "Вывод";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(11, 157);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 27;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1098,6 +1108,7 @@
             this.grBoxGettingData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.grBoxMonitoringSettings.ResumeLayout(false);
+            this.grBoxMonitoringSettings.PerformLayout();
             this.grBoxMonitoringType.ResumeLayout(false);
             this.gpBoxSensorQuery.ResumeLayout(false);
             this.gpBoxSensorQuery.PerformLayout();
@@ -1180,6 +1191,7 @@
         private GMap.NET.WindowsForms.GMapControl sensorMonitoringMap;
         private System.Windows.Forms.GroupBox grBoxMap;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

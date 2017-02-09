@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System;
+using System.ServiceModel;
 using Excel = Microsoft.Office.Interop.Excel;
 
 using DomainModel.Abstract;
@@ -13,18 +15,26 @@ using GMap.NET.WindowsForms.Markers;
 using Presentation.Common;
 using Presentation.ViewModels;
 
+using System.Threading.Tasks;
+using ServiceContracts;
+
 namespace Presentation.Presenters
 {
     public class MainPresenter : Presenter
     {
         public static List<Sensor> RequestList { get; private set; }
+
         public static List<Log> LogsList { get; private set; }
+
+
 
         public MainPresenter()
         {
             RequestList = new List<Sensor>();
             LogsList = new List<Log>();
         }
+
+
 
         public List<Sensor> GetSensorsList()
         {
@@ -57,6 +67,20 @@ namespace Presentation.Presenters
                 marker.ToolTipText = s.Name;
             }
             return markersOverlay;
+        }
+
+        public string RequestSensors()
+        {
+
+            // Создание экземпляра ChannelFactory<T>, где Т - Контракт.
+            ChannelFactory<IQuizService> factory = new ChannelFactory<IQuizService>( new BasicHttpBinding(), 
+                                                                                     new EndpointAddress( new Uri( "http://localhost:4000/QuizService" ) ) );
+
+            // Использование factory для создания канала (прокси).
+            IQuizService channel = factory.CreateChannel();
+
+            // Использование channel (прокси) для отправки сообщения получателю.
+            return channel.GetSensorsValue();
         }
 
         public override void Run(IView viewParam, IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)

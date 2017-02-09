@@ -27,7 +27,7 @@ namespace Presentation
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            ViewPresenter view = new ViewPresenter( new MainFactory(), sensorRepository, dataRepository );
+            ViewPresenter view = new ViewPresenter( new MainFactory(), sensorRepository, dataRepository ); // class name View
             view.Run();
         }
     }
