@@ -17,6 +17,7 @@ using Presentation.ViewModels;
 
 using ViewPresenter = UI.ViewFactory.Client.View;
 using UI.ViewFactory.Concrete;
+
 using Presentation.LogsBuilder.Common;
 using Presentation.LogsBuilder.Concrete;
 
@@ -25,7 +26,7 @@ namespace UI.Views
     public partial class MainForm : Form, IView
     {
         #region Fields
-        private bool isDataLoadedFromDB;
+        private bool _isDataLoadedFromDB;
 
         public List<Log> LogsList { get; } = new List<Log>();
         public List<Log> ErrorLogsList { get; } = new List<Log>();
@@ -128,7 +129,7 @@ namespace UI.Views
             rButtonChooseSensors.Enabled = true;
 
             btnShwMap.Enabled = true;
-            btnMapRequest.Enabled = true;
+            btnRequestNetwork.Enabled = true;
             btnSelectSensorsForRequest.Enabled = true;
 
             SaveAsMenu.Enabled = true;
@@ -168,6 +169,11 @@ namespace UI.Views
         #endregion
 
         #region Buttons
+        /// <summary>
+        /// Button is downloaded actual data from DB
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void btnRefreshDB_Click(object sender, EventArgs e)
         {
             btnRefreshDB.Enabled = false;
@@ -202,7 +208,7 @@ namespace UI.Views
                     sensorMap.Overlays.Add( ((MainPresenter)OwnPresenter).GetMarkersOfSensors() );
                 } );
 
-                if (!isDataLoadedFromDB)
+                if (!_isDataLoadedFromDB)
                 {
                     EnableControsl();
 
@@ -211,7 +217,7 @@ namespace UI.Views
 
                 SettingColumns();
 
-                isDataLoadedFromDB = true;
+                _isDataLoadedFromDB = true;
 
                 progressBarLoadDataFromDB.Style = ProgressBarStyle.Continuous;
                 progressBarLoadDataFromDB.MarqueeAnimationSpeed = 0;
@@ -232,6 +238,12 @@ namespace UI.Views
             }
         }
 
+
+        /// <summary>
+        /// Button is downloaded a map with actual markers(sensors)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void btnShwMap_Click(object sender, EventArgs e)
         {
             sensorMap.Visible = true;
@@ -268,6 +280,12 @@ namespace UI.Views
             }
         }
 
+
+        /// <summary>
+        /// Button is opened a window with sensor selection for request
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSelectSensorsForRequest_Click(object sender, EventArgs e)
         {
             //TODO: realize dependency injection
@@ -279,7 +297,13 @@ namespace UI.Views
             lblSelectedSensorsCount.Text = SelectSensorsForm.FinalList.Count.ToString();
         }
 
-        private async void btnMapRequest_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// Button is dispatched a request for wireless sensor network
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void btnRequestNetwork_Click(object sender, EventArgs e)
         {
             //TODO: Request to sensors
             textBox1.Text = await Task.Factory.StartNew( () =>
@@ -288,6 +312,12 @@ namespace UI.Views
             } );
         }
 
+
+        /// <summary>
+        /// Button is opened a window with sensor selection for data grid view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rButtonChooseSensors_MouseClick(object sender, MouseEventArgs e)
         {
             ViewPresenter view = new ViewPresenter( new SelectSensorsFactory(),
@@ -300,6 +330,12 @@ namespace UI.Views
             rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.RowCount.ToString();
         }
 
+
+        /// <summary>
+        /// Button is chosen all sensors for data grid view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rButtonAllSensors_MouseClick(object sender, MouseEventArgs e)
         {
             dgvSens.DataSource = ((MainPresenter)OwnPresenter).GetSensorsList();
@@ -307,6 +343,12 @@ namespace UI.Views
             rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
         }
 
+
+        /// <summary>
+        /// Button is opened a window with date selection for data grid view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rButtonChooseDate_MouseClick(object sender, EventArgs e)
         {
             var currentRow = dgvSens.CurrentRow;
@@ -330,6 +372,12 @@ namespace UI.Views
             }
         }
 
+
+        /// <summary>
+        /// Button is chosen all dates for data grid view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rButtonAllDates_MouseClick(object sender, EventArgs e)
         {
             var currentRow = dgvSens.CurrentRow;
@@ -403,7 +451,7 @@ namespace UI.Views
         #region DataGridView
         private void dgvSens_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (isDataLoadedFromDB)
+            if (_isDataLoadedFromDB)
             {
                 Sensor currentSensor = dgvSens.CurrentRow.DataBoundItem as Sensor;
 

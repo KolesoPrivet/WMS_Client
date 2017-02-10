@@ -2,7 +2,6 @@
 using System.Linq;
 using System;
 using System.ServiceModel;
-using Excel = Microsoft.Office.Interop.Excel;
 
 using DomainModel.Abstract;
 using DomainModel.Entity;
@@ -15,7 +14,6 @@ using GMap.NET.WindowsForms.Markers;
 using Presentation.Common;
 using Presentation.ViewModels;
 
-using System.Threading.Tasks;
 using ServiceContracts;
 
 namespace Presentation.Presenters

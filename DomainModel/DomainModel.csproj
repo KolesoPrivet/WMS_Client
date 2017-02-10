@@ -58,7 +58,7 @@
     <Compile Include="Concrete\EFSensorRepository.cs" />
     <Compile Include="Entity\Data.cs" />
     <Compile Include="Entity\Sensor.cs" />
-    <Compile Include="Extentions\RepositoryHelpers.cs" />
+    <Compile Include="Extentions\RepositoryFilters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

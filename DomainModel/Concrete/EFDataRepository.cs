@@ -8,13 +8,13 @@ namespace DomainModel.Concrete
 {
     public class EFDataRepository : IRepository<Data>
     {
-        private static readonly EFDatabaseContext context = new EFDatabaseContext();
+        private static readonly EFDatabaseContext _context = new EFDatabaseContext();
 
         public IEnumerable<Data> GetAll
         {
             get
             {
-                return context.DataSet.ToList();
+                return _context.DataSet.ToList();
             }
         }
     }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using Presentation.Common;
-using DomainModel.Entity;
 using System.Collections.Generic;
+
+using Presentation.Common;
+
+using DomainModel.Entity;
 
 namespace UI.Views
 {

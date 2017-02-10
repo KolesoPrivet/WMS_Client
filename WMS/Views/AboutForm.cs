@@ -1,7 +1,5 @@
-﻿using System;
-using System.Windows.Forms;
-using DomainModel.Abstract;
-using DomainModel.Entity;
+﻿using System.Windows.Forms;
+
 using Presentation.Common;
 
 namespace UI.Views

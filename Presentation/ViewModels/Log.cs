@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Collections;
 
 namespace Presentation.ViewModels
 {
     public class Log
     {
         public DateTime EventLogTime { get; set; }
+
         public Level LevelType { get; set; }
+
         public string Description { get; set; }
     }
 

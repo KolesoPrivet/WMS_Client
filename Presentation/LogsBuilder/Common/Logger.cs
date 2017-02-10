@@ -6,20 +6,20 @@ namespace Presentation.LogsBuilder.Common
 {
     public class Logger
     {
-        private LogBuilder builder;
+        private LogBuilder _builder;
 
         public Logger(LogBuilder builderParam)
         {
-            builder = builderParam;
+            _builder = builderParam;
         }
 
         public Log WriteLog(List<Log> logsListParam, string additionalDescription = "")
         {
-            builder.SetDateTime();
-            builder.SetDescription(additionalDescription);
-            builder.SetLevelType();
+            _builder.SetDateTime();
+            _builder.SetDescription(additionalDescription);
+            _builder.SetLevelType();
 
-            Log result = builder.GetResult();
+            Log result = _builder.GetResult();
             logsListParam.Add( result );
 
             return result;

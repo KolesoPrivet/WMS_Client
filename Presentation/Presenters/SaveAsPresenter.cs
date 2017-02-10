@@ -1,12 +1,12 @@
-﻿using Presentation.Common;
-
-using DomainModel.Abstract;
-using DomainModel.Entity;
-
-using Excel = Microsoft.Office.Interop.Excel;
+﻿using Excel = Microsoft.Office.Interop.Excel;
 using System.Collections.Generic;
 using System;
 using System.Windows.Forms;
+
+using Presentation.Common;
+
+using DomainModel.Abstract;
+using DomainModel.Entity;
 
 namespace Presentation.Presenters
 {

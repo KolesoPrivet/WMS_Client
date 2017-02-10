@@ -14,8 +14,10 @@ namespace UI.Views
 {
     public partial class SaveAsForm : Form, IView
     {
-        private string filePath = Environment.CurrentDirectory;
-        private readonly Regex regexPatternForTime = new Regex( "^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$" );
+        private string _filePath = Environment.CurrentDirectory;
+
+        private readonly Regex _regexPatternForTime = new Regex( "^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$" );
+
         public static List<Data> FinalList { get; } = new List<Data>();
 
         private Presenter _ownPresenter;
@@ -58,7 +60,7 @@ namespace UI.Views
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
             if (folderBrowser.ShowDialog() == DialogResult.OK)
-                filePath = folderBrowser.SelectedPath;
+                _filePath = folderBrowser.SelectedPath;
         }
 
         private async void btnSaveFile_Click(object sender, EventArgs e)
@@ -73,16 +75,16 @@ namespace UI.Views
                  if (!txtBoxFirstTimeValue.Enabled)
                  {
                      FinalList.AddRange( OwnPresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>() ) );
-                     ((SaveAsPresenter)OwnPresenter).SaveFileExcel( FinalList, filePath, txtBoxFileName.Text );
+                     ((SaveAsPresenter)OwnPresenter).SaveFileExcel( FinalList, _filePath, txtBoxFileName.Text );
                  }
                  else
                  {
-                     if (regexPatternForTime.IsMatch( txtBoxFirstTimeValue.Text ) && regexPatternForTime.IsMatch( txtBoxSecondTimeValue.Text ))
+                     if (_regexPatternForTime.IsMatch( txtBoxFirstTimeValue.Text ) && _regexPatternForTime.IsMatch( txtBoxSecondTimeValue.Text ))
                      {
                          FinalList.AddRange( OwnPresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>(),
                                                                       TimeSpan.Parse( txtBoxFirstTimeValue.Text ),
                                                                       TimeSpan.Parse( txtBoxSecondTimeValue.Text ) ) );
-                         ((SaveAsPresenter)OwnPresenter).SaveFileExcel( FinalList, filePath, txtBoxFileName.Text );
+                         ((SaveAsPresenter)OwnPresenter).SaveFileExcel( FinalList, _filePath, txtBoxFileName.Text );
                      }
                  }
              } );

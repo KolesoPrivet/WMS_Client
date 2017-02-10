@@ -9,33 +9,34 @@ namespace UI.ViewFactory.Client
 {
     class View
     {
-        private readonly Presenter concretePresenter;
-        private readonly IView concreteView;
+        private readonly Presenter _concretePresenter;
 
-        private readonly IRepository<Sensor> sensorRepository;
-        private readonly IRepository<Data> dataRepository;
+        private readonly IView _concreteView;
+
+        private readonly IRepository<Sensor> _sensorRepository;
+        private readonly IRepository<Data> _dataRepository;
 
         public View(Factory factory)
         {
-            concreteView = factory.CreateView();
-            concretePresenter = factory.CreatePresenter();
+            _concreteView = factory.CreateView();
+            _concretePresenter = factory.CreatePresenter();
         }
 
         public View(Factory factory, IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepoitoryParam) : this( factory )
         {
-            sensorRepository = sensorRepositoryParam;
-            dataRepository = dataRepoitoryParam;
+            _sensorRepository = sensorRepositoryParam;
+            _dataRepository = dataRepoitoryParam;
         }
 
         public void Run()
         {
-            concreteView.OwnPresenter = concretePresenter;
-            concretePresenter.Run( concreteView, sensorRepository, dataRepository );
+            _concreteView.OwnPresenter = _concretePresenter;
+            _concretePresenter.Run( _concreteView, _sensorRepository, _dataRepository );
         }
 
         public void Run(int sensorIdParam)
         {
-            concretePresenter.SensorId = sensorIdParam;
+            _concretePresenter.SensorId = sensorIdParam;
             Run();
         }
     }

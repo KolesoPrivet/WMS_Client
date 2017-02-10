@@ -12,7 +12,7 @@ namespace UI.Views
 {
     public partial class SelectDateForm : Form, IView
     {
-        private readonly Regex regexPatternForTime = new Regex( "^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$" );
+        private readonly Regex _regexPatternForTime = new Regex( "^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$" );
 
         private Presenter _ownPresenter;
         public Presenter OwnPresenter
@@ -71,8 +71,8 @@ namespace UI.Views
             }
             else
             {
-                if (regexPatternForTime.IsMatch( txtBoxFirstTimeValue.Text )
-                    && regexPatternForTime.IsMatch( txtBoxSecondTimeValue.Text ))
+                if (_regexPatternForTime.IsMatch( txtBoxFirstTimeValue.Text )
+                    && _regexPatternForTime.IsMatch( txtBoxSecondTimeValue.Text ))
                 {
                     FinalList.AddRange( OwnPresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>(),
                                         TimeSpan.Parse( txtBoxFirstTimeValue.Text ),

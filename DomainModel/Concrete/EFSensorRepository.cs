@@ -8,13 +8,13 @@ namespace DomainModel.Concrete
 {
     public class EFSensorRepository : IRepository<Sensor>
     {
-        private static readonly EFDatabaseContext context = new EFDatabaseContext();
+        private static readonly EFDatabaseContext _context = new EFDatabaseContext();
 
         public IEnumerable<Sensor> GetAll
         {
             get
             {
-                return context.Sensors.ToList();
+                return _context.Sensors.ToList();
             }
         }
     }
