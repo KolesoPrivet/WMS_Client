@@ -9,8 +9,6 @@ using System.Collections.Generic;
 
 using GMap.NET;
 
-using DomainModel.Entity;
-
 using Presentation.Presenters;
 using Presentation.Common;
 using Presentation.ViewModels;
@@ -20,6 +18,7 @@ using UI.ViewFactory.Concrete;
 
 using Presentation.LogsBuilder.Common;
 using Presentation.LogsBuilder.Concrete;
+using Presentation.DbService;
 
 namespace UI.Views
 {
@@ -142,14 +141,14 @@ namespace UI.Views
             dgvSens.RowHeadersVisible = false;
 
             dgvSens.Columns["Id"].Visible = false;
-            dgvSens.Columns["DataCollection"].Visible = false;
-            dgvSens.Columns["Name"].Width = 50;
-            dgvSens.Columns["SensorType"].Width = 200;
+            dgvSens.Columns["Name"].Width = 100;
+            dgvSens.Columns["SensorType"].Width = 150;
+            dgvSens.Columns["SensorType"].Name = "Sensor type";
 
             dgvData.RowHeadersVisible = false;
 
             dgvData.Columns["Id"].Visible = false;
-            dgvData.Columns["SingleSensor"].Visible = false;
+            dgvData.Columns["Sensors"].Visible = false;
             dgvData.Columns["SensorId"].Visible = false;
         }
 
@@ -190,7 +189,7 @@ namespace UI.Views
 
                 dgvSens.DataSource = await Task.Factory.StartNew( () =>
                 {
-                    var items = ((MainPresenter)OwnPresenter).GetSensorsList();
+                    List<Sensor> items = ((MainPresenter)OwnPresenter).GetSensorsList();
 
                     foreach (var i in items)
                         comboBoxSNMap.Items.Add( i.Name );
@@ -289,12 +288,11 @@ namespace UI.Views
         private void btnSelectSensorsForRequest_Click(object sender, EventArgs e)
         {
             //TODO: realize dependency injection
-            ViewPresenter view = new ViewPresenter( new SelectSensorsFactory(),
-                OwnPresenter.SensorRepository, OwnPresenter.DataRepository );
+            ViewPresenter view = new ViewPresenter( new SelectSensorsFactory());
 
             view.Run();
 
-            lblSelectedSensorsCount.Text = SelectSensorsForm.FinalList.Count.ToString();
+            rtbSelectedSensorsCount.Text = SelectSensorsForm.FinalList.Count.ToString();
         }
 
 
@@ -306,10 +304,7 @@ namespace UI.Views
         private async void btnRequestNetwork_Click(object sender, EventArgs e)
         {
             //TODO: Request to sensors
-            textBox1.Text = await Task.Factory.StartNew( () =>
-            {
-                return ((MainPresenter)OwnPresenter).RequestSensors();
-            } );
+            
         }
 
 
@@ -320,8 +315,7 @@ namespace UI.Views
         /// <param name="e"></param>
         private void rButtonChooseSensors_MouseClick(object sender, MouseEventArgs e)
         {
-            ViewPresenter view = new ViewPresenter( new SelectSensorsFactory(),
-                OwnPresenter.SensorRepository, OwnPresenter.DataRepository );
+            ViewPresenter view = new ViewPresenter( new SelectSensorsFactory());
 
             view.Run();
 
@@ -357,8 +351,7 @@ namespace UI.Views
             {
                 var currentSensor = currentRow.DataBoundItem as Sensor;
 
-                ViewPresenter view = new ViewPresenter( new SelectDateFactory(),
-                    OwnPresenter.SensorRepository, OwnPresenter.DataRepository );
+                ViewPresenter view = new ViewPresenter( new SelectDateFactory());
 
                 view.Run( currentSensor.Id );
 
@@ -386,7 +379,7 @@ namespace UI.Views
             {
                 var currentSensor = currentRow.DataBoundItem as Sensor;
 
-                dgvData.DataSource = currentSensor.DataCollection.OrderBy( v => v.Date ).ToList();
+                dgvData.DataSource = currentSensor.Data.OrderBy( v => v.Date ).ToList();
 
                 rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
             }
@@ -400,8 +393,7 @@ namespace UI.Views
         #region Menu
         private void AboutProgramMenu_Click(object sender, EventArgs e)
         {
-            ViewPresenter view = new ViewPresenter( new AboutFactory(),
-                OwnPresenter.SensorRepository, OwnPresenter.DataRepository );
+            ViewPresenter view = new ViewPresenter( new AboutFactory());
 
             view.Run();
         }
@@ -418,8 +410,7 @@ namespace UI.Views
 
         private void SaveAsMenu_Click(object sender, EventArgs e)
         {
-            ViewPresenter view = new ViewPresenter( new SaveAsFactory(),
-                OwnPresenter.SensorRepository, OwnPresenter.DataRepository );
+            ViewPresenter view = new ViewPresenter( new SaveAsFactory());
 
             view.Run();
 
@@ -460,7 +451,7 @@ namespace UI.Views
                     txtBoxCurrentSensor.Text = currentSensor.Name;
 
 
-                    dgvData.DataSource = currentSensor.DataCollection.OrderBy( v => v.Date ).ToList();
+                    dgvData.DataSource = OwnPresenter.Data.Where( d => d.SensorId == currentSensor.Id ).ToList();
 
                     CheckSensorDataCount();
 
@@ -478,6 +469,11 @@ namespace UI.Views
             }
             else
                 e.Cancel = true;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

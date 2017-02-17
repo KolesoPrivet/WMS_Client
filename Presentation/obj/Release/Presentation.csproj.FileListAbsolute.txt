@@ -26,16 +26,12 @@ C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Pres
 C:\Users\Александр\Desktop\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Release\EntityFramework.xml
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Release\Presentation.dll
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Release\Presentation.pdb
-C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Release\DomainModel.dll
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Release\GMap.NET.Core.dll
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Release\GMap.NET.WindowsForms.dll
-C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Release\EntityFramework.dll
-C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Release\DomainModel.pdb
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Release\GMap.NET.Core.xml
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Release\GMap.NET.WindowsForms.xml
-C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Release\EntityFramework.xml
-C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\obj\Release\Presentation.csprojResolveAssemblyReference.cache
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\obj\Release\Presentation.dll
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\obj\Release\Presentation.pdb
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Release\ServiceContracts.dll
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Release\ServiceContracts.pdb
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\Presentation\bin\Release\Presentation.dll.config

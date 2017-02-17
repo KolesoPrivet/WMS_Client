@@ -3,10 +3,6 @@ using System.Linq;
 using System;
 using System.ServiceModel;
 
-using DomainModel.Abstract;
-using DomainModel.Entity;
-using DomainModel.Extentions;
-
 using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
@@ -15,6 +11,7 @@ using Presentation.Common;
 using Presentation.ViewModels;
 
 using ServiceContracts;
+using Presentation.DbService;
 
 namespace Presentation.Presenters
 {
@@ -25,31 +22,17 @@ namespace Presentation.Presenters
         public static List<Log> LogsList { get; private set; }
 
 
-
         public MainPresenter()
         {
             RequestList = new List<Sensor>();
+
             LogsList = new List<Log>();
         }
 
 
-
-        public List<Sensor> GetSensorsList()
-        {
-            return SensorRepository.GetAll.ToList();
-        }
-
-        public List<Data> GetDataList()
-        {
-            return (from c in DataRepository.GetAll
-                    where c.SensorId == SensorRepository.GetAll.FirstOrDefault().Id
-                    orderby c.Date
-                    select c).ToList();
-        }
-
         public Data GetLastData(Sensor currentSensorParam)
         {
-            return DataRepository.SingleFilter( d => d.SensorId == currentSensorParam.Id );
+            return SelectSingleEntity(Data, d => d.SensorId == currentSensorParam.Id );
         }
 
         public GMapOverlay GetMarkersOfSensors()
@@ -57,7 +40,7 @@ namespace Presentation.Presenters
             GMapOverlay markersOverlay = new GMapOverlay( "markers" );
             markersOverlay.Markers.Clear();
 
-            foreach (Sensor s in SensorRepository.GetAll)
+            foreach (Sensor s in Sensors)
             {
                 GMarkerGoogle marker = new GMarkerGoogle( new PointLatLng( s.Lat, s.Lng ), GMarkerGoogleType.red );
 
@@ -67,25 +50,11 @@ namespace Presentation.Presenters
             return markersOverlay;
         }
 
-        public string RequestSensors()
-        {
 
-            // Создание экземпляра ChannelFactory<T>, где Т - Контракт.
-            ChannelFactory<IQuizService> factory = new ChannelFactory<IQuizService>( new BasicHttpBinding(), 
-                                                                                     new EndpointAddress( new Uri( "http://localhost:4000/QuizService" ) ) );
 
-            // Использование factory для создания канала (прокси).
-            IQuizService channel = factory.CreateChannel();
-
-            // Использование channel (прокси) для отправки сообщения получателю.
-            return channel.GetSensorsValue();
-        }
-
-        public override void Run(IView viewParam, IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
+        public override void Run(IView viewParam)
         {
             View = viewParam;
-            SensorRepository = sensorRepositoryParam;
-            DataRepository = dataRepositoryParam;
 
             View.Show();
         }

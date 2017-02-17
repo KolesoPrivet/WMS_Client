@@ -7,8 +7,7 @@ using System.Collections.Generic;
 
 using Presentation.Presenters;
 using Presentation.Common;
-
-using DomainModel.Entity;
+using Presentation.DbService;
 
 namespace UI.Views
 {
@@ -74,14 +73,14 @@ namespace UI.Views
              {
                  if (!txtBoxFirstTimeValue.Enabled)
                  {
-                     FinalList.AddRange( OwnPresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>() ) );
+                     FinalList.AddRange( OwnPresenter.GetDataByDates( chBoxDates.CheckedItems.OfType<DateTime>() ) );
                      ((SaveAsPresenter)OwnPresenter).SaveFileExcel( FinalList, _filePath, txtBoxFileName.Text );
                  }
                  else
                  {
                      if (_regexPatternForTime.IsMatch( txtBoxFirstTimeValue.Text ) && _regexPatternForTime.IsMatch( txtBoxSecondTimeValue.Text ))
                      {
-                         FinalList.AddRange( OwnPresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>(),
+                         FinalList.AddRange( OwnPresenter.GetDataByDates( chBoxDates.CheckedItems.OfType<DateTime>(),
                                                                       TimeSpan.Parse( txtBoxFirstTimeValue.Text ),
                                                                       TimeSpan.Parse( txtBoxSecondTimeValue.Text ) ) );
                          ((SaveAsPresenter)OwnPresenter).SaveFileExcel( FinalList, _filePath, txtBoxFileName.Text );

@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 using Presentation.Common;
 
-using DomainModel.Entity;
+using Presentation.DbService;
 
 namespace UI.Views
 {
@@ -60,7 +60,7 @@ namespace UI.Views
 
             if (!txtBoxFirstTimeValue.Enabled)
             {
-                foreach (var d in OwnPresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>() ))
+                foreach (var d in OwnPresenter.GetDataByDates( chBoxDates.CheckedItems.OfType<DateTime>() ))
                 {
                     if (!FinalList.Contains( d ))
                         FinalList.Add( d );
@@ -74,7 +74,7 @@ namespace UI.Views
                 if (_regexPatternForTime.IsMatch( txtBoxFirstTimeValue.Text )
                     && _regexPatternForTime.IsMatch( txtBoxSecondTimeValue.Text ))
                 {
-                    FinalList.AddRange( OwnPresenter.GetData( chBoxDates.CheckedItems.OfType<DateTime>(),
+                    FinalList.AddRange( OwnPresenter.GetDataByDates( chBoxDates.CheckedItems.OfType<DateTime>(),
                                         TimeSpan.Parse( txtBoxFirstTimeValue.Text ),
                                         TimeSpan.Parse( txtBoxSecondTimeValue.Text ) ) );
 

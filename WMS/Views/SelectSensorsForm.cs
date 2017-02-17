@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 using Presentation.Common;
 
-using DomainModel.Entity;
+using Presentation.DbService;
 
 namespace UI.Views
 {

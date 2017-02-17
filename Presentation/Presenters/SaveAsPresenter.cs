@@ -4,9 +4,7 @@ using System;
 using System.Windows.Forms;
 
 using Presentation.Common;
-
-using DomainModel.Abstract;
-using DomainModel.Entity;
+using Presentation.DbService;
 
 namespace Presentation.Presenters
 {
@@ -47,12 +45,9 @@ namespace Presentation.Presenters
             }
         }
 
-        public override void Run(IView viewParam, IRepository<Sensor> sensorRepositoryParam, IRepository<Data> dataRepositoryParam)
+        public override void Run(IView viewParam)
         {
             View = viewParam;
-
-            SensorRepository = sensorRepositoryParam;
-            DataRepository = dataRepositoryParam;
 
             View.ShowDialog();
         }

@@ -13,6 +13,6 @@ namespace DomainModel.Abstract
         /// <summary>
         /// Returns an T collection
         /// </summary>
-        IEnumerable<T> GetAll { get; }
+        List<T> GetAll();
     }
 }

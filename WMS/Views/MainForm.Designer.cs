@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gpBoxInternetConnectionCheck = new System.Windows.Forms.GroupBox();
@@ -115,6 +115,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.rtbLogs = new System.Windows.Forms.RichTextBox();
             this.grBoxLogs = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -529,21 +530,21 @@
             this.unionChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea2.Name = "ChartArea1";
-            this.unionChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.unionChart.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.unionChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.unionChart.Legends.Add(legend1);
             this.unionChart.Location = new System.Drawing.Point(6, 19);
             this.unionChart.Name = "unionChart";
-            series2.BorderWidth = 3;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Color = System.Drawing.Color.Blue;
-            series2.IsXValueIndexed = true;
-            series2.Legend = "Legend1";
-            series2.Name = "Датчик";
-            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
-            this.unionChart.Series.Add(series2);
+            series1.BorderWidth = 3;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Color = System.Drawing.Color.Blue;
+            series1.IsXValueIndexed = true;
+            series1.Legend = "Legend1";
+            series1.Name = "Датчик";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
+            this.unionChart.Series.Add(series1);
             this.unionChart.Size = new System.Drawing.Size(1060, 306);
             this.unionChart.TabIndex = 6;
             this.unionChart.Text = "chart1";
@@ -796,6 +797,7 @@
             // 
             // grBoxGettingData
             // 
+            this.grBoxGettingData.Controls.Add(this.textBox1);
             this.grBoxGettingData.Controls.Add(this.rtbSensorsCountQuiz);
             this.grBoxGettingData.Controls.Add(this.rtbDataCountQuiz);
             this.grBoxGettingData.Controls.Add(this.grBoxMonitoringFiltration);
@@ -1210,6 +1212,14 @@
             this.grBoxLogs.TabStop = false;
             this.grBoxLogs.Text = "Вывод";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(562, 210);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 18;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1255,6 +1265,7 @@
             this.карта.ResumeLayout(false);
             this.Мониторинг.ResumeLayout(false);
             this.grBoxGettingData.ResumeLayout(false);
+            this.grBoxGettingData.PerformLayout();
             this.grBoxMonitoringFiltration.ResumeLayout(false);
             this.grBoxFiltrationBySensorName.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuizResult)).EndInit();
@@ -1359,6 +1370,7 @@
         private System.Windows.Forms.Button btnFiltration;
         private System.Windows.Forms.GroupBox grBoxFiltrationBySensorName;
         private System.Windows.Forms.Button btnSelectSensorsForаFiltration;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

@@ -25,6 +25,6 @@ C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csha
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\bin\Release\EntityFramework.SqlServer.dll
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\bin\Release\EntityFramework.xml
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\bin\Release\EntityFramework.SqlServer.xml
-C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\obj\Release\DomainModel.csprojResolveAssemblyReference.cache
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\obj\Release\DomainModel.dll
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\obj\Release\DomainModel.pdb
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\obj\Release\DomainModel.csprojResolveAssemblyReference.cache

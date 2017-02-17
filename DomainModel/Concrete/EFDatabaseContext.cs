@@ -7,6 +7,8 @@ namespace DomainModel.Concrete
     {
         public EFDatabaseContext() : base("name = EFDatabaseContext" )
         {
+            Configuration.LazyLoadingEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<Sensor> Sensors { get; set; }

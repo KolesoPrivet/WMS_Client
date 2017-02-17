@@ -75,6 +75,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -151,6 +152,8 @@
       <DependentUpon>SelectSensorsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Presentation.DbService.Data.datasource" />
+    <None Include="Properties\DataSources\Presentation.DbService.Sensor.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -208,12 +211,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\DomainModel\DomainModel.csproj">
-      <Project>{8a37c693-5e6f-4817-b257-c34a9ea17d32}</Project>
-      <Name>DomainModel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Presentation\Presentation.csproj">
       <Project>{ee928a2e-cf67-45f1-922b-5d62e87cf6a1}</Project>
       <Name>Presentation</Name>
