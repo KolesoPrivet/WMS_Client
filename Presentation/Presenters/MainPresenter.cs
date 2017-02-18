@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System;
-using System.ServiceModel;
 
 using GMap.NET;
 using GMap.NET.WindowsForms;
@@ -10,17 +7,24 @@ using GMap.NET.WindowsForms.Markers;
 using Presentation.Common;
 using Presentation.ViewModels;
 
-using ServiceContracts;
-using Presentation.DbService;
+using DomainModel.WMSDatabaseService;
+using System.Linq;
 
 namespace Presentation.Presenters
 {
     public class MainPresenter : Presenter
     {
+        #region Fields
+
         public static List<Sensor> RequestList { get; private set; }
+
 
         public static List<Log> LogsList { get; private set; }
 
+        #endregion
+
+
+        #region Constructors
 
         public MainPresenter()
         {
@@ -29,18 +33,23 @@ namespace Presentation.Presenters
             LogsList = new List<Log>();
         }
 
+        #endregion
+
+
+        #region Help methods
 
         public Data GetLastData(Sensor currentSensorParam)
         {
-            return SelectSingleEntity(Data, d => d.SensorId == currentSensorParam.Id );
+            return GetData().OrderBy(s => s.Date).Last( d => d.SensorId == currentSensorParam.Id );
         }
 
-        public GMapOverlay GetMarkersOfSensors()
+
+        public GMapOverlay GetMarkersOfSensors(List<Sensor> sensorsParam)
         {
             GMapOverlay markersOverlay = new GMapOverlay( "markers" );
             markersOverlay.Markers.Clear();
 
-            foreach (Sensor s in Sensors)
+            foreach (Sensor s in sensorsParam) //TODO: Повторный запрос к бд. Оптимизация?
             {
                 GMarkerGoogle marker = new GMarkerGoogle( new PointLatLng( s.Lat, s.Lng ), GMarkerGoogleType.red );
 
@@ -51,12 +60,13 @@ namespace Presentation.Presenters
         }
 
 
-
         public override void Run(IView viewParam)
         {
             View = viewParam;
 
             View.Show();
         }
+
+        #endregion
     }
 }

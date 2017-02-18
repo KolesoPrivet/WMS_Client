@@ -4,7 +4,7 @@ using System;
 using System.Windows.Forms;
 
 using Presentation.Common;
-using Presentation.DbService;
+using DomainModel.WMSDatabaseService;
 
 namespace Presentation.Presenters
 {

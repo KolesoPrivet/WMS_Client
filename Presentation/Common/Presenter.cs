@@ -2,7 +2,8 @@
 using System.Linq;
 using System.Collections.Generic;
 
-using Presentation.DbService;
+using DomainModel.WMSDatabaseService;
+using DomainModel.Repositories;
 
 namespace Presentation.Common
 {
@@ -15,27 +16,21 @@ namespace Presentation.Common
 
         protected IView View { get; set; }
 
+
         public int SensorId { get; set; }
 
-        public List<Sensor> Sensors { get; protected set; }
-
-
-        public List<Data> Data { get; protected set; }
         #endregion
 
 
-
-        #region Get entities from database
+        #region Help methods
 
         /// <summary>
         /// Sends request to WCF-Service named DbService and returns collection of sensors
         /// </summary>
         /// <returns></returns>
-        public List<Sensor> GetSensorsList()
+        public IQueryable<Sensor> GetSensors()
         {
-            Sensors = new DbServiceClient().GetSensorList().ToList();
-
-            return Sensors;
+            return EFSensorRepository.GetAll();
         }
 
 
@@ -43,61 +38,11 @@ namespace Presentation.Common
         /// Sends request to WCF-Service named DbService and returns collection of data
         /// </summary>
         /// <returns></returns>
-        public List<Data> GetDataList()
+        public IQueryable<Data> GetData()
         {
-            Data = new DbServiceClient().GetDataList().ToList();
-
-            return Data.Where( s => s.SensorId == Sensors.FirstOrDefault().Id ).ToList();
+            return EFDataRepository.GetAll();
         }
 
-        #endregion
-
-
-
-        #region Generic methods for entities
-
-        /// <summary>
-        /// Returns single entity by predicate parameter
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="arrayParam"></param>
-        /// <param name="predicateParam"></param>
-        /// <returns></returns>
-        public T SelectSingleEntity<T>(IEnumerable<T> arrayParam, Func<T, bool> predicateParam) where T : class
-        {
-            foreach (T entity in arrayParam)
-            {
-                if (predicateParam( entity ))
-                {
-                    return entity;
-                }
-            }
-            return null;
-        }
-
-
-
-        /// <summary>
-        /// Returns collection of entities by predicate param
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="arrayParam"></param>
-        /// <param name="predicateParam"></param>
-        /// <returns></returns>
-        public IEnumerable<T> SelectManyEntities<T>(IEnumerable<T> arrayParam, Func<T, bool> predicateParam)
-        {
-            foreach (T t in arrayParam)
-            {
-                if (predicateParam( t ))
-                    yield return t;
-            }
-        }
-
-        #endregion
-
-
-
-        #region Get sensor, sensors names and types
 
         /// <summary>
         /// Returns sensor that name as parameter
@@ -106,7 +51,7 @@ namespace Presentation.Common
         /// <returns></returns>
         public virtual Sensor GetSensorByName(string sensorNameParam)
         {
-            return SelectSingleEntity(Sensors, s => s.Name == sensorNameParam );
+            return GetSensors().First( s => s.Name == sensorNameParam );
         }
 
 
@@ -116,7 +61,7 @@ namespace Presentation.Common
         /// <returns></returns>
         public virtual IEnumerable<string> GetSensorsNames()
         {
-            foreach (var s in Sensors)
+            foreach (var s in GetSensors())
             {
                 yield return s.Name;
             }
@@ -130,7 +75,7 @@ namespace Presentation.Common
         /// <returns></returns>
         public virtual IEnumerable<string> GetSensorsNames(string sensorTypeParam)
         {
-            foreach (var sensor in SelectManyEntities(Sensors, s => s.SensorType == sensorTypeParam ))
+            foreach (var sensor in GetSensors().Where( s => s.SensorType == sensorTypeParam ))
             {
                 yield return sensor.Name;
             }
@@ -143,17 +88,12 @@ namespace Presentation.Common
         /// <returns></returns>
         public virtual IEnumerable<string> GetSensorsTypes()
         {
-            foreach (var s in Sensors)
+            foreach (var s in GetSensors())
             {
                 yield return s.SensorType;
             }
         }
 
-        #endregion
-
-
-
-        #region Get dates
 
         /// <summary>
         /// Return all dates of current sensor
@@ -161,7 +101,7 @@ namespace Presentation.Common
         /// <returns></returns>
         public IEnumerable<DateTime> GetDates()
         {
-            foreach (var data in SelectManyEntities( Data, d => d.SensorId == SensorId ))
+            foreach (var data in GetData().Where( d => d.SensorId == SensorId ))
             {
                 yield return data.Date;
             }
@@ -175,20 +115,15 @@ namespace Presentation.Common
         /// <returns></returns>
         public IEnumerable<DateTime> GetDates(string sensorNameParam)
         {
-            Sensor currentSensor = Sensors.Where( s => s.Name == sensorNameParam ).First();
+            Sensor currentSensor = GetSensors().First( s => s.Name == sensorNameParam );
 
-            foreach (var data in SelectManyEntities( Data, d => d.SensorId == currentSensor.Id ))
+            foreach (var data in GetData().Where( d => d.SensorId == currentSensor.Id ))
             {
                 yield return data.Date;
             }
         }
 
-        #endregion
 
-
-
-        #region Get data by date
-        
         /// <summary>
         /// Returns collection of data, which dates are in parameter
         /// </summary>
@@ -198,7 +133,7 @@ namespace Presentation.Common
         {
             foreach (var date in dates)
             {
-                foreach (var data in SelectManyEntities( Data, d => d.Date == date ))
+                foreach (var data in GetData().Where( d => d.Date == date ))
                 {
                     yield return data;
                 }
@@ -217,7 +152,7 @@ namespace Presentation.Common
         {
             foreach (var date in dates)
             {
-                foreach (var data in SelectManyEntities( Data, d => d.Date == date
+                foreach (var data in GetData().Where( d => d.Date == date
                                                                  && d.Time >= firstTime
                                                                  && d.Time <= secondTime ))
                 {
@@ -225,11 +160,10 @@ namespace Presentation.Common
                 }
             }
         }
-      
-        #endregion
-
 
 
         public abstract void Run(IView view);
+       
+        #endregion
     }
 }

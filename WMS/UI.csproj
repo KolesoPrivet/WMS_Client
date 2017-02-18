@@ -212,6 +212,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DomainModel\DomainModel.csproj">
+      <Project>{8a37c693-5e6f-4817-b257-c34a9ea17d32}</Project>
+      <Name>DomainModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Presentation\Presentation.csproj">
       <Project>{ee928a2e-cf67-45f1-922b-5d62e87cf6a1}</Project>
       <Name>Presentation</Name>

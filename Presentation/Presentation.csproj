@@ -74,53 +74,20 @@
     <Compile Include="Presenters\SelectDatePresenter.cs" />
     <Compile Include="Presenters\SelectSensorsPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\DbService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\Log.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Service References\DbService\DbService.wsdl" />
-    <None Include="Service References\DbService\DbService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\DbService\DbService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\DbService\DbService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\DbService\Presentation.DbService.Data.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\DbService\Presentation.DbService.Sensor.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\DbService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\DbService\DbService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\DbService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\DbService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\DbService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <ProjectReference Include="..\DomainModel\DomainModel.csproj">
+      <Project>{8a37c693-5e6f-4817-b257-c34a9ea17d32}</Project>
+      <Name>DomainModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

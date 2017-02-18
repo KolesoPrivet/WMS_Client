@@ -6,13 +6,9 @@ namespace UI.Views
 {
     public partial class AboutForm : Form, IView
     {
-        public AboutForm()
-        {
-            InitializeComponent();
-        }
+        #region Fields
 
         private Presenter _ownPresenter;
-
         public Presenter OwnPresenter
         {
             get
@@ -28,5 +24,18 @@ namespace UI.Views
                 }
             }
         }
+
+        #endregion
+
+
+        #region Constructors
+
+        public AboutForm()
+        {
+            InitializeComponent();
+        }
+
+        #endregion
+        
     }
 }

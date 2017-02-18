@@ -6,13 +6,19 @@ using System.Text.RegularExpressions;
 
 using Presentation.Common;
 
-using Presentation.DbService;
+using DomainModel.WMSDatabaseService;
 
 namespace UI.Views
 {
     public partial class SelectDateForm : Form, IView
     {
+        #region Fields
+
         private readonly Regex _regexPatternForTime = new Regex( "^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$" );
+
+
+        public static List<Data> FinalList { get; } = new List<Data>();
+
 
         private Presenter _ownPresenter;
         public Presenter OwnPresenter
@@ -31,19 +37,16 @@ namespace UI.Views
             }
         }
 
-        public static List<Data> FinalList { get; } = new List<Data>();
+        #endregion
+
+
+        #region Constructors
 
         public SelectDateForm()
         {
             InitializeComponent();
         }
 
-        private void WarningTime()
-        {
-            toolTipForSelectDateForm.ToolTipTitle = "Внимание!";
-            toolTipForSelectDateForm.SetToolTip( txtBoxFirstTimeValue, "Введите время в 24-часовом формате. 00:00" );
-            toolTipForSelectDateForm.SetToolTip( txtBoxSecondTimeValue, "Введите время в 24-часовом формате. 00:00" );
-        }
 
         private void SelectDateForm_Load(object sender, EventArgs e)
         {
@@ -53,6 +56,38 @@ namespace UI.Views
                     chBoxDates.Items.Add( s.Date );
             }
         }
+
+        #endregion
+
+
+        #region Help methods
+
+        private void WarningTime()
+        {
+            toolTipForSelectDateForm.ToolTipTitle = "Внимание!";
+            toolTipForSelectDateForm.SetToolTip( txtBoxFirstTimeValue, "Введите время в 24-часовом формате. 00:00" );
+            toolTipForSelectDateForm.SetToolTip( txtBoxSecondTimeValue, "Введите время в 24-часовом формате. 00:00" );
+        }
+
+        #endregion
+
+
+        #region Buttons
+
+        private void checkBoxEnableTimeInterval_CheckedChanged(object sender, EventArgs e)
+        {
+            if (txtBoxFirstTimeValue.Enabled)
+            {
+                txtBoxFirstTimeValue.Enabled = false;
+                txtBoxSecondTimeValue.Enabled = false;
+            }
+            else
+            {
+                txtBoxFirstTimeValue.Enabled = true;
+                txtBoxSecondTimeValue.Enabled = true;
+            }
+        }
+
 
         private void btnAcceptSelection_Click(object sender, EventArgs e)
         {
@@ -87,28 +122,22 @@ namespace UI.Views
             }
         }
 
+        #endregion
+
+
+        #region TextBoxes
+
         private void txtBoxFirstTimeValue_MouseEnter(object sender, EventArgs e)
         {
             WarningTime();
         }
+
 
         private void txtBoxSecondTimeValue_MouseEnter(object sender, EventArgs e)
         {
             WarningTime();
         }
 
-        private void checkBoxEnableTimeInterval_CheckedChanged(object sender, EventArgs e)
-        {
-            if (txtBoxFirstTimeValue.Enabled)
-            {
-                txtBoxFirstTimeValue.Enabled = false;
-                txtBoxSecondTimeValue.Enabled = false;
-            }
-            else
-            {
-                txtBoxFirstTimeValue.Enabled = true;
-                txtBoxSecondTimeValue.Enabled = true;
-            }
-        }
+        #endregion
     }
 }

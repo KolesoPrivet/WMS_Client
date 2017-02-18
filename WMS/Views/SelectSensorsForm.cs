@@ -5,12 +5,14 @@ using System.Collections.Generic;
 
 using Presentation.Common;
 
-using Presentation.DbService;
+using DomainModel.WMSDatabaseService;
 
 namespace UI.Views
 {
     public partial class SelectSensorsForm : Form, IView
     {
+        #region Fields
+
         private Presenter _ownPresenter;
         public Presenter OwnPresenter
         {
@@ -22,19 +24,24 @@ namespace UI.Views
             set
             {
                 if (value != null)
-                {
                     _ownPresenter = value;
-                }
+
             }
         }
 
+
         public static List<Sensor> FinalList { get; } = new List<Sensor>();
 
+        #endregion
+
+
         #region Constructors
+
         public SelectSensorsForm()
         {
             InitializeComponent();
         }
+
 
         private void SelectSensorsForm_Load(object sender, EventArgs e)
         {
@@ -47,9 +54,12 @@ namespace UI.Views
                     comboBoxSensorType.Items.Add( s );
             }
         }
+
         #endregion
 
+
         #region Controls
+
         private void comboBoxSensorType_SelectedIndexChanged(object sender, EventArgs e)
         {
             chBoxSensorsNames.Items.Clear();
@@ -60,6 +70,7 @@ namespace UI.Views
             }
         }
 
+
         private void btnAcceptSelection_Click(object sender, EventArgs e)
         {
             FinalList.Clear();
@@ -69,6 +80,7 @@ namespace UI.Views
 
             Close();
         }
+      
         #endregion
     }
 }

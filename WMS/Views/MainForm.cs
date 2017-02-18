@@ -18,19 +18,30 @@ using UI.ViewFactory.Concrete;
 
 using Presentation.LogsBuilder.Common;
 using Presentation.LogsBuilder.Concrete;
-using Presentation.DbService;
+
+using DomainModel.WMSDatabaseService;
 
 namespace UI.Views
 {
     public partial class MainForm : Form, IView
     {
         #region Fields
+
         private bool _isDataLoadedFromDB;
 
+
         public List<Log> LogsList { get; } = new List<Log>();
+
         public List<Log> ErrorLogsList { get; } = new List<Log>();
 
+
+        public List<Sensor> AllSensors { get; private set; }
+
+        public List<Data> AllData { get; set; }
+
+
         private Presenter _ownPresenter;
+
         public Presenter OwnPresenter
         {
             get
@@ -46,14 +57,18 @@ namespace UI.Views
                 }
             }
         }
+
         #endregion
 
+
         #region Constructors
+
         public MainForm()
         {
             InitializeComponent();
             CenterToScreen();
         }
+
 
         private void MainMap_Load(object sender, EventArgs e)
         {
@@ -112,14 +127,21 @@ namespace UI.Views
 
             sensorMap.Position = new PointLatLng( 55.75393, 37.620795 );
         }
+
         #endregion
 
+
         #region Supporting methods
+
         void IView.Show()
         {
             Application.Run( this );
         }
 
+
+        /// <summary>
+        /// Set enable controls
+        /// </summary>
         private void EnableControsl()
         {
             rButtonAllDates.Enabled = true;
@@ -136,6 +158,10 @@ namespace UI.Views
             comboBoxSNMap.Enabled = true;
         }
 
+
+        /// <summary>
+        /// Settings for columns
+        /// </summary>
         private void SettingColumns()
         {
             dgvSens.RowHeadersVisible = false;
@@ -152,6 +178,10 @@ namespace UI.Views
             dgvData.Columns["SensorId"].Visible = false;
         }
 
+
+        /// <summary>
+        /// Bind chart to data from datagridviews
+        /// </summary>
         private void BindChart()
         {
             unionChart.DataSource = dgvData.DataSource;
@@ -160,14 +190,21 @@ namespace UI.Views
             unionChart.DataBind();
         }
 
+
+        /// <summary>
+        /// Check sensors and data count
+        /// </summary>
         private void CheckSensorDataCount()
         {
             rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
             rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
         }
+
         #endregion
 
+
         #region Buttons
+
         /// <summary>
         /// Button is downloaded actual data from DB
         /// </summary>
@@ -175,8 +212,6 @@ namespace UI.Views
         /// <param name="e"></param>
         private async void btnRefreshDB_Click(object sender, EventArgs e)
         {
-            btnRefreshDB.Enabled = false;
-
             dgvSens.DataSource = null;
             dgvData.DataSource = null;
 
@@ -187,25 +222,37 @@ namespace UI.Views
                 progressBarLoadDataFromDB.Style = ProgressBarStyle.Marquee;
                 progressBarLoadDataFromDB.MarqueeAnimationSpeed = 30;
 
+
+                //Load all sensors from database
                 dgvSens.DataSource = await Task.Factory.StartNew( () =>
                 {
-                    List<Sensor> items = ((MainPresenter)OwnPresenter).GetSensorsList();
+                    AllSensors = ((MainPresenter)OwnPresenter).GetSensors().ToList();
 
-                    foreach (var i in items)
+                    foreach (var i in AllSensors)
                         comboBoxSNMap.Items.Add( i.Name );
 
-                    return items;
+                    return AllSensors;
                 } );
 
+
+                //Load whole data from sensors
                 dgvData.DataSource = await Task.Factory.StartNew( () =>
                 {
-                    return ((MainPresenter)OwnPresenter).GetDataList();
+                    AllData = ((MainPresenter)OwnPresenter).GetData().ToList();
+
+                    return AllData.Where( x => x.SensorId == AllSensors.First().Id ).ToList();
                 } );
 
+
+                
+                //Set markers
                 await Task.Factory.StartNew( () =>
                 {
-                    sensorMap.Overlays.Add( ((MainPresenter)OwnPresenter).GetMarkersOfSensors() );
+                    sensorMap.Overlays.Add( ((MainPresenter)OwnPresenter).GetMarkersOfSensors(AllSensors) );
                 } );
+
+
+
 
                 if (!_isDataLoadedFromDB)
                 {
@@ -247,7 +294,7 @@ namespace UI.Views
         {
             sensorMap.Visible = true;
 
-            bool result = await Task.Factory.StartNew( () =>
+            await Task.Factory.StartNew( () =>
             {
                 IPStatus status = IPStatus.Unknown;
                 try
@@ -260,23 +307,18 @@ namespace UI.Views
                 }
 
                 if (status == IPStatus.Success)
-                    return true;
+                {
+                    comboBoxSNMap.Enabled = true;
+                    txtBoxCheckInternet.ForeColor = Color.FromArgb( 0, 192, 0 );
+                    txtBoxCheckInternet.Text = "Доступно";
+                    btnShwMap.Enabled = false;
+                }
                 else
-                    return false;
+                {
+                    txtBoxCheckInternet.ForeColor = Color.FromArgb( 192, 0, 0 );
+                    txtBoxCheckInternet.Text = "Отсутствует";
+                }
             } );
-
-            if (result)
-            {
-                comboBoxSNMap.Enabled = true;
-                txtBoxCheckInternet.ForeColor = Color.FromArgb( 0, 192, 0 );
-                txtBoxCheckInternet.Text = "Доступно";
-                btnShwMap.Enabled = false;
-            }
-            else
-            {
-                txtBoxCheckInternet.ForeColor = Color.FromArgb( 192, 0, 0 );
-                txtBoxCheckInternet.Text = "Отсутствует";
-            }
         }
 
 
@@ -288,7 +330,7 @@ namespace UI.Views
         private void btnSelectSensorsForRequest_Click(object sender, EventArgs e)
         {
             //TODO: realize dependency injection
-            ViewPresenter view = new ViewPresenter( new SelectSensorsFactory());
+            ViewPresenter view = new ViewPresenter( new SelectSensorsFactory() );
 
             view.Run();
 
@@ -304,7 +346,7 @@ namespace UI.Views
         private async void btnRequestNetwork_Click(object sender, EventArgs e)
         {
             //TODO: Request to sensors
-            
+
         }
 
 
@@ -315,12 +357,13 @@ namespace UI.Views
         /// <param name="e"></param>
         private void rButtonChooseSensors_MouseClick(object sender, MouseEventArgs e)
         {
-            ViewPresenter view = new ViewPresenter( new SelectSensorsFactory());
+            ViewPresenter view = new ViewPresenter( new SelectSensorsFactory() );
 
             view.Run();
 
-            //Без ToList() неадекватно отображает отфильтрованные сенсоры
-            dgvSens.DataSource = SelectSensorsForm.FinalList.ToList();
+            if (SelectSensorsForm.FinalList.Count > 0)
+                dgvSens.DataSource = SelectSensorsForm.FinalList.ToList();
+
             rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.RowCount.ToString();
         }
 
@@ -332,7 +375,7 @@ namespace UI.Views
         /// <param name="e"></param>
         private void rButtonAllSensors_MouseClick(object sender, MouseEventArgs e)
         {
-            dgvSens.DataSource = ((MainPresenter)OwnPresenter).GetSensorsList();
+            dgvSens.DataSource = ((MainPresenter)OwnPresenter).GetSensors();
 
             rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
         }
@@ -351,7 +394,7 @@ namespace UI.Views
             {
                 var currentSensor = currentRow.DataBoundItem as Sensor;
 
-                ViewPresenter view = new ViewPresenter( new SelectDateFactory());
+                ViewPresenter view = new ViewPresenter( new SelectDateFactory() );
 
                 view.Run( currentSensor.Id );
 
@@ -379,7 +422,7 @@ namespace UI.Views
             {
                 var currentSensor = currentRow.DataBoundItem as Sensor;
 
-                dgvData.DataSource = currentSensor.Data.OrderBy( v => v.Date ).ToList();
+                dgvData.DataSource = OwnPresenter.GetData().Where( x => x.SensorId == currentSensor.Id ).OrderBy( v => v.Date ).ToList();
 
                 rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
             }
@@ -388,37 +431,46 @@ namespace UI.Views
                 MessageBox.Show( "Необходимо выбрать датчик в таблице датчиков" );
             }
         }
+        
         #endregion
 
+
         #region Menu
+
         private void AboutProgramMenu_Click(object sender, EventArgs e)
         {
-            ViewPresenter view = new ViewPresenter( new AboutFactory());
+            ViewPresenter view = new ViewPresenter( new AboutFactory() );
 
             view.Run();
         }
+
 
         private void RestartMenu_Click(object sender, EventArgs e)
         {
             Application.Restart();
         }
 
+
         private void ExitMenu_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+
         private void SaveAsMenu_Click(object sender, EventArgs e)
         {
-            ViewPresenter view = new ViewPresenter( new SaveAsFactory());
+            ViewPresenter view = new ViewPresenter( new SaveAsFactory() );
 
             view.Run();
 
             //TODO: доделай логику обработки события закрытия формы сохранения
         }
+       
         #endregion
 
+
         #region Filters
+
         private void comboBoxSNMap_SelectedIndexChanged(object sender, EventArgs e)
         {
             Sensor currentSensor = OwnPresenter.GetSensorByName( comboBoxSNMap.Text );
@@ -437,9 +489,12 @@ namespace UI.Views
             }
             else MessageBox.Show( "Выбранный датчик еще не получал данных" );
         }
+
         #endregion
 
+
         #region DataGridView
+
         private void dgvSens_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (_isDataLoadedFromDB)
@@ -451,7 +506,7 @@ namespace UI.Views
                     txtBoxCurrentSensor.Text = currentSensor.Name;
 
 
-                    dgvData.DataSource = OwnPresenter.Data.Where( d => d.SensorId == currentSensor.Id ).ToList();
+                    dgvData.DataSource = OwnPresenter.GetData().Where( d => d.SensorId == currentSensor.Id ).ToList();
 
                     CheckSensorDataCount();
 
@@ -459,6 +514,7 @@ namespace UI.Views
                 }
             }
         }
+       
         #endregion
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -470,6 +526,7 @@ namespace UI.Views
             else
                 e.Cancel = true;
         }
+
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
