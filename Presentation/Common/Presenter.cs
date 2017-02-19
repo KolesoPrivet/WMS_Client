@@ -51,7 +51,7 @@ namespace Presentation.Common
         /// <returns></returns>
         public virtual Sensor GetSensorByName(string sensorNameParam)
         {
-            return GetSensors().First( s => s.Name == sensorNameParam );
+            return GetSensors().Where( s => s.Name == sensorNameParam ).AsEnumerable().FirstOrDefault();
         }
 
 
@@ -115,7 +115,7 @@ namespace Presentation.Common
         /// <returns></returns>
         public IEnumerable<DateTime> GetDates(string sensorNameParam)
         {
-            Sensor currentSensor = GetSensors().First( s => s.Name == sensorNameParam );
+            Sensor currentSensor = GetSensors().Where( s => s.Name == sensorNameParam ).AsEnumerable().First();
 
             foreach (var data in GetData().Where( d => d.SensorId == currentSensor.Id ))
             {

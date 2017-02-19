@@ -77,6 +77,7 @@
             this.карта = new System.Windows.Forms.TabControl();
             this.Мониторинг = new System.Windows.Forms.TabPage();
             this.grBoxGettingData = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.rtbSensorsCountQuiz = new System.Windows.Forms.RichTextBox();
             this.rtbDataCountQuiz = new System.Windows.Forms.RichTextBox();
             this.grBoxMonitoringFiltration = new System.Windows.Forms.GroupBox();
@@ -115,7 +116,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.rtbLogs = new System.Windows.Forms.RichTextBox();
             this.grBoxLogs = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -810,6 +810,14 @@
             this.grBoxGettingData.TabStop = false;
             this.grBoxGettingData.Text = "Полученные данные";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(562, 210);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 18;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // rtbSensorsCountQuiz
             // 
             this.rtbSensorsCountQuiz.BackColor = System.Drawing.SystemColors.Menu;
@@ -1212,14 +1220,6 @@
             this.grBoxLogs.TabStop = false;
             this.grBoxLogs.Text = "Вывод";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(562, 210);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 18;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1233,6 +1233,7 @@
             this.Name = "MainForm";
             this.Text = "Беспроводная система мониторинга WMS";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabPage1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

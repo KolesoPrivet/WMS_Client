@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Исходное имя файла:
-// Дата создания: 18.02.2017 18:00:10
+// Дата создания: 19.02.2017 13:06:33
 namespace DomainModel.WMSDatabaseService
 {
     
@@ -92,6 +92,9 @@ namespace DomainModel.WMSDatabaseService
                 return this._Sensors;
             }
         }
+
+        public object Entry { get; internal set; }
+
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         private global::System.Data.Services.Client.DataServiceQuery<Sensor> _Sensors;
         /// <summary>
@@ -141,13 +144,13 @@ namespace DomainModel.WMSDatabaseService
                 "><End Type=\"WMSModel.Data\" Role=\"Data\" Multiplicity=\"*\" /><ReferentialConstraint" +
                 "><Principal Role=\"Sensors\"><PropertyRef Name=\"Id\" /></Principal><Dependent Role=" +
                 "\"Data\"><PropertyRef Name=\"SensorId\" /></Dependent></ReferentialConstraint></Asso" +
-                "ciation></Schema><Schema Namespace=\"WebApplication1\" xmlns=\"http://schemas.micro" +
-                "soft.com/ado/2009/11/edm\"><EntityContainer Name=\"WMSEntities\" m:IsDefaultEntityC" +
-                "ontainer=\"true\"><EntitySet Name=\"Data\" EntityType=\"WMSModel.Data\" /><EntitySet N" +
-                "ame=\"Sensors\" EntityType=\"WMSModel.Sensor\" /><AssociationSet Name=\"FK_Data_Senso" +
-                "r\" Association=\"WMSModel.FK_Data_Sensor\"><End Role=\"Data\" EntitySet=\"Data\" /><En" +
-                "d Role=\"Sensors\" EntitySet=\"Sensors\" /></AssociationSet></EntityContainer></Sche" +
-                "ma></edmx:DataServices></edmx:Edmx>";
+                "ciation></Schema><Schema Namespace=\"WMSDataService\" xmlns=\"http://schemas.micros" +
+                "oft.com/ado/2009/11/edm\"><EntityContainer Name=\"WMSEntities\" m:IsDefaultEntityCo" +
+                "ntainer=\"true\"><EntitySet Name=\"Data\" EntityType=\"WMSModel.Data\" /><EntitySet Na" +
+                "me=\"Sensors\" EntityType=\"WMSModel.Sensor\" /><AssociationSet Name=\"FK_Data_Sensor" +
+                "\" Association=\"WMSModel.FK_Data_Sensor\"><End Role=\"Data\" EntitySet=\"Data\" /><End" +
+                " Role=\"Sensors\" EntitySet=\"Sensors\" /></AssociationSet></EntityContainer></Schem" +
+                "a></edmx:DataServices></edmx:Edmx>";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
             private static string GetConcatenatedEdmxString()
             {

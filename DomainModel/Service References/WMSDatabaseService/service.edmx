@@ -37,7 +37,7 @@
         </ReferentialConstraint>
       </Association>
     </Schema>
-    <Schema Namespace="WebApplication1" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+    <Schema Namespace="WMSDataService" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
       <EntityContainer Name="WMSEntities" m:IsDefaultEntityContainer="true">
         <EntitySet Name="Data" EntityType="WMSModel.Data" />
         <EntitySet Name="Sensors" EntityType="WMSModel.Sensor" />

@@ -40,7 +40,7 @@ namespace Presentation.Presenters
 
         public Data GetLastData(Sensor currentSensorParam)
         {
-            return GetData().OrderBy(s => s.Date).Last( d => d.SensorId == currentSensorParam.Id );
+            return GetData().Where( d => d.SensorId == currentSensorParam.Id ).OrderBy( s => s.Date ).AsEnumerable().LastOrDefault();
         }
 
 

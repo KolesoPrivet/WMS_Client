@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/ServiceContracts.Entity" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ServiceContracts.Entity" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:4000/QuizService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfResponseEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ResponseEntity" nillable="true" type="tns:ResponseEntity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfResponseEntity" nillable="true" type="tns:ArrayOfResponseEntity" />
+  <xs:complexType name="ResponseEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="SensorId" type="xs:int" />
+      <xs:element minOccurs="0" name="Time" type="ser:duration" />
+      <xs:element minOccurs="0" name="Value" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResponseEntity" nillable="true" type="tns:ResponseEntity" />
+</xs:schema>

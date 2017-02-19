@@ -2,6 +2,7 @@
 using System.Linq;
 
 using DomainModel.WMSDatabaseService;
+using System.Data.Entity;
 
 namespace DomainModel.Repositories
 {
@@ -11,7 +12,7 @@ namespace DomainModel.Repositories
         {
             WMSEntities context = new WMSEntities( new Uri( "http://localhost:58833/DatabaseService.svc/" ) );
 
-            return context.Sensors.AsQueryable();
+            return context.Sensors.Expand(x => x.Data).AsQueryable();
         }
     }
 }
