@@ -15,6 +15,129 @@ namespace WMS.QuizService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RequestEntity", Namespace="http://schemas.datacontract.org/2004/07/ServiceContracts.Entity")]
+    [System.SerializableAttribute()]
+    public partial class RequestEntity : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FrequenceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int QuizNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WMS.QuizService.ResultSettings ResultSettingsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int[] SensorIdsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[] SensorNamesField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Frequence {
+            get {
+                return this.FrequenceField;
+            }
+            set {
+                if ((this.FrequenceField.Equals(value) != true)) {
+                    this.FrequenceField = value;
+                    this.RaisePropertyChanged("Frequence");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int QuizNumber {
+            get {
+                return this.QuizNumberField;
+            }
+            set {
+                if ((this.QuizNumberField.Equals(value) != true)) {
+                    this.QuizNumberField = value;
+                    this.RaisePropertyChanged("QuizNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WMS.QuizService.ResultSettings ResultSettings {
+            get {
+                return this.ResultSettingsField;
+            }
+            set {
+                if ((this.ResultSettingsField.Equals(value) != true)) {
+                    this.ResultSettingsField = value;
+                    this.RaisePropertyChanged("ResultSettings");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int[] SensorIds {
+            get {
+                return this.SensorIdsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SensorIdsField, value) != true)) {
+                    this.SensorIdsField = value;
+                    this.RaisePropertyChanged("SensorIds");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] SensorNames {
+            get {
+                return this.SensorNamesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SensorNamesField, value) != true)) {
+                    this.SensorNamesField = value;
+                    this.RaisePropertyChanged("SensorNames");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResultSettings", Namespace="http://schemas.datacontract.org/2004/07/ServiceContracts.Entity")]
+    public enum ResultSettings : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        showOnly = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        saveOnly = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        showAndSave = 2,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ResponseEntity", Namespace="http://schemas.datacontract.org/2004/07/ServiceContracts.Entity")]
     [System.SerializableAttribute()]
     public partial class ResponseEntity : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -27,6 +150,9 @@ namespace WMS.QuizService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SensorIdField;
@@ -69,6 +195,19 @@ namespace WMS.QuizService {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
                 }
             }
         }
@@ -127,10 +266,10 @@ namespace WMS.QuizService {
     public interface IQuizService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IQuizService/RequestToWSN", ReplyAction="http://tempuri.org/IQuizService/RequestToWSNResponse")]
-        WMS.QuizService.ResponseEntity[] RequestToWSN();
+        WMS.QuizService.ResponseEntity[] RequestToWSN(WMS.QuizService.RequestEntity requestEntityParam);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IQuizService/RequestToWSN", ReplyAction="http://tempuri.org/IQuizService/RequestToWSNResponse")]
-        System.Threading.Tasks.Task<WMS.QuizService.ResponseEntity[]> RequestToWSNAsync();
+        System.Threading.Tasks.Task<WMS.QuizService.ResponseEntity[]> RequestToWSNAsync(WMS.QuizService.RequestEntity requestEntityParam);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -160,12 +299,12 @@ namespace WMS.QuizService {
                 base(binding, remoteAddress) {
         }
         
-        public WMS.QuizService.ResponseEntity[] RequestToWSN() {
-            return base.Channel.RequestToWSN();
+        public WMS.QuizService.ResponseEntity[] RequestToWSN(WMS.QuizService.RequestEntity requestEntityParam) {
+            return base.Channel.RequestToWSN(requestEntityParam);
         }
         
-        public System.Threading.Tasks.Task<WMS.QuizService.ResponseEntity[]> RequestToWSNAsync() {
-            return base.Channel.RequestToWSNAsync();
+        public System.Threading.Tasks.Task<WMS.QuizService.ResponseEntity[]> RequestToWSNAsync(WMS.QuizService.RequestEntity requestEntityParam) {
+            return base.Channel.RequestToWSNAsync(requestEntityParam);
         }
     }
 }

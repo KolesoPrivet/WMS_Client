@@ -1,4 +1,11 @@
-﻿using System;
+﻿//-------------------------------------------------------------------
+// Client application for wireless monitoring system. 
+// Created by Alexander Kolesnikov.
+//-------------------------------------------------------------------
+
+#region Namespaces
+
+using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -15,13 +22,20 @@ using Presentation.ViewModels;
 
 using ViewPresenter = UI.ViewFactory.Client.View;
 using UI.ViewFactory.Concrete;
+using UI.ViewFactory.Abstract;
+
 
 using Presentation.LogsBuilder.Common;
 using Presentation.LogsBuilder.Concrete;
 
 using DomainModel.WMSDatabaseService;
-using System.Threading;
+
 using WMS.QuizService;
+
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
+
+#endregion
 
 namespace UI.Views
 {
@@ -60,6 +74,9 @@ namespace UI.Views
             }
         }
 
+
+        public ResultSettings QuizResult { get; private set; } = ResultSettings.showOnly;
+
         #endregion
 
 
@@ -74,75 +91,67 @@ namespace UI.Views
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            comboBoxMonitoringType.Items.Add( "Единичный опрос" );
-            comboBoxMonitoringType.Items.Add( "С заданным интервалом" );
-
-            comboBoxSelectQuizInterval.Items.Add( "30 секунд" );
-            comboBoxSelectQuizInterval.Items.Add( "1 минута" );
-            comboBoxSelectQuizInterval.Items.Add( "5 минут" );
-            comboBoxSelectQuizInterval.Items.Add( "25 минут" );
-            comboBoxSelectQuizInterval.Items.Add( "1 час" );
+            SettingComboboxes();
         }
 
 
-        private void MainMap_Load(object sender, EventArgs e)
+        private void SettingMaps(object sender, EventArgs e)
         {
-
+            GMapControl currentMap = ((GMapControl)sender);
             //Настройки для компонента GMap.
-            sensorMap.Bearing = 0;
+            currentMap.Bearing = 0;
 
             //CanDragMap - Если параметр установлен в True,
             //пользователь может перетаскивать карту
             //с помощью правой кнопки мыши.
-            sensorMap.CanDragMap = true;
+            currentMap.CanDragMap = true;
 
             //Указываем, что перетаскивание карты осуществляется
             //с использованием левой клавишей мыши.
             //По умолчанию - правая.
-            sensorMap.DragButton = MouseButtons.Left;
+            currentMap.DragButton = MouseButtons.Left;
 
-            sensorMap.GrayScaleMode = true;
+            currentMap.GrayScaleMode = true;
 
             //MarkersEnabled - Если параметр установлен в True,
             //любые маркеры, заданные вручную будет показаны.
             //Если нет, они не появятся.
-            sensorMap.MarkersEnabled = true;
+            currentMap.MarkersEnabled = true;
 
             //Указываем значение максимального приближения.
-            sensorMap.MaxZoom = 18;
+            currentMap.MaxZoom = 18;
 
             //Указываем значение минимального приближения.
-            sensorMap.MinZoom = 2;
+            currentMap.MinZoom = 2;
 
             //Устанавливаем центр приближения/удаления
             //курсор мыши.
-            sensorMap.MouseWheelZoomType =
+            currentMap.MouseWheelZoomType =
                 GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
 
             //Отказываемся от негативного режима.
-            sensorMap.NegativeMode = false;
+            currentMap.NegativeMode = false;
 
             //Разрешаем полигоны.
-            sensorMap.PolygonsEnabled = true;
+            currentMap.PolygonsEnabled = true;
 
             //Разрешаем маршруты
-            sensorMap.RoutesEnabled = true;
+            currentMap.RoutesEnabled = true;
 
             //Скрываем внешнюю сетку карты
             //с заголовками.
-            sensorMap.ShowTileGridLines = false;
+            currentMap.ShowTileGridLines = false;
 
             //Указываем, что при загрузке карты будет использоваться
             //18ти кратное приближение.
-            sensorMap.Zoom = 5;
+            currentMap.Zoom = 5;
 
             //Указываем что будем использовать карты Google.
-            sensorMap.MapProvider = GMap.NET.MapProviders.GMapProviders.GoogleMap;
+            currentMap.MapProvider = GMap.NET.MapProviders.GMapProviders.GoogleMap;
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
 
-            sensorMap.Position = new PointLatLng( 55.75393, 37.620795 );
+            currentMap.Position = new PointLatLng( 55.75393, 37.620795 );
         }
-
         #endregion
 
 
@@ -151,6 +160,174 @@ namespace UI.Views
         void IView.Show()
         {
             Application.Run( this );
+        }
+
+
+        private async Task SetMarkersOnMaps()
+        {
+            //Set markers
+            await Task.Factory.StartNew( () =>
+            {
+                GMapOverlay markersOverlaySensorMap = new GMapOverlay( "markersForSensorMap" );
+
+                sensorMap.Overlays.Add( markersOverlaySensorMap );
+
+
+
+                GMapOverlay markersOverlaySensorMinoringMap = new GMapOverlay( "markersForMonitoringMap" );
+
+                sensorMonitoringMap.Overlays.Add( markersOverlaySensorMinoringMap );
+
+
+
+                foreach (Sensor s in AllSensors)
+                {
+                    GMarkerGoogle marker = new GMarkerGoogle( new PointLatLng( s.Lat, s.Lng ), GMarkerGoogleType.blue );
+
+                    markersOverlaySensorMap.Markers.Add( marker );
+
+                    markersOverlaySensorMinoringMap.Markers.Add( marker );
+
+                    marker.ToolTipText = s.Name;
+                }
+            } );
+        }
+
+
+        private async Task LoadDataFromDatabase()
+        {
+            dgvData.DataSource = await Task.Factory.StartNew( () =>
+            {
+                AllData = ((MainPresenter)OwnPresenter).GetData().ToList();
+
+                return AllData.Where( x => x.SensorId == AllSensors.First().Id ).ToList();
+            } );
+        }
+
+
+        private async Task LoadSensorsFromDatabase()
+        {
+            //Load all sensors from database
+            dgvSens.DataSource = await Task.Factory.StartNew( () =>
+            {
+                AllSensors = ((MainPresenter)OwnPresenter).GetSensors().ToList();
+
+                foreach (var i in AllSensors)
+                    comboBoxSNMap.Items.Add( i.Name );
+
+                return AllSensors;
+            } );
+        }
+
+
+        private void WriteLogException(Exception ex)
+        {
+            Logger logger = new Logger( new CriticalLogBuilder() );
+
+            logger.WriteLog( LogsList, ex.ToString() );
+
+            Log result = logger.WriteLog( ErrorLogsList, ex.ToString() );
+
+            rtbLogs.AppendText( string.Format( "{0} {1}\n{2}:\n", result.EventLogTime, result.LevelType, result.Description ) );
+            rtbLogs.AppendText( Environment.NewLine );
+            rtbLogs.AppendText( new string( '-', 350 ) );
+        }
+
+
+        private async Task<bool> CheckInternetConnection()
+        {
+            return await Task.Factory.StartNew( () =>
+            {
+                IPStatus status = IPStatus.Unknown;
+
+                try
+                {
+                    status = new Ping().Send( "yandex.ru" ).Status;
+                }
+
+                catch (Exception ex)
+                {
+                    WriteLogException( ex );
+                }
+
+                if (status == IPStatus.Success)
+                    return true;
+
+                else
+                    return false;
+            } );
+        }
+
+
+        private async Task SendRequestToSensors()
+        {
+            await Task.Factory.StartNew( () =>
+            {
+                RequestEntity request = new RequestEntity()
+                {
+                    SensorIds = SelectSensorsForm.FinalList.Select( x => x.Id ).ToArray(),
+                    SensorNames = SelectSensorsForm.FinalList.Select( x => x.Name ).ToArray(),
+                    Frequence = int.Parse( comboBoxSelectQuizInterval.Text ),
+                    QuizNumber = int.Parse( rtbQuizNumber.Text ),
+                    ResultSettings = QuizResult
+                };
+
+                QuizServiceClient serviceClient = new QuizServiceClient();
+
+                dgvQuizResult.DataSource = serviceClient.RequestToWSN( request ).ToList();
+
+
+
+                serviceClient.Close();
+            } );
+        }
+
+
+        /// <summary>
+        /// Run new form through creating appropriate factory
+        /// </summary>
+        /// <param name="factoryParam"></param>
+        private static void RunNewForm(Factory factoryParam)
+        {
+            ViewPresenter view = new ViewPresenter( factoryParam );
+
+            view.Run();
+        }
+
+
+        /// <summary>
+        /// Setting values into comboboxes
+        /// </summary>
+        private void SettingComboboxes()
+        {
+            comboBoxMonitoringType.Items.Add( "Единичный опрос" );
+            comboBoxMonitoringType.Items.Add( "С заданным интервалом" );
+
+            comboBoxSelectQuizInterval.Items.Add( "30" );
+            comboBoxSelectQuizInterval.Items.Add( "60" );
+            comboBoxSelectQuizInterval.Items.Add( "300" );
+            comboBoxSelectQuizInterval.Items.Add( "1500" );
+            comboBoxSelectQuizInterval.Items.Add( "3600" );
+        }
+
+
+        /// <summary>
+        /// Settings for columns
+        /// </summary>
+        private void SettingDataGridViewColumns()
+        {
+            dgvSens.RowHeadersVisible = false;
+
+            dgvSens.Columns["Id"].Visible = false;
+            dgvSens.Columns["Name"].Width = 100;
+            dgvSens.Columns["SensorType"].Width = 150;
+            dgvSens.Columns["SensorType"].Name = "Sensor type";
+
+            dgvData.RowHeadersVisible = false;
+
+            dgvData.Columns["Id"].Visible = false;
+            dgvData.Columns["Sensors"].Visible = false;
+            dgvData.Columns["SensorId"].Visible = false;
         }
 
 
@@ -173,22 +350,33 @@ namespace UI.Views
 
 
         /// <summary>
-        /// Settings for columns
+        /// Set sensor info into appropriate textboxes
         /// </summary>
-        private void SettingColumns()
+        /// <param name="currentSensor"></param>
+        /// <param name="lastDataOfCurrentSensor"></param>
+        private void ShowSensorInfo(Sensor currentSensor, Data lastDataOfCurrentSensor)
         {
-            dgvSens.RowHeadersVisible = false;
+            if (lastDataOfCurrentSensor != null)
+            {
 
-            dgvSens.Columns["Id"].Visible = false;
-            dgvSens.Columns["Name"].Width = 100;
-            dgvSens.Columns["SensorType"].Width = 150;
-            dgvSens.Columns["SensorType"].Name = "Sensor type";
+                txtBoxMapSType.Text = currentSensor.SensorType;
+                txtBoxMapSStatus.Text = "Рабочее"; //TODO: реализуй алгоритм проверки состояния датчика
+                txtBoxMapLastDate.Text = lastDataOfCurrentSensor.Date.ToString().Remove( 10, 8 );
+                txtBoxMapLastTime.Text = lastDataOfCurrentSensor.Time.ToString();
+                txtBoxMapLastValue.Text = lastDataOfCurrentSensor.Value.ToString();
 
-            dgvData.RowHeadersVisible = false;
+                sensorMap.Position = new PointLatLng( currentSensor.Lat, currentSensor.Lng );
+            }
+            else
+            {
+                txtBoxMapSType.Text = currentSensor.SensorType;
+                txtBoxMapSStatus.Text = "Рабочее";
+                txtBoxMapLastDate.Text = "Empty";
+                txtBoxMapLastTime.Text = "Empty";
+                txtBoxMapLastValue.Text = "Empty";
 
-            dgvData.Columns["Id"].Visible = false;
-            dgvData.Columns["Sensors"].Visible = false;
-            dgvData.Columns["SensorId"].Visible = false;
+                sensorMap.Position = new PointLatLng( currentSensor.Lat, currentSensor.Lng );
+            }
         }
 
 
@@ -205,12 +393,24 @@ namespace UI.Views
 
 
         /// <summary>
-        /// Check sensors and data count
+        /// Count sensors and data number and set it into rtbAmountSensors and rtbSensorsValue
         /// </summary>
-        private void CheckSensorDataCount()
+        private void CountSensorAndDataNumber()
         {
             rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
             rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
+        }
+
+
+        /// <summary>
+        /// Count number of required quiz
+        /// </summary>
+        /// <returns></returns>
+        private int CountQuizNumber()
+        {
+            if (comboBoxSelectQuizInterval.Text == null) return 0;
+
+            return 1 + (int)(dtpTo.Value.TimeOfDay.TotalSeconds - dtpFrom.Value.TimeOfDay.TotalSeconds) / (int)(TimeSpan.Parse( "0:00:" + comboBoxSelectQuizInterval.Text ).TotalSeconds);
         }
 
         #endregion
@@ -228,8 +428,10 @@ namespace UI.Views
             dgvSens.DataSource = null;
             dgvData.DataSource = null;
 
-            comboBoxSNMap.Items.Clear();
 
+            comboBoxSNMap.Items.Clear();
+            sensorMap.Overlays.Clear();
+            sensorMonitoringMap.Overlays.Clear();
             sensorMap.Overlays.Clear();
 
             try
@@ -239,37 +441,11 @@ namespace UI.Views
                 progressBarLoadDataFromDB.Style = ProgressBarStyle.Marquee;
                 progressBarLoadDataFromDB.MarqueeAnimationSpeed = 30;
 
+                await LoadSensorsFromDatabase();
 
-                //Load all sensors from database
-                dgvSens.DataSource = await Task.Factory.StartNew( () =>
-                {
-                    AllSensors = ((MainPresenter)OwnPresenter).GetSensors().ToList();
+                await LoadDataFromDatabase();
 
-                    foreach (var i in AllSensors)
-                        comboBoxSNMap.Items.Add( i.Name );
-
-                    return AllSensors;
-                } );
-
-
-                //Load whole data from sensors
-                dgvData.DataSource = await Task.Factory.StartNew( () =>
-                {
-                    AllData = ((MainPresenter)OwnPresenter).GetData().ToList();
-
-                    return AllData.Where( x => x.SensorId == AllSensors.First().Id ).ToList();
-                } );
-
-
-
-                //Set markers
-                await Task.Factory.StartNew( () =>
-                {
-                    sensorMap.Overlays.Add( ((MainPresenter)OwnPresenter).GetMarkersOfSensors( AllSensors ) );
-                } );
-
-
-
+                await SetMarkersOnMaps();
 
                 if (!_isDataLoadedFromDB)
                 {
@@ -278,26 +454,20 @@ namespace UI.Views
                     btnRefreshDB.Text = "Обновить данные";
                 }
 
-                SettingColumns();
+                SettingDataGridViewColumns();
+
+                CountSensorAndDataNumber();
+
+                BindChart();
 
                 _isDataLoadedFromDB = true;
 
                 progressBarLoadDataFromDB.Style = ProgressBarStyle.Continuous;
                 progressBarLoadDataFromDB.MarqueeAnimationSpeed = 0;
-
-                CheckSensorDataCount();
-
-                BindChart();
             }
             catch (Exception ex)
             {
-                Logger logger = new Logger( new CriticalLogBuilder() );
-                logger.WriteLog( LogsList, ex.ToString() );
-                Log result = logger.WriteLog( ErrorLogsList, ex.ToString() );
-
-                rtbLogs.AppendText( string.Format( "{0} {1}\n{2}:\n", result.EventLogTime, result.LevelType, result.Description ) );
-                rtbLogs.AppendText( Environment.NewLine );
-                rtbLogs.AppendText( new string( '-', 350 ) );
+                WriteLogException( ex );
             }
         }
 
@@ -310,27 +480,9 @@ namespace UI.Views
         private async void btnShwMap_Click(object sender, EventArgs e)
         {
             sensorMap.Visible = true;
+            sensorMonitoringMap.Visible = true;
 
-            bool result = await Task.Factory.StartNew( () =>
-            {
-                IPStatus status = IPStatus.Unknown;
-
-                try
-                {
-                    status = new Ping().Send( "yandex.ru" ).Status;
-                }
-
-                catch (Exception ex)
-                {
-                    MessageBox.Show( ex.ToString() );
-                }
-
-                if (status == IPStatus.Success)
-                    return true;
-
-                else
-                    return false;
-            } );
+            bool result = await CheckInternetConnection();
 
             if (result)
             {
@@ -354,17 +506,15 @@ namespace UI.Views
         /// <param name="e"></param>
         private void btnSelectSensorsForRequest_Click(object sender, EventArgs e)
         {
-            //TODO: realize dependency injection
-            ViewPresenter view = new ViewPresenter( new SelectSensorsFactory() );
+            RunNewForm( new SelectSensorsFactory() );
 
-            view.Run();
-
-            rtbSelectedSensorsCount.Text = "Датчиков выбрано: " + SelectSensorsForm.FinalList.Count.ToString();
+            if (SelectSensorsForm.FinalList.Count > 0)
+                rtbSelectedSensorsCount.Text = "Датчиков выбрано: " + SelectSensorsForm.FinalList.Count.ToString();
         }
 
 
         /// <summary>
-        /// Button is dispatched a request for wireless sensor network
+        /// Button is dispatched request for wireless sensor network
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -372,32 +522,44 @@ namespace UI.Views
         {
             string warning = "Выбранных вами датчиков: " + SelectSensorsForm.FinalList.Count() + "\nНачать опрос?";
 
+
             //TODO: Request to sensors
             if (MessageBox.Show( warning, "Предупреждение", MessageBoxButtons.OKCancel ) == DialogResult.OK)
             {
                 dgvQuizResult.DataSource = null;
+
 
                 progressBarMonitoring.Minimum = 1;
                 progressBarMonitoring.Maximum = 10;
                 progressBarMonitoring.Style = ProgressBarStyle.Marquee;
                 progressBarMonitoring.MarqueeAnimationSpeed = 30;
 
-                await Task.Factory.StartNew( () =>
-                 {
-                     
-                     //Start request
-                     HashSet<int> sensorsId = new HashSet<int>( SelectSensorsForm.FinalList.Select( x => x.Id ) );
 
-                     QuizServiceClient serviceClient = new QuizServiceClient();
+                rtbQuizNumber.Text = CountQuizNumber().ToString();
 
-                     dgvQuizResult.DataSource = serviceClient.RequestToWSN().ToList();
 
-                 } );
+
+                await SendRequestToSensors();
+
+
+
+                dgvQuizResult.RowHeadersVisible = false;
+                dgvQuizResult.Columns["Id"].Visible = false;
+
+
+
+                rtbDataCountQuiz.Text = "Показаний датчика: " + ((List<ResponseEntity>)dgvQuizResult.DataSource).Count().ToString();
+
+                rtbSensorsCountQuiz.Text = "Количество датчиков: " + ((List<ResponseEntity>)dgvQuizResult.DataSource).Select( x => x.SensorId ).Distinct().Count().ToString();
+
+
 
                 progressBarMonitoring.Style = ProgressBarStyle.Continuous;
                 progressBarMonitoring.MarqueeAnimationSpeed = 0;
             }
         }
+
+
 
 
         /// <summary>
@@ -407,9 +569,7 @@ namespace UI.Views
         /// <param name="e"></param>
         private void rButtonChooseSensors_MouseClick(object sender, MouseEventArgs e)
         {
-            ViewPresenter view = new ViewPresenter( new SelectSensorsFactory() );
-
-            view.Run();
+            RunNewForm( new SelectSensorsFactory() );
 
             if (SelectSensorsForm.FinalList.Count > 0)
             {
@@ -487,6 +647,24 @@ namespace UI.Views
             }
         }
 
+
+        private void radioBtnOnlyShow_Click(object sender, EventArgs e)
+        {
+            QuizResult = ResultSettings.showOnly;
+        }
+
+
+        private void radioBtnOnlySave_Click(object sender, EventArgs e)
+        {
+            QuizResult = ResultSettings.saveOnly;
+        }
+
+
+        private void radioBtnSaveAndShow_Click(object sender, EventArgs e)
+        {
+            QuizResult = ResultSettings.showAndSave;
+        }
+
         #endregion
 
 
@@ -494,9 +672,7 @@ namespace UI.Views
 
         private void AboutProgramMenu_Click(object sender, EventArgs e)
         {
-            ViewPresenter view = new ViewPresenter( new AboutFactory() );
-
-            view.Run();
+            RunNewForm( new AboutFactory() );
         }
 
 
@@ -514,9 +690,7 @@ namespace UI.Views
 
         private void SaveAsMenu_Click(object sender, EventArgs e)
         {
-            ViewPresenter view = new ViewPresenter( new SaveAsFactory() );
-
-            view.Run();
+            RunNewForm( new SaveAsFactory() );
 
             //TODO: доделай логику обработки события закрытия формы сохранения
         }
@@ -529,29 +703,10 @@ namespace UI.Views
         private void comboBoxSNMap_SelectedIndexChanged(object sender, EventArgs e)
         {
             Sensor currentSensor = OwnPresenter.GetSensorByName( comboBoxSNMap.Text );
+
             Data lastDataOfCurrentSensor = ((MainPresenter)OwnPresenter).GetLastData( currentSensor );
 
-            if (lastDataOfCurrentSensor != null)
-            {
-
-                txtBoxMapSType.Text = currentSensor.SensorType;
-                txtBoxMapSStatus.Text = "Рабочее"; //TODO: реализуй алгоритм проверки состояния датчика
-                txtBoxMapLastDate.Text = lastDataOfCurrentSensor.Date.ToString().Remove( 10, 8 );
-                txtBoxMapLastTime.Text = lastDataOfCurrentSensor.Time.ToString();
-                txtBoxMapLastValue.Text = lastDataOfCurrentSensor.Value.ToString();
-
-                sensorMap.Position = new PointLatLng( currentSensor.Lat, currentSensor.Lng );
-            }
-            else
-            {
-                txtBoxMapSType.Text = currentSensor.SensorType;
-                txtBoxMapSStatus.Text = "Рабочее"; //TODO: реализуй алгоритм проверки состояния датчика
-                txtBoxMapLastDate.Text = "Empty";
-                txtBoxMapLastTime.Text = "Empty";
-                txtBoxMapLastValue.Text = "Empty";
-
-                sensorMap.Position = new PointLatLng( currentSensor.Lat, currentSensor.Lng );
-            }
+            ShowSensorInfo( currentSensor, lastDataOfCurrentSensor );
         }
 
         #endregion
@@ -572,7 +727,7 @@ namespace UI.Views
 
                     dgvData.DataSource = OwnPresenter.GetData().Where( d => d.SensorId == currentSensor.Id ).ToList();
 
-                    CheckSensorDataCount();
+                    CountSensorAndDataNumber();
 
                     BindChart();
                 }
@@ -589,12 +744,6 @@ namespace UI.Views
             }
             else
                 e.Cancel = true;
-        }
-
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

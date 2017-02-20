@@ -44,22 +44,6 @@ namespace Presentation.Presenters
         }
 
 
-        public GMapOverlay GetMarkersOfSensors(List<Sensor> sensorsParam)
-        {
-            GMapOverlay markersOverlay = new GMapOverlay( "markers" );
-            markersOverlay.Markers.Clear();
-
-            foreach (Sensor s in sensorsParam) //TODO: Повторный запрос к бд. Оптимизация?
-            {
-                GMarkerGoogle marker = new GMarkerGoogle( new PointLatLng( s.Lat, s.Lng ), GMarkerGoogleType.red );
-
-                markersOverlay.Markers.Add( marker );
-                marker.ToolTipText = s.Name;
-            }
-            return markersOverlay;
-        }
-
-
         public override void Run(IView viewParam)
         {
             View = viewParam;

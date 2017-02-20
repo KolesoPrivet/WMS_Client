@@ -179,6 +179,9 @@
     <None Include="Service References\QuizService\QuizService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\QuizService\QuizService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\QuizService\WMS.QuizService.ResponseEntity.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
