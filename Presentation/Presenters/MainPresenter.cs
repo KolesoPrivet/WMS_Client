@@ -1,9 +1,5 @@
 ﻿using System.Collections.Generic;
 
-using GMap.NET;
-using GMap.NET.WindowsForms;
-using GMap.NET.WindowsForms.Markers;
-
 using Presentation.Common;
 using Presentation.ViewModels;
 

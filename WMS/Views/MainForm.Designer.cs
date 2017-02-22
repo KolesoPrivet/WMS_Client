@@ -614,6 +614,7 @@
             this.dgvData.Location = new System.Drawing.Point(6, 102);
             this.dgvData.Name = "dgvData";
             this.dgvData.ReadOnly = true;
+            this.dgvData.RowHeadersVisible = false;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvData.Size = new System.Drawing.Size(529, 213);
             this.dgvData.TabIndex = 0;
@@ -728,6 +729,7 @@
             this.dgvSens.MultiSelect = false;
             this.dgvSens.Name = "dgvSens";
             this.dgvSens.ReadOnly = true;
+            this.dgvSens.RowHeadersVisible = false;
             this.dgvSens.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSens.Size = new System.Drawing.Size(513, 213);
             this.dgvSens.TabIndex = 16;
@@ -878,6 +880,7 @@
             this.dgvQuizResult.Location = new System.Drawing.Point(6, 19);
             this.dgvQuizResult.Name = "dgvQuizResult";
             this.dgvQuizResult.ReadOnly = true;
+            this.dgvQuizResult.RowHeadersVisible = false;
             this.dgvQuizResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvQuizResult.Size = new System.Drawing.Size(1059, 182);
             this.dgvQuizResult.TabIndex = 1;
@@ -980,6 +983,7 @@
             // 
             // btnRequestNetwork
             // 
+            this.btnRequestNetwork.Enabled = false;
             this.btnRequestNetwork.Location = new System.Drawing.Point(5, 53);
             this.btnRequestNetwork.Name = "btnRequestNetwork";
             this.btnRequestNetwork.Size = new System.Drawing.Size(175, 29);

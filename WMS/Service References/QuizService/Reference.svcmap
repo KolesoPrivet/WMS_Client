@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="426fef25-3f8b-44d6-aa95-a44d3ff5786a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="409a20f3-d15f-4e51-89e4-16d156937776" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,12 +22,12 @@
     <MetadataSource Address="http://localhost:4000/QuizService" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="QuizService.xsd" MetadataType="Schema" ID="95b5eba7-e245-494b-ba8f-c04a0d59bdfe" SourceId="1" SourceUrl="http://localhost:4000/QuizService?xsd=xsd0" />
-    <MetadataFile FileName="QuizService1.xsd" MetadataType="Schema" ID="4b3dfa55-9016-4ae5-9ea1-e53eac91eb9c" SourceId="1" SourceUrl="http://localhost:4000/QuizService?xsd=xsd1" />
-    <MetadataFile FileName="QuizService.disco" MetadataType="Disco" ID="c4b6ac55-e4da-49f0-abf9-27db116c2f72" SourceId="1" SourceUrl="http://localhost:4000/QuizService?disco" />
-    <MetadataFile FileName="QuizService.wsdl" MetadataType="Wsdl" ID="17daf8bd-3b9e-4e85-af87-f7be23312002" SourceId="1" SourceUrl="http://localhost:4000/QuizService?wsdl" />
-    <MetadataFile FileName="QuizService2.xsd" MetadataType="Schema" ID="1631aed3-0784-48ff-9f8e-6cb24dd860b4" SourceId="1" SourceUrl="http://localhost:4000/QuizService?xsd=xsd2" />
-    <MetadataFile FileName="QuizService3.xsd" MetadataType="Schema" ID="63703259-6cc5-43a3-9fbe-f6d19fe37a9b" SourceId="1" SourceUrl="http://localhost:4000/QuizService?xsd=xsd3" />
+    <MetadataFile FileName="QuizService.xsd" MetadataType="Schema" ID="fdfba9bf-1bc9-403d-9aa1-c331165d936e" SourceId="1" SourceUrl="http://localhost:4000/QuizService?xsd=xsd0" />
+    <MetadataFile FileName="QuizService1.xsd" MetadataType="Schema" ID="ba97db57-5fe7-44f7-b221-1b207ebf5ea4" SourceId="1" SourceUrl="http://localhost:4000/QuizService?xsd=xsd1" />
+    <MetadataFile FileName="QuizService.disco" MetadataType="Disco" ID="bad77d62-2e4c-4b8b-b19b-a4e77a9eee95" SourceId="1" SourceUrl="http://localhost:4000/QuizService?disco" />
+    <MetadataFile FileName="QuizService.wsdl" MetadataType="Wsdl" ID="8d380798-864e-4ff6-b647-91e68210626d" SourceId="1" SourceUrl="http://localhost:4000/QuizService?wsdl" />
+    <MetadataFile FileName="QuizService2.xsd" MetadataType="Schema" ID="132de0bf-9091-4da6-9392-172690d4fe9b" SourceId="1" SourceUrl="http://localhost:4000/QuizService?xsd=xsd2" />
+    <MetadataFile FileName="QuizService3.xsd" MetadataType="Schema" ID="4aa04d9f-dff7-4b12-98d5-820e8c85107f" SourceId="1" SourceUrl="http://localhost:4000/QuizService?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

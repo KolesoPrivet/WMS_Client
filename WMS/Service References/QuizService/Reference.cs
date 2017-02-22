@@ -265,11 +265,11 @@ namespace WMS.QuizService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="QuizService.IQuizService")]
     public interface IQuizService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IQuizService/RequestToWSN", ReplyAction="http://tempuri.org/IQuizService/RequestToWSNResponse")]
-        WMS.QuizService.ResponseEntity[] RequestToWSN(WMS.QuizService.RequestEntity requestEntityParam);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IQuizService/RequestService", ReplyAction="http://tempuri.org/IQuizService/RequestServiceResponse")]
+        WMS.QuizService.ResponseEntity[] RequestService(WMS.QuizService.RequestEntity requestEntityParam);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IQuizService/RequestToWSN", ReplyAction="http://tempuri.org/IQuizService/RequestToWSNResponse")]
-        System.Threading.Tasks.Task<WMS.QuizService.ResponseEntity[]> RequestToWSNAsync(WMS.QuizService.RequestEntity requestEntityParam);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IQuizService/RequestService", ReplyAction="http://tempuri.org/IQuizService/RequestServiceResponse")]
+        System.Threading.Tasks.Task<WMS.QuizService.ResponseEntity[]> RequestServiceAsync(WMS.QuizService.RequestEntity requestEntityParam);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -299,12 +299,12 @@ namespace WMS.QuizService {
                 base(binding, remoteAddress) {
         }
         
-        public WMS.QuizService.ResponseEntity[] RequestToWSN(WMS.QuizService.RequestEntity requestEntityParam) {
-            return base.Channel.RequestToWSN(requestEntityParam);
+        public WMS.QuizService.ResponseEntity[] RequestService(WMS.QuizService.RequestEntity requestEntityParam) {
+            return base.Channel.RequestService(requestEntityParam);
         }
         
-        public System.Threading.Tasks.Task<WMS.QuizService.ResponseEntity[]> RequestToWSNAsync(WMS.QuizService.RequestEntity requestEntityParam) {
-            return base.Channel.RequestToWSNAsync(requestEntityParam);
+        public System.Threading.Tasks.Task<WMS.QuizService.ResponseEntity[]> RequestServiceAsync(WMS.QuizService.RequestEntity requestEntityParam) {
+            return base.Channel.RequestServiceAsync(requestEntityParam);
         }
     }
 }

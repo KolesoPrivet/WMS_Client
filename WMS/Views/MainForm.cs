@@ -163,7 +163,7 @@ namespace UI.Views
         }
 
 
-        private async Task SetMarkersOnMaps()
+        private async Task SetMarkersOnMapsAsync()
         {
             //Set markers
             await Task.Factory.StartNew( () =>
@@ -194,7 +194,7 @@ namespace UI.Views
         }
 
 
-        private async Task LoadDataFromDatabase()
+        private async Task LoadDataFromDatabaseAsync()
         {
             dgvData.DataSource = await Task.Factory.StartNew( () =>
             {
@@ -205,7 +205,7 @@ namespace UI.Views
         }
 
 
-        private async Task LoadSensorsFromDatabase()
+        private async Task LoadSensorsFromDatabaseAsync()
         {
             //Load all sensors from database
             dgvSens.DataSource = await Task.Factory.StartNew( () =>
@@ -220,21 +220,7 @@ namespace UI.Views
         }
 
 
-        private void WriteLogException(Exception ex)
-        {
-            Logger logger = new Logger( new CriticalLogBuilder() );
-
-            logger.WriteLog( LogsList, ex.ToString() );
-
-            Log result = logger.WriteLog( ErrorLogsList, ex.ToString() );
-
-            rtbLogs.AppendText( string.Format( "{0} {1}\n{2}:\n", result.EventLogTime, result.LevelType, result.Description ) );
-            rtbLogs.AppendText( Environment.NewLine );
-            rtbLogs.AppendText( new string( '-', 350 ) );
-        }
-
-
-        private async Task<bool> CheckInternetConnection()
+        private async Task<bool> CheckInternetConnectionAsync()
         {
             return await Task.Factory.StartNew( () =>
             {
@@ -259,11 +245,11 @@ namespace UI.Views
         }
 
 
-        private async Task SendRequestToSensors()
+        private async Task SendRequestToSensorsAsync()
         {
             await Task.Factory.StartNew( () =>
             {
-                RequestEntity request = new RequestEntity()
+                RequestEntity requestSettings = new RequestEntity()
                 {
                     SensorIds = SelectSensorsForm.FinalList.Select( x => x.Id ).ToArray(),
                     SensorNames = SelectSensorsForm.FinalList.Select( x => x.Name ).ToArray(),
@@ -272,14 +258,45 @@ namespace UI.Views
                     ResultSettings = QuizResult
                 };
 
-                QuizServiceClient serviceClient = new QuizServiceClient();
 
-                dgvQuizResult.DataSource = serviceClient.RequestToWSN( request ).ToList();
-
-
-
-                serviceClient.Close();
+                // Request may return null if "SaveOnly" option was chosen.
+                dgvQuizResult.DataSource = new QuizServiceClient().RequestService( requestSettings ).ToList();
             } );
+        }
+
+
+        private async Task GetDataSensorCellAsync()
+        {
+            if (_isDataLoadedFromDB)
+            {
+                Sensor currentSensor = dgvSens.CurrentRow.DataBoundItem as Sensor;
+
+                if (currentSensor != null)
+                {
+                    txtBoxCurrentSensor.Text = currentSensor.Name;
+
+
+                    dgvData.DataSource = OwnPresenter.GetData().Where( d => d.SensorId == currentSensor.Id ).ToList();
+
+                    CountSensorAndDataNumber();
+
+                    await BindChartAsync();
+                }
+            }
+        }
+
+
+        private void WriteLogException(Exception ex)
+        {
+            Logger logger = new Logger( new CriticalLogBuilder() );
+
+            logger.WriteLog( LogsList, ex.ToString() );
+
+            Log result = logger.WriteLog( ErrorLogsList, ex.ToString() );
+
+            rtbLogs.AppendText( string.Format( "{0} {1}\n{2}:\n", result.EventLogTime, result.LevelType, result.Description ) );
+            rtbLogs.AppendText( Environment.NewLine );
+            rtbLogs.AppendText( new string( '-', 350 ) );
         }
 
 
@@ -316,14 +333,10 @@ namespace UI.Views
         /// </summary>
         private void SettingDataGridViewColumns()
         {
-            dgvSens.RowHeadersVisible = false;
-
             dgvSens.Columns["Id"].Visible = false;
             dgvSens.Columns["Name"].Width = 100;
             dgvSens.Columns["SensorType"].Width = 150;
             dgvSens.Columns["SensorType"].Name = "Sensor type";
-
-            dgvData.RowHeadersVisible = false;
 
             dgvData.Columns["Id"].Visible = false;
             dgvData.Columns["Sensors"].Visible = false;
@@ -383,12 +396,15 @@ namespace UI.Views
         /// <summary>
         /// Bind chart to data from datagridviews
         /// </summary>
-        private void BindChart()
+        private async Task BindChartAsync()
         {
-            unionChart.DataSource = dgvData.DataSource;
-            unionChart.Series["Датчик"].XValueMember = "Date";
-            unionChart.Series["Датчик"].YValueMembers = "Value";
-            unionChart.DataBind();
+            await Task.Factory.StartNew( () =>
+            {
+                unionChart.DataSource = dgvData.DataSource;
+                unionChart.Series["Датчик"].XValueMember = "Date";
+                unionChart.Series["Датчик"].YValueMembers = "Value";
+                unionChart.DataBind();
+            } );
         }
 
 
@@ -427,7 +443,7 @@ namespace UI.Views
         {
             dgvSens.DataSource = null;
             dgvData.DataSource = null;
-
+             
 
             comboBoxSNMap.Items.Clear();
             sensorMap.Overlays.Clear();
@@ -441,11 +457,21 @@ namespace UI.Views
                 progressBarLoadDataFromDB.Style = ProgressBarStyle.Marquee;
                 progressBarLoadDataFromDB.MarqueeAnimationSpeed = 30;
 
-                await LoadSensorsFromDatabase();
 
-                await LoadDataFromDatabase();
 
-                await SetMarkersOnMaps();
+                await LoadSensorsFromDatabaseAsync();
+
+                await LoadDataFromDatabaseAsync();
+
+                await SetMarkersOnMapsAsync();
+
+                await BindChartAsync();
+
+
+                SettingDataGridViewColumns();
+
+                CountSensorAndDataNumber();
+
 
                 if (!_isDataLoadedFromDB)
                 {
@@ -454,13 +480,8 @@ namespace UI.Views
                     btnRefreshDB.Text = "Обновить данные";
                 }
 
-                SettingDataGridViewColumns();
-
-                CountSensorAndDataNumber();
-
-                BindChart();
-
                 _isDataLoadedFromDB = true;
+
 
                 progressBarLoadDataFromDB.Style = ProgressBarStyle.Continuous;
                 progressBarLoadDataFromDB.MarqueeAnimationSpeed = 0;
@@ -482,7 +503,7 @@ namespace UI.Views
             sensorMap.Visible = true;
             sensorMonitoringMap.Visible = true;
 
-            bool result = await CheckInternetConnection();
+            bool result = await CheckInternetConnectionAsync();
 
             if (result)
             {
@@ -508,8 +529,10 @@ namespace UI.Views
         {
             RunNewForm( new SelectSensorsFactory() );
 
-            if (SelectSensorsForm.FinalList.Count > 0)
-                rtbSelectedSensorsCount.Text = "Датчиков выбрано: " + SelectSensorsForm.FinalList.Count.ToString();
+            if (SelectSensorsForm.FinalList.Count > 0) btnRequestNetwork.Enabled = true;
+
+
+            rtbSelectedSensorsCount.Text = "Датчиков выбрано: " + SelectSensorsForm.FinalList.Count.ToString();
         }
 
 
@@ -520,7 +543,7 @@ namespace UI.Views
         /// <param name="e"></param>
         private async void btnRequestNetwork_Click(object sender, EventArgs e)
         {
-            string warning = "Выбранных вами датчиков: " + SelectSensorsForm.FinalList.Count() + "\nНачать опрос?";
+            string warning = "Выбранных вами датчиков: " + SelectSensorsForm.FinalList.Count() + "\nЕсли вами не был выбран интервал опроса, то опрос датчиков проведется единожды.\nНачать опрос?";
 
 
             //TODO: Request to sensors
@@ -528,7 +551,7 @@ namespace UI.Views
             {
                 dgvQuizResult.DataSource = null;
 
-
+                //Start progress bar
                 progressBarMonitoring.Minimum = 1;
                 progressBarMonitoring.Maximum = 10;
                 progressBarMonitoring.Style = ProgressBarStyle.Marquee;
@@ -539,11 +562,10 @@ namespace UI.Views
 
 
 
-                await SendRequestToSensors();
+                await SendRequestToSensorsAsync();
 
 
 
-                dgvQuizResult.RowHeadersVisible = false;
                 dgvQuizResult.Columns["Id"].Visible = false;
 
 
@@ -553,13 +575,11 @@ namespace UI.Views
                 rtbSensorsCountQuiz.Text = "Количество датчиков: " + ((List<ResponseEntity>)dgvQuizResult.DataSource).Select( x => x.SensorId ).Distinct().Count().ToString();
 
 
-
+                //Stop progress bar
                 progressBarMonitoring.Style = ProgressBarStyle.Continuous;
                 progressBarMonitoring.MarqueeAnimationSpeed = 0;
             }
         }
-
-
 
 
         /// <summary>
@@ -714,25 +734,12 @@ namespace UI.Views
 
         #region DataGridView
 
-        private void dgvSens_CellEnter(object sender, DataGridViewCellEventArgs e)
+        private async void dgvSens_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (_isDataLoadedFromDB)
-            {
-                Sensor currentSensor = dgvSens.CurrentRow.DataBoundItem as Sensor;
-
-                if (currentSensor != null)
-                {
-                    txtBoxCurrentSensor.Text = currentSensor.Name;
-
-
-                    dgvData.DataSource = OwnPresenter.GetData().Where( d => d.SensorId == currentSensor.Id ).ToList();
-
-                    CountSensorAndDataNumber();
-
-                    BindChart();
-                }
-            }
+            await GetDataSensorCellAsync();
         }
+
+        
 
         #endregion
 
