@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using Presentation.Common;
 
@@ -43,16 +44,21 @@ namespace UI.Views
         }
 
 
-        private void SelectSensorsForm_Load(object sender, EventArgs e)
+        private async void SelectSensorsForm_Load(object sender, EventArgs e)
         {
-            foreach (var s in OwnPresenter.GetSensorsNames())
-                chBoxSensorsNames.Items.Add( s );
+            await SetComboboxes();
+        }
 
-            foreach (var s in OwnPresenter.GetSensorsTypes())
+        private Task SetComboboxes()
+        {
+            return Task.Factory.StartNew( () =>
             {
-                if (!comboBoxSensorType.Items.Contains( s ))
+                foreach (var s in OwnPresenter.GetSensorsTypes().Distinct())
                     comboBoxSensorType.Items.Add( s );
-            }
+
+                foreach (var s in OwnPresenter.GetSensorsNames())
+                    chBoxSensorsNames.Items.Add( s );
+            } );
         }
 
         #endregion
@@ -80,7 +86,7 @@ namespace UI.Views
 
             Close();
         }
-      
+
         #endregion
     }
 }

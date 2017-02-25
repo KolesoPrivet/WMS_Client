@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.btnAcceptSelection = new System.Windows.Forms.Button();
             this.gpBoxSelectTimeInterval = new System.Windows.Forms.GroupBox();
+            this.checkBoxEnableTimeInterval = new System.Windows.Forms.CheckBox();
             this.lblSecondTimeValue = new System.Windows.Forms.Label();
             this.txtBoxSecondTimeValue = new System.Windows.Forms.TextBox();
             this.lblFirstTimeValue = new System.Windows.Forms.Label();
@@ -38,14 +39,17 @@
             this.gpBoxSelectDate = new System.Windows.Forms.GroupBox();
             this.chBoxDates = new System.Windows.Forms.CheckedListBox();
             this.toolTipForSelectDateForm = new System.Windows.Forms.ToolTip(this.components);
-            this.checkBoxEnableTimeInterval = new System.Windows.Forms.CheckBox();
+            this.dgvForSensorSelection = new System.Windows.Forms.DataGridView();
+            this.gpBoxSelectSensor = new System.Windows.Forms.GroupBox();
             this.gpBoxSelectTimeInterval.SuspendLayout();
             this.gpBoxSelectDate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvForSensorSelection)).BeginInit();
+            this.gpBoxSelectSensor.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAcceptSelection
             // 
-            this.btnAcceptSelection.Location = new System.Drawing.Point(12, 210);
+            this.btnAcceptSelection.Location = new System.Drawing.Point(273, 212);
             this.btnAcceptSelection.Name = "btnAcceptSelection";
             this.btnAcceptSelection.Size = new System.Drawing.Size(267, 39);
             this.btnAcceptSelection.TabIndex = 27;
@@ -60,12 +64,22 @@
             this.gpBoxSelectTimeInterval.Controls.Add(this.txtBoxSecondTimeValue);
             this.gpBoxSelectTimeInterval.Controls.Add(this.lblFirstTimeValue);
             this.gpBoxSelectTimeInterval.Controls.Add(this.txtBoxFirstTimeValue);
-            this.gpBoxSelectTimeInterval.Location = new System.Drawing.Point(12, 151);
+            this.gpBoxSelectTimeInterval.Location = new System.Drawing.Point(273, 153);
             this.gpBoxSelectTimeInterval.Name = "gpBoxSelectTimeInterval";
             this.gpBoxSelectTimeInterval.Size = new System.Drawing.Size(267, 53);
             this.gpBoxSelectTimeInterval.TabIndex = 26;
             this.gpBoxSelectTimeInterval.TabStop = false;
-            this.gpBoxSelectTimeInterval.Text = "По часовому промежутку";
+            this.gpBoxSelectTimeInterval.Text = "Выберите часовой промежуток";
+            // 
+            // checkBoxEnableTimeInterval
+            // 
+            this.checkBoxEnableTimeInterval.AutoSize = true;
+            this.checkBoxEnableTimeInterval.Location = new System.Drawing.Point(6, 25);
+            this.checkBoxEnableTimeInterval.Name = "checkBoxEnableTimeInterval";
+            this.checkBoxEnableTimeInterval.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxEnableTimeInterval.TabIndex = 4;
+            this.checkBoxEnableTimeInterval.UseVisualStyleBackColor = true;
+            this.checkBoxEnableTimeInterval.CheckedChanged += new System.EventHandler(this.checkBoxEnableTimeInterval_CheckedChanged);
             // 
             // lblSecondTimeValue
             // 
@@ -110,12 +124,12 @@
             // gpBoxSelectDate
             // 
             this.gpBoxSelectDate.Controls.Add(this.chBoxDates);
-            this.gpBoxSelectDate.Location = new System.Drawing.Point(12, 10);
+            this.gpBoxSelectDate.Location = new System.Drawing.Point(273, 12);
             this.gpBoxSelectDate.Name = "gpBoxSelectDate";
             this.gpBoxSelectDate.Size = new System.Drawing.Size(267, 135);
             this.gpBoxSelectDate.TabIndex = 25;
             this.gpBoxSelectDate.TabStop = false;
-            this.gpBoxSelectDate.Text = "По дате";
+            this.gpBoxSelectDate.Text = "Выберите дату";
             // 
             // chBoxDates
             // 
@@ -126,21 +140,35 @@
             this.chBoxDates.Size = new System.Drawing.Size(255, 109);
             this.chBoxDates.TabIndex = 21;
             // 
-            // checkBoxEnableTimeInterval
+            // dgvForSensorSelection
             // 
-            this.checkBoxEnableTimeInterval.AutoSize = true;
-            this.checkBoxEnableTimeInterval.Location = new System.Drawing.Point(6, 25);
-            this.checkBoxEnableTimeInterval.Name = "checkBoxEnableTimeInterval";
-            this.checkBoxEnableTimeInterval.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxEnableTimeInterval.TabIndex = 4;
-            this.checkBoxEnableTimeInterval.UseVisualStyleBackColor = true;
-            this.checkBoxEnableTimeInterval.CheckedChanged += new System.EventHandler(this.checkBoxEnableTimeInterval_CheckedChanged);
+            this.dgvForSensorSelection.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvForSensorSelection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvForSensorSelection.Location = new System.Drawing.Point(6, 19);
+            this.dgvForSensorSelection.Name = "dgvForSensorSelection";
+            this.dgvForSensorSelection.ReadOnly = true;
+            this.dgvForSensorSelection.RowHeadersVisible = false;
+            this.dgvForSensorSelection.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvForSensorSelection.Size = new System.Drawing.Size(240, 214);
+            this.dgvForSensorSelection.TabIndex = 28;
+            this.dgvForSensorSelection.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvForSensorSelection_CellClick);
+            // 
+            // gpBoxSelectSensor
+            // 
+            this.gpBoxSelectSensor.Controls.Add(this.dgvForSensorSelection);
+            this.gpBoxSelectSensor.Location = new System.Drawing.Point(12, 12);
+            this.gpBoxSelectSensor.Name = "gpBoxSelectSensor";
+            this.gpBoxSelectSensor.Size = new System.Drawing.Size(255, 239);
+            this.gpBoxSelectSensor.TabIndex = 29;
+            this.gpBoxSelectSensor.TabStop = false;
+            this.gpBoxSelectSensor.Text = "Выберите датчик";
             // 
             // SelectDateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(291, 257);
+            this.ClientSize = new System.Drawing.Size(547, 257);
+            this.Controls.Add(this.gpBoxSelectSensor);
             this.Controls.Add(this.btnAcceptSelection);
             this.Controls.Add(this.gpBoxSelectTimeInterval);
             this.Controls.Add(this.gpBoxSelectDate);
@@ -150,6 +178,8 @@
             this.gpBoxSelectTimeInterval.ResumeLayout(false);
             this.gpBoxSelectTimeInterval.PerformLayout();
             this.gpBoxSelectDate.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvForSensorSelection)).EndInit();
+            this.gpBoxSelectSensor.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -166,5 +196,7 @@
         private System.Windows.Forms.Label lblFirstTimeValue;
         private System.Windows.Forms.ToolTip toolTipForSelectDateForm;
         private System.Windows.Forms.CheckBox checkBoxEnableTimeInterval;
+        private System.Windows.Forms.DataGridView dgvForSensorSelection;
+        private System.Windows.Forms.GroupBox gpBoxSelectSensor;
     }
 }

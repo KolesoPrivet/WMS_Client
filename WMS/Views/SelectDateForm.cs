@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using Presentation.Common;
 
 using DomainModel.WMSDatabaseService;
+using DomainModel.Cache;
 
 namespace UI.Views
 {
@@ -50,17 +51,16 @@ namespace UI.Views
 
         private void SelectDateForm_Load(object sender, EventArgs e)
         {
-            foreach (var s in OwnPresenter.GetDates().OrderBy( d => d.Date ).ToList())
-            {
-                if (!chBoxDates.Items.Contains( s ))
-                    chBoxDates.Items.Add( s.Date );
-            }
+            dgvForSensorSelection.DataSource = CacheEntity.CurrentSensors;
+
+            SettingDataGridViewColumns();
         }
+
 
         #endregion
 
 
-        #region Help methods
+        #region Setting and auxiliary methods
 
         private void WarningTime()
         {
@@ -69,10 +69,39 @@ namespace UI.Views
             toolTipForSelectDateForm.SetToolTip( txtBoxSecondTimeValue, "Введите время в 24-часовом формате. 00:00" );
         }
 
+
+        private void SetCheckboxItems()
+        {
+            chBoxDates.Items.Clear();
+
+            Sensor currentSensor = dgvForSensorSelection.CurrentRow.DataBoundItem as Sensor;
+
+            List<DateTime> currentSensorDates = OwnPresenter.GetDates( currentSensor.Id ).Distinct().ToList();
+
+            if (currentSensorDates != null)
+            {
+                foreach (DateTime d in currentSensorDates)
+                {
+                    chBoxDates.Items.Add( d );
+                }
+            }
+        }
+
+
+        private void SettingDataGridViewColumns()
+        {
+            dgvForSensorSelection.Columns["Id"].Visible = false;
+            dgvForSensorSelection.Columns["Lat"].Visible = false;
+            dgvForSensorSelection.Columns["Lng"].Visible = false;
+            dgvForSensorSelection.Columns["Radius"].Visible = false;
+
+            dgvForSensorSelection.Columns["SensorType"].Name = "Sensor type";
+        }
+
         #endregion
 
 
-        #region Buttons
+        #region Controls
 
         private void checkBoxEnableTimeInterval_CheckedChanged(object sender, EventArgs e)
         {
@@ -122,10 +151,12 @@ namespace UI.Views
             }
         }
 
-        #endregion
 
+        private void dgvForSensorSelection_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            SetCheckboxItems();
+        }
 
-        #region TextBoxes
 
         private void txtBoxFirstTimeValue_MouseEnter(object sender, EventArgs e)
         {
@@ -139,5 +170,6 @@ namespace UI.Views
         }
 
         #endregion
+
     }
 }

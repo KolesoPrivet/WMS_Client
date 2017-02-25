@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 using DomainModel.WMSDatabaseService;
 using DomainModel.Repositories;
+using DomainModel.Cache;
 
 namespace Presentation.Common
 {
@@ -12,22 +13,19 @@ namespace Presentation.Common
     /// </summary>
     public abstract class Presenter
     {
-        #region Fileds
+        #region Fields and properties
 
         protected IView View { get; set; }
-
-
-        public int SensorId { get; set; }
 
         #endregion
 
 
-        #region Help methods
+        #region Data manipulation methods
 
         /// <summary>
-        /// Sends request to WCF-Service named DbService and returns collection of sensors
+        /// Sends request to WCF-Service named DbService
         /// </summary>
-        /// <returns></returns>
+        /// <returns>IQueryable collection of sensors</returns>
         public IQueryable<Sensor> GetSensors()
         {
             return EFSensorRepository.GetAll();
@@ -35,20 +33,21 @@ namespace Presentation.Common
 
 
         /// <summary>
-        /// Sends request to WCF-Service named DbService and returns collection of data
+        /// Sends request to WCF-Service named DbService
         /// </summary>
-        /// <returns></returns>
+        /// <returns>IQueryable collection of data</returns>
         public IQueryable<Data> GetData()
         {
             return EFDataRepository.GetAll();
         }
 
 
+
         /// <summary>
         /// Returns sensor that name as parameter
         /// </summary>
         /// <param name="sensorNameParam"></param>
-        /// <returns></returns>
+        /// <returns>Sensor name</returns>
         public virtual Sensor GetSensorByName(string sensorNameParam)
         {
             return GetSensors().Where( s => s.Name == sensorNameParam ).AsEnumerable().FirstOrDefault();
@@ -56,23 +55,24 @@ namespace Presentation.Common
 
 
         /// <summary>
-        /// Returns collection of all sensors names
+        /// Get current sensors from cache
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Collection of all sensors names</returns>
         public virtual IEnumerable<string> GetSensorsNames()
         {
-            foreach (var s in GetSensors())
+
+            foreach (var s in CacheEntity.CurrentSensors.Select( x => x.Name ))
             {
-                yield return s.Name;
+                yield return s;
             }
         }
 
 
         /// <summary>
-        /// Returns collection of sensors names, that type as parameter
+        /// Get current sensors names from database
         /// </summary>
-        /// <param name="sensorTypeParam"></param>
-        /// <returns></returns>
+        /// <param name="sensorTypeParam">Sensor type</param>
+        /// <returns>Collection of sensors names</returns>
         public virtual IEnumerable<string> GetSensorsNames(string sensorTypeParam)
         {
             foreach (var sensor in GetSensors().Where( s => s.SensorType == sensorTypeParam ))
@@ -83,25 +83,25 @@ namespace Presentation.Common
 
 
         /// <summary>
-        /// Returns collection of sensors types
+        /// Get current sensors types from cache
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Collection of sensors types</returns>
         public virtual IEnumerable<string> GetSensorsTypes()
         {
-            foreach (var s in GetSensors())
+            foreach (var s in CacheEntity.CurrentSensors.Select( x => x.SensorType ))
             {
-                yield return s.SensorType;
+                yield return s;
             }
         }
 
 
         /// <summary>
-        /// Return all dates of current sensor
+        /// Get all dates from database
         /// </summary>
-        /// <returns></returns>
-        public IEnumerable<DateTime> GetDates()
+        /// <returns>All dates from database</returns>
+        public virtual IEnumerable<DateTime> GetDates()
         {
-            foreach (var data in GetData().Where( d => d.SensorId == SensorId ))
+            foreach (var data in GetData())
             {
                 yield return data.Date;
             }
@@ -109,11 +109,25 @@ namespace Presentation.Common
 
 
         /// <summary>
-        /// Return all dates of sensor name param
+        /// Return all dates by sensor id
         /// </summary>
-        /// <param name="sensorNameParam"></param>
+        /// <param name="sensorIdParam">Sensor id</param>
         /// <returns></returns>
-        public IEnumerable<DateTime> GetDates(string sensorNameParam)
+        public virtual IEnumerable<DateTime> GetDates(int sensorIdParam)
+        {
+            foreach (var data in GetData().Where( x => x.SensorId == sensorIdParam ))
+            {
+                yield return data.Date;
+            }
+        }
+
+
+        /// <summary>
+        /// Get dates from database by sensor name
+        /// </summary>
+        /// <param name="sensorNameParam">Sensor name</param>
+        /// <returns></returns>
+        public virtual IEnumerable<DateTime> GetDates(string sensorNameParam)
         {
             Sensor currentSensor = GetSensors().Where( s => s.Name == sensorNameParam ).AsEnumerable().First();
 
@@ -125,10 +139,10 @@ namespace Presentation.Common
 
 
         /// <summary>
-        /// Returns collection of data, which dates are in parameter
+        /// Get data by dates collection
         /// </summary>
         /// <param name="dates"></param>
-        /// <returns></returns>
+        /// <returns>Collection of data</returns>
         public virtual IEnumerable<Data> GetDataByDates(IEnumerable<DateTime> dates)
         {
             foreach (var date in dates)
@@ -142,12 +156,12 @@ namespace Presentation.Common
 
 
         /// <summary>
-        /// Returns collection of data, which dates and time are in parameters
+        /// Get data by dates, and time interval
         /// </summary>
-        /// <param name="dates"></param>
-        /// <param name="firstTime"></param>
-        /// <param name="secondTime"></param>
-        /// <returns></returns>
+        /// <param name="dates">Date collection</param>
+        /// <param name="firstTime">First time</param>
+        /// <param name="secondTime">Second time</param>
+        /// <returns>Collection of data</returns>
         public virtual IEnumerable<Data> GetDataByDates(IEnumerable<DateTime> dates, TimeSpan firstTime, TimeSpan secondTime)
         {
             foreach (var date in dates)
@@ -161,9 +175,9 @@ namespace Presentation.Common
             }
         }
 
-
-        public abstract void Run(IView view);
-       
         #endregion
+
+
+        public abstract void Run(IView view);       
     }
 }

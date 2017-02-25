@@ -31,13 +31,6 @@ namespace UI.ViewFactory.Client
             _concretePresenter.Run( _concreteView );
         }
 
-
-        public void Run(int sensorIdParam)
-        {
-            _concretePresenter.SensorId = sensorIdParam;
-            Run();
-        }
-
         #endregion
     }
 }

@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\CacheEntity.cs" />
     <Compile Include="Repositories\EFDataRepository.cs" />
     <Compile Include="Repositories\EFSensorRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

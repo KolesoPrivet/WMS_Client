@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 using Presentation.Common;
 using Presentation.ViewModels;
 
 using DomainModel.WMSDatabaseService;
-using System.Linq;
 
 namespace Presentation.Presenters
 {

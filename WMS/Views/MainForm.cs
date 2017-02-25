@@ -34,6 +34,7 @@ using WMS.QuizService;
 
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using DomainModel.Cache;
 
 #endregion
 
@@ -49,11 +50,6 @@ namespace UI.Views
         public List<Log> LogsList { get; } = new List<Log>();
 
         public List<Log> ErrorLogsList { get; } = new List<Log>();
-
-
-        public List<Sensor> AllSensors { get; private set; }
-
-        public List<Data> AllData { get; set; }
 
 
         private Presenter _ownPresenter;
@@ -163,6 +159,10 @@ namespace UI.Views
         }
 
 
+        /// <summary>
+        /// Asynchronous set map markers on sensor map
+        /// </summary>
+        /// <returns></returns>
         private async Task SetMarkersOnMapsAsync()
         {
             //Set markers
@@ -180,7 +180,7 @@ namespace UI.Views
 
 
 
-                foreach (Sensor s in AllSensors)
+                foreach (Sensor s in CacheEntity.CurrentSensors)
                 {
                     GMarkerGoogle marker = new GMarkerGoogle( new PointLatLng( s.Lat, s.Lng ), GMarkerGoogleType.blue );
 
@@ -194,32 +194,40 @@ namespace UI.Views
         }
 
 
+        /// <summary>
+        /// Asynchronous load data from database
+        /// </summary>
+        /// <returns></returns>
         private async Task LoadDataFromDatabaseAsync()
         {
             dgvData.DataSource = await Task.Factory.StartNew( () =>
             {
-                AllData = ((MainPresenter)OwnPresenter).GetData().ToList();
-
-                return AllData.Where( x => x.SensorId == AllSensors.First().Id ).ToList();
+                return OwnPresenter.GetData().Where( x => x.SensorId == CacheEntity.CurrentSensors.First().Id ).OrderBy(x => x.Date).ThenBy(x => x.Time).ToList();
             } );
         }
 
 
+        /// <summary>
+        /// Asynchronous load sensors from database
+        /// </summary>
+        /// <returns></returns>
         private async Task LoadSensorsFromDatabaseAsync()
         {
             //Load all sensors from database
             dgvSens.DataSource = await Task.Factory.StartNew( () =>
             {
-                AllSensors = ((MainPresenter)OwnPresenter).GetSensors().ToList();
-
-                foreach (var i in AllSensors)
-                    comboBoxSNMap.Items.Add( i.Name );
-
-                return AllSensors;
+                return OwnPresenter.GetSensors().ToList();
             } );
+
+            foreach (var s in OwnPresenter.GetSensorsNames())
+                comboBoxSNMap.Items.Add( s );
         }
 
 
+        /// <summary>
+        /// Asynchronous checking an internet connection
+        /// </summary>
+        /// <returns></returns>
         private async Task<bool> CheckInternetConnectionAsync()
         {
             return await Task.Factory.StartNew( () =>
@@ -236,15 +244,15 @@ namespace UI.Views
                     WriteLogException( ex );
                 }
 
-                if (status == IPStatus.Success)
-                    return true;
-
-                else
-                    return false;
+                return status == IPStatus.Success ? true : false;
             } );
         }
 
 
+        /// <summary>
+        /// Asynchronous dispatch request to sensors
+        /// </summary>
+        /// <returns></returns>
         private async Task SendRequestToSensorsAsync()
         {
             await Task.Factory.StartNew( () =>
@@ -265,7 +273,10 @@ namespace UI.Views
         }
 
 
-        private async Task GetDataSensorCellAsync()
+        /// <summary>
+        /// Get current row from datagridview for Sensors and set appropriate data to datagridview for Data
+        /// </summary>
+        private void GetDataSensorCell()
         {
             if (_isDataLoadedFromDB)
             {
@@ -276,11 +287,11 @@ namespace UI.Views
                     txtBoxCurrentSensor.Text = currentSensor.Name;
 
 
-                    dgvData.DataSource = OwnPresenter.GetData().Where( d => d.SensorId == currentSensor.Id ).ToList();
+                    dgvData.DataSource = OwnPresenter.GetData().Where( d => d.SensorId == currentSensor.Id ).OrderBy( d => d.Date ).ToList();
 
                     CountSensorAndDataNumber();
 
-                    await BindChartAsync();
+                    BindChart();
                 }
             }
         }
@@ -303,7 +314,7 @@ namespace UI.Views
         /// <summary>
         /// Run new form through creating appropriate factory
         /// </summary>
-        /// <param name="factoryParam"></param>
+        /// <param name="factoryParam">Factory for concrete form</param>
         private static void RunNewForm(Factory factoryParam)
         {
             ViewPresenter view = new ViewPresenter( factoryParam );
@@ -365,8 +376,8 @@ namespace UI.Views
         /// <summary>
         /// Set sensor info into appropriate textboxes
         /// </summary>
-        /// <param name="currentSensor"></param>
-        /// <param name="lastDataOfCurrentSensor"></param>
+        /// <param name="currentSensor">Current sensor</param>
+        /// <param name="lastDataOfCurrentSensor">Last data of current sensor</param>
         private void ShowSensorInfo(Sensor currentSensor, Data lastDataOfCurrentSensor)
         {
             if (lastDataOfCurrentSensor != null)
@@ -396,15 +407,12 @@ namespace UI.Views
         /// <summary>
         /// Bind chart to data from datagridviews
         /// </summary>
-        private async Task BindChartAsync()
+        private void BindChart()
         {
-            await Task.Factory.StartNew( () =>
-            {
-                unionChart.DataSource = dgvData.DataSource;
-                unionChart.Series["Датчик"].XValueMember = "Date";
-                unionChart.Series["Датчик"].YValueMembers = "Value";
-                unionChart.DataBind();
-            } );
+            unionChart.DataSource = dgvData.DataSource;
+            unionChart.Series["Датчик"].XValueMember = "Date";
+            unionChart.Series["Датчик"].YValueMembers = "Value";
+            unionChart.DataBind();
         }
 
 
@@ -421,12 +429,31 @@ namespace UI.Views
         /// <summary>
         /// Count number of required quiz
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Number of quiz</returns>
         private int CountQuizNumber()
         {
-            if (comboBoxSelectQuizInterval.Text == null) return 0;
+            return comboBoxSelectQuizInterval.Text == null ? 0 : GetTimespan() / GetQuizFrequency();
+        }
 
-            return 1 + (int)(dtpTo.Value.TimeOfDay.TotalSeconds - dtpFrom.Value.TimeOfDay.TotalSeconds) / (int)(TimeSpan.Parse( "0:00:" + comboBoxSelectQuizInterval.Text ).TotalSeconds);
+
+        /// <summary>
+        /// Get time interval for request
+        /// </summary>
+        /// <returns>Time interval</returns>
+        private int GetTimespan()
+        {
+            // 1 + [First time] - [Second time]
+            return 1 + (int)(dtpTo.Value.TimeOfDay.TotalSeconds - dtpFrom.Value.TimeOfDay.TotalSeconds);
+        }
+
+
+        /// <summary>
+        /// Get quiz frequency from combobox
+        /// </summary>
+        /// <returns>Quiz frequency/returns>
+        private int GetQuizFrequency()
+        {
+            return (int)(TimeSpan.Parse( "0:00:" + comboBoxSelectQuizInterval.Text ).TotalSeconds);
         }
 
         #endregion
@@ -443,7 +470,7 @@ namespace UI.Views
         {
             dgvSens.DataSource = null;
             dgvData.DataSource = null;
-             
+
 
             comboBoxSNMap.Items.Clear();
             sensorMap.Overlays.Clear();
@@ -465,7 +492,7 @@ namespace UI.Views
 
                 await SetMarkersOnMapsAsync();
 
-                await BindChartAsync();
+                BindChart();
 
 
                 SettingDataGridViewColumns();
@@ -529,8 +556,8 @@ namespace UI.Views
         {
             RunNewForm( new SelectSensorsFactory() );
 
-            if (SelectSensorsForm.FinalList.Count > 0) btnRequestNetwork.Enabled = true;
 
+            if (SelectSensorsForm.FinalList.Count > 0) btnRequestNetwork.Enabled = true;
 
             rtbSelectedSensorsCount.Text = "Датчиков выбрано: " + SelectSensorsForm.FinalList.Count.ToString();
         }
@@ -607,7 +634,7 @@ namespace UI.Views
         /// <param name="e"></param>
         private void rButtonAllSensors_MouseClick(object sender, MouseEventArgs e)
         {
-            dgvSens.DataSource = ((MainPresenter)OwnPresenter).GetSensors().ToList();
+            dgvSens.DataSource = CacheEntity.CurrentSensors;
 
             rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
         }
@@ -620,26 +647,19 @@ namespace UI.Views
         /// <param name="e"></param>
         private void rButtonChooseDate_MouseClick(object sender, EventArgs e)
         {
-            var currentRow = dgvSens.CurrentRow;
+            ViewPresenter view = new ViewPresenter( new SelectDateFactory() );
 
-            if (currentRow != null)
+            view.Run();
+
+            if (SelectDateForm.FinalList.Count() > 0)
             {
-                var currentSensor = currentRow.DataBoundItem as Sensor;
+                dgvData.DataSource = SelectDateForm.FinalList.OrderBy( d => d.Date ).ToList();
 
-                ViewPresenter view = new ViewPresenter( new SelectDateFactory() );
+                rtbSensorsValue.Text = "Количество датчиков: " + dgvData.Rows.Count.ToString();
 
-                view.Run( currentSensor.Id );
+                //Draw chart with picked dates
+                BindChart();
 
-                if (SelectDateForm.FinalList.Count() > 0)
-                {
-                    dgvData.DataSource = SelectDateForm.FinalList.OrderBy( d => d.Date ).ToList();
-
-                    rtbSensorsValue.Text = "Количество датчиков: " + dgvData.Rows.Count.ToString();
-                }
-            }
-            else
-            {
-                MessageBox.Show( "Необходимо выбрать датчик в таблице датчиков" );
             }
         }
 
@@ -734,12 +754,14 @@ namespace UI.Views
 
         #region DataGridView
 
-        private async void dgvSens_CellEnter(object sender, DataGridViewCellEventArgs e)
+        private void dgvSens_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            await GetDataSensorCellAsync();
+            GetDataSensorCell();
+
+            rButtonAllDates.Checked = true;
         }
 
-        
+
 
         #endregion
 
