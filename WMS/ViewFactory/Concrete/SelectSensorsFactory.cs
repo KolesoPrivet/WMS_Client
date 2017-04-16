@@ -1,10 +1,10 @@
-﻿using Presentation.Common;
-using Presentation.Presenters;
+﻿using WMS.WinformsClient.Common;
+using WMS.WinformsClient.Presenters;
 
-using UI.ViewFactory.Abstract;
-using UI.Views;
+using WMS.WinformsClient.ViewFactory.Abstract;
+using WMS.WinformsClient.Views;
 
-namespace UI.ViewFactory.Concrete
+namespace WMS.WinformsClient.ViewFactory.Concrete
 {
     class SelectSensorsFactory : Factory
     {

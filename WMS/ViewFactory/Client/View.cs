@@ -1,8 +1,8 @@
-﻿using Presentation.Common;
+﻿using WMS.WinformsClient.Common;
 
-using UI.ViewFactory.Abstract;
+using WMS.WinformsClient.ViewFactory.Abstract;
 
-namespace UI.ViewFactory.Client
+namespace WMS.WinformsClient.ViewFactory.Client
 {
     class View
     {

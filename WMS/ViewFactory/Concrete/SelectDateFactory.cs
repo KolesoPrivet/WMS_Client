@@ -1,10 +1,9 @@
-﻿using Presentation.Common;
-using Presentation.Presenters;
+﻿using WMS.WinformsClient.Common;
+using WMS.WinformsClient.Presenters;
+using WMS.WinformsClient.ViewFactory.Abstract;
+using WMS.WinformsClient.Views;
 
-using UI.ViewFactory.Abstract;
-using UI.Views;
-
-namespace UI.ViewFactory.Concrete
+namespace WMS.WinformsClient.ViewFactory.Concrete
 {
     class SelectDateFactory : Factory
     {

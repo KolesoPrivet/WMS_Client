@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 
-using DomainModel.WMSDatabaseService;
-using DomainModel.Cache;
+using WMS.Domain.WMSDatabaseService;
+using WMS.Domain.Cache;
 using System.Collections.Generic;
 
-namespace DomainModel.Repositories
+namespace WMS.Domain.Repositories
 {
     public class EFSensorRepository
     {

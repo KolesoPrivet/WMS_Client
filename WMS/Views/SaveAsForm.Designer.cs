@@ -1,4 +1,4 @@
-﻿namespace UI.Views
+﻿namespace WMS.WinformsClient.Views
 {
     partial class SaveAsForm
     {

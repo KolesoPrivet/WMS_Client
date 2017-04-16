@@ -4,11 +4,11 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using Presentation.Common;
+using WMS.WinformsClient.Common;
 
-using DomainModel.WMSDatabaseService;
+using WMS.Domain.WMSDatabaseService;
 
-namespace UI.Views
+namespace WMS.WinformsClient.Views
 {
     public partial class SelectSensorsForm : Form, IView
     {
@@ -44,21 +44,18 @@ namespace UI.Views
         }
 
 
-        private async void SelectSensorsForm_Load(object sender, EventArgs e)
+        private void SelectSensorsForm_Load(object sender, EventArgs e)
         {
-            await SetComboboxes();
+            SetComboboxes();
         }
 
-        private Task SetComboboxes()
+        private void SetComboboxes()
         {
-            return Task.Factory.StartNew( () =>
-            {
-                foreach (var s in OwnPresenter.GetSensorsTypes().Distinct())
-                    comboBoxSensorType.Items.Add( s );
+            foreach (var s in OwnPresenter.GetSensorsTypes().Distinct())
+                comboBoxSensorType.Items.Add( s );
 
-                foreach (var s in OwnPresenter.GetSensorsNames())
-                    chBoxSensorsNames.Items.Add( s );
-            } );
+            foreach (var s in OwnPresenter.GetSensorsNames())
+                chBoxSensorsNames.Items.Add( s );
         }
 
         #endregion

@@ -1,0 +1,10 @@
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\bin\Debug\WMS.WinFormsClient.exe.config
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Debug\WMS.WinFormsClient.csproj.ResolveComReference.cache
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Debug\WMS.WinFormsClient.csprojResolveAssemblyReference.cache
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Debug\WMS.WinformsClient.Views.AboutForm.resources
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Debug\WMS.WinformsClient.Views.MainForm.resources
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Debug\WMS.WinFormsClient.Properties.Resources.resources
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Debug\WMS.WinformsClient.Views.SaveAsForm.resources
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Debug\WMS.WinformsClient.Views.SelectDateForm.resources
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Debug\WMS.WinformsClient.Views.SelectSensorsForm.resources
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\obj\Debug\WMS.WinFormsClient.csproj.GenerateResource.Cache

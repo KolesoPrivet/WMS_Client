@@ -5,12 +5,12 @@ using System.Windows.Forms;
 using System.Linq;
 using System.Collections.Generic;
 
-using Presentation.Presenters;
-using Presentation.Common;
+using WMS.WinformsClient.Presenters;
+using WMS.WinformsClient.Common;
 
-using DomainModel.WMSDatabaseService;
+using WMS.Domain.WMSDatabaseService;
 
-namespace UI.Views
+namespace WMS.WinformsClient.Views
 {
     public partial class SaveAsForm : Form, IView
     {

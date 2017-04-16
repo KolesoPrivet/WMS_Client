@@ -1,6 +1,6 @@
-﻿using Presentation.Common;
+﻿using WMS.WinformsClient.Common;
 
-namespace UI.ViewFactory.Abstract
+namespace WMS.WinformsClient.ViewFactory.Abstract
 {
     abstract class Factory
     {

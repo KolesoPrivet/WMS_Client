@@ -6,10 +6,10 @@ using System.Text.RegularExpressions;
 
 using Presentation.Common;
 
-using DomainModel.WMSDatabaseService;
-using DomainModel.Cache;
+using WMS.Domain.WMSDatabaseService;
+using WMS.Domain.Cache;
 
-namespace UI.Views
+namespace WMS.WinformsClient.Views
 {
     public partial class SelectDateForm : Form, IView
     {

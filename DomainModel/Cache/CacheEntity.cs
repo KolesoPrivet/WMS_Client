@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-using DomainModel.WMSDatabaseService;
+using WMS.Domain.WMSDatabaseService;
 
-namespace DomainModel.Cache
+namespace WMS.Domain.Cache
 {
     public static class CacheEntity
     {

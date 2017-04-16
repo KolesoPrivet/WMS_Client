@@ -16,29 +16,25 @@ using System.Collections.Generic;
 
 using GMap.NET;
 
-using Presentation.Presenters;
-using Presentation.Common;
-using Presentation.ViewModels;
+using WMS.WinformsClient.Presenters;
+using WMS.WinformsClient.Common;
+using WMS.WinformsClient.ViewModels;
 
-using ViewPresenter = UI.ViewFactory.Client.View;
-using UI.ViewFactory.Concrete;
-using UI.ViewFactory.Abstract;
+using ViewPresenter = WMS.WinformsClient.ViewFactory.Client.View;
+using WMS.WinformsClient.ViewFactory.Concrete;
+using WMS.WinformsClient.ViewFactory.Abstract;
 
 
-using Presentation.LogsBuilder.Common;
-using Presentation.LogsBuilder.Concrete;
-
-using DomainModel.WMSDatabaseService;
-
-using WMS.QuizService;
+using WMS.WinformsClient.LogsBuilder.Common;
+using WMS.WinformsClient.LogsBuilder.Concrete;
 
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
-using DomainModel.Cache;
+using WMS.Domain.Cache;
 
 #endregion
 
-namespace UI.Views
+namespace WMS.WinformsClient.Views
 {
     public partial class MainForm : Form, IView
     {
@@ -253,22 +249,22 @@ namespace UI.Views
         /// Asynchronous dispatch request to sensors
         /// </summary>
         /// <returns></returns>
-        private async Task SendRequestToSensorsAsync()
+        private async Task SendRequestToSensorsAsync(int intervalParam, int quizNumberParam)
         {
-            await Task.Factory.StartNew( () =>
+            dgvQuizResult.DataSource = await Task.Factory.StartNew( () =>
             {
                 RequestEntity requestSettings = new RequestEntity()
                 {
                     SensorIds = SelectSensorsForm.FinalList.Select( x => x.Id ).ToArray(),
                     SensorNames = SelectSensorsForm.FinalList.Select( x => x.Name ).ToArray(),
-                    Frequence = int.Parse( comboBoxSelectQuizInterval.Text ),
-                    QuizNumber = int.Parse( rtbQuizNumber.Text ),
+                    Frequence = intervalParam,
+                    QuizNumber = quizNumberParam,
                     ResultSettings = QuizResult
                 };
 
 
                 // Request may return null if "SaveOnly" option was chosen.
-                dgvQuizResult.DataSource = new QuizServiceClient().RequestService( requestSettings ).ToList();
+                 return new QuizServiceClient().RequestService( requestSettings ).ToList();
             } );
         }
 
@@ -584,12 +580,11 @@ namespace UI.Views
                 progressBarMonitoring.Style = ProgressBarStyle.Marquee;
                 progressBarMonitoring.MarqueeAnimationSpeed = 30;
 
+                int quizNumber = CountQuizNumber();
 
-                rtbQuizNumber.Text = CountQuizNumber().ToString();
+                rtbQuizNumber.Text = "Количество опросов сети: " + quizNumber.ToString();
 
-
-
-                await SendRequestToSensorsAsync();
+                await SendRequestToSensorsAsync( int.Parse( comboBoxSelectQuizInterval.Text ), quizNumber );
 
 
 
@@ -599,7 +594,8 @@ namespace UI.Views
 
                 rtbDataCountQuiz.Text = "Показаний датчика: " + ((List<ResponseEntity>)dgvQuizResult.DataSource).Count().ToString();
 
-                rtbSensorsCountQuiz.Text = "Количество датчиков: " + ((List<ResponseEntity>)dgvQuizResult.DataSource).Select( x => x.SensorId ).Distinct().Count().ToString();
+                //Take selected sensors count and set them to the rtbSensorsCountQuiz
+                rtbSensorsCountQuiz.Text = "Количество датчиков: " + rtbSelectedSensorsCount.Text.Substring(17);
 
 
                 //Stop progress bar

@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System;
 
-using DomainModel.Cache;
-using DomainModel.WMSDatabaseService;
+using WMS.Domain.Cache;
+using WMS.Domain.WMSDatabaseService;
 
-namespace DomainModel.Repositories
+namespace WNS.Domain.Repositories
 {
     public class EFDataRepository
     {

@@ -48,7 +48,6 @@ C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csha
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\bin\Debug\DomainModel.pdb
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\bin\Debug\Presentation.pdb
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\bin\Debug\Castle.Core.xml
-C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\bin\Debug\EntityFramework.xml
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\bin\Debug\GMap.NET.Core.xml
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\bin\Debug\GMap.NET.WindowsForms.xml
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\WMS\bin\Debug\Moq.xml

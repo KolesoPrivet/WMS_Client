@@ -1,0 +1,3 @@
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\obj\Debug\WMS.Domain.csprojResolveAssemblyReference.cache
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\obj\Debug\DomainModel.dll
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\WMS_Csharp\DomainModel\obj\Debug\DomainModel.pdb

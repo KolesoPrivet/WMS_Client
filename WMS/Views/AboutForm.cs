@@ -1,8 +1,8 @@
 ﻿using System.Windows.Forms;
 
-using Presentation.Common;
+using WMS.WinformsClient.Common;
 
-namespace UI.Views
+namespace WMS.WinformsClient.Views
 {
     public partial class AboutForm : Form, IView
     {

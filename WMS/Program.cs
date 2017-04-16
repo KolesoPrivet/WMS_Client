@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
 
-using ViewPresenter = UI.ViewFactory.Client.View;
+using ViewPresenter = WMS.WinformsClient.ViewFactory.Client.View;
 
-using UI.ViewFactory.Concrete;
+using WMS.WinformsClient.ViewFactory.Concrete;
 
-namespace Presentation
+namespace WMS.WinformsClient
 {
     static class Program
     {
