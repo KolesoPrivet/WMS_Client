@@ -1,0 +1,5 @@
+D:\WMS_Server\ServiceContracts\bin\Debug\ServiceContracts.dll
+D:\WMS_Server\ServiceContracts\bin\Debug\ServiceContracts.pdb
+D:\WMS_Server\ServiceContracts\obj\Debug\ServiceContracts.dll
+D:\WMS_Server\ServiceContracts\obj\Debug\ServiceContracts.pdb
+D:\WMS_Server\ServiceContracts\obj\Debug\ServiceContracts.csprojResolveAssemblyReference.cache

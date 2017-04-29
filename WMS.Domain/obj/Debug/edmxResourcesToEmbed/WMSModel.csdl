@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Domain" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Data">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SensorId" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Value" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Sensors" Relationship="Self.FK_Data_Sensor" FromRole="Data" ToRole="Sensors" />
+  </EntityType>
+  <EntityType Name="Sensor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SensorType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Lat" Type="Double" Nullable="false" />
+    <Property Name="Lng" Type="Double" Nullable="false" />
+    <Property Name="Radius" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Data" Relationship="Self.FK_Data_Sensor" FromRole="Sensors" ToRole="Data" />
+  </EntityType>
+  <Association Name="FK_Data_Sensor">
+    <End Role="Sensors" Type="Domain.Sensor" Multiplicity="1" />
+    <End Role="Data" Type="Self.Data" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sensors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Data">
+        <PropertyRef Name="SensorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WmsContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Data" EntityType="Self.Data" />
+    <EntitySet Name="Sensors" EntityType="Domain.Sensor" />
+    <AssociationSet Name="FK_Data_Sensor" Association="Self.FK_Data_Sensor">
+      <End Role="Sensors" EntitySet="Sensors" />
+      <End Role="Data" EntitySet="Data" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

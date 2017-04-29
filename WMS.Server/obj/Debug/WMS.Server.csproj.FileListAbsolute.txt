@@ -1,0 +1,1 @@
+D:\WMS\WMS_Client\WMS.Server\obj\Debug\WMS.Server.csprojResolveAssemblyReference.cache

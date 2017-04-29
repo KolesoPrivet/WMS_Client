@@ -1,0 +1,5 @@
+D:\WMS\WMS_Client\WMS.Common\bin\Debug\WMS.Common.dll
+D:\WMS\WMS_Client\WMS.Common\bin\Debug\WMS.Common.pdb
+D:\WMS\WMS_Client\WMS.Common\obj\Debug\WMS.Common.csprojResolveAssemblyReference.cache
+D:\WMS\WMS_Client\WMS.Common\obj\Debug\WMS.Common.dll
+D:\WMS\WMS_Client\WMS.Common\obj\Debug\WMS.Common.pdb

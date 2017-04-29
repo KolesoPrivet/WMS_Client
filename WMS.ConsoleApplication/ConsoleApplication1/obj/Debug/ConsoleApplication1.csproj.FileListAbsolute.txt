@@ -1,0 +1,10 @@
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ConsoleApplication1\ConsoleApplication1\bin\Debug\EntityFramework.dll
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ConsoleApplication1\ConsoleApplication1\bin\Debug\EntityFramework.xml
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ConsoleApplication1\ConsoleApplication1\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ConsoleApplication1\ConsoleApplication1\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
