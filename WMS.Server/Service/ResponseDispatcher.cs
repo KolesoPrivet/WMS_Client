@@ -1,24 +1,23 @@
 ﻿using System.Collections.Generic;
-using System;
+using System.Linq;
 
 using WMS.Common;
+using WMS.Domain;
 
 namespace WMS.Server
 {
     abstract class ResponseDispatcher
     {
-        public virtual IList<Response> ResultWork(IList<Response> responseEntitiesParam)
+        public virtual List<Response> ResultWork(IEnumerable<Response> responseEntitiesParam)
         {
-            WMSEntities context = new WMSEntities( new Uri( "http://localhost:58833/DatabaseService.svc/" ) );
+            DataRepository repository = new DataRepository();
 
             foreach (Response r in responseEntitiesParam)
             {
-                context.AddToData( new Data() { SensorId = r.SensorId, Date = r.Date, Time = r.Time, Value = r.Value } );
+                repository.AddAsync( new Data() { SensorId = r.SensorId, Date = r.Date, Time = r.Time, Value = r.Value } );
             }
 
-            context.SaveChanges();
-
-            return responseEntitiesParam;
+            return responseEntitiesParam.ToList();
         }
 
         public static ResponseDispatcher GetDispatcher(ResultSettings resultSettingsParam)
@@ -45,7 +44,7 @@ namespace WMS.Server
 
         class ResponseSaveAndShow : ResponseDispatcher
         {
-            public override IList<Response> ResultWork(IList<Response> responseEntitiesParam)
+            public override List<Response> ResultWork(IEnumerable<Response> responseEntitiesParam)
             {
                 return base.ResultWork(responseEntitiesParam);
             }
@@ -53,7 +52,7 @@ namespace WMS.Server
 
         class ResponseSaveOnly : ResponseDispatcher
         {
-            public override IList<Response> ResultWork(IList<Response> responseEntitiesParam)
+            public override List<Response> ResultWork(IEnumerable<Response> responseEntitiesParam)
             {
                 base.ResultWork( responseEntitiesParam );
 
@@ -63,9 +62,9 @@ namespace WMS.Server
 
         class ResponseShowOnly : ResponseDispatcher
         {
-            public override IList<Response> ResultWork(IList<Response> responseEntitiesParam)
+            public override List<Response> ResultWork(IEnumerable<Response> responseEntitiesParam)
             {
-                return responseEntitiesParam;
+                return responseEntitiesParam.ToList();
             }
         }
     }

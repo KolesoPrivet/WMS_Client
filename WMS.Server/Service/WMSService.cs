@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 using WMS.Common;
@@ -10,21 +11,38 @@ namespace WMS.Server
                       ConcurrencyMode = ConcurrencyMode.Multiple )]
     public class WMSService : IWMSService
     {
-        private SensorService _sensorService;
+        private readonly DataService _dataService = new DataService();
 
-        private DataService _dataService;
+        private readonly SensorService _sensorService = new SensorService();
 
-        public IList<DataDto> GetDataList()
+        /// <summary>
+        /// Получить все данные
+        /// </summary>
+        public List<DataDto> GetAllData(Func<Data, bool> predicate)
         {
-            return _dataService.GetAll();
+            return _dataService.Get( predicate );
         }
 
-        public IList<SensorDto> GetSensorList()
+        /// <summary>
+        /// Получить данные по идентификатору сенсора
+        /// </summary>
+        public List<DataDto> GetDataBySensorId(int id)
         {
-            return _sensorService.GetAll();
+            return _dataService.Get(x => x.SensorId == id);
         }
 
-        public IList<Response> RequestService(Request requestEnityParam)
+        /// <summary>
+        /// Получить все сенсоры
+        /// </summary>
+        public List<SensorDto> GetAllSensors(Func<Sensor, bool> predicate)
+        {
+            return _sensorService.Get( predicate );
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<Response> RequestToWSN(Request requestEnityParam)
         {
             // Get dispatcher, which will do work with gotten sensors request:
             //
@@ -35,26 +53,29 @@ namespace WMS.Server
             return ResponseDispatcher.GetDispatcher( requestEnityParam.ResultSettings ).ResultWork( RequestToSensors( requestEnityParam ) );
         }
 
-        public IList<Response> RequestToSensors(Request requestEntityParam)
+        /// <summary>
+        /// Отправить запрос на опрос сенсорной сети
+        /// </summary>
+        public List<Response> RequestToSensors(Request requestEntityParam)
         {
             //TODO: Request to sensor network
             return new List<Response>() { new Response { Name = "111-111",
-                                                                     Date = DateTime.Now,
-                                                                     SensorId = 1,
-                                                                     Time = DateTime.Now.TimeOfDay,
-                                                                     Value = 50 },
-
-                                                new Response { Name = "111-111",
-                                                                     Date = DateTime.Now,
-                                                                     SensorId = 1,
-                                                                     Time = DateTime.Now.TimeOfDay,
-                                                                     Value = 51 },
-
-                                                new Response { Name = "111-111",
-                                                                     Date = DateTime.Now,
-                                                                     SensorId = 1,
-                                                                     Time = DateTime.Now.TimeOfDay,
-                                                                     Value = 53 }};
+                                                         Date = DateTime.Now,
+                                                         SensorId = 1,
+                                                         Time = DateTime.Now.TimeOfDay,
+                                                         Value = 50 },
+                                
+                                          new Response { Name = "111-111",
+                                                         Date = DateTime.Now,
+                                                         SensorId = 1,
+                                                         Time = DateTime.Now.TimeOfDay,
+                                                         Value = 51 },
+                                      
+                                          new Response { Name = "111-111",
+                                                         Date = DateTime.Now,
+                                                         SensorId = 1,
+                                                         Time = DateTime.Now.TimeOfDay,
+                                                         Value = 53 }};
         }
     }
 }

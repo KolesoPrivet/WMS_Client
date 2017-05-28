@@ -11,5 +11,14 @@ namespace WMS.Domain
                 return context.Sensors.AsQueryable();
             }
         }
+
+        public async void AddAsync(Sensor sensor)
+        {
+            using (WmsContext context = new WmsContext())
+            {
+                context.Sensors.Add( sensor );
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }

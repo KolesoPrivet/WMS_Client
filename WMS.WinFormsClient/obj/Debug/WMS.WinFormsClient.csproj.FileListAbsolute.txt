@@ -18,3 +18,8 @@ D:\WMS\WMS_Client\WMS.WinFormsClient\obj\Debug\WMS.WinformsClient.Views.SaveAsFo
 D:\WMS\WMS_Client\WMS.WinFormsClient\obj\Debug\WMS.WinformsClient.Views.SelectDateForm.resources
 D:\WMS\WMS_Client\WMS.WinFormsClient\obj\Debug\WMS.WinformsClient.Views.SelectSensorsForm.resources
 D:\WMS\WMS_Client\WMS.WinFormsClient\obj\Debug\WMS.WinFormsClient.csproj.GenerateResource.Cache
+D:\WMS\WMS_Client\WMS.WinFormsClient\obj\Debug\WMS.WinFormsClient.AboutForm.resources
+D:\WMS\WMS_Client\WMS.WinFormsClient\obj\Debug\WMS.WinFormsClient.MainForm.resources
+D:\WMS\WMS_Client\WMS.WinFormsClient\obj\Debug\WMS.WinFormsClient.SaveAsForm.resources
+D:\WMS\WMS_Client\WMS.WinFormsClient\obj\Debug\WMS.WinFormsClient.SelectDateForm.resources
+D:\WMS\WMS_Client\WMS.WinFormsClient\obj\Debug\WMS.WinFormsClient.SelectSensorsForm.resources

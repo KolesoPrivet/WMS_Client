@@ -48,7 +48,7 @@ namespace WMS.WinFormsClient
 
         private void SelectDateForm_Load(object sender, EventArgs e)
         {
-            dgvForSensorSelection.DataSource = CacheEntity.CurrentSensors;
+            dgvForSensorSelection.DataSource = CachedEntity.CurrentSensors;
 
             SettingDataGridViewColumns();
         }

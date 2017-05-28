@@ -1,10 +1,13 @@
 ﻿using System.Linq;
+
 using WMS.Common;
 
 namespace WMS.Domain
 {
-    public interface IRepository<T> where T : IEntity
+    public interface IRepository<TEntity> where TEntity : IEntity
     {
-        IQueryable<T> GetAll();
+        IQueryable<TEntity> GetAll();
+
+        void AddAsync(TEntity entity);
     }
 }

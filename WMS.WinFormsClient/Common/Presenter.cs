@@ -3,6 +3,8 @@ using System.Linq;
 using System.Collections.Generic;
 
 using WMS.Common;
+using WMS.WinFormsClient.WMSService;
+using WMS.WinFormsClient;
 
 namespace WMS.WinFormsClient
 {
@@ -17,114 +19,88 @@ namespace WMS.WinFormsClient
 
         #endregion
 
-
         #region Data manipulation methods
 
         /// <summary>
-        /// Sends request to WCF-Service named DbService
+        /// Получить список дто
         /// </summary>
-        /// <returns>IQueryable collection of sensors</returns>
-        public IList<SensorDto> GetSensors()
+        public List<SensorDto> GetSensors()
         {
-            return GetSensorList();
-        }
+            WMSServiceClient client = new WMSServiceClient();
 
+            CachedEntity.CurrentSensors = client.GetAllSensors( null ).ToList();
+
+            return CachedEntity.CurrentSensors;
+        }
 
         /// <summary>
-        /// Sends request to WCF-Service named DbService
-        /// </summary>
-        /// <returns>IQueryable collection of data</returns>
-        public IList<DataDto> GetData()
+        /// Получить список дто
+        /// /// </summary>
+        public List<DataDto> GetData()
         {
-            return GetDataList();
+            WMSServiceClient client = new WMSServiceClient();
+
+            CachedEntity.CurrentData = client.GetDataBySensorId( null ).ToList();
+
+            return CachedEntity.CurrentData;
         }
-
-
 
         /// <summary>
         /// Returns sensor that name as parameter
         /// </summary>
-        /// <param name="sensorNameParam"></param>
-        /// <returns>Sensor name</returns>
-        public virtual SensorDto GetSensorByName(string sensorNameParam)
-        {
-            return GetSensors().Where( s => s.Name == sensorNameParam ).AsEnumerable().FirstOrDefault();
-        }
-
+        public virtual SensorDto GetSensorByName(string sensorNameParam) => 
+            GetSensors()
+            .Where( s => s.Name == sensorNameParam )
+            .AsEnumerable()
+            .FirstOrDefault();
 
         /// <summary>
-        /// Get current sensors from cache
+        /// Получить названия закэшированных сенсоров
         /// </summary>
-        /// <returns>Collection of all sensors names</returns>
-        public virtual IEnumerable<string> GetSensorsNames()
-        {
-
-            foreach (var s in CacheEntity.CurrentSensors.Select( x => x.Name ))
-            {
-                yield return s;
-            }
-        }
+        public virtual List<string> GetSensorsNames() => 
+            CachedEntity.CurrentSensors
+            .Select( x => x.Name )
+            .ToList();
 
 
         /// <summary>
         /// Get current sensors names from database
         /// </summary>
-        /// <param name="sensorTypeParam">Sensor type</param>
-        /// <returns>Collection of sensors names</returns>
-        public virtual IEnumerable<string> GetSensorsNames(string sensorTypeParam)
-        {
-            foreach (var sensor in GetSensors().Where( s => s.SensorType == sensorTypeParam ))
-            {
-                yield return sensor.Name;
-            }
-        }
-
+        public virtual List<string> GetSensorsNames(string sensorTypeParam) => 
+            CachedEntity.CurrentSensors
+            .Where( x => x.SensorType == sensorTypeParam )
+            .Select( x => x.Name )
+            .ToList();
 
         /// <summary>
         /// Get current sensors types from cache
         /// </summary>
-        /// <returns>Collection of sensors types</returns>
-        public virtual IEnumerable<string> GetSensorsTypes()
-        {
-            foreach (var s in CacheEntity.CurrentSensors.Select( x => x.SensorType ))
-            {
-                yield return s;
-            }
-        }
-
+        public virtual List<string> GetSensorsTypes() => 
+            CachedEntity.CurrentSensors
+            .Select( x => x.SensorType )
+            .ToList();
 
         /// <summary>
-        /// Get all dates from database
+        /// Получить все даты данных
         /// </summary>
-        /// <returns>All dates from database</returns>
-        public virtual IEnumerable<DateTime> GetDates()
-        {
-            foreach (var data in GetData())
-            {
-                yield return data.Date;
-            }
-        }
-
+        public virtual List<DateTime> GetDates() => 
+            CachedEntity.CurrentData
+            .Select( x => x.Date )
+            .ToList();
 
         /// <summary>
-        /// Return all dates by sensor id
+        /// Получить даты данных по идентификатору сенсора
         /// </summary>
-        /// <param name="sensorIdParam">Sensor id</param>
-        /// <returns></returns>
-        public virtual IEnumerable<DateTime> GetDates(int sensorIdParam)
-        {
-            foreach (var data in GetData().Where( x => x.SensorId == sensorIdParam ))
-            {
-                yield return data.Date;
-            }
-        }
+        public virtual List<DateTime> GetDates(int sensorIdParam) => 
+            CachedEntity.CurrentData
+            .Where( x => x.SensorId == sensorIdParam )
+            .Select( x => x.Date )
+            .ToList();
 
 
         /// <summary>
         /// Get dates from database by sensor name
         /// </summary>
-        /// <param name="sensorNameParam">Sensor name</param>
-        /// <returns></returns>
         public virtual IEnumerable<DateTime> GetDates(string sensorNameParam)
         {
             SensorDto currentSensor = GetSensors().Where( s => s.Name == sensorNameParam ).AsEnumerable().First();
@@ -135,12 +111,9 @@ namespace WMS.WinFormsClient
             }
         }
 
-
         /// <summary>
         /// Get data by dates collection
         /// </summary>
-        /// <param name="dates"></param>
-        /// <returns>Collection of data</returns>
         public virtual IEnumerable<DataDto> GetDataByDates(IEnumerable<DateTime> dates)
         {
             foreach (var date in dates)
@@ -152,14 +125,9 @@ namespace WMS.WinFormsClient
             }
         }
 
-
         /// <summary>
         /// Get data by dates, and time interval
         /// </summary>
-        /// <param name="dates">Date collection</param>
-        /// <param name="firstTime">First time</param>
-        /// <param name="secondTime">Second time</param>
-        /// <returns>Collection of data</returns>
         public virtual IEnumerable<DataDto> GetDataByDates(IEnumerable<DateTime> dates, TimeSpan firstTime, TimeSpan secondTime)
         {
             foreach (var date in dates)
@@ -174,7 +142,6 @@ namespace WMS.WinFormsClient
         }
 
         #endregion
-
 
         public abstract void Run(IView view);       
     }

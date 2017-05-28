@@ -20,6 +20,7 @@ using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 
 using WMS.Common;
+using WMS.WinFormsClient;
 
 #endregion
 
@@ -59,7 +60,6 @@ namespace WMS.WinFormsClient
         public ResultSettings QuizResult { get; private set; } = ResultSettings.showOnly;
 
         #endregion
-
 
         #region Constructors
 
@@ -135,14 +135,12 @@ namespace WMS.WinFormsClient
         }
         #endregion
 
-
         #region Supporting methods
 
         void IView.Show()
         {
             Application.Run( this );
         }
-
 
         /// <summary>
         /// Asynchronous set map markers on sensor map
@@ -165,7 +163,7 @@ namespace WMS.WinFormsClient
 
 
 
-                foreach (SensorDto s in CacheEntity.CurrentSensors)
+                foreach (SensorDto s in CachedEntity.CurrentSensors)
                 {
                     GMarkerGoogle marker = new GMarkerGoogle( new PointLatLng( s.Lat, s.Lng ), GMarkerGoogleType.blue );
 
@@ -178,7 +176,6 @@ namespace WMS.WinFormsClient
             } );
         }
 
-
         /// <summary>
         /// Asynchronous load data from database
         /// </summary>
@@ -187,10 +184,12 @@ namespace WMS.WinFormsClient
         {
             dgvData.DataSource = await Task.Factory.StartNew( () =>
             {
-                return OwnPresenter.GetData().Where( x => x.SensorId == CacheEntity.CurrentSensors.First().Id ).OrderBy(x => x.Date).ThenBy(x => x.Time).ToList();
+                return OwnPresenter.GetData().Where( x => x.SensorId == CachedEntity.CurrentSensors.First().Id )
+                                             .OrderBy(x => x.Date)
+                                             .ThenBy(x => x.Time)
+                                             .ToList();
             } );
         }
-
 
         /// <summary>
         /// Asynchronous load sensors from database
@@ -207,7 +206,6 @@ namespace WMS.WinFormsClient
             foreach (var s in OwnPresenter.GetSensorsNames())
                 comboBoxSNMap.Items.Add( s );
         }
-
 
         /// <summary>
         /// Asynchronous checking an internet connection
@@ -233,7 +231,6 @@ namespace WMS.WinFormsClient
             } );
         }
 
-
         /// <summary>
         /// Asynchronous dispatch request to sensors
         /// </summary>
@@ -244,20 +241,18 @@ namespace WMS.WinFormsClient
             {
                 Request requestSettings = new Request()
                 {
-                    SensorIds = SelectSensorsForm.FinalList.Select( x => x.Id ).ToArray(),
-                    SensorNames = SelectSensorsForm.FinalList.Select( x => x.Name ).ToArray(),
+                    SensorIds = new HashSet<int>( SelectSensorsForm.FinalList.Select( x => x.Id )),
+                    SensorNames = new HashSet<string>( SelectSensorsForm.FinalList.Select( x => x.Name )),
                     Frequence = intervalParam,
                     QuizNumber = quizNumberParam,
                     ResultSettings = QuizResult
                 };
 
-
                 // Request may return null if "SaveOnly" option was chosen.
                  return new WMSServiceClient().RequestService( requestSettings ).ToList();
             } );
         }
-
-
+         
         /// <summary>
         /// Get current row from datagridview for Sensors and set appropriate data to datagridview for Data
         /// </summary>
@@ -281,7 +276,6 @@ namespace WMS.WinFormsClient
             }
         }
 
-
         private void WriteLogException(Exception ex)
         {
             Logger logger = new Logger( new CriticalLogBuilder() );
@@ -295,7 +289,6 @@ namespace WMS.WinFormsClient
             rtbLogs.AppendText( new string( '-', 350 ) );
         }
 
-
         /// <summary>
         /// Run new form through creating appropriate factory
         /// </summary>
@@ -306,7 +299,6 @@ namespace WMS.WinFormsClient
 
             view.Run();
         }
-
 
         /// <summary>
         /// Setting values into comboboxes
@@ -323,7 +315,6 @@ namespace WMS.WinFormsClient
             comboBoxSelectQuizInterval.Items.Add( "3600" );
         }
 
-
         /// <summary>
         /// Settings for columns
         /// </summary>
@@ -338,7 +329,6 @@ namespace WMS.WinFormsClient
             dgvData.Columns["Sensors"].Visible = false;
             dgvData.Columns["SensorId"].Visible = false;
         }
-
 
         /// <summary>
         /// Set enable controls
@@ -356,7 +346,6 @@ namespace WMS.WinFormsClient
 
             SaveAsMenu.Enabled = true;
         }
-
 
         /// <summary>
         /// Set sensor info into appropriate textboxes
@@ -388,7 +377,6 @@ namespace WMS.WinFormsClient
             }
         }
 
-
         /// <summary>
         /// Bind chart to data from datagridviews
         /// </summary>
@@ -400,7 +388,6 @@ namespace WMS.WinFormsClient
             unionChart.DataBind();
         }
 
-
         /// <summary>
         /// Count sensors and data number and set it into rtbAmountSensors and rtbSensorsValue
         /// </summary>
@@ -410,7 +397,6 @@ namespace WMS.WinFormsClient
             rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
         }
 
-
         /// <summary>
         /// Count number of required quiz
         /// </summary>
@@ -419,7 +405,6 @@ namespace WMS.WinFormsClient
         {
             return comboBoxSelectQuizInterval.Text == null ? 0 : GetTimespan() / GetQuizFrequency();
         }
-
 
         /// <summary>
         /// Get time interval for request
@@ -431,7 +416,6 @@ namespace WMS.WinFormsClient
             return 1 + (int)(dtpTo.Value.TimeOfDay.TotalSeconds - dtpFrom.Value.TimeOfDay.TotalSeconds);
         }
 
-
         /// <summary>
         /// Get quiz frequency from combobox
         /// </summary>
@@ -442,7 +426,6 @@ namespace WMS.WinFormsClient
         }
 
         #endregion
-
 
         #region Buttons
 
@@ -469,8 +452,6 @@ namespace WMS.WinFormsClient
                 progressBarLoadDataFromDB.Style = ProgressBarStyle.Marquee;
                 progressBarLoadDataFromDB.MarqueeAnimationSpeed = 30;
 
-
-
                 await LoadSensorsFromDatabaseAsync();
 
                 await LoadDataFromDatabaseAsync();
@@ -479,11 +460,9 @@ namespace WMS.WinFormsClient
 
                 BindChart();
 
-
                 SettingDataGridViewColumns();
 
                 CountSensorAndDataNumber();
-
 
                 if (!_isDataLoadedFromDB)
                 {
@@ -494,7 +473,6 @@ namespace WMS.WinFormsClient
 
                 _isDataLoadedFromDB = true;
 
-
                 progressBarLoadDataFromDB.Style = ProgressBarStyle.Continuous;
                 progressBarLoadDataFromDB.MarqueeAnimationSpeed = 0;
             }
@@ -503,7 +481,6 @@ namespace WMS.WinFormsClient
                 WriteLogException( ex );
             }
         }
-
 
         /// <summary>
         /// Button is downloaded a map with actual markers(sensors)
@@ -531,7 +508,6 @@ namespace WMS.WinFormsClient
             }
         }
 
-
         /// <summary>
         /// Button is opened a window with sensor selection for request
         /// </summary>
@@ -547,7 +523,6 @@ namespace WMS.WinFormsClient
             rtbSelectedSensorsCount.Text = "Датчиков выбрано: " + SelectSensorsForm.FinalList.Count.ToString();
         }
 
-
         /// <summary>
         /// Button is dispatched request for wireless sensor network
         /// </summary>
@@ -556,7 +531,6 @@ namespace WMS.WinFormsClient
         private async void btnRequestNetwork_Click(object sender, EventArgs e)
         {
             string warning = "Выбранных вами датчиков: " + SelectSensorsForm.FinalList.Count() + "\nЕсли вами не был выбран интервал опроса, то опрос датчиков проведется единожды.\nНачать опрос?";
-
 
             //TODO: Request to sensors
             if (MessageBox.Show( warning, "Предупреждение", MessageBoxButtons.OKCancel ) == DialogResult.OK)
@@ -575,11 +549,7 @@ namespace WMS.WinFormsClient
 
                 await SendRequestToSensorsAsync( int.Parse( comboBoxSelectQuizInterval.Text ), quizNumber );
 
-
-
                 dgvQuizResult.Columns["Id"].Visible = false;
-
-
 
                 rtbDataCountQuiz.Text = "Показаний датчика: " + ((List<Response>)dgvQuizResult.DataSource).Count().ToString();
 
@@ -592,7 +562,6 @@ namespace WMS.WinFormsClient
                 progressBarMonitoring.MarqueeAnimationSpeed = 0;
             }
         }
-
 
         /// <summary>
         /// Button is opened a window with sensor selection for data grid view
@@ -611,7 +580,6 @@ namespace WMS.WinFormsClient
             }
         }
 
-
         /// <summary>
         /// Button is chosen all sensors for data grid view
         /// </summary>
@@ -619,11 +587,10 @@ namespace WMS.WinFormsClient
         /// <param name="e"></param>
         private void rButtonAllSensors_MouseClick(object sender, MouseEventArgs e)
         {
-            dgvSens.DataSource = CacheEntity.CurrentSensors;
+            dgvSens.DataSource = CachedEntity.CurrentSensors;
 
             rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
         }
-
 
         /// <summary>
         /// Button is opened a window with date selection for data grid view
@@ -648,7 +615,6 @@ namespace WMS.WinFormsClient
             }
         }
 
-
         /// <summary>
         /// Button is chosen all dates for data grid view
         /// </summary>
@@ -672,18 +638,15 @@ namespace WMS.WinFormsClient
             }
         }
 
-
         private void radioBtnOnlyShow_Click(object sender, EventArgs e)
         {
             QuizResult = ResultSettings.showOnly;
         }
 
-
         private void radioBtnOnlySave_Click(object sender, EventArgs e)
         {
             QuizResult = ResultSettings.saveOnly;
         }
-
 
         private void radioBtnSaveAndShow_Click(object sender, EventArgs e)
         {
@@ -691,7 +654,6 @@ namespace WMS.WinFormsClient
         }
 
         #endregion
-
 
         #region Menu
 
@@ -722,7 +684,6 @@ namespace WMS.WinFormsClient
 
         #endregion
 
-
         #region Filters
 
         private void comboBoxSNMap_SelectedIndexChanged(object sender, EventArgs e)
@@ -735,7 +696,6 @@ namespace WMS.WinFormsClient
         }
 
         #endregion
-
 
         #region DataGridView
 

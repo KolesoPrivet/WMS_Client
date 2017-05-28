@@ -1,17 +1,23 @@
 ﻿using System.Linq;
-using System;
 
-using WMS.Domain;
-
-namespace WNS.Domain
+namespace WMS.Domain
 {
     public class DataRepository : IRepository<Data>
     {
         public IQueryable<Data> GetAll()
         {
-            using(WmsContext context = new WmsContext())
+            using (WmsContext context = new WmsContext())
             {
                 return context.Data.AsQueryable();
+            }
+        }
+
+        public async void AddAsync(Data data)
+        {
+            using (WmsContext context = new WmsContext())
+            {
+                context.Data.Add( data );
+                await context.SaveChangesAsync();
             }
         }
     }

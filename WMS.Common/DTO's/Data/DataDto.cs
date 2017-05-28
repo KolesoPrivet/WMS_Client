@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WMS.Common
 {
-    public class DataDto
+    public class DataDto : IDto
     {
         public int Id { get; set; }
         public int SensorId { get; set; }

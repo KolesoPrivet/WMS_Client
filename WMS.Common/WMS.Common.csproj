@@ -48,8 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IDto.cs" />
     <Compile Include="Abstract\IEntity.cs" />
-    <Compile Include="Contracts\IWMSService.cs" />
     <Compile Include="DTO%27s\Data\DataDto.cs" />
     <Compile Include="DTO%27s\Request\Request.cs" />
     <Compile Include="DTO%27s\Response\Response.cs" />

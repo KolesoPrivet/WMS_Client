@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WMS.WinFormsClient", "WMS.WinFormsClient\WMS.WinFormsClient.csproj", "{C332C930-C349-422F-AC61-EE1CC1584EAE}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WMS.Server", "WMS.Server\WMS.Server.csproj", "{A8218A83-8230-42F7-B0EB-15E96F557048}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WMS.Tests", "WMS.Tests\WMS.Tests.csproj", "{3FD42404-335F-4B07-A7BA-77D89036707D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WMS.WindowsServiceHost", "WMS.WindowsServiceHost\WMS.WindowsServiceHost.csproj", "{EC8D9ECB-AF49-4DA4-B313-9240072B03CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{3FD42404-335F-4B07-A7BA-77D89036707D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FD42404-335F-4B07-A7BA-77D89036707D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FD42404-335F-4B07-A7BA-77D89036707D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC8D9ECB-AF49-4DA4-B313-9240072B03CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC8D9ECB-AF49-4DA4-B313-9240072B03CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC8D9ECB-AF49-4DA4-B313-9240072B03CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC8D9ECB-AF49-4DA4-B313-9240072B03CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

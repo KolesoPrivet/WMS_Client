@@ -14,7 +14,7 @@ namespace WMS.WinFormsClient
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            View view = new View( new MainFactory()); // class name View
+            View view = new View( new MainFactory());
             view.Run();
         }
     }

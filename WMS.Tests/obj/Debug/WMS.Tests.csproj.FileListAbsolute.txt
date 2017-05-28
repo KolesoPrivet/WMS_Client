@@ -1,7 +1,12 @@
 D:\WMS\WMS_Client\WMS.Tests\bin\Debug\WMS.Tests.dll
 D:\WMS\WMS_Client\WMS.Tests\bin\Debug\WMS.Tests.pdb
 D:\WMS\WMS_Client\WMS.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
-D:\WMS\WMS_Client\WMS.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
 D:\WMS\WMS_Client\WMS.Tests\obj\Debug\WMS.Tests.csprojResolveAssemblyReference.cache
 D:\WMS\WMS_Client\WMS.Tests\obj\Debug\WMS.Tests.dll
 D:\WMS\WMS_Client\WMS.Tests\obj\Debug\WMS.Tests.pdb
+D:\WMS\WMS_Client\WMS.Tests\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\WMS\WMS_Client\WMS.Tests\bin\Debug\Ninject.dll
+D:\WMS\WMS_Client\WMS.Tests\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+D:\WMS\WMS_Client\WMS.Tests\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+D:\WMS\WMS_Client\WMS.Tests\bin\Debug\Ninject.xml
+D:\WMS\WMS_Client\WMS.Tests\bin\Debug\ru\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll

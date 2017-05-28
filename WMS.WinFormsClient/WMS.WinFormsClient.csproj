@@ -63,6 +63,9 @@
       <HintPath>..\Release-NETv4.0\GMap.NET.WindowsForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Data.Services.Client, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="Moq, Version=4.5.21.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.5.21\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
@@ -88,6 +91,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\CachedEntity.cs" />
     <Compile Include="Common\IView.cs" />
     <Compile Include="Common\Presenter.cs" />
     <Compile Include="LogsBuilder\Abstract\LogBuilder.cs" />
@@ -170,6 +174,9 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Presentation.DbService.Data.datasource" />
     <None Include="Properties\DataSources\Presentation.DbService.Sensor.datasource" />
+    <None Include="Properties\DataSources\WMS.Common.DataDto.datasource" />
+    <None Include="Properties\DataSources\WMS.Common.Response.datasource" />
+    <None Include="Properties\DataSources\WMS.Common.SensorDto.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
