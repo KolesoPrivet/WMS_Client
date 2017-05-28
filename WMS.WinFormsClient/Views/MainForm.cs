@@ -153,13 +153,13 @@ namespace WMS.WinFormsClient
             {
                 GMapOverlay markersOverlaySensorMap = new GMapOverlay( "markersForSensorMap" );
 
-                sensorMap.Overlays.Add( markersOverlaySensorMap );
+                SensorMap.Overlays.Add( markersOverlaySensorMap );
 
 
 
                 GMapOverlay markersOverlaySensorMinoringMap = new GMapOverlay( "markersForMonitoringMap" );
 
-                sensorMonitoringMap.Overlays.Add( markersOverlaySensorMinoringMap );
+                SensorMonitoringMap.Overlays.Add( markersOverlaySensorMinoringMap );
 
 
 
@@ -182,7 +182,7 @@ namespace WMS.WinFormsClient
         /// <returns></returns>
         private async Task LoadDataFromDatabaseAsync()
         {
-            dgvData.DataSource = await Task.Factory.StartNew( () =>
+            DgvData.DataSource = await Task.Factory.StartNew( () =>
             {
                 return OwnPresenter.GetData().Where( x => x.SensorId == CachedEntity.CurrentSensors.First().Id )
                                              .OrderBy(x => x.Date)
@@ -198,13 +198,13 @@ namespace WMS.WinFormsClient
         private async Task LoadSensorsFromDatabaseAsync()
         {
             //Load all sensors from database
-            dgvSens.DataSource = await Task.Factory.StartNew( () =>
+            DgvSens.DataSource = await Task.Factory.StartNew( () =>
             {
                 return OwnPresenter.GetSensors().ToList();
             } );
 
             foreach (var s in OwnPresenter.GetSensorsNames())
-                comboBoxSNMap.Items.Add( s );
+                ComboBoxSNMap.Items.Add( s );
         }
 
         /// <summary>
@@ -237,7 +237,7 @@ namespace WMS.WinFormsClient
         /// <returns></returns>
         private async Task SendRequestToSensorsAsync(int intervalParam, int quizNumberParam)
         {
-            dgvQuizResult.DataSource = await Task.Factory.StartNew( () =>
+            DgvQuizResult.DataSource = await Task.Factory.StartNew( () =>
             {
                 Request requestSettings = new Request()
                 {
@@ -260,14 +260,12 @@ namespace WMS.WinFormsClient
         {
             if (_isDataLoadedFromDB)
             {
-                SensorDto currentSensor = dgvSens.CurrentRow.DataBoundItem as SensorDto;
-
-                if (currentSensor != null)
+                if (DgvSens.CurrentRow.DataBoundItem is SensorDto currentSensor)
                 {
-                    txtBoxCurrentSensor.Text = currentSensor.Name;
+                    TxtBoxCurrentSensor.Text = currentSensor.Name;
 
 
-                    dgvData.DataSource = OwnPresenter.GetData().Where( d => d.SensorId == currentSensor.Id ).OrderBy( d => d.Date ).ToList();
+                    DgvData.DataSource = OwnPresenter.GetData().Where( d => d.SensorId == currentSensor.Id ).OrderBy( d => d.Date ).ToList();
 
                     CountSensorAndDataNumber();
 
@@ -284,9 +282,9 @@ namespace WMS.WinFormsClient
 
             Log result = logger.WriteLog( ErrorLogsList, ex.ToString() );
 
-            rtbLogs.AppendText( string.Format( "{0} {1}\n{2}:\n", result.EventLogTime, result.LevelType, result.Description ) );
-            rtbLogs.AppendText( Environment.NewLine );
-            rtbLogs.AppendText( new string( '-', 350 ) );
+            RtbLogs.AppendText( string.Format( "{0} {1}\n{2}:\n", result.EventLogTime, result.LevelType, result.Description ) );
+            RtbLogs.AppendText( Environment.NewLine );
+            RtbLogs.AppendText( new string( '-', 350 ) );
         }
 
         /// <summary>
@@ -308,11 +306,11 @@ namespace WMS.WinFormsClient
             comboBoxMonitoringType.Items.Add( "Единичный опрос" );
             comboBoxMonitoringType.Items.Add( "С заданным интервалом" );
 
-            comboBoxSelectQuizInterval.Items.Add( "30" );
-            comboBoxSelectQuizInterval.Items.Add( "60" );
-            comboBoxSelectQuizInterval.Items.Add( "300" );
-            comboBoxSelectQuizInterval.Items.Add( "1500" );
-            comboBoxSelectQuizInterval.Items.Add( "3600" );
+            ComboBoxSelectQuizInterval.Items.Add( "30" );
+            ComboBoxSelectQuizInterval.Items.Add( "60" );
+            ComboBoxSelectQuizInterval.Items.Add( "300" );
+            ComboBoxSelectQuizInterval.Items.Add( "1500" );
+            ComboBoxSelectQuizInterval.Items.Add( "3600" );
         }
 
         /// <summary>
@@ -320,14 +318,14 @@ namespace WMS.WinFormsClient
         /// </summary>
         private void SettingDataGridViewColumns()
         {
-            dgvSens.Columns["Id"].Visible = false;
-            dgvSens.Columns["Name"].Width = 100;
-            dgvSens.Columns["SensorType"].Width = 150;
-            dgvSens.Columns["SensorType"].Name = "Sensor type";
+            DgvSens.Columns["Id"].Visible = false;
+            DgvSens.Columns["Name"].Width = 100;
+            DgvSens.Columns["SensorType"].Width = 150;
+            DgvSens.Columns["SensorType"].Name = "Sensor type";
 
-            dgvData.Columns["Id"].Visible = false;
-            dgvData.Columns["Sensors"].Visible = false;
-            dgvData.Columns["SensorId"].Visible = false;
+            DgvData.Columns["Id"].Visible = false;
+            DgvData.Columns["Sensors"].Visible = false;
+            DgvData.Columns["SensorId"].Visible = false;
         }
 
         /// <summary>
@@ -335,14 +333,14 @@ namespace WMS.WinFormsClient
         /// </summary>
         private void EnableControsl()
         {
-            rButtonAllDates.Enabled = true;
-            rButtonChooseDate.Enabled = true;
-            rButtonAllSensors.Enabled = true;
-            rButtonChooseSensors.Enabled = true;
+            RButtonAllDates.Enabled = true;
+            RButtonChooseDate.Enabled = true;
+            RButtonAllSensors.Enabled = true;
+            RButtonChooseSensors.Enabled = true;
 
-            btnShwMap.Enabled = true;
-            btnRequestNetwork.Enabled = true;
-            btnSelectSensorsForRequest.Enabled = true;
+            ButtonShowMap.Enabled = true;
+            ButtonRequestNetwork.Enabled = true;
+            ButtonSelectSensorsForRequest.Enabled = true;
 
             SaveAsMenu.Enabled = true;
         }
@@ -357,23 +355,23 @@ namespace WMS.WinFormsClient
             if (lastDataOfCurrentSensor != null)
             {
 
-                txtBoxMapSType.Text = currentSensor.SensorType;
-                txtBoxMapSStatus.Text = "Рабочее"; //TODO: реализуй алгоритм проверки состояния датчика
-                txtBoxMapLastDate.Text = lastDataOfCurrentSensor.Date.ToString().Remove( 10, 8 );
-                txtBoxMapLastTime.Text = lastDataOfCurrentSensor.Time.ToString();
-                txtBoxMapLastValue.Text = lastDataOfCurrentSensor.Value.ToString();
+                TxtBoxMapSType.Text = currentSensor.SensorType;
+                TxtBoxMapSStatus.Text = "Рабочее"; //TODO: реализуй алгоритм проверки состояния датчика
+                TxtBoxMapLastDate.Text = lastDataOfCurrentSensor.Date.ToString().Remove( 10, 8 );
+                TxtBoxMapLastTime.Text = lastDataOfCurrentSensor.Time.ToString();
+                TxtBoxMapLastValue.Text = lastDataOfCurrentSensor.Value.ToString();
 
-                sensorMap.Position = new PointLatLng( currentSensor.Lat, currentSensor.Lng );
+                SensorMap.Position = new PointLatLng( currentSensor.Lat, currentSensor.Lng );
             }
             else
             {
-                txtBoxMapSType.Text = currentSensor.SensorType;
-                txtBoxMapSStatus.Text = "Рабочее";
-                txtBoxMapLastDate.Text = "Empty";
-                txtBoxMapLastTime.Text = "Empty";
-                txtBoxMapLastValue.Text = "Empty";
+                TxtBoxMapSType.Text = currentSensor.SensorType;
+                TxtBoxMapSStatus.Text = "Рабочее";
+                TxtBoxMapLastDate.Text = "Empty";
+                TxtBoxMapLastTime.Text = "Empty";
+                TxtBoxMapLastValue.Text = "Empty";
 
-                sensorMap.Position = new PointLatLng( currentSensor.Lat, currentSensor.Lng );
+                SensorMap.Position = new PointLatLng( currentSensor.Lat, currentSensor.Lng );
             }
         }
 
@@ -382,10 +380,10 @@ namespace WMS.WinFormsClient
         /// </summary>
         private void BindChart()
         {
-            unionChart.DataSource = dgvData.DataSource;
-            unionChart.Series["Датчик"].XValueMember = "Date";
-            unionChart.Series["Датчик"].YValueMembers = "Value";
-            unionChart.DataBind();
+            UnionChart.DataSource = DgvData.DataSource;
+            UnionChart.Series["Датчик"].XValueMember = "Date";
+            UnionChart.Series["Датчик"].YValueMembers = "Value";
+            UnionChart.DataBind();
         }
 
         /// <summary>
@@ -393,8 +391,8 @@ namespace WMS.WinFormsClient
         /// </summary>
         private void CountSensorAndDataNumber()
         {
-            rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
-            rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
+            RtbAmountSensors.Text = "Количество датчиков: " + DgvSens.Rows.Count.ToString();
+            RtbSensorsValue.Text = "Показаний датчика: " + DgvData.Rows.Count.ToString();
         }
 
         /// <summary>
@@ -403,7 +401,7 @@ namespace WMS.WinFormsClient
         /// <returns>Number of quiz</returns>
         private int CountQuizNumber()
         {
-            return comboBoxSelectQuizInterval.Text == null ? 0 : GetTimespan() / GetQuizFrequency();
+            return ComboBoxSelectQuizInterval.Text == null ? 0 : GetTimespan() / GetQuizFrequency();
         }
 
         /// <summary>
@@ -413,7 +411,7 @@ namespace WMS.WinFormsClient
         private int GetTimespan()
         {
             // 1 + [First time] - [Second time]
-            return 1 + (int)(dtpTo.Value.TimeOfDay.TotalSeconds - dtpFrom.Value.TimeOfDay.TotalSeconds);
+            return 1 + (int)(DtpTo.Value.TimeOfDay.TotalSeconds - DtpFrom.Value.TimeOfDay.TotalSeconds);
         }
 
         /// <summary>
@@ -422,7 +420,7 @@ namespace WMS.WinFormsClient
         /// <returns>Quiz frequency/returns>
         private int GetQuizFrequency()
         {
-            return (int)(TimeSpan.Parse( "0:00:" + comboBoxSelectQuizInterval.Text ).TotalSeconds);
+            return (int)(TimeSpan.Parse( "0:00:" + ComboBoxSelectQuizInterval.Text ).TotalSeconds);
         }
 
         #endregion
@@ -434,23 +432,23 @@ namespace WMS.WinFormsClient
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void btnRefreshDB_Click(object sender, EventArgs e)
+        private async void ButtonRefreshDB_Click(object sender, EventArgs e)
         {
-            dgvSens.DataSource = null;
-            dgvData.DataSource = null;
+            DgvSens.DataSource = null;
+            DgvData.DataSource = null;
 
 
-            comboBoxSNMap.Items.Clear();
-            sensorMap.Overlays.Clear();
-            sensorMonitoringMap.Overlays.Clear();
-            sensorMap.Overlays.Clear();
+            ComboBoxSNMap.Items.Clear();
+            SensorMap.Overlays.Clear();
+            SensorMonitoringMap.Overlays.Clear();
+            SensorMap.Overlays.Clear();
 
             try
             {
-                progressBarLoadDataFromDB.Minimum = 1;
-                progressBarLoadDataFromDB.Maximum = 10;
-                progressBarLoadDataFromDB.Style = ProgressBarStyle.Marquee;
-                progressBarLoadDataFromDB.MarqueeAnimationSpeed = 30;
+                ProgressBarLoadDataFromDB.Minimum = 1;
+                ProgressBarLoadDataFromDB.Maximum = 10;
+                ProgressBarLoadDataFromDB.Style = ProgressBarStyle.Marquee;
+                ProgressBarLoadDataFromDB.MarqueeAnimationSpeed = 30;
 
                 await LoadSensorsFromDatabaseAsync();
 
@@ -468,13 +466,13 @@ namespace WMS.WinFormsClient
                 {
                     EnableControsl();
 
-                    btnRefreshDB.Text = "Обновить данные";
+                    ButtonRefreshDB.Text = "Обновить данные";
                 }
 
                 _isDataLoadedFromDB = true;
 
-                progressBarLoadDataFromDB.Style = ProgressBarStyle.Continuous;
-                progressBarLoadDataFromDB.MarqueeAnimationSpeed = 0;
+                ProgressBarLoadDataFromDB.Style = ProgressBarStyle.Continuous;
+                ProgressBarLoadDataFromDB.MarqueeAnimationSpeed = 0;
             }
             catch (Exception ex)
             {
@@ -487,24 +485,24 @@ namespace WMS.WinFormsClient
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void btnShwMap_Click(object sender, EventArgs e)
+        private async void ButtonShowMap_Click(object sender, EventArgs e)
         {
-            sensorMap.Visible = true;
-            sensorMonitoringMap.Visible = true;
+            SensorMap.Visible = true;
+            SensorMonitoringMap.Visible = true;
 
             bool result = await CheckInternetConnectionAsync();
 
             if (result)
             {
-                comboBoxSNMap.Enabled = true;
-                txtBoxCheckInternet.ForeColor = Color.FromArgb( 0, 192, 0 );
-                txtBoxCheckInternet.Text = "Доступно";
-                btnShwMap.Enabled = false;
+                ComboBoxSNMap.Enabled = true;
+                TxtBoxCheckInternet.ForeColor = Color.FromArgb( 0, 192, 0 );
+                TxtBoxCheckInternet.Text = "Доступно";
+                ButtonShowMap.Enabled = false;
             }
             else
             {
-                txtBoxCheckInternet.ForeColor = Color.FromArgb( 192, 0, 0 );
-                txtBoxCheckInternet.Text = "Отсутствует";
+                TxtBoxCheckInternet.ForeColor = Color.FromArgb( 192, 0, 0 );
+                TxtBoxCheckInternet.Text = "Отсутствует";
             }
         }
 
@@ -513,14 +511,14 @@ namespace WMS.WinFormsClient
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSelectSensorsForRequest_Click(object sender, EventArgs e)
+        private void ButtonSelectSensorsForRequest_Click(object sender, EventArgs e)
         {
             RunNewForm( new SelectSensorsFactory() );
 
 
-            if (SelectSensorsForm.FinalList.Count > 0) btnRequestNetwork.Enabled = true;
+            if (SelectSensorsForm.FinalList.Count > 0) ButtonRequestNetwork.Enabled = true;
 
-            rtbSelectedSensorsCount.Text = "Датчиков выбрано: " + SelectSensorsForm.FinalList.Count.ToString();
+            RtbSelectedSensorsCount.Text = "Датчиков выбрано: " + SelectSensorsForm.FinalList.Count.ToString();
         }
 
         /// <summary>
@@ -528,38 +526,38 @@ namespace WMS.WinFormsClient
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void btnRequestNetwork_Click(object sender, EventArgs e)
+        private async void ButtonRequestNetwork_Click(object sender, EventArgs e)
         {
             string warning = "Выбранных вами датчиков: " + SelectSensorsForm.FinalList.Count() + "\nЕсли вами не был выбран интервал опроса, то опрос датчиков проведется единожды.\nНачать опрос?";
 
             //TODO: Request to sensors
             if (MessageBox.Show( warning, "Предупреждение", MessageBoxButtons.OKCancel ) == DialogResult.OK)
             {
-                dgvQuizResult.DataSource = null;
+                DgvQuizResult.DataSource = null;
 
                 //Start progress bar
-                progressBarMonitoring.Minimum = 1;
-                progressBarMonitoring.Maximum = 10;
-                progressBarMonitoring.Style = ProgressBarStyle.Marquee;
-                progressBarMonitoring.MarqueeAnimationSpeed = 30;
+                ProgressBarMonitoring.Minimum = 1;
+                ProgressBarMonitoring.Maximum = 10;
+                ProgressBarMonitoring.Style = ProgressBarStyle.Marquee;
+                ProgressBarMonitoring.MarqueeAnimationSpeed = 30;
 
                 int quizNumber = CountQuizNumber();
 
-                rtbQuizNumber.Text = "Количество опросов сети: " + quizNumber.ToString();
+                RtbQuizNumber.Text = "Количество опросов сети: " + quizNumber.ToString();
 
-                await SendRequestToSensorsAsync( int.Parse( comboBoxSelectQuizInterval.Text ), quizNumber );
+                await SendRequestToSensorsAsync( int.Parse( ComboBoxSelectQuizInterval.Text ), quizNumber );
 
-                dgvQuizResult.Columns["Id"].Visible = false;
+                DgvQuizResult.Columns["Id"].Visible = false;
 
-                rtbDataCountQuiz.Text = "Показаний датчика: " + ((List<Response>)dgvQuizResult.DataSource).Count().ToString();
+                rtbDataCountQuiz.Text = "Показаний датчика: " + ((List<Response>)DgvQuizResult.DataSource).Count().ToString();
 
                 //Take selected sensors count and set them to the rtbSensorsCountQuiz
-                rtbSensorsCountQuiz.Text = "Количество датчиков: " + rtbSelectedSensorsCount.Text.Substring(17);
+                rtbSensorsCountQuiz.Text = "Количество датчиков: " + RtbSelectedSensorsCount.Text.Substring(17);
 
 
                 //Stop progress bar
-                progressBarMonitoring.Style = ProgressBarStyle.Continuous;
-                progressBarMonitoring.MarqueeAnimationSpeed = 0;
+                ProgressBarMonitoring.Style = ProgressBarStyle.Continuous;
+                ProgressBarMonitoring.MarqueeAnimationSpeed = 0;
             }
         }
 
@@ -568,15 +566,15 @@ namespace WMS.WinFormsClient
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void rButtonChooseSensors_MouseClick(object sender, MouseEventArgs e)
+        private void RButtonChooseSensors_MouseClick(object sender, MouseEventArgs e)
         {
             RunNewForm( new SelectSensorsFactory() );
 
             if (SelectSensorsForm.FinalList.Count > 0)
             {
-                dgvSens.DataSource = SelectSensorsForm.FinalList.ToList();
+                DgvSens.DataSource = SelectSensorsForm.FinalList.ToList();
 
-                rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.RowCount.ToString();
+                RtbAmountSensors.Text = "Количество датчиков: " + DgvSens.RowCount.ToString();
             }
         }
 
@@ -585,11 +583,11 @@ namespace WMS.WinFormsClient
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void rButtonAllSensors_MouseClick(object sender, MouseEventArgs e)
+        private void RButtonAllSensors_MouseClick(object sender, MouseEventArgs e)
         {
-            dgvSens.DataSource = CachedEntity.CurrentSensors;
+            DgvSens.DataSource = CachedEntity.CurrentSensors;
 
-            rtbAmountSensors.Text = "Количество датчиков: " + dgvSens.Rows.Count.ToString();
+            RtbAmountSensors.Text = "Количество датчиков: " + DgvSens.Rows.Count.ToString();
         }
 
         /// <summary>
@@ -597,7 +595,7 @@ namespace WMS.WinFormsClient
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void rButtonChooseDate_MouseClick(object sender, EventArgs e)
+        private void RButtonChooseDate_MouseClick(object sender, EventArgs e)
         {
             View view = new View( new SelectDateFactory() );
 
@@ -605,9 +603,9 @@ namespace WMS.WinFormsClient
 
             if (SelectDateForm.FinalList.Count() > 0)
             {
-                dgvData.DataSource = SelectDateForm.FinalList.OrderBy( d => d.Date ).ToList();
+                DgvData.DataSource = SelectDateForm.FinalList.OrderBy( d => d.Date ).ToList();
 
-                rtbSensorsValue.Text = "Количество датчиков: " + dgvData.Rows.Count.ToString();
+                RtbSensorsValue.Text = "Количество датчиков: " + DgvData.Rows.Count.ToString();
 
                 //Draw chart with picked dates
                 BindChart();
@@ -620,17 +618,17 @@ namespace WMS.WinFormsClient
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void rButtonAllDates_MouseClick(object sender, EventArgs e)
+        private void RButtonAllDates_MouseClick(object sender, EventArgs e)
         {
-            var currentRow = dgvSens.CurrentRow;
+            var currentRow = DgvSens.CurrentRow;
 
             if (currentRow != null)
             {
                 var currentSensor = currentRow.DataBoundItem as SensorDto;
 
-                dgvData.DataSource = OwnPresenter.GetData().Where( x => x.SensorId == currentSensor.Id ).OrderBy( v => v.Date ).ToList();
+                DgvData.DataSource = OwnPresenter.GetData().Where( x => x.SensorId == currentSensor.Id ).OrderBy( v => v.Date ).ToList();
 
-                rtbSensorsValue.Text = "Показаний датчика: " + dgvData.Rows.Count.ToString();
+                RtbSensorsValue.Text = "Показаний датчика: " + DgvData.Rows.Count.ToString();
             }
             else
             {
@@ -638,17 +636,17 @@ namespace WMS.WinFormsClient
             }
         }
 
-        private void radioBtnOnlyShow_Click(object sender, EventArgs e)
+        private void RadioButtonOnlyShow_Click(object sender, EventArgs e)
         {
             QuizResult = ResultSettings.showOnly;
         }
 
-        private void radioBtnOnlySave_Click(object sender, EventArgs e)
+        private void RadioButtonOnlySave_Click(object sender, EventArgs e)
         {
             QuizResult = ResultSettings.saveOnly;
         }
 
-        private void radioBtnSaveAndShow_Click(object sender, EventArgs e)
+        private void RadioButtonSaveAndShow_Click(object sender, EventArgs e)
         {
             QuizResult = ResultSettings.showAndSave;
         }
@@ -686,9 +684,9 @@ namespace WMS.WinFormsClient
 
         #region Filters
 
-        private void comboBoxSNMap_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxSNMap_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SensorDto currentSensor = OwnPresenter.GetSensorByName( comboBoxSNMap.Text );
+            SensorDto currentSensor = OwnPresenter.GetSensorByName( ComboBoxSNMap.Text );
 
             DataDto lastDataOfCurrentSensor = ((MainPresenter)OwnPresenter).GetLastData( currentSensor );
 
@@ -699,11 +697,11 @@ namespace WMS.WinFormsClient
 
         #region DataGridView
 
-        private void dgvSens_CellEnter(object sender, DataGridViewCellEventArgs e)
+        private void DgvSens_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             GetDataSensorCell();
 
-            rButtonAllDates.Checked = true;
+            RButtonAllDates.Checked = true;
         }
 
 

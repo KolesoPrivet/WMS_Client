@@ -55,7 +55,7 @@
             this.btnAcceptSelection.TabIndex = 27;
             this.btnAcceptSelection.Text = "OK";
             this.btnAcceptSelection.UseVisualStyleBackColor = true;
-            this.btnAcceptSelection.Click += new System.EventHandler(this.btnAcceptSelection_Click);
+            this.btnAcceptSelection.Click += new System.EventHandler(this.ButtonAcceptSelection_Click);
             // 
             // gpBoxSelectTimeInterval
             // 
@@ -79,7 +79,7 @@
             this.checkBoxEnableTimeInterval.Size = new System.Drawing.Size(15, 14);
             this.checkBoxEnableTimeInterval.TabIndex = 4;
             this.checkBoxEnableTimeInterval.UseVisualStyleBackColor = true;
-            this.checkBoxEnableTimeInterval.CheckedChanged += new System.EventHandler(this.checkBoxEnableTimeInterval_CheckedChanged);
+            this.checkBoxEnableTimeInterval.CheckedChanged += new System.EventHandler(this.CheckBoxEnableTimeInterval_CheckedChanged);
             // 
             // lblSecondTimeValue
             // 
@@ -99,7 +99,7 @@
             this.txtBoxSecondTimeValue.Size = new System.Drawing.Size(86, 20);
             this.txtBoxSecondTimeValue.TabIndex = 2;
             this.txtBoxSecondTimeValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtBoxSecondTimeValue.MouseEnter += new System.EventHandler(this.txtBoxSecondTimeValue_MouseEnter);
+            this.txtBoxSecondTimeValue.MouseEnter += new System.EventHandler(this.TxtBoxSecondTimeValue_MouseEnter);
             // 
             // lblFirstTimeValue
             // 
@@ -119,7 +119,7 @@
             this.txtBoxFirstTimeValue.Size = new System.Drawing.Size(82, 20);
             this.txtBoxFirstTimeValue.TabIndex = 0;
             this.txtBoxFirstTimeValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtBoxFirstTimeValue.MouseEnter += new System.EventHandler(this.txtBoxFirstTimeValue_MouseEnter);
+            this.txtBoxFirstTimeValue.MouseEnter += new System.EventHandler(this.TxtBoxFirstTimeValue_MouseEnter);
             // 
             // gpBoxSelectDate
             // 
@@ -151,7 +151,7 @@
             this.dgvForSensorSelection.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvForSensorSelection.Size = new System.Drawing.Size(240, 214);
             this.dgvForSensorSelection.TabIndex = 28;
-            this.dgvForSensorSelection.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvForSensorSelection_CellClick);
+            this.dgvForSensorSelection.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvForSensorSelection_CellClick);
             // 
             // gpBoxSelectSensor
             // 

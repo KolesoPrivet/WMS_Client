@@ -100,7 +100,7 @@ namespace WMS.WinFormsClient
 
         #region Controls
 
-        private void checkBoxEnableTimeInterval_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxEnableTimeInterval_CheckedChanged(object sender, EventArgs e)
         {
             if (txtBoxFirstTimeValue.Enabled)
             {
@@ -115,7 +115,7 @@ namespace WMS.WinFormsClient
         }
 
 
-        private void btnAcceptSelection_Click(object sender, EventArgs e)
+        private void ButtonAcceptSelection_Click(object sender, EventArgs e)
         {
             FinalList.Clear();
 
@@ -149,19 +149,19 @@ namespace WMS.WinFormsClient
         }
 
 
-        private void dgvForSensorSelection_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvForSensorSelection_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             SetCheckboxItems();
         }
 
 
-        private void txtBoxFirstTimeValue_MouseEnter(object sender, EventArgs e)
+        private void TxtBoxFirstTimeValue_MouseEnter(object sender, EventArgs e)
         {
             WarningTime();
         }
 
 
-        private void txtBoxSecondTimeValue_MouseEnter(object sender, EventArgs e)
+        private void TxtBoxSecondTimeValue_MouseEnter(object sender, EventArgs e)
         {
             WarningTime();
         }

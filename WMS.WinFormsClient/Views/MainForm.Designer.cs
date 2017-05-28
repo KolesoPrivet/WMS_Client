@@ -34,45 +34,45 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gpBoxInternetConnectionCheck = new System.Windows.Forms.GroupBox();
-            this.txtBoxCheckInternet = new System.Windows.Forms.TextBox();
+            this.TxtBoxCheckInternet = new System.Windows.Forms.TextBox();
             this.gpBoxMapView = new System.Windows.Forms.GroupBox();
-            this.btnShwMap = new System.Windows.Forms.Button();
+            this.ButtonShowMap = new System.Windows.Forms.Button();
             this.gpBoxSearch = new System.Windows.Forms.GroupBox();
-            this.comboBoxSNMap = new System.Windows.Forms.ComboBox();
+            this.ComboBoxSNMap = new System.Windows.Forms.ComboBox();
             this.gpBoxSearchResult = new System.Windows.Forms.GroupBox();
             this.gpBoxLastActivity = new System.Windows.Forms.GroupBox();
             this.lbTimeOfLastActivity = new System.Windows.Forms.Label();
-            this.txtBoxMapLastTime = new System.Windows.Forms.TextBox();
+            this.TxtBoxMapLastTime = new System.Windows.Forms.TextBox();
             this.lbValueOfLastActivity = new System.Windows.Forms.Label();
             this.lbDateOfLastActivity = new System.Windows.Forms.Label();
-            this.txtBoxMapLastDate = new System.Windows.Forms.TextBox();
-            this.txtBoxMapLastValue = new System.Windows.Forms.TextBox();
-            this.txtBoxMapSStatus = new System.Windows.Forms.TextBox();
-            this.txtBoxMapSType = new System.Windows.Forms.TextBox();
+            this.TxtBoxMapLastDate = new System.Windows.Forms.TextBox();
+            this.TxtBoxMapLastValue = new System.Windows.Forms.TextBox();
+            this.TxtBoxMapSStatus = new System.Windows.Forms.TextBox();
+            this.TxtBoxMapSType = new System.Windows.Forms.TextBox();
             this.lbSensorTypeForResultOfSearch = new System.Windows.Forms.Label();
             this.lbSensorState = new System.Windows.Forms.Label();
             this.lbSensorNameForSearch = new System.Windows.Forms.Label();
             this.grBoxMap = new System.Windows.Forms.GroupBox();
-            this.sensorMap = new GMap.NET.WindowsForms.GMapControl();
+            this.SensorMap = new GMap.NET.WindowsForms.GMapControl();
             this.tabPageSensor = new System.Windows.Forms.TabPage();
             this.gpBoxGraphic = new System.Windows.Forms.GroupBox();
-            this.unionChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.UnionChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.gpBoxData = new System.Windows.Forms.GroupBox();
             this.grBoxDataView = new System.Windows.Forms.GroupBox();
-            this.rButtonAllDates = new System.Windows.Forms.RadioButton();
-            this.rButtonChooseDate = new System.Windows.Forms.RadioButton();
-            this.dgvData = new System.Windows.Forms.DataGridView();
-            this.rtbSensorsValue = new System.Windows.Forms.RichTextBox();
+            this.RButtonAllDates = new System.Windows.Forms.RadioButton();
+            this.RButtonChooseDate = new System.Windows.Forms.RadioButton();
+            this.DgvData = new System.Windows.Forms.DataGridView();
+            this.RtbSensorsValue = new System.Windows.Forms.RichTextBox();
             this.gpBoxSensorIdentity = new System.Windows.Forms.GroupBox();
             this.grBoxCurrentSensor = new System.Windows.Forms.GroupBox();
-            this.txtBoxCurrentSensor = new System.Windows.Forms.TextBox();
-            this.progressBarLoadDataFromDB = new System.Windows.Forms.ProgressBar();
+            this.TxtBoxCurrentSensor = new System.Windows.Forms.TextBox();
+            this.ProgressBarLoadDataFromDB = new System.Windows.Forms.ProgressBar();
             this.gpBoxSensorsView = new System.Windows.Forms.GroupBox();
-            this.rButtonAllSensors = new System.Windows.Forms.RadioButton();
-            this.rButtonChooseSensors = new System.Windows.Forms.RadioButton();
-            this.dgvSens = new System.Windows.Forms.DataGridView();
-            this.btnRefreshDB = new System.Windows.Forms.Button();
-            this.rtbAmountSensors = new System.Windows.Forms.RichTextBox();
+            this.RButtonAllSensors = new System.Windows.Forms.RadioButton();
+            this.RButtonChooseSensors = new System.Windows.Forms.RadioButton();
+            this.DgvSens = new System.Windows.Forms.DataGridView();
+            this.ButtonRefreshDB = new System.Windows.Forms.Button();
+            this.RtbAmountSensors = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.Мониторинг = new System.Windows.Forms.TabPage();
@@ -83,27 +83,27 @@
             this.btnFiltration = new System.Windows.Forms.Button();
             this.grBoxFiltrationBySensorName = new System.Windows.Forms.GroupBox();
             this.btnSelectSensorsForаFiltration = new System.Windows.Forms.Button();
-            this.dgvQuizResult = new System.Windows.Forms.DataGridView();
+            this.DgvQuizResult = new System.Windows.Forms.DataGridView();
             this.grBoxMonitoringMap = new System.Windows.Forms.GroupBox();
-            this.sensorMonitoringMap = new GMap.NET.WindowsForms.GMapControl();
+            this.SensorMonitoringMap = new GMap.NET.WindowsForms.GMapControl();
             this.grBoxMonitoringSettings = new System.Windows.Forms.GroupBox();
             this.gpBoxSensorQuery = new System.Windows.Forms.GroupBox();
-            this.rtbSelectedSensorsCount = new System.Windows.Forms.RichTextBox();
-            this.progressBarMonitoring = new System.Windows.Forms.ProgressBar();
-            this.btnSelectSensorsForRequest = new System.Windows.Forms.Button();
-            this.btnRequestNetwork = new System.Windows.Forms.Button();
+            this.RtbSelectedSensorsCount = new System.Windows.Forms.RichTextBox();
+            this.ProgressBarMonitoring = new System.Windows.Forms.ProgressBar();
+            this.ButtonSelectSensorsForRequest = new System.Windows.Forms.Button();
+            this.ButtonRequestNetwork = new System.Windows.Forms.Button();
             this.grBoxQuizResult = new System.Windows.Forms.GroupBox();
-            this.radioBtnOnlySave = new System.Windows.Forms.RadioButton();
-            this.radioBtnOnlyShow = new System.Windows.Forms.RadioButton();
-            this.radioBtnSaveAndShow = new System.Windows.Forms.RadioButton();
+            this.RButtonOnlySave = new System.Windows.Forms.RadioButton();
+            this.RButtonOnlyShow = new System.Windows.Forms.RadioButton();
+            this.RButtonSaveAndShow = new System.Windows.Forms.RadioButton();
             this.grBoxInterval = new System.Windows.Forms.GroupBox();
-            this.dtpTo = new System.Windows.Forms.DateTimePicker();
-            this.dtpFrom = new System.Windows.Forms.DateTimePicker();
-            this.rtbQuizNumber = new System.Windows.Forms.RichTextBox();
-            this.comboBoxSelectQuizInterval = new System.Windows.Forms.ComboBox();
+            this.DtpTo = new System.Windows.Forms.DateTimePicker();
+            this.DtpFrom = new System.Windows.Forms.DateTimePicker();
+            this.RtbQuizNumber = new System.Windows.Forms.RichTextBox();
+            this.ComboBoxSelectQuizInterval = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblIntervalFrom = new System.Windows.Forms.Label();
-            this.grBoxMonitoringType = new System.Windows.Forms.GroupBox();
+            this.GroupBoxMonitoringType = new System.Windows.Forms.GroupBox();
             this.comboBoxMonitoringType = new System.Windows.Forms.ComboBox();
             this.FileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveAsMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,7 +113,7 @@
             this.HelpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutProgramMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.rtbLogs = new System.Windows.Forms.RichTextBox();
+            this.RtbLogs = new System.Windows.Forms.RichTextBox();
             this.grBoxLogs = new System.Windows.Forms.GroupBox();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -128,26 +128,26 @@
             this.grBoxMap.SuspendLayout();
             this.tabPageSensor.SuspendLayout();
             this.gpBoxGraphic.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.unionChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UnionChart)).BeginInit();
             this.gpBoxData.SuspendLayout();
             this.grBoxDataView.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvData)).BeginInit();
             this.gpBoxSensorIdentity.SuspendLayout();
             this.grBoxCurrentSensor.SuspendLayout();
             this.gpBoxSensorsView.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSens)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvSens)).BeginInit();
             this.tabControl.SuspendLayout();
             this.Мониторинг.SuspendLayout();
             this.grBoxGettingData.SuspendLayout();
             this.grBoxMonitoringFiltration.SuspendLayout();
             this.grBoxFiltrationBySensorName.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvQuizResult)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvQuizResult)).BeginInit();
             this.grBoxMonitoringMap.SuspendLayout();
             this.grBoxMonitoringSettings.SuspendLayout();
             this.gpBoxSensorQuery.SuspendLayout();
             this.grBoxQuizResult.SuspendLayout();
             this.grBoxInterval.SuspendLayout();
-            this.grBoxMonitoringType.SuspendLayout();
+            this.GroupBoxMonitoringType.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.grBoxLogs.SuspendLayout();
             this.SuspendLayout();
@@ -189,7 +189,7 @@
             this.gpBoxInternetConnectionCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpBoxInternetConnectionCheck.Controls.Add(this.txtBoxCheckInternet);
+            this.gpBoxInternetConnectionCheck.Controls.Add(this.TxtBoxCheckInternet);
             this.gpBoxInternetConnectionCheck.Location = new System.Drawing.Point(3, 613);
             this.gpBoxInternetConnectionCheck.Name = "gpBoxInternetConnectionCheck";
             this.gpBoxInternetConnectionCheck.Size = new System.Drawing.Size(283, 51);
@@ -197,27 +197,27 @@
             this.gpBoxInternetConnectionCheck.TabStop = false;
             this.gpBoxInternetConnectionCheck.Text = "Подключение к сети Интернет";
             // 
-            // txtBoxCheckInternet
+            // TxtBoxCheckInternet
             // 
-            this.txtBoxCheckInternet.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.TxtBoxCheckInternet.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCheckInternet.BackColor = System.Drawing.SystemColors.Window;
-            this.txtBoxCheckInternet.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtBoxCheckInternet.Location = new System.Drawing.Point(6, 19);
-            this.txtBoxCheckInternet.Name = "txtBoxCheckInternet";
-            this.txtBoxCheckInternet.ReadOnly = true;
-            this.txtBoxCheckInternet.Size = new System.Drawing.Size(271, 20);
-            this.txtBoxCheckInternet.TabIndex = 19;
-            this.txtBoxCheckInternet.TabStop = false;
-            this.txtBoxCheckInternet.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtBoxCheckInternet.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtBoxCheckInternet.Cursor = System.Windows.Forms.Cursors.Default;
+            this.TxtBoxCheckInternet.Location = new System.Drawing.Point(6, 19);
+            this.TxtBoxCheckInternet.Name = "TxtBoxCheckInternet";
+            this.TxtBoxCheckInternet.ReadOnly = true;
+            this.TxtBoxCheckInternet.Size = new System.Drawing.Size(271, 20);
+            this.TxtBoxCheckInternet.TabIndex = 19;
+            this.TxtBoxCheckInternet.TabStop = false;
+            this.TxtBoxCheckInternet.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // gpBoxMapView
             // 
             this.gpBoxMapView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpBoxMapView.Controls.Add(this.btnShwMap);
+            this.gpBoxMapView.Controls.Add(this.ButtonShowMap);
             this.gpBoxMapView.Location = new System.Drawing.Point(4, 260);
             this.gpBoxMapView.Name = "gpBoxMapView";
             this.gpBoxMapView.Size = new System.Drawing.Size(283, 57);
@@ -225,26 +225,26 @@
             this.gpBoxMapView.TabStop = false;
             this.gpBoxMapView.Text = "Отображение карты";
             // 
-            // btnShwMap
+            // ButtonShowMap
             // 
-            this.btnShwMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ButtonShowMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnShwMap.Enabled = false;
-            this.btnShwMap.Location = new System.Drawing.Point(6, 19);
-            this.btnShwMap.Name = "btnShwMap";
-            this.btnShwMap.Size = new System.Drawing.Size(271, 29);
-            this.btnShwMap.TabIndex = 19;
-            this.btnShwMap.Text = "Отобразить";
-            this.btnShwMap.UseVisualStyleBackColor = true;
-            this.btnShwMap.Click += new System.EventHandler(this.btnShwMap_Click);
+            this.ButtonShowMap.Enabled = false;
+            this.ButtonShowMap.Location = new System.Drawing.Point(6, 19);
+            this.ButtonShowMap.Name = "ButtonShowMap";
+            this.ButtonShowMap.Size = new System.Drawing.Size(271, 29);
+            this.ButtonShowMap.TabIndex = 19;
+            this.ButtonShowMap.Text = "Отобразить";
+            this.ButtonShowMap.UseVisualStyleBackColor = true;
+            this.ButtonShowMap.Click += new System.EventHandler(this.ButtonShowMap_Click);
             // 
             // gpBoxSearch
             // 
             this.gpBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpBoxSearch.Controls.Add(this.comboBoxSNMap);
+            this.gpBoxSearch.Controls.Add(this.ComboBoxSNMap);
             this.gpBoxSearch.Controls.Add(this.gpBoxSearchResult);
             this.gpBoxSearch.Controls.Add(this.lbSensorNameForSearch);
             this.gpBoxSearch.Location = new System.Drawing.Point(3, 14);
@@ -254,19 +254,19 @@
             this.gpBoxSearch.TabStop = false;
             this.gpBoxSearch.Text = " Поиск";
             // 
-            // comboBoxSNMap
+            // ComboBoxSNMap
             // 
-            this.comboBoxSNMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ComboBoxSNMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxSNMap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxSNMap.Enabled = false;
-            this.comboBoxSNMap.FormattingEnabled = true;
-            this.comboBoxSNMap.Location = new System.Drawing.Point(90, 19);
-            this.comboBoxSNMap.Name = "comboBoxSNMap";
-            this.comboBoxSNMap.Size = new System.Drawing.Size(181, 21);
-            this.comboBoxSNMap.TabIndex = 20;
-            this.comboBoxSNMap.SelectedIndexChanged += new System.EventHandler(this.comboBoxSNMap_SelectedIndexChanged);
+            this.ComboBoxSNMap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxSNMap.Enabled = false;
+            this.ComboBoxSNMap.FormattingEnabled = true;
+            this.ComboBoxSNMap.Location = new System.Drawing.Point(90, 19);
+            this.ComboBoxSNMap.Name = "ComboBoxSNMap";
+            this.ComboBoxSNMap.Size = new System.Drawing.Size(181, 21);
+            this.ComboBoxSNMap.TabIndex = 20;
+            this.ComboBoxSNMap.SelectedIndexChanged += new System.EventHandler(this.ComboBoxSNMap_SelectedIndexChanged);
             // 
             // gpBoxSearchResult
             // 
@@ -274,8 +274,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gpBoxSearchResult.Controls.Add(this.gpBoxLastActivity);
-            this.gpBoxSearchResult.Controls.Add(this.txtBoxMapSStatus);
-            this.gpBoxSearchResult.Controls.Add(this.txtBoxMapSType);
+            this.gpBoxSearchResult.Controls.Add(this.TxtBoxMapSStatus);
+            this.gpBoxSearchResult.Controls.Add(this.TxtBoxMapSType);
             this.gpBoxSearchResult.Controls.Add(this.lbSensorTypeForResultOfSearch);
             this.gpBoxSearchResult.Controls.Add(this.lbSensorState);
             this.gpBoxSearchResult.Location = new System.Drawing.Point(6, 48);
@@ -291,11 +291,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gpBoxLastActivity.Controls.Add(this.lbTimeOfLastActivity);
-            this.gpBoxLastActivity.Controls.Add(this.txtBoxMapLastTime);
+            this.gpBoxLastActivity.Controls.Add(this.TxtBoxMapLastTime);
             this.gpBoxLastActivity.Controls.Add(this.lbValueOfLastActivity);
             this.gpBoxLastActivity.Controls.Add(this.lbDateOfLastActivity);
-            this.gpBoxLastActivity.Controls.Add(this.txtBoxMapLastDate);
-            this.gpBoxLastActivity.Controls.Add(this.txtBoxMapLastValue);
+            this.gpBoxLastActivity.Controls.Add(this.TxtBoxMapLastDate);
+            this.gpBoxLastActivity.Controls.Add(this.TxtBoxMapLastValue);
             this.gpBoxLastActivity.Location = new System.Drawing.Point(6, 74);
             this.gpBoxLastActivity.Name = "gpBoxLastActivity";
             this.gpBoxLastActivity.Size = new System.Drawing.Size(259, 101);
@@ -315,21 +315,21 @@
             this.lbTimeOfLastActivity.TabIndex = 27;
             this.lbTimeOfLastActivity.Text = "Время:";
             // 
-            // txtBoxMapLastTime
+            // TxtBoxMapLastTime
             // 
-            this.txtBoxMapLastTime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.TxtBoxMapLastTime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxMapLastTime.BackColor = System.Drawing.SystemColors.Window;
-            this.txtBoxMapLastTime.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtBoxMapLastTime.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtBoxMapLastTime.Location = new System.Drawing.Point(78, 45);
-            this.txtBoxMapLastTime.Name = "txtBoxMapLastTime";
-            this.txtBoxMapLastTime.ReadOnly = true;
-            this.txtBoxMapLastTime.Size = new System.Drawing.Size(175, 20);
-            this.txtBoxMapLastTime.TabIndex = 26;
-            this.txtBoxMapLastTime.TabStop = false;
-            this.txtBoxMapLastTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtBoxMapLastTime.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtBoxMapLastTime.Cursor = System.Windows.Forms.Cursors.Default;
+            this.TxtBoxMapLastTime.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.TxtBoxMapLastTime.Location = new System.Drawing.Point(78, 45);
+            this.TxtBoxMapLastTime.Name = "TxtBoxMapLastTime";
+            this.TxtBoxMapLastTime.ReadOnly = true;
+            this.TxtBoxMapLastTime.Size = new System.Drawing.Size(175, 20);
+            this.TxtBoxMapLastTime.TabIndex = 26;
+            this.TxtBoxMapLastTime.TabStop = false;
+            this.TxtBoxMapLastTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbValueOfLastActivity
             // 
@@ -355,70 +355,70 @@
             this.lbDateOfLastActivity.TabIndex = 24;
             this.lbDateOfLastActivity.Text = "Дата:";
             // 
-            // txtBoxMapLastDate
+            // TxtBoxMapLastDate
             // 
-            this.txtBoxMapLastDate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.TxtBoxMapLastDate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxMapLastDate.BackColor = System.Drawing.SystemColors.Window;
-            this.txtBoxMapLastDate.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtBoxMapLastDate.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtBoxMapLastDate.Location = new System.Drawing.Point(78, 19);
-            this.txtBoxMapLastDate.Name = "txtBoxMapLastDate";
-            this.txtBoxMapLastDate.ReadOnly = true;
-            this.txtBoxMapLastDate.Size = new System.Drawing.Size(175, 20);
-            this.txtBoxMapLastDate.TabIndex = 19;
-            this.txtBoxMapLastDate.TabStop = false;
-            this.txtBoxMapLastDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtBoxMapLastDate.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtBoxMapLastDate.Cursor = System.Windows.Forms.Cursors.Default;
+            this.TxtBoxMapLastDate.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.TxtBoxMapLastDate.Location = new System.Drawing.Point(78, 19);
+            this.TxtBoxMapLastDate.Name = "TxtBoxMapLastDate";
+            this.TxtBoxMapLastDate.ReadOnly = true;
+            this.TxtBoxMapLastDate.Size = new System.Drawing.Size(175, 20);
+            this.TxtBoxMapLastDate.TabIndex = 19;
+            this.TxtBoxMapLastDate.TabStop = false;
+            this.TxtBoxMapLastDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtBoxMapLastValue
+            // TxtBoxMapLastValue
             // 
-            this.txtBoxMapLastValue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.TxtBoxMapLastValue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxMapLastValue.BackColor = System.Drawing.SystemColors.Window;
-            this.txtBoxMapLastValue.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtBoxMapLastValue.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtBoxMapLastValue.Location = new System.Drawing.Point(78, 71);
-            this.txtBoxMapLastValue.Name = "txtBoxMapLastValue";
-            this.txtBoxMapLastValue.ReadOnly = true;
-            this.txtBoxMapLastValue.Size = new System.Drawing.Size(175, 20);
-            this.txtBoxMapLastValue.TabIndex = 23;
-            this.txtBoxMapLastValue.TabStop = false;
-            this.txtBoxMapLastValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtBoxMapLastValue.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtBoxMapLastValue.Cursor = System.Windows.Forms.Cursors.Default;
+            this.TxtBoxMapLastValue.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.TxtBoxMapLastValue.Location = new System.Drawing.Point(78, 71);
+            this.TxtBoxMapLastValue.Name = "TxtBoxMapLastValue";
+            this.TxtBoxMapLastValue.ReadOnly = true;
+            this.TxtBoxMapLastValue.Size = new System.Drawing.Size(175, 20);
+            this.TxtBoxMapLastValue.TabIndex = 23;
+            this.TxtBoxMapLastValue.TabStop = false;
+            this.TxtBoxMapLastValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtBoxMapSStatus
+            // TxtBoxMapSStatus
             // 
-            this.txtBoxMapSStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.TxtBoxMapSStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxMapSStatus.BackColor = System.Drawing.SystemColors.Window;
-            this.txtBoxMapSStatus.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtBoxMapSStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.txtBoxMapSStatus.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtBoxMapSStatus.Location = new System.Drawing.Point(84, 48);
-            this.txtBoxMapSStatus.Name = "txtBoxMapSStatus";
-            this.txtBoxMapSStatus.ReadOnly = true;
-            this.txtBoxMapSStatus.Size = new System.Drawing.Size(181, 20);
-            this.txtBoxMapSStatus.TabIndex = 18;
-            this.txtBoxMapSStatus.TabStop = false;
-            this.txtBoxMapSStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtBoxMapSStatus.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtBoxMapSStatus.Cursor = System.Windows.Forms.Cursors.Default;
+            this.TxtBoxMapSStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.TxtBoxMapSStatus.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.TxtBoxMapSStatus.Location = new System.Drawing.Point(84, 48);
+            this.TxtBoxMapSStatus.Name = "TxtBoxMapSStatus";
+            this.TxtBoxMapSStatus.ReadOnly = true;
+            this.TxtBoxMapSStatus.Size = new System.Drawing.Size(181, 20);
+            this.TxtBoxMapSStatus.TabIndex = 18;
+            this.TxtBoxMapSStatus.TabStop = false;
+            this.TxtBoxMapSStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtBoxMapSType
+            // TxtBoxMapSType
             // 
-            this.txtBoxMapSType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.TxtBoxMapSType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxMapSType.BackColor = System.Drawing.SystemColors.Window;
-            this.txtBoxMapSType.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtBoxMapSType.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtBoxMapSType.Location = new System.Drawing.Point(84, 22);
-            this.txtBoxMapSType.Name = "txtBoxMapSType";
-            this.txtBoxMapSType.ReadOnly = true;
-            this.txtBoxMapSType.Size = new System.Drawing.Size(181, 20);
-            this.txtBoxMapSType.TabIndex = 16;
-            this.txtBoxMapSType.TabStop = false;
-            this.txtBoxMapSType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtBoxMapSType.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtBoxMapSType.Cursor = System.Windows.Forms.Cursors.Default;
+            this.TxtBoxMapSType.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.TxtBoxMapSType.Location = new System.Drawing.Point(84, 22);
+            this.TxtBoxMapSType.Name = "TxtBoxMapSType";
+            this.TxtBoxMapSType.ReadOnly = true;
+            this.TxtBoxMapSType.Size = new System.Drawing.Size(181, 20);
+            this.TxtBoxMapSType.TabIndex = 16;
+            this.TxtBoxMapSType.TabStop = false;
+            this.TxtBoxMapSType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbSensorTypeForResultOfSearch
             // 
@@ -458,7 +458,7 @@
             // 
             // grBoxMap
             // 
-            this.grBoxMap.Controls.Add(this.sensorMap);
+            this.grBoxMap.Controls.Add(this.SensorMap);
             this.grBoxMap.Location = new System.Drawing.Point(3, 3);
             this.grBoxMap.Name = "grBoxMap";
             this.grBoxMap.Size = new System.Drawing.Size(778, 661);
@@ -466,36 +466,36 @@
             this.grBoxMap.TabStop = false;
             this.grBoxMap.Text = "Карта датчиков";
             // 
-            // sensorMap
+            // SensorMap
             // 
-            this.sensorMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.SensorMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sensorMap.Bearing = 0F;
-            this.sensorMap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.sensorMap.CanDragMap = true;
-            this.sensorMap.EmptyTileColor = System.Drawing.Color.Navy;
-            this.sensorMap.GrayScaleMode = false;
-            this.sensorMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
-            this.sensorMap.LevelsKeepInMemmory = 5;
-            this.sensorMap.Location = new System.Drawing.Point(6, 19);
-            this.sensorMap.MarkersEnabled = true;
-            this.sensorMap.MaxZoom = 2;
-            this.sensorMap.MinZoom = 2;
-            this.sensorMap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
-            this.sensorMap.Name = "sensorMap";
-            this.sensorMap.NegativeMode = false;
-            this.sensorMap.PolygonsEnabled = true;
-            this.sensorMap.RetryLoadTile = 0;
-            this.sensorMap.RoutesEnabled = true;
-            this.sensorMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
-            this.sensorMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
-            this.sensorMap.ShowTileGridLines = false;
-            this.sensorMap.Size = new System.Drawing.Size(766, 636);
-            this.sensorMap.TabIndex = 0;
-            this.sensorMap.Visible = false;
-            this.sensorMap.Zoom = 0D;
-            this.sensorMap.Load += new System.EventHandler(this.SettingMaps);
+            this.SensorMap.Bearing = 0F;
+            this.SensorMap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SensorMap.CanDragMap = true;
+            this.SensorMap.EmptyTileColor = System.Drawing.Color.Navy;
+            this.SensorMap.GrayScaleMode = false;
+            this.SensorMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.SensorMap.LevelsKeepInMemmory = 5;
+            this.SensorMap.Location = new System.Drawing.Point(6, 19);
+            this.SensorMap.MarkersEnabled = true;
+            this.SensorMap.MaxZoom = 2;
+            this.SensorMap.MinZoom = 2;
+            this.SensorMap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.SensorMap.Name = "SensorMap";
+            this.SensorMap.NegativeMode = false;
+            this.SensorMap.PolygonsEnabled = true;
+            this.SensorMap.RetryLoadTile = 0;
+            this.SensorMap.RoutesEnabled = true;
+            this.SensorMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.SensorMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.SensorMap.ShowTileGridLines = false;
+            this.SensorMap.Size = new System.Drawing.Size(766, 636);
+            this.SensorMap.TabIndex = 0;
+            this.SensorMap.Visible = false;
+            this.SensorMap.Zoom = 0D;
+            this.SensorMap.Load += new System.EventHandler(this.SettingMaps);
             // 
             // tabPageSensor
             // 
@@ -516,7 +516,7 @@
             this.gpBoxGraphic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpBoxGraphic.Controls.Add(this.unionChart);
+            this.gpBoxGraphic.Controls.Add(this.UnionChart);
             this.gpBoxGraphic.Location = new System.Drawing.Point(6, 336);
             this.gpBoxGraphic.Name = "gpBoxGraphic";
             this.gpBoxGraphic.Size = new System.Drawing.Size(1072, 331);
@@ -524,17 +524,17 @@
             this.gpBoxGraphic.TabStop = false;
             this.gpBoxGraphic.Text = "График";
             // 
-            // unionChart
+            // UnionChart
             // 
-            this.unionChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.UnionChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             chartArea1.Name = "ChartArea1";
-            this.unionChart.ChartAreas.Add(chartArea1);
+            this.UnionChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            this.unionChart.Legends.Add(legend1);
-            this.unionChart.Location = new System.Drawing.Point(6, 19);
-            this.unionChart.Name = "unionChart";
+            this.UnionChart.Legends.Add(legend1);
+            this.UnionChart.Location = new System.Drawing.Point(6, 19);
+            this.UnionChart.Name = "UnionChart";
             series1.BorderWidth = 3;
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
@@ -543,16 +543,16 @@
             series1.Legend = "Legend1";
             series1.Name = "Датчик";
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
-            this.unionChart.Series.Add(series1);
-            this.unionChart.Size = new System.Drawing.Size(1060, 306);
-            this.unionChart.TabIndex = 6;
-            this.unionChart.Text = "chart1";
+            this.UnionChart.Series.Add(series1);
+            this.UnionChart.Size = new System.Drawing.Size(1060, 306);
+            this.UnionChart.TabIndex = 6;
+            this.UnionChart.Text = "chart1";
             // 
             // gpBoxData
             // 
             this.gpBoxData.Controls.Add(this.grBoxDataView);
-            this.gpBoxData.Controls.Add(this.dgvData);
-            this.gpBoxData.Controls.Add(this.rtbSensorsValue);
+            this.gpBoxData.Controls.Add(this.DgvData);
+            this.gpBoxData.Controls.Add(this.RtbSensorsValue);
             this.gpBoxData.Location = new System.Drawing.Point(537, 6);
             this.gpBoxData.Name = "gpBoxData";
             this.gpBoxData.Size = new System.Drawing.Size(541, 324);
@@ -564,8 +564,8 @@
             // 
             this.grBoxDataView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grBoxDataView.Controls.Add(this.rButtonAllDates);
-            this.grBoxDataView.Controls.Add(this.rButtonChooseDate);
+            this.grBoxDataView.Controls.Add(this.RButtonAllDates);
+            this.grBoxDataView.Controls.Add(this.RButtonChooseDate);
             this.grBoxDataView.Location = new System.Drawing.Point(6, 16);
             this.grBoxDataView.Name = "grBoxDataView";
             this.grBoxDataView.Size = new System.Drawing.Size(218, 53);
@@ -573,74 +573,74 @@
             this.grBoxDataView.TabStop = false;
             this.grBoxDataView.Text = "Отобразить";
             // 
-            // rButtonAllDates
+            // RButtonAllDates
             // 
-            this.rButtonAllDates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rButtonAllDates.AutoSize = true;
-            this.rButtonAllDates.Checked = true;
-            this.rButtonAllDates.Enabled = false;
-            this.rButtonAllDates.Location = new System.Drawing.Point(17, 24);
-            this.rButtonAllDates.Name = "rButtonAllDates";
-            this.rButtonAllDates.Size = new System.Drawing.Size(85, 17);
-            this.rButtonAllDates.TabIndex = 17;
-            this.rButtonAllDates.TabStop = true;
-            this.rButtonAllDates.Text = "Все данные";
-            this.rButtonAllDates.UseVisualStyleBackColor = true;
-            this.rButtonAllDates.MouseClick += new System.Windows.Forms.MouseEventHandler(this.rButtonAllDates_MouseClick);
+            this.RButtonAllDates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RButtonAllDates.AutoSize = true;
+            this.RButtonAllDates.Checked = true;
+            this.RButtonAllDates.Enabled = false;
+            this.RButtonAllDates.Location = new System.Drawing.Point(17, 24);
+            this.RButtonAllDates.Name = "RButtonAllDates";
+            this.RButtonAllDates.Size = new System.Drawing.Size(85, 17);
+            this.RButtonAllDates.TabIndex = 17;
+            this.RButtonAllDates.TabStop = true;
+            this.RButtonAllDates.Text = "Все данные";
+            this.RButtonAllDates.UseVisualStyleBackColor = true;
+            this.RButtonAllDates.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RButtonAllDates_MouseClick);
             // 
-            // rButtonChooseDate
+            // RButtonChooseDate
             // 
-            this.rButtonChooseDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rButtonChooseDate.AutoSize = true;
-            this.rButtonChooseDate.Enabled = false;
-            this.rButtonChooseDate.Location = new System.Drawing.Point(119, 24);
-            this.rButtonChooseDate.Name = "rButtonChooseDate";
-            this.rButtonChooseDate.Size = new System.Drawing.Size(81, 17);
-            this.rButtonChooseDate.TabIndex = 18;
-            this.rButtonChooseDate.TabStop = true;
-            this.rButtonChooseDate.Text = "Выборочно";
-            this.rButtonChooseDate.UseVisualStyleBackColor = true;
-            this.rButtonChooseDate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.rButtonChooseDate_MouseClick);
+            this.RButtonChooseDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RButtonChooseDate.AutoSize = true;
+            this.RButtonChooseDate.Enabled = false;
+            this.RButtonChooseDate.Location = new System.Drawing.Point(119, 24);
+            this.RButtonChooseDate.Name = "RButtonChooseDate";
+            this.RButtonChooseDate.Size = new System.Drawing.Size(81, 17);
+            this.RButtonChooseDate.TabIndex = 18;
+            this.RButtonChooseDate.TabStop = true;
+            this.RButtonChooseDate.Text = "Выборочно";
+            this.RButtonChooseDate.UseVisualStyleBackColor = true;
+            this.RButtonChooseDate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RButtonChooseDate_MouseClick);
             // 
-            // dgvData
+            // DgvData
             // 
-            this.dgvData.AllowUserToAddRows = false;
-            this.dgvData.AllowUserToDeleteRows = false;
-            this.dgvData.AllowUserToResizeRows = false;
-            this.dgvData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DgvData.AllowUserToAddRows = false;
+            this.DgvData.AllowUserToDeleteRows = false;
+            this.DgvData.AllowUserToResizeRows = false;
+            this.DgvData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvData.Location = new System.Drawing.Point(6, 102);
-            this.dgvData.Name = "dgvData";
-            this.dgvData.ReadOnly = true;
-            this.dgvData.RowHeadersVisible = false;
-            this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(529, 213);
-            this.dgvData.TabIndex = 0;
+            this.DgvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvData.Location = new System.Drawing.Point(6, 102);
+            this.DgvData.Name = "DgvData";
+            this.DgvData.ReadOnly = true;
+            this.DgvData.RowHeadersVisible = false;
+            this.DgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvData.Size = new System.Drawing.Size(529, 213);
+            this.DgvData.TabIndex = 0;
             // 
-            // rtbSensorsValue
+            // RtbSensorsValue
             // 
-            this.rtbSensorsValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtbSensorsValue.BackColor = System.Drawing.SystemColors.Menu;
-            this.rtbSensorsValue.Enabled = false;
-            this.rtbSensorsValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rtbSensorsValue.Location = new System.Drawing.Point(6, 73);
-            this.rtbSensorsValue.Name = "rtbSensorsValue";
-            this.rtbSensorsValue.Size = new System.Drawing.Size(218, 24);
-            this.rtbSensorsValue.TabIndex = 10;
-            this.rtbSensorsValue.Text = "Показаний датчика: 0";
+            this.RtbSensorsValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RtbSensorsValue.BackColor = System.Drawing.SystemColors.Menu;
+            this.RtbSensorsValue.Enabled = false;
+            this.RtbSensorsValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RtbSensorsValue.Location = new System.Drawing.Point(6, 73);
+            this.RtbSensorsValue.Name = "RtbSensorsValue";
+            this.RtbSensorsValue.Size = new System.Drawing.Size(218, 24);
+            this.RtbSensorsValue.TabIndex = 10;
+            this.RtbSensorsValue.Text = "Показаний датчика: 0";
             // 
             // gpBoxSensorIdentity
             // 
             this.gpBoxSensorIdentity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.gpBoxSensorIdentity.Controls.Add(this.grBoxCurrentSensor);
-            this.gpBoxSensorIdentity.Controls.Add(this.progressBarLoadDataFromDB);
+            this.gpBoxSensorIdentity.Controls.Add(this.ProgressBarLoadDataFromDB);
             this.gpBoxSensorIdentity.Controls.Add(this.gpBoxSensorsView);
-            this.gpBoxSensorIdentity.Controls.Add(this.dgvSens);
-            this.gpBoxSensorIdentity.Controls.Add(this.btnRefreshDB);
-            this.gpBoxSensorIdentity.Controls.Add(this.rtbAmountSensors);
+            this.gpBoxSensorIdentity.Controls.Add(this.DgvSens);
+            this.gpBoxSensorIdentity.Controls.Add(this.ButtonRefreshDB);
+            this.gpBoxSensorIdentity.Controls.Add(this.RtbAmountSensors);
             this.gpBoxSensorIdentity.Location = new System.Drawing.Point(6, 6);
             this.gpBoxSensorIdentity.Name = "gpBoxSensorIdentity";
             this.gpBoxSensorIdentity.Size = new System.Drawing.Size(525, 324);
@@ -650,7 +650,7 @@
             // 
             // grBoxCurrentSensor
             // 
-            this.grBoxCurrentSensor.Controls.Add(this.txtBoxCurrentSensor);
+            this.grBoxCurrentSensor.Controls.Add(this.TxtBoxCurrentSensor);
             this.grBoxCurrentSensor.Location = new System.Drawing.Point(230, 19);
             this.grBoxCurrentSensor.Name = "grBoxCurrentSensor";
             this.grBoxCurrentSensor.Size = new System.Drawing.Size(154, 49);
@@ -658,30 +658,30 @@
             this.grBoxCurrentSensor.TabStop = false;
             this.grBoxCurrentSensor.Text = "Выбранный датчик";
             // 
-            // txtBoxCurrentSensor
+            // TxtBoxCurrentSensor
             // 
-            this.txtBoxCurrentSensor.BackColor = System.Drawing.SystemColors.Window;
-            this.txtBoxCurrentSensor.Location = new System.Drawing.Point(6, 23);
-            this.txtBoxCurrentSensor.Name = "txtBoxCurrentSensor";
-            this.txtBoxCurrentSensor.ReadOnly = true;
-            this.txtBoxCurrentSensor.Size = new System.Drawing.Size(142, 20);
-            this.txtBoxCurrentSensor.TabIndex = 22;
-            this.txtBoxCurrentSensor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtBoxCurrentSensor.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtBoxCurrentSensor.Location = new System.Drawing.Point(6, 23);
+            this.TxtBoxCurrentSensor.Name = "TxtBoxCurrentSensor";
+            this.TxtBoxCurrentSensor.ReadOnly = true;
+            this.TxtBoxCurrentSensor.Size = new System.Drawing.Size(142, 20);
+            this.TxtBoxCurrentSensor.TabIndex = 22;
+            this.TxtBoxCurrentSensor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // progressBarLoadDataFromDB
+            // ProgressBarLoadDataFromDB
             // 
-            this.progressBarLoadDataFromDB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ProgressBarLoadDataFromDB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.progressBarLoadDataFromDB.BackColor = System.Drawing.Color.YellowGreen;
-            this.progressBarLoadDataFromDB.Location = new System.Drawing.Point(230, 74);
-            this.progressBarLoadDataFromDB.Name = "progressBarLoadDataFromDB";
-            this.progressBarLoadDataFromDB.Size = new System.Drawing.Size(289, 23);
-            this.progressBarLoadDataFromDB.TabIndex = 5;
+            this.ProgressBarLoadDataFromDB.BackColor = System.Drawing.Color.YellowGreen;
+            this.ProgressBarLoadDataFromDB.Location = new System.Drawing.Point(230, 74);
+            this.ProgressBarLoadDataFromDB.Name = "ProgressBarLoadDataFromDB";
+            this.ProgressBarLoadDataFromDB.Size = new System.Drawing.Size(289, 23);
+            this.ProgressBarLoadDataFromDB.TabIndex = 5;
             // 
             // gpBoxSensorsView
             // 
-            this.gpBoxSensorsView.Controls.Add(this.rButtonAllSensors);
-            this.gpBoxSensorsView.Controls.Add(this.rButtonChooseSensors);
+            this.gpBoxSensorsView.Controls.Add(this.RButtonAllSensors);
+            this.gpBoxSensorsView.Controls.Add(this.RButtonChooseSensors);
             this.gpBoxSensorsView.Location = new System.Drawing.Point(6, 16);
             this.gpBoxSensorsView.Name = "gpBoxSensorsView";
             this.gpBoxSensorsView.Size = new System.Drawing.Size(218, 53);
@@ -689,72 +689,72 @@
             this.gpBoxSensorsView.TabStop = false;
             this.gpBoxSensorsView.Text = "Отобразить";
             // 
-            // rButtonAllSensors
+            // RButtonAllSensors
             // 
-            this.rButtonAllSensors.AutoSize = true;
-            this.rButtonAllSensors.Checked = true;
-            this.rButtonAllSensors.Enabled = false;
-            this.rButtonAllSensors.Location = new System.Drawing.Point(17, 24);
-            this.rButtonAllSensors.Name = "rButtonAllSensors";
-            this.rButtonAllSensors.Size = new System.Drawing.Size(87, 17);
-            this.rButtonAllSensors.TabIndex = 17;
-            this.rButtonAllSensors.TabStop = true;
-            this.rButtonAllSensors.Text = "Все датчики";
-            this.rButtonAllSensors.UseVisualStyleBackColor = true;
-            this.rButtonAllSensors.MouseClick += new System.Windows.Forms.MouseEventHandler(this.rButtonAllSensors_MouseClick);
+            this.RButtonAllSensors.AutoSize = true;
+            this.RButtonAllSensors.Checked = true;
+            this.RButtonAllSensors.Enabled = false;
+            this.RButtonAllSensors.Location = new System.Drawing.Point(17, 24);
+            this.RButtonAllSensors.Name = "RButtonAllSensors";
+            this.RButtonAllSensors.Size = new System.Drawing.Size(87, 17);
+            this.RButtonAllSensors.TabIndex = 17;
+            this.RButtonAllSensors.TabStop = true;
+            this.RButtonAllSensors.Text = "Все датчики";
+            this.RButtonAllSensors.UseVisualStyleBackColor = true;
+            this.RButtonAllSensors.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RButtonAllSensors_MouseClick);
             // 
-            // rButtonChooseSensors
+            // RButtonChooseSensors
             // 
-            this.rButtonChooseSensors.AutoSize = true;
-            this.rButtonChooseSensors.Enabled = false;
-            this.rButtonChooseSensors.Location = new System.Drawing.Point(119, 24);
-            this.rButtonChooseSensors.Name = "rButtonChooseSensors";
-            this.rButtonChooseSensors.Size = new System.Drawing.Size(81, 17);
-            this.rButtonChooseSensors.TabIndex = 18;
-            this.rButtonChooseSensors.TabStop = true;
-            this.rButtonChooseSensors.Text = "Выборочно";
-            this.rButtonChooseSensors.UseVisualStyleBackColor = true;
-            this.rButtonChooseSensors.MouseClick += new System.Windows.Forms.MouseEventHandler(this.rButtonChooseSensors_MouseClick);
+            this.RButtonChooseSensors.AutoSize = true;
+            this.RButtonChooseSensors.Enabled = false;
+            this.RButtonChooseSensors.Location = new System.Drawing.Point(119, 24);
+            this.RButtonChooseSensors.Name = "RButtonChooseSensors";
+            this.RButtonChooseSensors.Size = new System.Drawing.Size(81, 17);
+            this.RButtonChooseSensors.TabIndex = 18;
+            this.RButtonChooseSensors.TabStop = true;
+            this.RButtonChooseSensors.Text = "Выборочно";
+            this.RButtonChooseSensors.UseVisualStyleBackColor = true;
+            this.RButtonChooseSensors.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RButtonChooseSensors_MouseClick);
             // 
-            // dgvSens
+            // DgvSens
             // 
-            this.dgvSens.AllowUserToAddRows = false;
-            this.dgvSens.AllowUserToDeleteRows = false;
-            this.dgvSens.AllowUserToResizeRows = false;
-            this.dgvSens.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DgvSens.AllowUserToAddRows = false;
+            this.DgvSens.AllowUserToDeleteRows = false;
+            this.DgvSens.AllowUserToResizeRows = false;
+            this.DgvSens.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.dgvSens.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvSens.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSens.Location = new System.Drawing.Point(6, 102);
-            this.dgvSens.MultiSelect = false;
-            this.dgvSens.Name = "dgvSens";
-            this.dgvSens.ReadOnly = true;
-            this.dgvSens.RowHeadersVisible = false;
-            this.dgvSens.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSens.Size = new System.Drawing.Size(513, 213);
-            this.dgvSens.TabIndex = 16;
-            this.dgvSens.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSens_CellEnter);
+            this.DgvSens.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvSens.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvSens.Location = new System.Drawing.Point(6, 102);
+            this.DgvSens.MultiSelect = false;
+            this.DgvSens.Name = "DgvSens";
+            this.DgvSens.ReadOnly = true;
+            this.DgvSens.RowHeadersVisible = false;
+            this.DgvSens.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvSens.Size = new System.Drawing.Size(513, 213);
+            this.DgvSens.TabIndex = 16;
+            this.DgvSens.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSens_CellEnter);
             // 
-            // btnRefreshDB
+            // ButtonRefreshDB
             // 
-            this.btnRefreshDB.Location = new System.Drawing.Point(390, 16);
-            this.btnRefreshDB.Name = "btnRefreshDB";
-            this.btnRefreshDB.Size = new System.Drawing.Size(129, 53);
-            this.btnRefreshDB.TabIndex = 13;
-            this.btnRefreshDB.Text = "Получить данные";
-            this.btnRefreshDB.UseVisualStyleBackColor = true;
-            this.btnRefreshDB.Click += new System.EventHandler(this.btnRefreshDB_Click);
+            this.ButtonRefreshDB.Location = new System.Drawing.Point(390, 16);
+            this.ButtonRefreshDB.Name = "ButtonRefreshDB";
+            this.ButtonRefreshDB.Size = new System.Drawing.Size(129, 53);
+            this.ButtonRefreshDB.TabIndex = 13;
+            this.ButtonRefreshDB.Text = "Получить данные";
+            this.ButtonRefreshDB.UseVisualStyleBackColor = true;
+            this.ButtonRefreshDB.Click += new System.EventHandler(this.ButtonRefreshDB_Click);
             // 
-            // rtbAmountSensors
+            // RtbAmountSensors
             // 
-            this.rtbAmountSensors.BackColor = System.Drawing.SystemColors.Menu;
-            this.rtbAmountSensors.Enabled = false;
-            this.rtbAmountSensors.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rtbAmountSensors.Location = new System.Drawing.Point(6, 75);
-            this.rtbAmountSensors.Name = "rtbAmountSensors";
-            this.rtbAmountSensors.Size = new System.Drawing.Size(218, 24);
-            this.rtbAmountSensors.TabIndex = 15;
-            this.rtbAmountSensors.Text = "Количество датчиков: 0";
+            this.RtbAmountSensors.BackColor = System.Drawing.SystemColors.Menu;
+            this.RtbAmountSensors.Enabled = false;
+            this.RtbAmountSensors.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RtbAmountSensors.Location = new System.Drawing.Point(6, 75);
+            this.RtbAmountSensors.Name = "RtbAmountSensors";
+            this.RtbAmountSensors.Size = new System.Drawing.Size(218, 24);
+            this.RtbAmountSensors.TabIndex = 15;
+            this.RtbAmountSensors.Text = "Количество датчиков: 0";
             // 
             // label3
             // 
@@ -799,7 +799,7 @@
             this.grBoxGettingData.Controls.Add(this.rtbSensorsCountQuiz);
             this.grBoxGettingData.Controls.Add(this.rtbDataCountQuiz);
             this.grBoxGettingData.Controls.Add(this.grBoxMonitoringFiltration);
-            this.grBoxGettingData.Controls.Add(this.dgvQuizResult);
+            this.grBoxGettingData.Controls.Add(this.DgvQuizResult);
             this.grBoxGettingData.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.grBoxGettingData.Location = new System.Drawing.Point(6, 331);
             this.grBoxGettingData.Name = "grBoxGettingData";
@@ -870,24 +870,24 @@
             this.btnSelectSensorsForаFiltration.Text = "Выбрать";
             this.btnSelectSensorsForаFiltration.UseVisualStyleBackColor = true;
             // 
-            // dgvQuizResult
+            // DgvQuizResult
             // 
-            this.dgvQuizResult.AllowUserToAddRows = false;
-            this.dgvQuizResult.AllowUserToDeleteRows = false;
-            this.dgvQuizResult.AllowUserToResizeRows = false;
-            this.dgvQuizResult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvQuizResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvQuizResult.Location = new System.Drawing.Point(6, 19);
-            this.dgvQuizResult.Name = "dgvQuizResult";
-            this.dgvQuizResult.ReadOnly = true;
-            this.dgvQuizResult.RowHeadersVisible = false;
-            this.dgvQuizResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvQuizResult.Size = new System.Drawing.Size(1059, 182);
-            this.dgvQuizResult.TabIndex = 1;
+            this.DgvQuizResult.AllowUserToAddRows = false;
+            this.DgvQuizResult.AllowUserToDeleteRows = false;
+            this.DgvQuizResult.AllowUserToResizeRows = false;
+            this.DgvQuizResult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvQuizResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvQuizResult.Location = new System.Drawing.Point(6, 19);
+            this.DgvQuizResult.Name = "DgvQuizResult";
+            this.DgvQuizResult.ReadOnly = true;
+            this.DgvQuizResult.RowHeadersVisible = false;
+            this.DgvQuizResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvQuizResult.Size = new System.Drawing.Size(1059, 182);
+            this.DgvQuizResult.TabIndex = 1;
             // 
             // grBoxMonitoringMap
             // 
-            this.grBoxMonitoringMap.Controls.Add(this.sensorMonitoringMap);
+            this.grBoxMonitoringMap.Controls.Add(this.SensorMonitoringMap);
             this.grBoxMonitoringMap.Location = new System.Drawing.Point(448, 3);
             this.grBoxMonitoringMap.Name = "grBoxMonitoringMap";
             this.grBoxMonitoringMap.Size = new System.Drawing.Size(629, 322);
@@ -895,43 +895,43 @@
             this.grBoxMonitoringMap.TabStop = false;
             this.grBoxMonitoringMap.Text = "Карта датчиков";
             // 
-            // sensorMonitoringMap
+            // SensorMonitoringMap
             // 
-            this.sensorMonitoringMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.SensorMonitoringMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sensorMonitoringMap.Bearing = 0F;
-            this.sensorMonitoringMap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.sensorMonitoringMap.CanDragMap = true;
-            this.sensorMonitoringMap.EmptyTileColor = System.Drawing.Color.Navy;
-            this.sensorMonitoringMap.GrayScaleMode = false;
-            this.sensorMonitoringMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
-            this.sensorMonitoringMap.LevelsKeepInMemmory = 5;
-            this.sensorMonitoringMap.Location = new System.Drawing.Point(6, 19);
-            this.sensorMonitoringMap.MarkersEnabled = true;
-            this.sensorMonitoringMap.MaxZoom = 2;
-            this.sensorMonitoringMap.MinZoom = 2;
-            this.sensorMonitoringMap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
-            this.sensorMonitoringMap.Name = "sensorMonitoringMap";
-            this.sensorMonitoringMap.NegativeMode = false;
-            this.sensorMonitoringMap.PolygonsEnabled = true;
-            this.sensorMonitoringMap.RetryLoadTile = 0;
-            this.sensorMonitoringMap.RoutesEnabled = true;
-            this.sensorMonitoringMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
-            this.sensorMonitoringMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
-            this.sensorMonitoringMap.ShowTileGridLines = false;
-            this.sensorMonitoringMap.Size = new System.Drawing.Size(617, 297);
-            this.sensorMonitoringMap.TabIndex = 0;
-            this.sensorMonitoringMap.Visible = false;
-            this.sensorMonitoringMap.Zoom = 0D;
-            this.sensorMonitoringMap.Load += new System.EventHandler(this.SettingMaps);
+            this.SensorMonitoringMap.Bearing = 0F;
+            this.SensorMonitoringMap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SensorMonitoringMap.CanDragMap = true;
+            this.SensorMonitoringMap.EmptyTileColor = System.Drawing.Color.Navy;
+            this.SensorMonitoringMap.GrayScaleMode = false;
+            this.SensorMonitoringMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.SensorMonitoringMap.LevelsKeepInMemmory = 5;
+            this.SensorMonitoringMap.Location = new System.Drawing.Point(6, 19);
+            this.SensorMonitoringMap.MarkersEnabled = true;
+            this.SensorMonitoringMap.MaxZoom = 2;
+            this.SensorMonitoringMap.MinZoom = 2;
+            this.SensorMonitoringMap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.SensorMonitoringMap.Name = "SensorMonitoringMap";
+            this.SensorMonitoringMap.NegativeMode = false;
+            this.SensorMonitoringMap.PolygonsEnabled = true;
+            this.SensorMonitoringMap.RetryLoadTile = 0;
+            this.SensorMonitoringMap.RoutesEnabled = true;
+            this.SensorMonitoringMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.SensorMonitoringMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.SensorMonitoringMap.ShowTileGridLines = false;
+            this.SensorMonitoringMap.Size = new System.Drawing.Size(617, 297);
+            this.SensorMonitoringMap.TabIndex = 0;
+            this.SensorMonitoringMap.Visible = false;
+            this.SensorMonitoringMap.Zoom = 0D;
+            this.SensorMonitoringMap.Load += new System.EventHandler(this.SettingMaps);
             // 
             // grBoxMonitoringSettings
             // 
             this.grBoxMonitoringSettings.Controls.Add(this.gpBoxSensorQuery);
             this.grBoxMonitoringSettings.Controls.Add(this.grBoxQuizResult);
             this.grBoxMonitoringSettings.Controls.Add(this.grBoxInterval);
-            this.grBoxMonitoringSettings.Controls.Add(this.grBoxMonitoringType);
+            this.grBoxMonitoringSettings.Controls.Add(this.GroupBoxMonitoringType);
             this.grBoxMonitoringSettings.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.grBoxMonitoringSettings.Location = new System.Drawing.Point(6, 3);
             this.grBoxMonitoringSettings.Name = "grBoxMonitoringSettings";
@@ -942,10 +942,10 @@
             // 
             // gpBoxSensorQuery
             // 
-            this.gpBoxSensorQuery.Controls.Add(this.rtbSelectedSensorsCount);
-            this.gpBoxSensorQuery.Controls.Add(this.progressBarMonitoring);
-            this.gpBoxSensorQuery.Controls.Add(this.btnSelectSensorsForRequest);
-            this.gpBoxSensorQuery.Controls.Add(this.btnRequestNetwork);
+            this.gpBoxSensorQuery.Controls.Add(this.RtbSelectedSensorsCount);
+            this.gpBoxSensorQuery.Controls.Add(this.ProgressBarMonitoring);
+            this.gpBoxSensorQuery.Controls.Add(this.ButtonSelectSensorsForRequest);
+            this.gpBoxSensorQuery.Controls.Add(this.ButtonRequestNetwork);
             this.gpBoxSensorQuery.Location = new System.Drawing.Point(6, 227);
             this.gpBoxSensorQuery.Name = "gpBoxSensorQuery";
             this.gpBoxSensorQuery.Size = new System.Drawing.Size(425, 89);
@@ -953,50 +953,50 @@
             this.gpBoxSensorQuery.TabStop = false;
             this.gpBoxSensorQuery.Text = "Опрос";
             // 
-            // rtbSelectedSensorsCount
+            // RtbSelectedSensorsCount
             // 
-            this.rtbSelectedSensorsCount.BackColor = System.Drawing.SystemColors.Menu;
-            this.rtbSelectedSensorsCount.Enabled = false;
-            this.rtbSelectedSensorsCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rtbSelectedSensorsCount.Location = new System.Drawing.Point(6, 19);
-            this.rtbSelectedSensorsCount.Name = "rtbSelectedSensorsCount";
-            this.rtbSelectedSensorsCount.Size = new System.Drawing.Size(174, 24);
-            this.rtbSelectedSensorsCount.TabIndex = 18;
-            this.rtbSelectedSensorsCount.Text = "Датчиков выбрано: 0";
+            this.RtbSelectedSensorsCount.BackColor = System.Drawing.SystemColors.Menu;
+            this.RtbSelectedSensorsCount.Enabled = false;
+            this.RtbSelectedSensorsCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RtbSelectedSensorsCount.Location = new System.Drawing.Point(6, 19);
+            this.RtbSelectedSensorsCount.Name = "RtbSelectedSensorsCount";
+            this.RtbSelectedSensorsCount.Size = new System.Drawing.Size(174, 24);
+            this.RtbSelectedSensorsCount.TabIndex = 18;
+            this.RtbSelectedSensorsCount.Text = "Датчиков выбрано: 0";
             // 
-            // progressBarMonitoring
+            // ProgressBarMonitoring
             // 
-            this.progressBarMonitoring.Location = new System.Drawing.Point(186, 53);
-            this.progressBarMonitoring.Name = "progressBarMonitoring";
-            this.progressBarMonitoring.Size = new System.Drawing.Size(232, 29);
-            this.progressBarMonitoring.TabIndex = 26;
+            this.ProgressBarMonitoring.Location = new System.Drawing.Point(186, 53);
+            this.ProgressBarMonitoring.Name = "ProgressBarMonitoring";
+            this.ProgressBarMonitoring.Size = new System.Drawing.Size(232, 29);
+            this.ProgressBarMonitoring.TabIndex = 26;
             // 
-            // btnSelectSensorsForRequest
+            // ButtonSelectSensorsForRequest
             // 
-            this.btnSelectSensorsForRequest.Location = new System.Drawing.Point(186, 19);
-            this.btnSelectSensorsForRequest.Name = "btnSelectSensorsForRequest";
-            this.btnSelectSensorsForRequest.Size = new System.Drawing.Size(233, 24);
-            this.btnSelectSensorsForRequest.TabIndex = 26;
-            this.btnSelectSensorsForRequest.Text = "Выбрать";
-            this.btnSelectSensorsForRequest.UseVisualStyleBackColor = true;
-            this.btnSelectSensorsForRequest.Click += new System.EventHandler(this.btnSelectSensorsForRequest_Click);
+            this.ButtonSelectSensorsForRequest.Location = new System.Drawing.Point(186, 19);
+            this.ButtonSelectSensorsForRequest.Name = "ButtonSelectSensorsForRequest";
+            this.ButtonSelectSensorsForRequest.Size = new System.Drawing.Size(233, 24);
+            this.ButtonSelectSensorsForRequest.TabIndex = 26;
+            this.ButtonSelectSensorsForRequest.Text = "Выбрать";
+            this.ButtonSelectSensorsForRequest.UseVisualStyleBackColor = true;
+            this.ButtonSelectSensorsForRequest.Click += new System.EventHandler(this.ButtonSelectSensorsForRequest_Click);
             // 
-            // btnRequestNetwork
+            // ButtonRequestNetwork
             // 
-            this.btnRequestNetwork.Enabled = false;
-            this.btnRequestNetwork.Location = new System.Drawing.Point(5, 53);
-            this.btnRequestNetwork.Name = "btnRequestNetwork";
-            this.btnRequestNetwork.Size = new System.Drawing.Size(175, 29);
-            this.btnRequestNetwork.TabIndex = 23;
-            this.btnRequestNetwork.Text = "Опросить";
-            this.btnRequestNetwork.UseVisualStyleBackColor = true;
-            this.btnRequestNetwork.Click += new System.EventHandler(this.btnRequestNetwork_Click);
+            this.ButtonRequestNetwork.Enabled = false;
+            this.ButtonRequestNetwork.Location = new System.Drawing.Point(5, 53);
+            this.ButtonRequestNetwork.Name = "ButtonRequestNetwork";
+            this.ButtonRequestNetwork.Size = new System.Drawing.Size(175, 29);
+            this.ButtonRequestNetwork.TabIndex = 23;
+            this.ButtonRequestNetwork.Text = "Опросить";
+            this.ButtonRequestNetwork.UseVisualStyleBackColor = true;
+            this.ButtonRequestNetwork.Click += new System.EventHandler(this.ButtonRequestNetwork_Click);
             // 
             // grBoxQuizResult
             // 
-            this.grBoxQuizResult.Controls.Add(this.radioBtnOnlySave);
-            this.grBoxQuizResult.Controls.Add(this.radioBtnOnlyShow);
-            this.grBoxQuizResult.Controls.Add(this.radioBtnSaveAndShow);
+            this.grBoxQuizResult.Controls.Add(this.RButtonOnlySave);
+            this.grBoxQuizResult.Controls.Add(this.RButtonOnlyShow);
+            this.grBoxQuizResult.Controls.Add(this.RButtonSaveAndShow);
             this.grBoxQuizResult.Location = new System.Drawing.Point(6, 153);
             this.grBoxQuizResult.Name = "grBoxQuizResult";
             this.grBoxQuizResult.Size = new System.Drawing.Size(425, 68);
@@ -1004,47 +1004,47 @@
             this.grBoxQuizResult.TabStop = false;
             this.grBoxQuizResult.Text = "Результаты опроса";
             // 
-            // radioBtnOnlySave
+            // RButtonOnlySave
             // 
-            this.radioBtnOnlySave.AutoSize = true;
-            this.radioBtnOnlySave.Location = new System.Drawing.Point(9, 45);
-            this.radioBtnOnlySave.Name = "radioBtnOnlySave";
-            this.radioBtnOnlySave.Size = new System.Drawing.Size(145, 17);
-            this.radioBtnOnlySave.TabIndex = 2;
-            this.radioBtnOnlySave.Text = "Только сохранить в БД";
-            this.radioBtnOnlySave.UseVisualStyleBackColor = true;
-            this.radioBtnOnlySave.Click += new System.EventHandler(this.radioBtnOnlySave_Click);
+            this.RButtonOnlySave.AutoSize = true;
+            this.RButtonOnlySave.Location = new System.Drawing.Point(9, 45);
+            this.RButtonOnlySave.Name = "RButtonOnlySave";
+            this.RButtonOnlySave.Size = new System.Drawing.Size(145, 17);
+            this.RButtonOnlySave.TabIndex = 2;
+            this.RButtonOnlySave.Text = "Только сохранить в БД";
+            this.RButtonOnlySave.UseVisualStyleBackColor = true;
+            this.RButtonOnlySave.Click += new System.EventHandler(this.RadioButtonOnlySave_Click);
             // 
-            // radioBtnOnlyShow
+            // RButtonOnlyShow
             // 
-            this.radioBtnOnlyShow.AutoSize = true;
-            this.radioBtnOnlyShow.Checked = true;
-            this.radioBtnOnlyShow.Location = new System.Drawing.Point(9, 22);
-            this.radioBtnOnlyShow.Name = "radioBtnOnlyShow";
-            this.radioBtnOnlyShow.Size = new System.Drawing.Size(123, 17);
-            this.radioBtnOnlyShow.TabIndex = 1;
-            this.radioBtnOnlyShow.TabStop = true;
-            this.radioBtnOnlyShow.Text = "Только отобразить";
-            this.radioBtnOnlyShow.UseVisualStyleBackColor = true;
-            this.radioBtnOnlyShow.Click += new System.EventHandler(this.radioBtnOnlyShow_Click);
+            this.RButtonOnlyShow.AutoSize = true;
+            this.RButtonOnlyShow.Checked = true;
+            this.RButtonOnlyShow.Location = new System.Drawing.Point(9, 22);
+            this.RButtonOnlyShow.Name = "RButtonOnlyShow";
+            this.RButtonOnlyShow.Size = new System.Drawing.Size(123, 17);
+            this.RButtonOnlyShow.TabIndex = 1;
+            this.RButtonOnlyShow.TabStop = true;
+            this.RButtonOnlyShow.Text = "Только отобразить";
+            this.RButtonOnlyShow.UseVisualStyleBackColor = true;
+            this.RButtonOnlyShow.Click += new System.EventHandler(this.RadioButtonOnlyShow_Click);
             // 
-            // radioBtnSaveAndShow
+            // RButtonSaveAndShow
             // 
-            this.radioBtnSaveAndShow.AutoSize = true;
-            this.radioBtnSaveAndShow.Location = new System.Drawing.Point(242, 22);
-            this.radioBtnSaveAndShow.Name = "radioBtnSaveAndShow";
-            this.radioBtnSaveAndShow.Size = new System.Drawing.Size(177, 17);
-            this.radioBtnSaveAndShow.TabIndex = 0;
-            this.radioBtnSaveAndShow.Text = "Отобразить и сохранить в БД";
-            this.radioBtnSaveAndShow.UseVisualStyleBackColor = true;
-            this.radioBtnSaveAndShow.Click += new System.EventHandler(this.radioBtnSaveAndShow_Click);
+            this.RButtonSaveAndShow.AutoSize = true;
+            this.RButtonSaveAndShow.Location = new System.Drawing.Point(242, 22);
+            this.RButtonSaveAndShow.Name = "RButtonSaveAndShow";
+            this.RButtonSaveAndShow.Size = new System.Drawing.Size(177, 17);
+            this.RButtonSaveAndShow.TabIndex = 0;
+            this.RButtonSaveAndShow.Text = "Отобразить и сохранить в БД";
+            this.RButtonSaveAndShow.UseVisualStyleBackColor = true;
+            this.RButtonSaveAndShow.Click += new System.EventHandler(this.RadioButtonSaveAndShow_Click);
             // 
             // grBoxInterval
             // 
-            this.grBoxInterval.Controls.Add(this.dtpTo);
-            this.grBoxInterval.Controls.Add(this.dtpFrom);
-            this.grBoxInterval.Controls.Add(this.rtbQuizNumber);
-            this.grBoxInterval.Controls.Add(this.comboBoxSelectQuizInterval);
+            this.grBoxInterval.Controls.Add(this.DtpTo);
+            this.grBoxInterval.Controls.Add(this.DtpFrom);
+            this.grBoxInterval.Controls.Add(this.RtbQuizNumber);
+            this.grBoxInterval.Controls.Add(this.ComboBoxSelectQuizInterval);
             this.grBoxInterval.Controls.Add(this.label1);
             this.grBoxInterval.Controls.Add(this.lblIntervalFrom);
             this.grBoxInterval.Location = new System.Drawing.Point(6, 75);
@@ -1054,41 +1054,41 @@
             this.grBoxInterval.TabStop = false;
             this.grBoxInterval.Text = "Интервал";
             // 
-            // dtpTo
+            // DtpTo
             // 
-            this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpTo.Location = new System.Drawing.Point(37, 45);
-            this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(63, 20);
-            this.dtpTo.TabIndex = 17;
+            this.DtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.DtpTo.Location = new System.Drawing.Point(37, 45);
+            this.DtpTo.Name = "DtpTo";
+            this.DtpTo.Size = new System.Drawing.Size(63, 20);
+            this.DtpTo.TabIndex = 17;
             // 
-            // dtpFrom
+            // DtpFrom
             // 
-            this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpFrom.Location = new System.Drawing.Point(37, 16);
-            this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(63, 20);
-            this.dtpFrom.TabIndex = 6;
+            this.DtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.DtpFrom.Location = new System.Drawing.Point(37, 16);
+            this.DtpFrom.Name = "DtpFrom";
+            this.DtpFrom.Size = new System.Drawing.Size(63, 20);
+            this.DtpFrom.TabIndex = 6;
             // 
-            // rtbQuizNumber
+            // RtbQuizNumber
             // 
-            this.rtbQuizNumber.BackColor = System.Drawing.SystemColors.Menu;
-            this.rtbQuizNumber.Enabled = false;
-            this.rtbQuizNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rtbQuizNumber.Location = new System.Drawing.Point(119, 15);
-            this.rtbQuizNumber.Name = "rtbQuizNumber";
-            this.rtbQuizNumber.Size = new System.Drawing.Size(294, 24);
-            this.rtbQuizNumber.TabIndex = 16;
-            this.rtbQuizNumber.Text = "Сеть будет опрошена: 0 раз";
+            this.RtbQuizNumber.BackColor = System.Drawing.SystemColors.Menu;
+            this.RtbQuizNumber.Enabled = false;
+            this.RtbQuizNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RtbQuizNumber.Location = new System.Drawing.Point(119, 15);
+            this.RtbQuizNumber.Name = "RtbQuizNumber";
+            this.RtbQuizNumber.Size = new System.Drawing.Size(294, 24);
+            this.RtbQuizNumber.TabIndex = 16;
+            this.RtbQuizNumber.Text = "Сеть будет опрошена: 0 раз";
             // 
-            // comboBoxSelectQuizInterval
+            // ComboBoxSelectQuizInterval
             // 
-            this.comboBoxSelectQuizInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxSelectQuizInterval.FormattingEnabled = true;
-            this.comboBoxSelectQuizInterval.Location = new System.Drawing.Point(119, 45);
-            this.comboBoxSelectQuizInterval.Name = "comboBoxSelectQuizInterval";
-            this.comboBoxSelectQuizInterval.Size = new System.Drawing.Size(294, 21);
-            this.comboBoxSelectQuizInterval.TabIndex = 4;
+            this.ComboBoxSelectQuizInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxSelectQuizInterval.FormattingEnabled = true;
+            this.ComboBoxSelectQuizInterval.Location = new System.Drawing.Point(119, 45);
+            this.ComboBoxSelectQuizInterval.Name = "ComboBoxSelectQuizInterval";
+            this.ComboBoxSelectQuizInterval.Size = new System.Drawing.Size(294, 21);
+            this.ComboBoxSelectQuizInterval.TabIndex = 4;
             // 
             // label1
             // 
@@ -1108,15 +1108,15 @@
             this.lblIntervalFrom.TabIndex = 2;
             this.lblIntervalFrom.Text = "От:";
             // 
-            // grBoxMonitoringType
+            // GroupBoxMonitoringType
             // 
-            this.grBoxMonitoringType.Controls.Add(this.comboBoxMonitoringType);
-            this.grBoxMonitoringType.Location = new System.Drawing.Point(6, 19);
-            this.grBoxMonitoringType.Name = "grBoxMonitoringType";
-            this.grBoxMonitoringType.Size = new System.Drawing.Size(425, 50);
-            this.grBoxMonitoringType.TabIndex = 26;
-            this.grBoxMonitoringType.TabStop = false;
-            this.grBoxMonitoringType.Text = "Тип мониторинга";
+            this.GroupBoxMonitoringType.Controls.Add(this.comboBoxMonitoringType);
+            this.GroupBoxMonitoringType.Location = new System.Drawing.Point(6, 19);
+            this.GroupBoxMonitoringType.Name = "GroupBoxMonitoringType";
+            this.GroupBoxMonitoringType.Size = new System.Drawing.Size(425, 50);
+            this.GroupBoxMonitoringType.TabIndex = 26;
+            this.GroupBoxMonitoringType.TabStop = false;
+            this.GroupBoxMonitoringType.Text = "Тип мониторинга";
             // 
             // comboBoxMonitoringType
             // 
@@ -1176,7 +1176,7 @@
             // AboutProgramMenu
             // 
             this.AboutProgramMenu.Name = "AboutProgramMenu";
-            this.AboutProgramMenu.Size = new System.Drawing.Size(149, 22);
+            this.AboutProgramMenu.Size = new System.Drawing.Size(152, 22);
             this.AboutProgramMenu.Text = "О программе";
             this.AboutProgramMenu.Click += new System.EventHandler(this.AboutProgramMenu_Click);
             // 
@@ -1196,26 +1196,26 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // rtbLogs
+            // RtbLogs
             // 
-            this.rtbLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.RtbLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtbLogs.BackColor = System.Drawing.SystemColors.GrayText;
-            this.rtbLogs.ForeColor = System.Drawing.SystemColors.Info;
-            this.rtbLogs.Location = new System.Drawing.Point(6, 19);
-            this.rtbLogs.Name = "rtbLogs";
-            this.rtbLogs.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rtbLogs.Size = new System.Drawing.Size(1071, 139);
-            this.rtbLogs.TabIndex = 5;
-            this.rtbLogs.Text = "";
+            this.RtbLogs.BackColor = System.Drawing.SystemColors.GrayText;
+            this.RtbLogs.ForeColor = System.Drawing.SystemColors.Info;
+            this.RtbLogs.Location = new System.Drawing.Point(6, 19);
+            this.RtbLogs.Name = "RtbLogs";
+            this.RtbLogs.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.RtbLogs.Size = new System.Drawing.Size(1071, 139);
+            this.RtbLogs.TabIndex = 5;
+            this.RtbLogs.Text = "";
             // 
             // grBoxLogs
             // 
             this.grBoxLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grBoxLogs.Controls.Add(this.rtbLogs);
+            this.grBoxLogs.Controls.Add(this.RtbLogs);
             this.grBoxLogs.Location = new System.Drawing.Point(11, 735);
             this.grBoxLogs.Name = "grBoxLogs";
             this.grBoxLogs.Size = new System.Drawing.Size(1083, 164);
@@ -1255,23 +1255,23 @@
             this.tabPageSensor.ResumeLayout(false);
             this.tabPageSensor.PerformLayout();
             this.gpBoxGraphic.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.unionChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UnionChart)).EndInit();
             this.gpBoxData.ResumeLayout(false);
             this.grBoxDataView.ResumeLayout(false);
             this.grBoxDataView.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvData)).EndInit();
             this.gpBoxSensorIdentity.ResumeLayout(false);
             this.grBoxCurrentSensor.ResumeLayout(false);
             this.grBoxCurrentSensor.PerformLayout();
             this.gpBoxSensorsView.ResumeLayout(false);
             this.gpBoxSensorsView.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSens)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvSens)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.Мониторинг.ResumeLayout(false);
             this.grBoxGettingData.ResumeLayout(false);
             this.grBoxMonitoringFiltration.ResumeLayout(false);
             this.grBoxFiltrationBySensorName.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvQuizResult)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvQuizResult)).EndInit();
             this.grBoxMonitoringMap.ResumeLayout(false);
             this.grBoxMonitoringSettings.ResumeLayout(false);
             this.gpBoxSensorQuery.ResumeLayout(false);
@@ -1279,7 +1279,7 @@
             this.grBoxQuizResult.PerformLayout();
             this.grBoxInterval.ResumeLayout(false);
             this.grBoxInterval.PerformLayout();
-            this.grBoxMonitoringType.ResumeLayout(false);
+            this.GroupBoxMonitoringType.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.grBoxLogs.ResumeLayout(false);
@@ -1292,27 +1292,27 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox gpBoxInternetConnectionCheck;
-        private System.Windows.Forms.TextBox txtBoxCheckInternet;
+        private System.Windows.Forms.TextBox TxtBoxCheckInternet;
         private System.Windows.Forms.GroupBox gpBoxMapView;
-        private System.Windows.Forms.Button btnShwMap;
+        private System.Windows.Forms.Button ButtonShowMap;
         private System.Windows.Forms.GroupBox gpBoxSearch;
         private System.Windows.Forms.GroupBox gpBoxSearchResult;
-        private System.Windows.Forms.TextBox txtBoxMapSStatus;
-        private System.Windows.Forms.TextBox txtBoxMapSType;
+        private System.Windows.Forms.TextBox TxtBoxMapSStatus;
+        private System.Windows.Forms.TextBox TxtBoxMapSType;
         private System.Windows.Forms.Label lbSensorTypeForResultOfSearch;
         private System.Windows.Forms.Label lbSensorState;
         private System.Windows.Forms.Label lbSensorNameForSearch;
-        private GMap.NET.WindowsForms.GMapControl sensorMap;
+        private GMap.NET.WindowsForms.GMapControl SensorMap;
         private System.Windows.Forms.TabPage tabPageSensor;
         private System.Windows.Forms.GroupBox gpBoxGraphic;
-        private System.Windows.Forms.DataVisualization.Charting.Chart unionChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart UnionChart;
         private System.Windows.Forms.GroupBox gpBoxData;
-        private System.Windows.Forms.DataGridView dgvData;
-        private System.Windows.Forms.RichTextBox rtbSensorsValue;
+        private System.Windows.Forms.DataGridView DgvData;
+        private System.Windows.Forms.RichTextBox RtbSensorsValue;
         private System.Windows.Forms.GroupBox gpBoxSensorIdentity;
-        private System.Windows.Forms.DataGridView dgvSens;
-        private System.Windows.Forms.Button btnRefreshDB;
-        private System.Windows.Forms.RichTextBox rtbAmountSensors;
+        private System.Windows.Forms.DataGridView DgvSens;
+        private System.Windows.Forms.Button ButtonRefreshDB;
+        private System.Windows.Forms.RichTextBox RtbAmountSensors;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.ToolStripMenuItem FileMenu;
@@ -1321,58 +1321,58 @@
         private System.Windows.Forms.ToolStripMenuItem HelpMenu;
         private System.Windows.Forms.ToolStripMenuItem AboutProgramMenu;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ComboBox comboBoxSNMap;
-        private System.Windows.Forms.TextBox txtBoxMapLastValue;
-        private System.Windows.Forms.TextBox txtBoxMapLastDate;
+        private System.Windows.Forms.ComboBox ComboBoxSNMap;
+        private System.Windows.Forms.TextBox TxtBoxMapLastValue;
+        private System.Windows.Forms.TextBox TxtBoxMapLastDate;
         private System.Windows.Forms.GroupBox gpBoxLastActivity;
         private System.Windows.Forms.Label lbValueOfLastActivity;
         private System.Windows.Forms.Label lbDateOfLastActivity;
         private System.Windows.Forms.Label lbTimeOfLastActivity;
-        private System.Windows.Forms.TextBox txtBoxMapLastTime;
+        private System.Windows.Forms.TextBox TxtBoxMapLastTime;
         private System.Windows.Forms.ToolStripMenuItem RestartMenu;
         private System.Windows.Forms.TabPage Мониторинг;
         private System.Windows.Forms.GroupBox grBoxMonitoringSettings;
         private System.Windows.Forms.GroupBox gpBoxSensorsView;
-        private System.Windows.Forms.RadioButton rButtonAllSensors;
-        private System.Windows.Forms.RadioButton rButtonChooseSensors;
-        private System.Windows.Forms.ProgressBar progressBarLoadDataFromDB;
+        private System.Windows.Forms.RadioButton RButtonAllSensors;
+        private System.Windows.Forms.RadioButton RButtonChooseSensors;
+        private System.Windows.Forms.ProgressBar ProgressBarLoadDataFromDB;
         private System.Windows.Forms.GroupBox grBoxDataView;
-        private System.Windows.Forms.RadioButton rButtonAllDates;
-        private System.Windows.Forms.RadioButton rButtonChooseDate;
+        private System.Windows.Forms.RadioButton RButtonAllDates;
+        private System.Windows.Forms.RadioButton RButtonChooseDate;
         private System.Windows.Forms.GroupBox grBoxCurrentSensor;
-        private System.Windows.Forms.TextBox txtBoxCurrentSensor;
+        private System.Windows.Forms.TextBox TxtBoxCurrentSensor;
         private System.Windows.Forms.GroupBox grBoxGettingData;
-        private System.Windows.Forms.DataGridView dgvQuizResult;
+        private System.Windows.Forms.DataGridView DgvQuizResult;
         private System.Windows.Forms.GroupBox grBoxMonitoringFiltration;
-        private System.Windows.Forms.RichTextBox rtbLogs;
+        private System.Windows.Forms.RichTextBox RtbLogs;
         private System.Windows.Forms.GroupBox grBoxLogs;
         private System.Windows.Forms.ToolStripMenuItem SaveAsMenu;
-        private System.Windows.Forms.GroupBox grBoxMonitoringType;
+        private System.Windows.Forms.GroupBox GroupBoxMonitoringType;
         private System.Windows.Forms.ComboBox comboBoxMonitoringType;
         private System.Windows.Forms.GroupBox gpBoxSensorQuery;
-        private System.Windows.Forms.ProgressBar progressBarMonitoring;
-        private System.Windows.Forms.Button btnSelectSensorsForRequest;
-        private System.Windows.Forms.Button btnRequestNetwork;
+        private System.Windows.Forms.ProgressBar ProgressBarMonitoring;
+        private System.Windows.Forms.Button ButtonSelectSensorsForRequest;
+        private System.Windows.Forms.Button ButtonRequestNetwork;
         private System.Windows.Forms.GroupBox grBoxMonitoringMap;
-        private GMap.NET.WindowsForms.GMapControl sensorMonitoringMap;
+        private GMap.NET.WindowsForms.GMapControl SensorMonitoringMap;
         private System.Windows.Forms.GroupBox grBoxMap;
         private System.Windows.Forms.GroupBox grBoxInterval;
-        private System.Windows.Forms.ComboBox comboBoxSelectQuizInterval;
+        private System.Windows.Forms.ComboBox ComboBoxSelectQuizInterval;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblIntervalFrom;
         private System.Windows.Forms.GroupBox grBoxQuizResult;
-        private System.Windows.Forms.RadioButton radioBtnOnlySave;
-        private System.Windows.Forms.RadioButton radioBtnOnlyShow;
-        private System.Windows.Forms.RadioButton radioBtnSaveAndShow;
+        private System.Windows.Forms.RadioButton RButtonOnlySave;
+        private System.Windows.Forms.RadioButton RButtonOnlyShow;
+        private System.Windows.Forms.RadioButton RButtonSaveAndShow;
         private System.Windows.Forms.RichTextBox rtbSensorsCountQuiz;
         private System.Windows.Forms.RichTextBox rtbDataCountQuiz;
-        private System.Windows.Forms.RichTextBox rtbSelectedSensorsCount;
-        private System.Windows.Forms.RichTextBox rtbQuizNumber;
+        private System.Windows.Forms.RichTextBox RtbSelectedSensorsCount;
+        private System.Windows.Forms.RichTextBox RtbQuizNumber;
         private System.Windows.Forms.Button btnFiltration;
         private System.Windows.Forms.GroupBox grBoxFiltrationBySensorName;
         private System.Windows.Forms.Button btnSelectSensorsForаFiltration;
-        private System.Windows.Forms.DateTimePicker dtpFrom;
-        private System.Windows.Forms.DateTimePicker dtpTo;
+        private System.Windows.Forms.DateTimePicker DtpFrom;
+        private System.Windows.Forms.DateTimePicker DtpTo;
     }
 }
 
