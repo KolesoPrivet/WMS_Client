@@ -122,3 +122,52 @@ System.NullReferenceException: Ссылка на объект не указыв�
 Выполняется удаление источника EventLog WMSService.
 Выполняется удаление службы WMSService из системы...
 Служба WMSService успешно удалена из системы.
+Выполняется установка сборки 'D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.InstallLog
+   assemblypath = D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe
+Выполняется откат для сборки 'D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.InstallLog
+   assemblypath = D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe
+Выполняется установка сборки 'D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.InstallLog
+   assemblypath = D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe
+Устанавливается служба WMSService...
+Создается исходный EventLog WMSService в журнале Application...
+Выполняется откат для сборки 'D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.InstallLog
+   assemblypath = D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe
+Восстанавливается исходное состояние журнала событий для источника WMSService.
+Выполняется установка сборки 'D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.InstallLog
+   assemblypath = D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe
+Устанавливается служба WMSService...
+Создается исходный EventLog WMSService в журнале Application...
+Выполняется откат для сборки 'D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.InstallLog
+   assemblypath = D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe
+Восстанавливается исходное состояние журнала событий для источника WMSService.
+Выполняется установка сборки 'D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.InstallLog
+   assemblypath = D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe
+Устанавливается служба WMSService...
+Создается исходный EventLog WMSService в журнале Application...
+Выполняется откат для сборки 'D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.InstallLog
+   assemblypath = D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe
+Восстанавливается исходное состояние журнала событий для источника WMSService.

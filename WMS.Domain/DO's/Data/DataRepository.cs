@@ -14,6 +14,7 @@ namespace WMS.Domain
 
         public async void AddAsync(Data data)
         {
+            //TODO: null reference
             using (WmsContext context = new WmsContext())
             {
                 context.Data.Add( data );

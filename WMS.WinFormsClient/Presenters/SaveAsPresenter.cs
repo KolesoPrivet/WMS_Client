@@ -9,6 +9,9 @@ namespace WMS.WinFormsClient
 {
     public class SaveAsPresenter : Presenter
     {
+        /// <summary>
+        /// Сохранить данные в Excel-файл.
+        /// </summary>
         public void SaveFileExcel(List<DataDto> dataForSavingParam, string filePathParam, string fileNameParam)
         {
             try
