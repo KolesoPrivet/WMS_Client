@@ -1,15 +1,15 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace WMS.Domain
 {
     public class DataRepository : IRepository<Data>
     {
-        public IQueryable<Data> GetAll()
+        public List<Data> GetAll()
         {
-            using (WmsContext context = new WmsContext())
-            {
-                return context.Data.AsQueryable();
-            }
+            WmsContext context = new WmsContext();
+            
+            return context.Data.ToList();
         }
 
         public async void AddAsync(Data data)

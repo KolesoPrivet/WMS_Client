@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace WMS.Common
 {
+    [DataContract]
     public class Response
     {
         public int SensorId { get; set; }

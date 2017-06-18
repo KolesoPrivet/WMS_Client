@@ -20,7 +20,7 @@ using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 
 using WMS.Common;
-using WMS.WinFormsClient;
+using WMS.WinFormsClient.WMSService;
 
 #endregion
 
@@ -228,7 +228,7 @@ namespace WMS.WinFormsClient
                 };
 
                 // Request may return null if "SaveOnly" option was chosen.
-                 return new WMSServiceClient().RequestService( requestSettings ).ToList();
+                 return new WMSServiceClient().RequestToWSN( requestSettings ).ToList();
             } );
         }
          
@@ -305,7 +305,6 @@ namespace WMS.WinFormsClient
             DgvSens.Columns["SensorType"].Name = "Sensor type";
 
             DgvData.Columns["Id"].Visible = false;
-            DgvData.Columns["Sensors"].Visible = false;
             DgvData.Columns["SensorId"].Visible = false;
         }
 

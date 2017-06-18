@@ -1,6 +1,3 @@
-D:\WMS\WMS_Client\WMS.WindowsServiceHost\obj\Debug\WMS.WindowsServiceHost.csprojResolveAssemblyReference.cache
-D:\WMS\WMS_Client\WMS.WindowsServiceHost\obj\Debug\WMS.WindowsServiceHost.ProjectInstaller.resources
-D:\WMS\WMS_Client\WMS.WindowsServiceHost\obj\Debug\WMS.WindowsServiceHost.csproj.GenerateResource.Cache
 D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe.config
 D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe
 D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.pdb
@@ -21,6 +18,13 @@ D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.Domain.dll.config
 D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\AutoMapper.xml
 D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\EntityFramework.xml
 D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\ru\EntityFramework.resources.dll
+D:\WMS\WMS_Client\WMS.WindowsServiceHost\obj\Debug\WMS.WindowsServiceHost.csprojResolveAssemblyReference.cache
+D:\WMS\WMS_Client\WMS.WindowsServiceHost\obj\Debug\WMS.WindowsServiceHost.ProjectInstaller.resources
+D:\WMS\WMS_Client\WMS.WindowsServiceHost\obj\Debug\WMS.WindowsServiceHost.WMSServiceHost.resources
+D:\WMS\WMS_Client\WMS.WindowsServiceHost\obj\Debug\WMS.WindowsServiceHost.csproj.GenerateResource.Cache
 D:\WMS\WMS_Client\WMS.WindowsServiceHost\obj\Debug\WMS.WindowsServiceHost.exe
 D:\WMS\WMS_Client\WMS.WindowsServiceHost\obj\Debug\WMS.WindowsServiceHost.pdb
-D:\WMS\WMS_Client\WMS.WindowsServiceHost\obj\Debug\WMS.WindowsServiceHost.WMSServiceHost.resources
+D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\EntityFramework.SqlServer.dll
+D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.Server.dll.config
+D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\EntityFramework.SqlServer.xml
+D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\ru\EntityFramework.SqlServer.resources.dll

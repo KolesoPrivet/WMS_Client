@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using WMS.Common;
 using WMS.WinFormsClient.WMSService;
-using WMS.WinFormsClient;
+
 
 namespace WMS.WinFormsClient
 {
@@ -28,7 +28,7 @@ namespace WMS.WinFormsClient
         {
             WMSServiceClient client = new WMSServiceClient();
 
-            CachedEntity.CurrentSensors = client.GetAllSensors( null ).ToList();
+            CachedEntity.CurrentSensors = client.GetAllSensors().ToList();
 
             return CachedEntity.CurrentSensors;
         }
@@ -40,7 +40,7 @@ namespace WMS.WinFormsClient
         {
             WMSServiceClient client = new WMSServiceClient();
 
-            CachedEntity.CurrentData = client.GetDataBySensorId( null ).ToList();
+            CachedEntity.CurrentData = client.GetAllData().ToList();
 
             return CachedEntity.CurrentData;
         }
@@ -103,7 +103,7 @@ namespace WMS.WinFormsClient
         /// </summary>
         public virtual IEnumerable<DateTime> GetDates(string sensorNameParam)
         {
-            SensorDto currentSensor = GetSensors().Where( s => s.Name == sensorNameParam ).AsEnumerable().First();
+            SensorDto currentSensor = GetSensors().Where( s => s.Name == sensorNameParam ).First();
 
             foreach (var data in GetData().Where( d => d.SensorId == currentSensor.Id ))
             {

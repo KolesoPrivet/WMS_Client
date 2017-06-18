@@ -46,5 +46,12 @@ namespace WMS.Domain
 
             return Map( domainObjects );
         }
+
+        public List<VDto> GetAll()
+        {
+            List<TEntity> domainObjects = _repository.GetAll();
+
+            return Map( domainObjects );
+        }
     }
 }

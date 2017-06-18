@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/WMS.Common" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WMS.Common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8080/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:8080/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfSensorDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SensorDto" nillable="true" type="tns:SensorDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSensorDto" nillable="true" type="tns:ArrayOfSensorDto" />
+  <xs:complexType name="SensorDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Lat" type="xs:double" />
+      <xs:element minOccurs="0" name="Lng" type="xs:double" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Radius" type="xs:int" />
+      <xs:element minOccurs="0" name="SensorType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SensorDto" nillable="true" type="tns:SensorDto" />
+  <xs:complexType name="ArrayOfDataDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DataDto" nillable="true" type="tns:DataDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDataDto" nillable="true" type="tns:ArrayOfDataDto" />
+  <xs:complexType name="DataDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="SensorId" type="xs:int" />
+      <xs:element minOccurs="0" name="Time" type="ser:duration" />
+      <xs:element minOccurs="0" name="Value" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DataDto" nillable="true" type="tns:DataDto" />
+  <xs:complexType name="Request">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Frequence" type="xs:int" />
+      <xs:element minOccurs="0" name="QuizNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="ResultSettings" type="tns:ResultSettings" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SensorIds" nillable="true" type="q1:ArrayOfint" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SensorNames" nillable="true" type="q2:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Request" nillable="true" type="tns:Request" />
+  <xs:simpleType name="ResultSettings">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="showOnly" />
+      <xs:enumeration value="saveOnly" />
+      <xs:enumeration value="showAndSave" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ResultSettings" nillable="true" type="tns:ResultSettings" />
+  <xs:complexType name="ArrayOfResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Response" nillable="true" type="tns:Response" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfResponse" nillable="true" type="tns:ArrayOfResponse" />
+  <xs:complexType name="Response">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SensorId" type="xs:int" />
+      <xs:element minOccurs="0" name="Time" type="ser:duration" />
+      <xs:element minOccurs="0" name="Value" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Response" nillable="true" type="tns:Response" />
+</xs:schema>

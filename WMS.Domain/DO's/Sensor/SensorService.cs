@@ -15,7 +15,7 @@ namespace WMS.Domain
         public override SensorDto Map(Sensor source)
         {
             Mapper.Initialize( cfg => cfg.CreateMap<Sensor, SensorDto>() );
-            return Mapper.Map<Sensor, SensorDto>( source );
+            return Mapper.Map<Sensor, SensorDto>(source);
         }
 
         public override List<SensorDto> Map(IEnumerable<Sensor> source)

@@ -1,4 +1,3 @@
-D:\WMS\WMS_Client\WMS.ConsoleApplication\ConsoleApplication1\obj\Debug\WMS.ConsoleApplication.csprojResolveAssemblyReference.cache
 D:\WMS\WMS_Client\WMS.ConsoleApplication\ConsoleApplication1\bin\Debug\WMS.ConsoleApplication.exe.config
 D:\WMS\WMS_Client\WMS.ConsoleApplication\ConsoleApplication1\bin\Debug\WMS.ConsoleApplication.exe
 D:\WMS\WMS_Client\WMS.ConsoleApplication\ConsoleApplication1\bin\Debug\WMS.ConsoleApplication.pdb
@@ -70,3 +69,12 @@ D:\WMS\WMS_Client\WMS.ConsoleApplication\ConsoleApplication1\bin\Debug\Ninject.d
 D:\WMS\WMS_Client\WMS.ConsoleApplication\ConsoleApplication1\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
 D:\WMS\WMS_Client\WMS.ConsoleApplication\ConsoleApplication1\bin\Debug\Microsoft.Practices.ServiceLocation.xml
 D:\WMS\WMS_Client\WMS.ConsoleApplication\ConsoleApplication1\bin\Debug\Ninject.xml
+D:\WMS\WMS_Client\WMS.ConsoleApplication\ConsoleApplication1\bin\Debug\WMS.Common.dll
+D:\WMS\WMS_Client\WMS.ConsoleApplication\ConsoleApplication1\bin\Debug\WMS.Domain.dll
+D:\WMS\WMS_Client\WMS.ConsoleApplication\ConsoleApplication1\bin\Debug\AutoMapper.dll
+D:\WMS\WMS_Client\WMS.ConsoleApplication\ConsoleApplication1\bin\Debug\WMS.Common.pdb
+D:\WMS\WMS_Client\WMS.ConsoleApplication\ConsoleApplication1\bin\Debug\WMS.Domain.pdb
+D:\WMS\WMS_Client\WMS.ConsoleApplication\ConsoleApplication1\bin\Debug\WMS.Domain.dll.config
+D:\WMS\WMS_Client\WMS.ConsoleApplication\ConsoleApplication1\bin\Debug\AutoMapper.xml
+D:\WMS\WMS_Client\WMS.ConsoleApplication\ConsoleApplication1\obj\Debug\WMS.ConsoleApplication.csprojResolveAssemblyReference.cache
+D:\WMS\WMS_Client\WMS.ConsoleApplication\ConsoleApplication1\obj\Debug\WMS.ConsoleApplication.csproj.WMS.ConsoleApplication.exe.config

@@ -1,15 +1,15 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace WMS.Domain
 {
     public class SensorRepository : IRepository<Sensor>
     {
-        public IQueryable<Sensor> GetAll()
+        public List<Sensor> GetAll()
         {
-            using (WmsContext context = new WmsContext())
-            {
-                return context.Sensors.AsQueryable();
-            }
+            WmsContext context = new WmsContext();
+
+            return context.Sensors.ToList();
         }
 
         public async void AddAsync(Sensor sensor)

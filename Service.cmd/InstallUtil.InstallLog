@@ -49,3 +49,17 @@ System.InvalidOperationException: Пользователь отменил уст
 Этап отката выполнен успешно.
 
 Групповая операция установки выполнена.
+
+
+Начинается установка.
+См. файл журнала выполнения операция для сборки D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe.
+Данный файл находится в D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.InstallLog.
+
+Удаление из системы выполнено.
+
+
+Начинается установка.
+См. файл журнала выполнения операция для сборки D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.exe.
+Данный файл находится в D:\WMS\WMS_Client\WMS.WindowsServiceHost\bin\Debug\WMS.WindowsServiceHost.InstallLog.
+
+Удаление из системы выполнено.

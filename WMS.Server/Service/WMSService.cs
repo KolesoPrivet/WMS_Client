@@ -11,38 +11,40 @@ namespace WMS.Server
                       ConcurrencyMode = ConcurrencyMode.Multiple )]
     public class WMSService : IWMSService
     {
-        private readonly DataService _dataService = new DataService();
-
-        private readonly SensorService _sensorService = new SensorService();
-
         /// <summary>
         /// Получить все данные
         /// </summary>
-        public List<DataDto> GetAllData(Func<Data, bool> predicate)
+        public DataDto[] GetAllData()
         {
-            return _dataService.Get( predicate );
+            DataService dataService = new DataService();
+
+            return dataService.GetAll().ToArray();
         }
 
         /// <summary>
         /// Получить данные по идентификатору сенсора
         /// </summary>
-        public List<DataDto> GetDataBySensorId(int id)
+        public DataDto[] GetDataBySensorId(int id)
         {
-            return _dataService.Get(x => x.SensorId == id);
+            DataService dataService = new DataService();
+
+            return dataService.Get(x => x.SensorId == id).ToArray();
         }
 
         /// <summary>
         /// Получить все сенсоры
         /// </summary>
-        public List<SensorDto> GetAllSensors(Func<Sensor, bool> predicate)
+        public SensorDto[] GetAllSensors()
         {
-            return _sensorService.Get( predicate );
+            SensorService sensorService = new SensorService();
+
+            return sensorService.GetAll().ToArray();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public List<Response> RequestToWSN(Request requestEnityParam)
+        public Response[] RequestToWSN(Request requestEnityParam)
         {
             // Get dispatcher, which will do work with gotten sensors request:
             //
@@ -50,13 +52,13 @@ namespace WMS.Server
             // * save and return to client (return IList<ResponseEntity);
             // * only return (return IList<ResponseEntity).
             //
-            return ResponseDispatcher.GetDispatcher( requestEnityParam.ResultSettings ).ResultWork( RequestToSensors( requestEnityParam ) );
+            return ResponseDispatcher.GetDispatcher( requestEnityParam.ResultSettings ).ResultWork( RequestToSensors( requestEnityParam ) ).ToArray();
         }
 
         /// <summary>
         /// Отправить запрос на опрос сенсорной сети
         /// </summary>
-        public List<Response> RequestToSensors(Request requestEntityParam)
+        public Response[] RequestToSensors(Request requestEntityParam)
         {
             //TODO: Request to sensor network
             return new List<Response>() { new Response { Name = "111-111",
@@ -75,7 +77,7 @@ namespace WMS.Server
                                                          Date = DateTime.Now,
                                                          SensorId = 1,
                                                          Time = DateTime.Now.TimeOfDay,
-                                                         Value = 53 }};
+                                                         Value = 53 }}.ToArray();
         }
     }
 }

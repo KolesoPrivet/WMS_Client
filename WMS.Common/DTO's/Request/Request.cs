@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace WMS.Common
 {
+    [DataContract]
     public class Request
     {
         public int QuizNumber { get; set; }
